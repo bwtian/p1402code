@@ -1,5 +1,5 @@
-+NAME: fig:p1402Workflow
-#+HEADER: :cache yes :tangle yes
+#+NAME: fig:p1402Workflow
+#+HEADER: :cache yes :tangle yes :export both
 #+HEADER: :results output graphics
 #+BEGIN_SRC dot :file p1402Workflow.png
   digraph{
@@ -60,10 +60,4 @@
   }
 
 #+END_SRC
-
-#+RESULTS[4708d489f6d0178fb7f2b1ba98869c7307b6be92]:
-[[file:p1402Workflow.png]]
-
-#+RESULTS[ea254312e335851d0c15d4d5d4f710b065cebe7f]: fig:p1402Workflow
-[[file:p1402Workflow.png]]
 
