@@ -1,0 +1,72 @@
+#+NAME: fig:p1402Workflow
+#+HEADER: :cache yes :tangle yes
+#+HEADER: :results output graphics
+#+BEGIN_SRC dot :file p1402Workflow.png
+digraph{
+fontname="Times";
+fontsize = 12;
+splines = false;
+ranksep = 0.3;
+// nodesep = 0.5;
+node[shape = box]
+// set Node
+L8 [label = "Landsat-8 \n TIRS", shape = doubleoctagon]
+
+DN [label = <Digital Numbers<SUB>sensor</SUB><BR/>16 bit(0 -65,535)>]
+
+Rad [label = <Spectral Radiance<SUB>sensor</SUB> <BR/> (W&middot;m<SUP>-2</SUP>sr<SUP>-1</SUP>&mu;m<SUP>-1</SUP>)>]
+BT [label = <Bright Temperature<SUB>TOA</SUB><BR/>(Kelvin)>]
+AC, [label = "Atomosphere \n Correction", shape = Mdiamond]
+TC [label = "Topographic \n  Correction", shape = Mdiamond]
+EC [label = "Emissivity \n Correction", shape = Mdiamond]
+NDVI [label = "NDVI"]
+Air [label =  " Atomosper Profile \n (6S Model)" ]
+EM [label = "Emissivity"]
+DEM [label = "ASTER GDEM \n (30 m)"]
+MODISLST [label = "MODIS LST \n (1,000 m)"]
+LST [label = "Land Surface Temperature \n (100 m)"]
+
+
+T [label = "Well-logging \n Temperatures", shape = doubleoctagon]
+EDA [label = "Exploratory Data Analysis"]
+log [label = "Log Transfer"]
+
+
+// path
+subgraph TIRS {
+edge [color = red, weight = 10]
+L8 -> DN 
+DN -> Rad [label = " Linear Model"]
+Rad -> BT [label = < Planck's Law>]
+BT -> AC [label = "Atomospher Effect"] 
+AC -> EC [label = " Surface Feature"]
+EC -> TC [label = " Land Relief"]
+TC -> LST [label = " Groud Balance"]
+}
+//part2
+subgraph 3D {
+edge [color = blue]
+T -> EDA [label = "EDA"]
+EDA -> log [label = "Rescaling"]
+Rad1 -> Ref
+Ref -> AC1:n[weight=8]
+Air:s -> AC; Air:s -> AC1;
+AC1 -> NDVI [label = < Band5-Band4/Band5 + Band4>]
+NDVI ->  EM
+EM -> EC 
+DEM -> TC [label = BRDF]
+MODISLST -> LST [label = "Validation"]
+//EM -> LUCC [dir = back]
+}
+{rank =same; NDVI, EM, EC}
+{rank =same; TC, DEM}
+{rank =same; OLI, DN, TIRS}
+{rank =same; LST, MODISLST}
+
+}
+
+#+END_SRC
+
+#+RESULTS[e8d63a9b2658b17f4cef9c15cc32dd5ef71cfcb1]: fig:p1402Workflow
+[[file:p1402Workflow.png]]
+
