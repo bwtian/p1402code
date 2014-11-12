@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>p1402f8workflow</title>
-<!-- 2014-11-12 Wed 22:23 -->
+<!-- 2014-11-12 Wed 22:24 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="tian" />
@@ -138,10 +138,70 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">p1402f8workflow</h1>
+<div class="org-src-container">
+
+<pre class="src src-dot" id="fig:p1402Workflow">digraph{
+        <span style="color: #ffa500;">fontname=</span><span style="color: #00ff00;">"Times"</span>;
+        <span style="color: #ffa500;">fontsize =</span> 12;
+        <span style="color: #ffa500;">splines =</span> <span style="color: #00ffff;">false</span>;
+        <span style="color: #ffa500;">ranksep =</span> 0.3;
+        <span style="color: #00bfff;">// </span><span style="color: #00bfff;">nodesep = 0.5;</span>
+        node[<span style="color: #ffa500;">shape =</span> <span style="color: #00ffff;">box</span>]
+        <span style="color: #00bfff;">// </span><span style="color: #00bfff;">set Node</span>
+        L8 [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"Landsat-8 \n TIRS"</span>, <span style="color: #ffa500;">shape =</span> <span style="color: #00ffff;">doubleoctagon</span>]
+        DN [<span style="color: #ffa500;">label =</span> &lt;Digital Numbers&lt;SUB&gt;sensor&lt;/SUB&gt;&lt;<span style="color: #00ffff;">BR</span>/&gt;16 bit(0 -65,535)&gt;]
+        Rad [<span style="color: #ffa500;">label =</span> &lt;Spectral Radiance&lt;SUB&gt;sensor&lt;/SUB&gt; &lt;<span style="color: #00ffff;">BR</span>/&gt; (W&amp;middot;m&lt;SUP&gt;-2&lt;/SUP&gt;sr&lt;SUP&gt;-1&lt;/SUP&gt;&amp;mu;m&lt;SUP&gt;-1&lt;/SUP&gt;)&gt;]
+        BT [<span style="color: #ffa500;">label =</span> &lt;Brightness Temperature&lt;SUB&gt;TOA&lt;/SUB&gt;&lt;<span style="color: #00ffff;">BR</span>/&gt;(Kelvin, 30 m)&gt;]
+        EC [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"Emissivity \n Correction"</span>, <span style="color: #ffa500;">shape =</span> <span style="color: #00ffff;">Mdiamond</span>]
+        LULC [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"ALOS \n LULC \n(30 m)"</span>]
+        LST [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"Land Surface Temperature \n (100 m)"</span>]
+        TA [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"Thermal Anomalies"</span>] 
+        <span style="color: #00bfff;">// </span><span style="color: #00bfff;">path</span>
+        subgraph <span style="color: #ff6347;">TIRS</span> {
+                edge [<span style="color: #ffa500;">color =</span> <span style="color: #00ff00;">red</span>, <span style="color: #ffa500;">weight=</span>8]
+                L8 -&gt; DN 
+                DN -&gt; Rad [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Linear Model"</span>]
+                Rad -&gt; BT [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Planck's Law"</span>]
+                BT -&gt; EC [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Surface Feature"</span>]
+                EC -&gt; LST [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Arits et al"</span>]
+                LST -&gt; TA [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Residuals"</span>]
+                TA -&gt; GTA
+        }
+
+        T [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"Well-logging \n Temperatures"</span>, <span style="color: #ffa500;">shape =</span> <span style="color: #00ffff;">doubleoctagon</span>]
+        EDA [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"Exploratory Data Analysis"</span>]
+        log [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"Log Transfer"</span>]
+        vgm [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"Variogram Analysis"</span>]
+        KED [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"Kriging with \n External \n Trend"</span>, <span style="color: #ffa500;">shape =</span> <span style="color: #00ffff;">Mdiamond</span>]
+        invlog [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"Inverse Log Transfer"</span>]
+        GTA [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">"Geothermal Anomalies"</span>, <span style="color: #ffa500;">color =</span> <span style="color: #00ff00;">red</span>]
+
+        <span style="color: #00bfff;">//</span><span style="color: #00bfff;">part2</span>
+        subgraph <span style="color: #ff6347;">Temperatures</span> {
+                edge [<span style="color: #ffa500;">color =</span> <span style="color: #00ff00;">"blue"</span>, <span style="color: #ffa500;">weight =</span> 10]
+                T -&gt; EDA [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" EDA"</span>]
+                EDA -&gt; log [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Rescaling"</span>]
+                log -&gt; vgm [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Normality"</span>]
+                vgm -&gt; KED [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Estimation"</span>]
+                KED -&gt; invlog [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Inversion"</span>]
+                invlog -&gt; GTA [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Threshold"</span>]
+        }
+        <span style="color: #00bfff;">//</span><span style="color: #00bfff;">part3 </span>
+        subgraph <span style="color: #ff6347;">lulc</span> {
+                edge [<span style="color: #ffa500;">color =</span> <span style="color: #00ff00;">"green"</span>]
+                EC:e -&gt; LULC [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Emissivity"</span>, <span style="color: #ffa500;">dir =</span> <span style="color: #00ffff;">back</span>] 
+                LULC -&gt; GTA:w [<span style="color: #ffa500;">label =</span> <span style="color: #00ff00;">" Human \n Imapacts"</span>]
+        } 
+        {<span style="color: #ffa500;">rank =</span><span style="color: #00ffff;">same</span>; L8,T}
+        {<span style="color: #ffa500;">rank =</span><span style="color: #00ffff;">same</span>; TA,GTA}
+
+}
+</pre>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: tian</p>
-<p class="date">Created: 2014-11-12 Wed 22:23</p>
+<p class="date">Created: 2014-11-12 Wed 22:24</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
