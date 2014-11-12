@@ -15,7 +15,7 @@
           Rad [label = <Spectral Radiance<SUB>sensor</SUB> <BR/> (W&middot;m<SUP>-2</SUP>sr<SUP>-1</SUP>&mu;m<SUP>-1</SUP>)>]
           BT [label = <Brightness Temperature<SUB>TOA</SUB><BR/>(Kelvin, 30 m)>]
           EC [label = "Emissivity \n Correction", shape = Mdiamond]
-          LULC [label = "ALOS \n LULC \n(30 m)"]
+          LULC [label = "LULC \n(30 m)"]
           LST [label = "Land Surface Temperature \n (100 m)"]
           TA [label = "Thermal Anomalies"] 
           // path
@@ -61,7 +61,8 @@
 
 #+END_SRC
 #+CAPTION: Workflow of paper 1402
-#+NAME: fig:p1402Workflow  
+#+RESULTS[da85e305cdb6421a1967fa1ef963259b0741760d]: fig:p1402Workflow
+[[file:p1402Workflow.png]]
 #+RESULTS[435de1589867b53f14370fb15315fddb66525f4b]: fig:p1402Workflow
 [[file:p1402Workflow.png]]
 
