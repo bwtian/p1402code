@@ -18,7 +18,7 @@ ylab("Northing (km)")
 # y  <- as.numeric(df$Temperatrue)
 # max(y)
 #breaksY = c(0,100,200,250,300,350,400, max(y))
-breaksY = c(0,100,200,250,300,350,400, 515)
+breaksY = c(0,100,150,200,250,300,350,400,450,500,515)
 labelsY = as.character(breaksY)
 g3  <- g2 +  scale_fill_gradientn(name = expression(Temperature~(degree*C)),
                                     colours = rev(rainbow(7)),
