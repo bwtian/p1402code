@@ -28,7 +28,8 @@ volQ2  <- jpVolQ.spdf[hkdLand,]
 limitsX  <- c(138,147)
 breaksX  <- seq(limitsX[1], limitsX[2],1)
 labelsX=parse(text=paste(breaksX, "^o ", "*E", sep=""))
-limitsY  <- c(41,47)
+##limitsY  <- c(41,47)
+limitsY  <- c(39,47)
 breaksY  <- seq(limitsY[1],limitsY[2],1)
 labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
 ## Layer0: Base map
