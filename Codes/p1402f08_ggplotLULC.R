@@ -1,37 +1,32 @@
-##QGIS
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 setwd(dir.lulc)
 getwd()
-hkdLULC <- raster("hkdLULCver1402Merge.tif")
 jpLULC <- raster("jpLULCver1402Merge.tif")
-
-plot(hkdLULC)
+summary(jpLULC)
 brks  <- c(1,2,3,4,5,6,8,10,11)
 labs  <- c("Water", "Urban", "Paddy", "Crop","Grass", "DeciduousForest",
            "EvergreenForest", "Bare", "SnowAndIce")
-cols  <- c("darkblue", "red", "skyblue", "yellow", "yellowgreen", "springgreen", "forestgreen", "saddlebrown", "white")
+cols  <- c("blue", "red", "purple", "yellow", "yellowgreen", "springgreen", "forestgreen", "saddlebrown", "white")
 
 plot(hkdSub , breaks = brks, col = cols)
 
+
+
+plot(hkdLULC, breaks = brks, col = cols, labels = labs)
 xmin <- 139
 xmax <- 146
 ymin <- 41.4
 ymax <- 45.8
 bbox.SPDF <- ge.xy2bboxSPDF(xmin,xmax,ymin,ymax,wgs84GRS)
 hkdCrop  <- crop(jpLULC, bbox.SPDF)
-plot(hkdCrop , breaks = brks, col = cols)
 jp1.SPDF  <- getData('GADM', country='JPN', level=1, path = "~/Dropbox/2data//dataRaw/gadm2")
 hkdLand  <- ge.LargestPolys(jp1.SPDF, Polygon=T)
 hkdMask  <- mask(hkdSub, hkdLand)
-plot(hkdMask,breaks = brks, col = cols)
-#
-# writeRaster(hkdMask,
-#             filename = "hkdBigLULCver1402Merge.tif",
-#             overwrite = TRUE)
+plot(hkdSub)
 
-hkdVal  <- getValues(hkdMask)
-hkdXY <- as.data.frame(xyFromCell(hkdMask,1:ncell(hkdMask)))
-hkdDf <- cbind(hkdXY,hkdVal)
+
+
+
 
 hkdGrid  <- readRDS("~/Dropbox/2data/hkd/hkd_grid1k_140521_140220.Rds")
 plot(hkdGrid)
