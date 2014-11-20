@@ -71,9 +71,10 @@ ggVol  <- ggBH  +
         geom_path(data = volQ2@data, aes(as.numeric(lon), as.numeric(lat)),size = 12, alpha = 0.3, colour = "yellow",lineend = "round")
 
 
-ggVol
+#ggVol
 
-ggSap  <- ggVol + geom_point(data = sap.spdf, aes(x = lon, y = lat), colour = "White")  + geom_text(data = sap.spdf, aes(x = lon, y = lat, label = name), hjust = -0.1,family="Times", face="italic", colour="white")
+ggSap  <- ggVol + geom_point(data = sap.spdf, aes(x = lon, y = lat), colour = "White")  + 
+  geom_text(data = sap.spdf, aes(x = lon, y = lat, label = name), hjust = -0.1,family="Times", face="italic", colour="white")
 
 # ggSap
 
@@ -83,10 +84,9 @@ ggFont  <- ggBar +
         #coord_equal() +
         theme_bw(base_family = "Times", base_size = 12)
 ggFont
-f01_hkdStudyArea  <- ggFont
 ##ge.ggsave(hkdStudyArea)
 
-## ggWRS2
+## ggWRS2 path
 
 library(wrspathrow)
 wrs2.SPDF  <- pathrow_num(x = hkdLand, as_polys = TRUE)
@@ -106,8 +106,12 @@ ggWRS2  <- ggWRS +  geom_text(data = wrs2.SPDF@data,
                   label = paste(wrs2.SPDF@data$PATH, wrs2.SPDF@data$ROW," "),
                   family="Times", face = "Italic", colour="black") +
         scale_shape_manual(name =  " WRS 2", values = 20 , labels = c("Path and Row"))
+### Plate Boundaries
 
-ggWRS2
+
+ggWRS2 + geom_line()
+
+
 f01_hkdStudyArea  <-ggWRS2
 ge.ggsave(f01_hkdStudyArea)
 
