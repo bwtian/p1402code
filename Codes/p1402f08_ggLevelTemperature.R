@@ -1,6 +1,6 @@
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 setwd(dataDir)
-getwd()
+# getwd()
 hkdKT  <- readRDS("hkd/hkd_kt3dlcc_140530_114352.Rds")
 head(hkdKT)
 #df  <- subset(hkdKT, Z %% 200 == 0)
@@ -18,9 +18,10 @@ ylab("Northing (km)")
 # y  <- as.numeric(df$Temperatrue)
 # max(y)
 #breaksY = c(0,100,200,250,300,350,400, max(y))
-breaksY = c(0,100,150,200,250,300,350,400,450,500,515)
+breaksY = c(0,100,150,200,250,300,350,400,450,515)
 labelsY = as.character(breaksY)
 cols  <- oceColorsJet(255)
+
 g3  <- g2 +  scale_fill_gradientn(name = expression(Temperature~(degree*C)),
                                     colours = cols,
                                     breaks = breaksY,
