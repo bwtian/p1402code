@@ -161,8 +161,7 @@ ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2))
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
                                     labels = c("Tectonic lines","Volcanic front")) 
 
-ggTlines
-f01_hkdStudyArea  <-ggPlate 
-#ge.ggsave(f01_hkdStudyArea)
 
+f01_hkdStudyArea  <-ggTlines
+#ge.ggsave(f01_hkdStudyArea)
 
