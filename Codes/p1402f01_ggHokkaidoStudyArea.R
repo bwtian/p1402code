@@ -21,7 +21,7 @@ proj4string(jpVolQ.spdf) <- proj4string(bbox.SPDF)
 volQ <- jpVolQ.spdf[bbox.SPDF,]
 volA <- jpVolA.spdf[bbox.SPDF,]
 hkdLand  <- ge.LargestPolys(jp1.SPDF, Polygon=T)
-plot(hkdLand)
+#plot(hkdLand)
 volQ2  <- jpVolQ.spdf[hkdLand,]
 
 
@@ -29,7 +29,7 @@ limitsX  <- c(138,147)
 breaksX  <- seq(limitsX[1], limitsX[2],1)
 labelsX=parse(text=paste(breaksX, "^o ", "*E", sep=""))
 ##limitsY  <- c(41,47)
-limitsY  <- c(39,47)
+limitsY  <- c(40,47)
 breaksY  <- seq(limitsY[1],limitsY[2],1)
 labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
 ## Layer0: Base map
@@ -56,7 +56,7 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
         scale_size_manual(values=c(1,1.5,2,3,4)) +
         ### fill
         scale_fill_brewer("Borehole Depth (m)", palette="Blues")
-ggBH
+#ggBH
 
         ### Color
 
@@ -78,20 +78,20 @@ ggSap  <- ggVol + geom_point(data = sap.spdf, aes(x = lon, y = lat), colour = "W
 
 # ggSap
 
-ggBar  <- ggSap +scaleBar(lon = 145.5, lat = 41, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 500, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
+ggBar  <- ggSap +scaleBar(lon = 139, lat = 40, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 650, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 
 ggFont  <- ggBar +
         #coord_equal() +
         theme_bw(base_family = "Times", base_size = 12)
-ggFont
+# ggFont
 ##ge.ggsave(hkdStudyArea)
 
 ## ggWRS2 path
 
 library(wrspathrow)
 wrs2.SPDF  <- pathrow_num(x = hkdLand, as_polys = TRUE)
-plot(wrs2.SPDF,col = "red")
-wrs2.SPDF@data
+#plot(wrs2.SPDF,col = "red")
+#wrs2.SPDF@data
 wrs2.df  <- fortify(wrs2.SPDF)
 
 ggWRS  <- ggFont + geom_polygon(aes(long,lat,group=group),
@@ -108,11 +108,33 @@ ggWRS2  <- ggWRS +  geom_text(data = wrs2.SPDF@data,
         scale_shape_manual(name =  " WRS 2", values = 20 , labels = c("Path and Row"))
 ### Plate Boundaries
 
+jpArc.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpPlateBoundary_141124_223221.Rds")
+#plot(jpArc.sldf)
+bbox2.SPDF <- ge.xy2bboxSPDF(138,147,40,47,wgs84GRS)
+hkdArc.sldf  <- crop(jpArc.sldf, bbox2.SPDF)
+hkdArc.df  <- fortify(hkdArc.sldf )
+hkdArc.df  <- hkdArc.df[order(hkdArc.df$lat),]
+rownames(hkdArc.df)  <- seq_along(hkdArc.df$lat)
+# summary(hkdArc.df)
+# ggWRS2 + geom_point(aes(long,lat,group=group),
+#                       color = "red", 
+#                       linetype = 1,
+#                       hkdArc.df) + 
 
-ggWRS2 + geom_line()
 
+ggPlate  <- ggWRS2 + geom_path(aes(long,lat,group=piece),
+                    color = "red",
+                    linetype = 1,
+                    size = 1,
+                    hkdArc.df) +
+geom_text(aes(x = 145, y = 41.6, label = "Kuril Arc"),
+            hjust = -0.1, angle = 35, family="Times", colour="white") +
+  geom_text(aes(x = 144, y = 40, label = "Northern \n Japan \n Arc"),
+            hjust = -0.1, angle = 90, family="Times", colour="white") 
+  
+ggPlate 
 
 f01_hkdStudyArea  <-ggWRS2
-ge.ggsave(f01_hkdStudyArea)
+#ge.ggsave(f01_hkdStudyArea)
 
 
