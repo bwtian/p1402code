@@ -23,8 +23,10 @@ volA <- jpVolA.spdf[bbox.SPDF,]
 hkdLand  <- ge.LargestPolys(jp1.SPDF, Polygon=T)
 #plot(hkdLand)
 volQ2  <- jpVolQ.spdf[hkdLand,]
-
-
+#volA@data
+A  <- c(1,7,10,12,15,18)
+volAA  <- volA[volA$ID %in% A,]
+#volAA@data
 limitsX  <- c(138,147)
 breaksX  <- seq(limitsX[1], limitsX[2],1)
 labelsX=parse(text=paste(breaksX, "^o ", "*E", sep=""))
@@ -67,6 +69,9 @@ ggVol  <- ggBH  +
         geom_point(data = volA@data,
                    aes(as.numeric(lon), as.numeric(lat),
                       color="red"),  shape = 17, size = 3)  +
+        geom_point(data = volAA@data,
+             aes(as.numeric(lon), as.numeric(lat),
+                 color="black"),  shape = 3, size = 2)  +
         scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary Volcanoes","Active Volcanoes")) +
         geom_path(data = volQ2@data, aes(as.numeric(lon), as.numeric(lat)),size = 12, alpha = 0.3, colour = "yellow",lineend = "round")
 
@@ -144,7 +149,19 @@ jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox2.SPDF)
 plot(hkdTlines.sldf)
 hkdTlines.df  <- fortify(hkdTlines.sldf)
-ggPlate + geom_line
+## regroup
+hkdTlines.df$id2 <- 2
+hkdTlines.df[hkdTlines.df$id == 1,]$id2 <- 1
+hkdTlines.df[hkdTlines.df$id == 3,]$id2 <- 1
+ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
+  color = "red",
+  #linetype = 2,
+  size = 1,
+  hkdTlines.df) +  
+  scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
+                                    labels = c("Tectonic lines","Volcanic front")) 
+
+ggTlines
 f01_hkdStudyArea  <-ggPlate 
 #ge.ggsave(f01_hkdStudyArea)
 
