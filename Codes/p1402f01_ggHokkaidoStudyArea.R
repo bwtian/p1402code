@@ -127,14 +127,24 @@ ggPlate  <- ggWRS2 + geom_path(aes(long,lat,group=piece),
                     linetype = 1,
                     size = 1,
                     hkdArc.df) +
-geom_text(aes(x = 145, y = 41.6, label = "Kuril Arc"),
-            hjust = -0.1, angle = 35, family="Times", colour="white") +
-  geom_text(aes(x = 144, y = 40, label = "Northern \n Japan \n Arc"),
-            hjust = -0.1, angle = 90, family="Times", colour="white") 
+geom_text(aes(x = 144.5, y = 41.4, label = "Kuril Trench"),
+            hjust = -0.1, angle = 35, family="Times", colour="white",
+            size = 4) +
+  geom_text(aes(x = 143.5, y = 40, label = "Northern \n Japan \n Trench"),
+            hjust = -0.1, angle = 90, family="Times", colour="white",
+            size = 4) +
+  geom_text(aes(x = 139.4, y = 44, label = "Plate Boundary"),
+            hjust = -0.1, angle = 78, family="Times", colour="white",
+            size = 4)
+  
   
 
-
-
+ggPlate
+jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
+hkdTlines.sldf  <- crop(jpTlines.sldf, bbox2.SPDF)
+plot(hkdTlines.sldf)
+hkdTlines.df  <- fortify(hkdTlines.sldf)
+ggPlate + geom_line
 f01_hkdStudyArea  <-ggPlate 
 #ge.ggsave(f01_hkdStudyArea)
 
