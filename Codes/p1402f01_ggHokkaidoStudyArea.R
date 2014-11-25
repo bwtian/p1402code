@@ -25,7 +25,7 @@ hkdLand  <- ge.LargestPolys(jp1.SPDF, Polygon=T)
 volQ2  <- jpVolQ.spdf[hkdLand,]
 #volA@data
 A  <- c(1,7,10,12,15,18)
-volAA  <- volA[volA$ID %in% A,]
+#volAA  <- volA[volA$ID %in% A,]
 #volAA@data
 limitsX  <- c(138,147)
 breaksX  <- seq(limitsX[1], limitsX[2],1)
@@ -70,8 +70,8 @@ ggVol  <- ggBH  +
                    aes(as.numeric(lon), as.numeric(lat),
                       color="red"),  shape = 17, size = 3)  +
         geom_point(data = volAA@data,
-             aes(as.numeric(lon), as.numeric(lat),
-                 color="black"),  shape = 3, size = 2)  +
+             aes(as.numeric(lon), as.numeric(lat)), color="white",
+             shape = 3, size = 2) +
         scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary Volcanoes","Active Volcanoes")) +
         geom_path(data = volQ2@data, aes(as.numeric(lon), as.numeric(lat)),size = 12, alpha = 0.3, colour = "yellow",lineend = "round")
 
