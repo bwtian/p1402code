@@ -132,9 +132,10 @@ geom_text(aes(x = 145, y = 41.6, label = "Kuril Arc"),
   geom_text(aes(x = 144, y = 40, label = "Northern \n Japan \n Arc"),
             hjust = -0.1, angle = 90, family="Times", colour="white") 
   
-ggPlate 
 
-f01_hkdStudyArea  <-ggWRS2
+
+
+f01_hkdStudyArea  <-ggPlate 
 #ge.ggsave(f01_hkdStudyArea)
 
 

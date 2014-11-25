@@ -1,27 +1,19 @@
 ## ggplotKMZ
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
-setwd("~")
+setwd("~/Dropbox/2data/data/")
 
 kmz  <- "plate-boundaries.kmz"
+sldf <- readOGR(kmz,  "Plate Boundaries")
 kmz  <- "plateboundaries.kmz"
+sldf <- readOGR(kmz,  "Plate Convergence")
 kmz  <- "Tectonic_Plate_Boundaries.kml"
+sldf <- readOGR(kmz,  "Tectonic Plate Boundaries")
 kmz  <- "TectonicPlates.kmz"
-ogr2ogr(kmz)
 ogrListLayers(kmz)
-  
-plot(kmz.spdf)
-ggplot(kmz.spdf@data) + geom_line()
-rt  <- readOGR(kmz,  "Plate Boundaries")
-class(rt)
+plot(sldf)
 library(plotKML)
-ge.sp2shpGeo(obj = rt)
-xlimJP
-ylimJP
 jpBbox  <- ge.xy2bboxSPDF(128, 147, 30, 46, wgs84GRS) 
-
-plot(jpBbox)
-jpPlateBoundary  <- crop(rt, jpBbox)
+jpPlateBoundary  <- crop(sldf, jpBbox)
 plot(jpPlateBoundary)
 class(jpPlateBoundary)
 ge.sp2shpGeo(jpPlateBoundary)
-ogrListLayers(kmz)
