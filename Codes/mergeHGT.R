@@ -1,0 +1,5 @@
+setwd("D:/tian/GIS/DEM/")
+library(raster)
+list.files()
+a  <- raster("N40E139.hgt")
+plot(a)
