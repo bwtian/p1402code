@@ -143,8 +143,6 @@ geom_text(aes(x = 144.5, y = 41.4, label = "Kuril Trench"),
             size = 4)
   
   
-
-ggPlate
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox2.SPDF)
 plot(hkdTlines.sldf)
