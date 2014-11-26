@@ -68,7 +68,7 @@ ggFault  <- ggRock +
   geom_path(aes(long, lat, group=group, size = factor(0)), hkdFault.df,
             color = "black",
             alpha = 0.7)  +
-  scale_size_manual(name =  "Tectonic lines", values = 0.5 ,labels = "Faults")
+  scale_size_manual(name =  "Faults", values = 0.5 ,labels = "Faults")
 
 ggVol  <- ggFault  +
   geom_point(data = volA@data,
