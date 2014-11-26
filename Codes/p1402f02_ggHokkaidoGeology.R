@@ -72,9 +72,10 @@ ggFault  <- ggRock +
 
 ggVol  <- ggFault  +
   geom_point(data = volA@data,
-             aes(as.numeric(lon), as.numeric(lat),
-                 color="red"),  shape = 17, size = 3)  +
-  scale_color_manual(name =  "Volcanoes", values = c("red"), labels = c("Active volcanoes")) +
+             aes(as.numeric(lon), as.numeric(lat), color="red"),  
+             shape = 17, size = 3)  +
+  scale_color_manual(name =  "Volcanoes", 
+                     values = c("red"), labels = c("Active volcanoes")) 
 
 ggBar  <- ggVol +scaleBar(lon = 139, lat = 40, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 650, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 
