@@ -1,5 +1,9 @@
 setwd("D:/tian/GIS/DEM/")
 library(raster)
-list.files()
-a  <- raster("N40E139.hgt")
-plot(a)
+hgts  <- list.files(pattern = "*.hgt")
+rsts.l  <-  lapply(hgts,raster)
+merge  <- do.call(merge, rsts.l)
+writeRaster(merge, "hkdSRTM90.tif")
+plot(merge)
+summary(merge)
+merge
