@@ -18,7 +18,7 @@ levels(factor(hkdRocks.df$id))
 ### Make study Boundary
 
 
-basemap.r  <- readRDS("~/Dropbox/2data/dataProduct/hkd/hkd_google_satellite_142.5_43.5_zoom7_140815_2131.Rds")
+basemap.r  <- readRDS("~/Dropbox/2data/dataProduct/hkd/hkd_google_satellite_142.5_43.5_zoom6_141018_2339.Rds")
 jpVolA.spdf  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol110_140812_174525.Rds")
 xmin <- 139
 xmax <- 146
@@ -27,10 +27,17 @@ ymax <- 45.8
 bbox.SPDF <- ge.xy2bboxSPDF(xmin,xmax,ymin,ymax,wgs84GRS)
 proj4string(jpVolA.spdf) <- proj4string(bbox.SPDF)
 volA <- jpVolA.spdf[bbox.SPDF,]
-limitsX  <- c(139,146)
+# limitsX  <- c(139,146)
+# breaksX  <- seq(limitsX[1], limitsX[2],1)
+# labelsX=parse(text=paste(breaksX, "^o ", "*E", sep=""))
+# limitsY  <- c(41,46)
+# breaksY  <- seq(limitsY[1],limitsY[2],1)
+# labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
+limitsX  <- c(138,147)
 breaksX  <- seq(limitsX[1], limitsX[2],1)
 labelsX=parse(text=paste(breaksX, "^o ", "*E", sep=""))
-limitsY  <- c(41,46)
+##limitsY  <- c(41,47)
+limitsY  <- c(40,47)
 breaksY  <- seq(limitsY[1],limitsY[2],1)
 labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
 ## Layer0: Base map
