@@ -8,7 +8,7 @@ boxp  <- ggplot(hkdxyz, aes(factor(0),TD)) +
   #geom_boxplot(fill = "green", outlier.size = 0 ) +
   geom_jitter(shape = ".", size  = 1) +
   stat_summary(fun.y="mean",geom="point",color="blue", shape = 4) +
-  ylab("Total depth of each borehole (m)") + 
+  ylab("Total lenth (depth of the bottom hole from the orifice, m)") + 
   scale_y_continuous(breaks = c(seq(200, 2200,by = 200))) +
   xlab("") + 
   theme_bw(base_size = 12, base_family = "Times") +
