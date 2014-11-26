@@ -1,4 +1,4 @@
-### p1402fig5
+### p1402fig5 f05box2
 ### boxplot by depth
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 hkdSample  <- readRDS("~/Dropbox/2data/dataProduct/hkd/hkd_profiles_140806_164333.Rds")
@@ -33,11 +33,13 @@ p  <- ggplot(hkdS, aes(factor(cutDepth), Temperature)) +
   theme_bw(base_size = 12, base_family = "Times")
 p
 # 
-phd.ggsave(boxplot)
-p
-bhp_df$ColTemp  <- round(bhi_df$Temperature)
-bhp_df$ColTemp[bhp_df$ColTemp <= 0]  <- 1   # rgl color need all value are postive
-summary(bhp_df)
-bhp3d <- bhp_df[,c(3,4,9)]
-bhp4d <- bhp_df[,c(3,4,9,11)]
-```
+f05box2  <- p
+ge.ggsave(f05box2)
+getwd()
+# 
+# bhp_df$ColTemp  <- round(bhi_df$Temperature)
+# bhp_df$ColTemp[bhp_df$ColTemp <= 0]  <- 1   # rgl color need all value are postive
+# summary(bhp_df)
+# bhp3d <- bhp_df[,c(3,4,9)]
+# bhp4d <- bhp_df[,c(3,4,9,11)]
+# ```
