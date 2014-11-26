@@ -34,5 +34,5 @@ bh  <- ggplot(data = hkd100, aes(x= Depths, y = Temperature)) +
   scale_y_continuous(breaks = breaksY, labels = labelsY) +
   ylab(expression(Temperature~(degree*C))) +
   scale_colour_gradientn(name = expression(Temperature~(degree*C)), colours = rev(rainbow(7)), breaks = breaksY, labels = format(breaksY)) +
-  theme_bw(base_size = 11, base_family = "Times")
+  theme_bw(base_size = 12, base_family = "Times")
 bh
