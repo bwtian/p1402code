@@ -58,8 +58,10 @@ ggRock  <-  ggBase +
   geom_polygon(aes(long,lat,group=group, fill=id), hkdRocks.df) + 
   scale_fill_manual(name =  "Rock types", values =cols)
 ggFault  <- ggBase +
-  geom_path(aes(long, lat, group=group), hkdFault.df,
-            alpha = 0.7)
+  geom_path(aes(long, lat, group=group, color = "Faults"), hkdFault.df,
+            color = "black",
+            alpha = 0.7) +
+  scale_color_manual(name =  "", values = "black" labels = "Faults")
 ggFault
 scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
                         labels = c("Tectonic lines","Volcanic front"))
