@@ -1,9 +1,8 @@
+source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 hkdBH  <- readRDS("~/Dropbox/2data/dataProduct/hkd/hkd_profiles_140806_164333.Rds")
 hkd100  <- subset(hkdBH, (Depths >=100 ))
 hkdxyz  <-  unique(hkdBH[,c(1:3,13)])
-head(hkd100)
-library(ggplot2)
-plot(hkd100$Depths, hkd100$Temperature, type = "p", pch = 20)
+#plot(hkd100$Depths, hkd100$Temperature, type = "p", pch = 20)
 bh  <- ggplot(data = hkd100, aes(x= Depths, y = Temperature)) +
         geom_point(aes(color = Temperature), shape = ".") +
         #geom_smooth(color = "blue") + 
@@ -16,7 +15,10 @@ bh  <- ggplot(data = hkd100, aes(x= Depths, y = Temperature)) +
         scale_x_continuous(breaks = breaksX, labels = labelsX) +
         scale_y_continuous(breaks = breaksY, labels = labelsY) +
         ylab(expression(Temperature~(degree*C))) +
-        scale_colour_gradientn(name = expression(Temperature~(degree*C)), colours = rev(rainbow(7)), breaks = breaksY, labels = format(breaksY)) +
+        scale_colour_gradientn(name = expression(Temperature~(degree*C)), 
+                               colours = rev(rainbow(7)), 
+                               breaks = breaksY, 
+                               labels = format(breaksY)) +
         theme_bw(base_size = 11, base_family = "Times")
-setwd(figsDir)
 bh
+f03_f03box1 <-ggTlines
