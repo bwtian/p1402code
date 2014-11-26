@@ -68,7 +68,7 @@ ggVol  <- ggBH  +
                        color="blue"), shape = 17, alpha = 0.7) +
         geom_point(data = volA@data,
                    aes(as.numeric(lon), as.numeric(lat),
-                      color="red"),  shape = 17, size = 3)  +
+                      color="red"),  shape = 17, size = 2)  +
         geom_point(data = volAA@data,
              aes(as.numeric(lon), as.numeric(lat)), color="white",
              shape = 3, size = 2) +
