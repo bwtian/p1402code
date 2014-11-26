@@ -3,7 +3,7 @@ source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 ### Make study Boundary
 
 jp1.SPDF  <- getData('GADM', country='JPN', level=1, path = "~/Dropbox/2data//dataRaw/gadm2")
-basemap.r  <- readRDS("~/Dropbox/2data/dataProduct/hkd/hkd_google_roadmap_142.5_43.5_zoom6_141018_2339.Rds")
+basemap.r  <- readRDS("~/Dropbox/2data/dataProduct/hkd/hkd_google_satellite_142.5_43.5_zoom6_141018_2339.Rds")
 jpVolA.spdf  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol110_140812_174525.Rds")
 jpVolQ.spdf  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol455_140812_172148.Rds")
 sap.spdf  <- readRDS("~/Dropbox/2data/data/Sapporo_140817_162919.Rds")
@@ -109,7 +109,7 @@ ggWRS  <- ggFont + geom_polygon(aes(long,lat,group=group),
 ggWRS2  <- ggWRS +  geom_text(data = wrs2.SPDF@data,
                   aes(x = centroid_x, y = centroid_y),
                   label = paste(wrs2.SPDF@data$PATH, wrs2.SPDF@data$ROW," "),
-                  family="Times", face = "Italic", colour="black") +
+                  family="Times", face = "Italic", colour="black", size = 4) +
         scale_shape_manual(name =  " WRS 2", values = 20 , labels = c("Path and Row"))
 ### Plate Boundaries
 
