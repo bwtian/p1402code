@@ -3,10 +3,18 @@
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 setwd(dir = "~/Share/iData/Hokkaido/")
 hkdFault.sldf  <- readRDS("hkdFault.sldf_141126_221926.Rds")
-hkdGeoPoly.SPDF  <- readRDS("hkdGeoPoly.SPDF_141126_222720.Rds")
 hkdFault.df  <- fortify(hkdFault.sldf)
+#levels(factor(hkdFault.df$piece))
+
+hkdGeoPoly.SPDF  <- readRDS("hkdGeoPoly.SPDF_141126_222720.Rds")
 hkdGeoPoly.df  <- fortify(hkdGeoPoly.SPDF)
-hkdRocks.SPDF  <- hkdGeoPoly.SPDF[hkdGeoPoly.SPDF$Division_E,]
+hkdRocks.SPDF  <- unionSpatialPolygons(hkdGeoPoly.SPDF, hkdGeoPoly.SPDF@data$Division_E)
+#hkdRocks.SPDF  
+#levels(factor(hkdGeoPoly.df$id))
+#plot(hkdRocks.SPDF)
+hkdRocks.df  <- fortify(hkdRocks.SPDF)
+levels(factor(hkdRocks.df$id))
+
 ### Make study Boundary
 
 
@@ -19,19 +27,14 @@ ymax <- 45.8
 bbox.SPDF <- ge.xy2bboxSPDF(xmin,xmax,ymin,ymax,wgs84GRS)
 proj4string(jpVolA.spdf) <- proj4string(bbox.SPDF)
 volA <- jpVolA.spdf[bbox.SPDF,]
-limitsX  <- c(138,147)
+limitsX  <- c(139,146)
 breaksX  <- seq(limitsX[1], limitsX[2],1)
 labelsX=parse(text=paste(breaksX, "^o ", "*E", sep=""))
-##limitsY  <- c(41,47)
-limitsY  <- c(40,47)
+limitsY  <- c(41,46)
 breaksY  <- seq(limitsY[1],limitsY[2],1)
 labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
 ## Layer0: Base map
-ggBH  <-  ggmap(basemap.r, extent = "panel") +
-  ### Layers
-  geom_point(data = bh_xy, aes(Lon, Lat,fill = grp, size = grp),
-             shape = 21, alpha = 0.9) +
-  ### X
+ggBase  <-  ggmap(basemap.r, extent = "panel") +
   xlab("Lontitude") +
   scale_x_continuous(breaks=breaksX,
                      labels=labelsX,
@@ -43,37 +46,28 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
   scale_y_continuous(breaks=breaksY,
                      labels=labelsY,
                      limits=limitsY,
-                     expand = c(0.01,0.01)) +
-  ###Legend
-  ### Size
-  labs(size = "Borehole Depth (m)") +
-  scale_size_manual(values=c(1,1.5,2,3,4)) +
-  ### fill
-  scale_fill_brewer("Borehole Depth (m)", palette="Blues")
-#ggBH
-
-### Color
-
+                     expand = c(0.01,0.01)) 
+cols <- c("accretionary complex" = "red",
+          "metamorphic rock" = "purple",
+          "pultonic rock" = "pink",
+          "sedimentary rock" = "palegreen",    
+          "volcanic rock" = "yellow",
+          "water" = "cyan" )
+#levels(factor(hkdRocks.df$id))  
+ggRock  <-  ggBase +  
+  geom_polygon(aes(long,lat,group=group, fill=id), hkdRocks.df) + 
+  scale_fill_manual(name =  "Rock types", values =cols)
+ggFault  <- ggBase +
+  geom_path(aes(long, lat, group=group), hkdFault.df,
+            alpha = 0.7)
+ggFault
+scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
+                        labels = c("Tectonic lines","Volcanic front"))
 ggVol  <- ggBH  +
-  geom_point(data = volQ@data,
-             aes(as.numeric(lon), as.numeric(lat),
-                 color="blue"), shape = 17, alpha = 0.7) +
   geom_point(data = volA@data,
              aes(as.numeric(lon), as.numeric(lat),
                  color="red"),  shape = 17, size = 3)  +
-  geom_point(data = volAA@data,
-             aes(as.numeric(lon), as.numeric(lat)), color="white",
-             shape = 3, size = 2) +
   scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary Volcanoes","Active Volcanoes")) +
-  geom_path(data = volQ2@data, aes(as.numeric(lon), as.numeric(lat)),size = 12, alpha = 0.2, colour = "yellow",lineend = "round")
-
-
-#ggVol
-
-ggSap  <- ggVol + geom_point(data = sap.spdf, aes(x = lon, y = lat), colour = "White")  + 
-  geom_text(data = sap.spdf, aes(x = lon, y = lat, label = name), hjust = -0.1,family="Times", face="italic", colour="white")
-
-# ggSap
 
 ggBar  <- ggSap +scaleBar(lon = 139, lat = 40, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 650, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 
