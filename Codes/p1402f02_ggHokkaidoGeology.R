@@ -77,11 +77,8 @@ ggVol  <- ggFault  +
   scale_color_manual(name =  "Volcanoes", 
                      values = c("red"), labels = c("Active volcanoes")) 
 
-ggBar  <- ggVol +scaleBar(lon = 139, lat = 40, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 650, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 
-ggFont  <- ggBar +
-  #coord_equal() +
-  theme_bw(base_family = "Times", base_size = 12)
+
 # ggFont
 ##ge.ggsave(hkdStudyArea)
 
@@ -131,5 +128,11 @@ ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2))
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
                         labels = c("Tectonic lines","Volcanic front")) 
 
-f02_hkdGeology  <-ggTlines
+
+ggBar  <- ggVol +scaleBar(lon = 139, lat = 40, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 650, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
+
+ggFont  <- ggBar +
+  #coord_equal() +
+  theme_bw(base_family = "Times", base_size = 12)
+f02_hkdGeology  <-ggFont
 ge.ggsave(f02_hkdGeology)
