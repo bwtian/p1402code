@@ -14,5 +14,5 @@ boxp  <- ggplot(hkdxyz, aes(factor(0),TD)) +
   theme_bw(base_size = 12, base_family = "Times") +
   theme(axis.text.y=element_blank(),axis.ticks.y=element_blank(), aspect.ratio = 1/8) +
   coord_flip() 
-boxp
-# phd.ggsave(boxp)
+f03box1  <- boxp
+#ge.ggsave(f03box1)
