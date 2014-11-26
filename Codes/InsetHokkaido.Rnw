@@ -1,0 +1,221 @@
+\documentclass[10pt,a4paper]{article}
+# <<knitOptions, child = "~/Dropbox/5opts/knit/knitOptions.Rnw">>=
+# @
+\usepackage[left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\begin{document}
+\title{Creating Inset Maps in ggplot2}
+\author{Bingwei Tian}
+\maketitle
+\tableofcontents
+\section{Prepare Data}
+<<hkd0815data, echo=TRUE>>=
+xmin <- 139
+xmax <- 146
+ymin <- 41.4
+ymax <- 45.8
+posbox<-data.frame(xmin=xmin,xmax=xmax ,ymin=ymin ,ymax=ymax)
+crs  <- wgs84GRS
+prs  <- lccWgs84
+bbox_SPDF <- phd.bbox(xmin,xmax,ymin,ymax,crs)
+
+jp46  <- readRDS("~/Dropbox/2data/dataProduct/jp/jp46_140825_100251.Rds")
+sp::plot(jp46)
+library("wrspathrow")
+pathrow  <- pathrow_num(jp0)
+jp46WRS2_df  <- pathrow_num(jp46)
+jp46WRS2_SPDF  <- pathrow_num(jp46, as_polys =T)
+setwd(dataDir)
+phd.saveshp.geo(jp0)
+sp::plot(jp46WRS2_SPDF)
+sp::plot(jp46, add =T, col = "red")
+### Downlaod from 
+
+text(sp::coordinates(jp46WRS2_SPDF), label = paste(jp46WRS2_SPDF@data$PATH, jp46WRS2_SPDF@data$ROW, sep = "\n"))
+jp46WRS2_SPDF@data
+#sp::plot(pathrow_SPDF, add =T)
+jp46WRS2_SPDF@data
+jp0  <- raster::getData('GADM', country='JPN', level=0, path = "~/Dropbox/2data//dataRaw/gadm2")
+pathrow_SPDF  <- pathrow_num(jp0, as_polys = T)
+sp::plot(pathrow_SPDF)
+sp::plot(jp0, col = "red", add =T)
+
+# pathrow_SPDF  <- pathrow_num(jp0, wrs_mode = "A",as_polys = T)
+# sp::plot(pathrow_SPDF)
+# sp::plot(jp0, col = "red", add =T)
+# summary(pathrow_SPDF@data)
+
+
+
+id1  <- row.names(jp1)
+SPDF  <- jp1
+area_fun  <- function(polygons) {
+                sapply(polygons@Polygons, function(Polygon) Polygon@area)
+                }
+        areas_Polygon <- lapply(SPDF@polygons, area_fun)
+       
+        ### Extract Largest Polygon in each Polygons to SPDF3
+        id2_mxpoly <- lapply(areas_Polygon, function(x) which.max(x))
+        Polygon_l  <- list()
+        for (i in c(id1)) {
+             i <- as.numeric(i)
+             Polygon_l[[i]] <- SPDF@polygons[[i]]@Polygons[[id2_mxpoly[[i]]]]
+        }
+
+        Polygons  <- list()
+        for (i in c(id1)) {
+           i <- as.numeric(i)
+           Polygons[[i]]  <- sp::Polygons(list(Polygon_l[[i]]), i)
+        }
+
+        toSP  <- sp::SpatialPolygons(Polygons)
+        SPDF3  <- as(toSP, "SpatialPolygonsDataFrame")
+
+
+
+#SPDF3@data$ID  <- row.names(SPDF3)
+# SPDF3@data  <- merge(SPDF, SPDF3, by = "ID")
+# SPDF3@data
+#jp1@data  <-  data.frame(jp1@data, jpName[match(jp1@data[, 5], jpName[, 1]),])
+SPDF3@data  <- data.frame(SPDF3@data, SPDF@data[match(row.names(SPDF3), row.names(SPDF)),])
+SPDF3@data
+jp46  <- SPDF3[row.names(SPDF3) != 32,]
+sp::proj4string(jp46)  <- wgs84GRS
+setwd(dataDir)
+phd.saveshp.geo(jp46)
+# jp46@data  <- match(jp46@data, SPDF@data, by = "ID")
+# jp46@data  <- jp46@data[order(jp46@data$ID),]
+# order(jp46@data$ID)
+# jp46@data
+# sp::plot(jp11)
+# jp2  <- raster::getData('GADM', country='JPN', level=2, path = "~/Dropbox/2data//dataRaw/gadm2")
+# sub  <- phd.largestPolys(jp1, Polygon =T)
+# 
+# bh  <- readRDS("~/Dropbox/2data/dataProduct/hkd/hkd_profiles_140806_164333.Rds")
+# bh_xy  <- bh[!duplicated(bh$ID),]
+# bh_xy$grp <- cut(bh_xy$TD, breaks = c(0,500,1000,1500,2000,2200),
+#         labels = c("0-500","500-1000","1000-1500","1500-2000","2000-2200"))
+# volA  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol110_140812_174525.Rds")
+# volQ  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol455_140812_172148.Rds")
+# sp::proj4string(volQ) <- sp::proj4string(bbox_SPDF)
+# volQsub <- volQ[bbox_SPDF,]
+# sp::proj4string(volQ) <- sp::proj4string(sub)
+# volQsub2 <- volQ[sub,]
+# sp::proj4string(volA) <- sp::proj4string(bbox_SPDF)
+# volAsub <- volA[bbox_SPDF,]
+# sp::proj4string(volA) <- sp::proj4string(sub)
+# volAsub2 <- volA[sub,]
+# plot(bh$Lon, bh$Lat, pch = 20, xlab = "Longitude", ylab = "Latitude",
+#      xlim = c(xmin,xmax), ylim = c(ymin,ymax) ,add = TRUE)
+# sp::plot(volAsub, pch = 17, col = "red", add = TRUE)
+# sp::plot(volQsub, col = "blue", add = TRUE)
+# sp::plot(sub, add = TRUE)
+@
+
+\section{Hoakkaido Map}
+<<hkdMain,echo=TRUE>>=
+library(ggmap)
+library(ggplot2)
+library(gridExtra)
+#sp::coordinates(sub)
+#phd.getGoogleMap(142.5, 43.5, 7, "hkd")
+hkdTerrain  <- readRDS("~/Dropbox/2data/dataProduct/hkd/hkd_google_satellite_142.5_43.5_zoom7_140815_2131.Rds")
+#Sapporo  <- phd.geocode(c("Sapporo"))
+sap  <- readRDS("~/Dropbox/2data/data/Sapporo_140817_162919.Rds")
+basemap  <- hkdTerrain
+breaksX  <- seq(139,146, 1)
+labelsX=parse(text=paste(breaksX, "^o ", "*E", sep=""))
+breaksY  <- seq(41,46, 1)
+labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
+## Layer0: Base map
+hkd  <-  ggmap(basemap, extent = "panel") +
+        ### Layers
+        geom_point(data = bh_xy, aes(Lon, Lat,fill = grp, size = grp),
+                   shape = 21, alpha = 0.9) +
+        ### X
+        xlab("Lontitude") +
+        scale_x_continuous(breaks=breaksX, labels=labelsX,expand = c(0.01,0.01)) +
+        theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0)) +
+        ### Y
+        ylab("Latitude") +
+        scale_y_continuous(breaks=breaksY, labels=labelsY,expand = c(0.01,0.01)) +
+        ###Legend
+        ### Size
+        labs(size = "Borehole Depth (m)") +
+        scale_size_manual(values=c(1,1.5,2,3,4)) +
+        ### fill
+        scale_fill_brewer("Borehole Depth (m)", palette="Blues") +
+        ### Color
+
+        geom_point(data = volQsub@data, aes(as.numeric(lon), as.numeric(lat),
+                                            color="blue"), shape = 17, alpha = 0.7) +
+        geom_point(data = volAsub@data, aes(as.numeric(lon), as.numeric(lat), color="red"),  shape = 17, size = 3)  +
+        scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary Volcanoes","Active Volcanoes")) +
+        geom_path(data = volQsub2@data, aes(as.numeric(lon), as.numeric(lat)),size = 12, alpha = 0.4, colour = "pink",lineend = "round") +
+        geom_point(data = sap, aes(x = lon, y = lat), colour = "White")  + geom_text(data = sap, aes(x = lon, y = lat, label = name), hjust = -0.1,family="Times", face="italic", colour="white") +
+        scaleBar(lon = 144.4, lat = 41, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 480, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue") +
+        coord_equal() + theme_bw(base_family = "Times", base_size = 10)
+# setwd(figsDir)
+# phd.ggsave(p2)
+hkd
+@
+\section{Map of Japan for IAMG}
+<<JapanVolIamg,echo=TRUE>>=
+#phd.getGoogleMap(lon = 137.5, lat = 35 , zoom = 7, prefix = "jp")
+jpbase  <- readRDS("~/Dropbox/2data/dataProduct/jp/jp_google_roadmap_137.5_35_zoom5_140817_1433.Rds")
+getwd()
+#tokyo  <- phd.geocode("Tokyo")
+tokyo  <- readRDS("~/Dropbox/2data/tokyo_140817_174007.Rds")
+jp  <-  ggmap(jpbase, extent = "panel") +
+        ### Layers
+        #ggplot() +
+        #geom_point(data = volA@data, aes(as.numeric(lon), as.numeric(lat))
+         #          , color="red", shape = 17) +
+        geom_point(data =tokyo, aes(x = lon, y = lat), color = "black") +
+        
+        geom_text(data =tokyo, aes(x = lon,y = lat,label = name), color = "white",
+                  vjust = 1,size =rel(3)) +
+        geom_point(data = volQ@data, aes(as.numeric(lon), as.numeric(lat),
+                                            color="blue"), shape = 17, alpha = 0.7) +
+        geom_point(data = volA@data, aes(as.numeric(lon), as.numeric(lat), color="red"),  shape = 17, size = 3)  +
+        scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary Volcanoes","Active Volcanoes")) 
+jp
+       
+@
+\section{Map of Japan of Inset}
+<<JapanVol,echo=TRUE>>=
+#phd.getGoogleMap(lon = 137.5, lat = 35 , zoom = 5, prefix = "jp")
+jpbase  <- readRDS("~/Dropbox/2data/dataProduct/jp/jp_google_roadmap_137.5_35_zoom5_140817_1433.Rds")
+#tokyo  <- phd.geocode("Tokyo")
+tokyo  <- readRDS("~/Dropbox/2data/tokyo_140817_174007.Rds")
+jp  <-  ggmap(jpbase, extent = "panel") +
+        ### Layers
+        #ggplot() +
+        #geom_point(data = volA@data, aes(as.numeric(lon), as.numeric(lat))
+         #          , color="red", shape = 17) +
+        geom_point(data =tokyo, aes(x = lon, y = lat), color = "black") +
+        geom_text(data =tokyo, aes(x = lon,y = lat,label = name), color = "white",
+                  vjust = 1,size =rel(3))
+jpinset  <- jp + geom_rect(aes(xmin =139, xmax = 146, ymin = 41.4, ymax = 45.6), alpha=0, colour="red", size = 1, linetype=1) + coord_equal() + theme_bw() + theme(axis.text.x =element_blank(),axis.text.y= element_blank(), axis.ticks=element_blank(),axis.title.x =element_blank(), axis.title.y= element_blank()) +
+        theme(plot.background=element_rect(fill=NA, colour=NA))
+#+theme(plot.margin=unit(c(0,0,0,0,0,0,0,0),"mm"))
+jpinset 
+@
+
+\section{Inset Map fo Hokkaido}
+<<Inset,echo=TRUE>>=
+
+library(ggplot2)
+library(raster)
+library(gridExtra)
+setwd(figsDir)
+png(file="StudyArea2.png",w=2800,h=2800, res=400)
+grid.newpage()
+v1<-viewport(width = 1, height = 1, x = 0.5, y = 0.5) #plot area for the main map
+#grid.show.viewport(v1)
+v2<-viewport(width = 0.25, height = 0.25, x = 0.19, y = 0.65) #plot area for the inset map
+#grid.show.viewport(v2)
+print(hkd,vp=v1)
+print(jpinset,vp=v2)
+dev.off()
+@
+\end{document}
