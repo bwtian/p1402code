@@ -68,7 +68,7 @@ ggFault  <- ggRock +
   geom_path(aes(long, lat, group=group, size = factor(0)), hkdFault.df,
             color = "black",
             alpha = 0.7)  +
-  scale_size_manual(name =  "Faults", values = 0.5 ,labels = "Faults")
+  scale_size_manual(name =  "Tectonic lines", values = 0.5 ,labels = "Faults")
 
 ggVol  <- ggFault  +
   geom_point(data = volA@data,
@@ -134,5 +134,8 @@ ggBar  <- ggTlines +scaleBar(lon = 139, lat = 40, distanceLon = 50, distanceLege
 ggFont  <- ggBar +
   #coord_equal() +
   theme_bw(base_family = "Times", base_size = 12)
+g  <- guide_legend("Tectonic lines")
+ggGuid  <- ggFont + guides(size = g, linetype=g)
 f02_hkdGeology  <-ggFont
 ge.ggsave(f02_hkdGeology)
+
