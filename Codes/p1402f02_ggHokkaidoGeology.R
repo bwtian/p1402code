@@ -124,4 +124,4 @@ ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2))
                         labels = c("Tectonic lines","Volcanic front")) 
 
 f02_hkdGeology  <-ggTlines
-ge.ggsave(f01_hkdStudyArea)
+ge.ggsave(f02_hkdGeology)
