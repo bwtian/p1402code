@@ -25,7 +25,7 @@ hkdLand  <- ge.LargestPolys(jp1.SPDF, Polygon=T)
 volQ2  <- jpVolQ.spdf[hkdLand,]
 #volA@data
 A  <- c(1,7,10,12,15,18)
-#volAA  <- volA[volA$ID %in% A,]
+volAA  <- volA[volA$ID %in% A,]
 #volAA@data
 limitsX  <- c(138,147)
 breaksX  <- seq(limitsX[1], limitsX[2],1)
@@ -72,7 +72,7 @@ ggVol  <- ggBH  +
         geom_point(data = volAA@data,
              aes(as.numeric(lon), as.numeric(lat)), color="white",
              shape = 3, size = 2) +
-        scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary Volcanoes","Active Volcanoes")) +
+        scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary volcanoes","Active volcanoes")) +
         geom_path(data = volQ2@data, aes(as.numeric(lon), as.numeric(lat)),size = 12, alpha = 0.2, colour = "yellow",lineend = "round")
 
 
@@ -162,5 +162,5 @@ ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2))
                                     labels = c("Tectonic lines","Volcanic front")) 
 
 f01_hkdStudyArea  <-ggTlines
-#ge.ggsave(f01_hkdStudyArea)
+ge.ggsave(f01_hkdStudyArea)
 
