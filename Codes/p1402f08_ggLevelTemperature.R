@@ -27,8 +27,46 @@ g3  <- g2 +  scale_fill_gradientn(name = expression(Temperature~(degree*C)),
                                     breaks = breaksY,
                                     labels = labelsY) +
         theme_bw(base_size = 12, base_family = "Times") + coord_equal()
-        
-g3 + 
-threeD  <-g3
+g3 + geom_point(aes(x = 1300000, y = 1500000))
+
+#### 
+jpVolA.spdf  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol110_140812_174525.Rds")
+xmin <- 139
+xmax <- 146
+ymin <- 41.4
+ymax <- 45.8
+bbox.SPDF <- ge.xy2bboxSPDF(xmin,xmax,ymin,ymax,wgs84GRS)
+proj4string(jpVolA.spdf) <- proj4string(bbox.SPDF)
+volA <- jpVolA.spdf[bbox.SPDF,]
+volAl  <- spTransform(volA, CRS(lccWgs84))
+
+volAl.df  <- data.frame(coordinates(volAl))
+ggVol  <- g3  +
+  geom_point(data = volAl.df,
+             aes(as.numeric(lon), as.numeric(lat), color="red"),
+             shape = 17, alpha = 0.3)  +
+  scale_color_manual(name =  "Volcanoes",
+                     values = c("red"), labels = c("Active volcanoes"))
+ggVol
+jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
+hkdTlines.sldf  <- crop(jpTlines.sldf, bbox.SPDF)
+hkdTlines.sldfl  <- spTransform(hkdTlines.sldf, CRS(lccWgs84))
+#plot(hkdTlines.sldf)
+hkdTlines.df  <- fortify(hkdTlines.sldfl)
+## regroup
+hkdTlines.df$id2 <- 2
+hkdTlines.df[hkdTlines.df$id == 1,]$id2 <- 1
+hkdTlines.df[hkdTlines.df$id == 3,]$id2 <- 1
+ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
+                              color = "red",
+                              #linetype = 2,
+                              size = 1,
+                              alpha = 0.5,
+                              hkdTlines.df) +
+  scale_linetype_manual(name =  "Tectonic lines", values = c(1,2),
+                        labels = c("Tectonic lines","Volcanic front"))
+
+ggTlines
+threeD  <-ggVol
 ge.ggsave(threeD)
 
