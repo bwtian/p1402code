@@ -139,4 +139,5 @@ ggFont  <- ggBar +
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 ggFont
 f02geology  <-ggFont
-ge.ggsave(f02geology)
+# 7*5
+#ge.ggsave(f02geology)

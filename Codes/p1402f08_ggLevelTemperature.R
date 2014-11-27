@@ -23,13 +23,14 @@ labelsY = as.character(breaksY)
 cols  <- oceColorsJet(255)
 #paste0(parse(text=paste("Temperature ", "^o ", "*C", sep=""))
 bold.text <- element_text(face = "bold", color = "black")
+
 g3  <- g2 +  scale_fill_gradientn(name = expression(Temperature~(degree*C)),
                                     colours = cols,
                                     breaks = breaksY,
                                     labels = labelsY) +
-        theme_bw(title = bold.text, base_size = 12, base_family = "Times") + coord_equal()
+        theme(title = bold.text) +
+        theme_bw(base_size = 12, base_family = "Times") + coord_equal()
 
-g3
 #### 
 jpVolA.spdf  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol110_140812_174525.Rds")
 xmin <- 139
