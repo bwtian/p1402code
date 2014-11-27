@@ -22,7 +22,7 @@ breaksY = c(0,100,150,200,250,300,350,400,450,515)
 labelsY = as.character(breaksY)
 cols  <- oceColorsJet(255)
 )
-g3  <- g2 +  scale_fill_gradientn(name = paste0("Temperature (",parse(text=paste("^o ", "*C", sep=""), ")")),
+g3  <- g2 +  scale_fill_gradientn(name = paste0(parse(text=paste("Temperature ", "^o ", "*C", sep="")),
                                     colours = cols,
                                     breaks = breaksY,
                                     labels = labelsY) +
