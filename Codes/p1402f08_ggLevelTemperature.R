@@ -21,14 +21,13 @@ ylab("Northing (km)")
 breaksY = c(0,100,150,200,250,300,350,400,450,515)
 labelsY = as.character(breaksY)
 cols  <- oceColorsJet(255)
-
-g3  <- g2 +  scale_fill_gradientn(name = expression(Temperature~(degree*C)),
+)
+g3  <- g2 +  scale_fill_gradientn(name = parse(text=paste("Temperature (", "^o ", "*C", ")", sep="")),
                                     colours = cols,
                                     breaks = breaksY,
                                     labels = labelsY) +
         theme_bw(base_size = 12, base_family = "Times") + coord_equal()
-g3 + geom_point(aes(x = 1300000, y = 1500000))
-
+#g3
 #### 
 jpVolA.spdf  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol110_140812_174525.Rds")
 xmin <- 139
@@ -47,7 +46,7 @@ ggVol  <- g3  +
              shape = 17, alpha = 0.3)  +
   scale_color_manual(name =  "Volcanoes",
                      values = c("red"), labels = c("Active volcanoes"))
-ggVol
+#ggVol
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox.SPDF)
 hkdTlines.sldfl  <- spTransform(hkdTlines.sldf, CRS(lccWgs84))
@@ -67,6 +66,6 @@ ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
                         labels = c("Tectonic lines","Volcanic front"))
 
 ggTlines
-threeD  <-ggVol
-ge.ggsave(threeD)
+# threeD  <-ggVol
+# ge.ggsave(threeD)
 
