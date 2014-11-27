@@ -36,4 +36,5 @@ levels(factor(belt.df$group))
 ggplot(belt.df) + geom_polygon(aes(x = long, y = lat, group=group, fill = group),
                                data = belt.df) +
         geom_path(aes(x = long, y = lat, group=piece, color = group), greenTuff.df,
-                  size = 2)
+                  size = 2) +
+
