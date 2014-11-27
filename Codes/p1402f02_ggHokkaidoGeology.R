@@ -137,6 +137,6 @@ ggFont  <- ggBar +
   theme_bw(base_family = "Times")
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
-f02_hkdGeology  <-ggGuid 
+f02_hkdGeology  <-ggFont
 ge.ggsave(f02_hkdGeology)
 
