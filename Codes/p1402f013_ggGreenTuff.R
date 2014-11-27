@@ -19,6 +19,7 @@ greenTuff.df   <- greenTuff.df [!greenTuff.df $group == 1.4,] # eliminate
 greenTuff.df$gtuff  <- 0
 greenTuff.df[greenTuff.df$group == 1.2,]$gtuff  <- 1
 greenTuff.df[greenTuff.df$group == 1.3,]$gtuff  <- 1
+greenTuff.df  <- greenTuff.df[greenTuff.df$gtuff  == 1,]
 levels(factor(greenTuff.df$gtuff))
 #ge.sp2shpGeo(hkdLand)
 #ggplot(greenTuff.df) + geom_polygon(aes(x = long, y = lat, group=group, fill = group))
@@ -38,19 +39,147 @@ belt.df  <- belt.dfr[!(belt.dfr$group == "1.7" |
                        belt.dfr$group == "1.9" |
                        belt.dfr$group == "1.10"),]
 belt.df[belt.df$group == 1.6,]$group = "1.5"
-belt.df$name  <-  "Hidaka & Tokoro Belt"
-belt.df[belt.df$group == 1.2,]$name  <- "North Kitakami Belt"
-belt.df[belt.df$group == 1.3,]$name  <- "Nemuro Belt"
-belt.df[belt.df$group == 1.4,]$name  <- "Kamuikotan Belt"
-belt.df[belt.df$group == 1.5,]$name  <- "Sorachi-Yezo Belt"
+belt.df$name  <-  "Hidaka & Tokoro belt"
+belt.df[belt.df$group == 1.2,]$name  <- "North Kitakami belt"
+belt.df[belt.df$group == 1.3,]$name  <- "Nemuro belt"
+belt.df[belt.df$group == 1.4,]$name  <- "Kamuikotan belt"
+belt.df[belt.df$group == 1.5,]$name  <- "Sorachi-Yezo belt"
 
 
 levels(factor(belt.df$group))
 
 #ge.sp2shpGeo(hkdLand)
 
-ggplot(belt.df) + geom_polygon(aes(x = long, y = lat, group=group, fill = group),
+### Make study Boundary
+
+
+basemap.r  <- readRDS("~/Dropbox/2data/dataProduct/hkd/hkd_google_satellite_142.5_43.5_zoom7_140815_2131.Rds")
+jpVolA.spdf  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol110_140812_174525.Rds")
+xmin <- 139
+xmax <- 146
+ymin <- 41.4
+ymax <- 45.8
+bbox.SPDF <- ge.xy2bboxSPDF(xmin,xmax,ymin,ymax,wgs84GRS)
+proj4string(jpVolA.spdf) <- proj4string(bbox.SPDF)
+volA <- jpVolA.spdf[bbox.SPDF,]
+limitsX  <- c(139,146)
+breaksX  <- seq(limitsX[1], limitsX[2],1)
+labelsX=parse(text=paste(breaksX, "^o ", "*E", sep=""))
+limitsY  <- c(41,46)
+breaksY  <- seq(limitsY[1],limitsY[2],1)
+labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
+# limitsX  <- c(138,147)
+# breaksX  <- seq(limitsX[1], limitsX[2],1)
+# labelsX=parse(text=paste(breaksX, "^o ", "*E", sep=""))
+# ##limitsY  <- c(41,47)
+# limitsY  <- c(40,47)
+# breaksY  <- seq(limitsY[1],limitsY[2],1)
+# labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
+## Layer0: Base map
+ggBase  <-  ggmap(basemap.r, extent = "panel") +
+        xlab("Lontitude") +
+        scale_x_continuous(breaks=breaksX,
+                           labels=labelsX,
+                           limits=limitsX,
+                           expand = c(0.01,0.01)) +
+        theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0)) +
+        ### Y
+        ylab("Latitude") +
+        scale_y_continuous(breaks=breaksY,
+                           labels=labelsY,
+                           limits=limitsY,
+                           expand = c(0.01,0.01))
+ggBase
+cols <- c("Hidaka & Tokoro belt" = "cyan",
+          "North Kitakami belt" = "orange",
+          "Nemuro belt" = "pink",
+          "Kamuikotan belt" = "palegreen",
+          "Sorachi-Yezo belt" = "yellow")
+
+ggBelt  <- ggBase +
+        geom_polygon(aes(x = long, y = lat, group=group, fill = name),
                                data = belt.df) +
-        geom_path(aes(x = long, y = lat, group=piece, color = factor(gtuff)), greenTuff.df,
-                  size = 2)
+        scale_fill_manual(name =  "Geological belt", values =cols)
+
+ggTuff  <- ggBelt +
+        geom_path(aes(x = long, y = lat, group=piece, color = factor(gtuff)),
+                     data = greenTuff.df,
+                     size = 1) +
+        scale_color_manual(name =  "Green Tuff", values ="green", labels = "Green Tuff" )
+
+
+ggFault  <- ggTuff +
+        geom_path(aes(long, lat, group=group, size = factor(0)), hkdFault.df,
+                  color = "black",
+                  alpha = 0.7)  +
+        scale_size_manual(name =  "Tectonic lines", values = 0.5 ,labels = "Faults")
+
+ggVol  <- ggFault  +
+        geom_point(data = volA@data,
+                   aes(as.numeric(lon), as.numeric(lat), color="red"),
+                   shape = 17, size = 2)  +
+        scale_color_manual(name =  "Volcanoes",
+                           values = c("red"), labels = c("Active volcanoes"))
+
+
+
+# ggFont
+##ge.ggsave(hkdStudyArea)
+
+
+jpArc.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpPlateBoundary_141124_223221.Rds")
+#plot(jpArc.sldf)
+bbox2.SPDF <- ge.xy2bboxSPDF(138,147,40,47,wgs84GRS)
+hkdArc.sldf  <- crop(jpArc.sldf, bbox2.SPDF)
+hkdArc.df  <- fortify(hkdArc.sldf )
+hkdArc.df  <- hkdArc.df[order(hkdArc.df$lat),]
+rownames(hkdArc.df)  <- seq_along(hkdArc.df$lat)
+# summary(hkdArc.df)
+# ggWRS2 + geom_point(aes(long,lat,group=group),
+#                       color = "red",
+#                       linetype = 1,
+#                       hkdArc.df) +
+
+
+ggPlate  <- ggVol  + geom_path(aes(long,lat,group=piece),
+                               color = "red",
+                               linetype = 1,
+                               size = 1,
+                               hkdArc.df) +
+        geom_text(aes(x = 144.5, y = 41.4, label = "Kuril Trench"),
+                  hjust = -0.1, angle = 35, family="Times", colour="white",
+                  size = 4) +
+        geom_text(aes(x = 143.5, y = 40, label = "Northern \n Japan \n Trench"),
+                  hjust = -0.1, angle = 90, family="Times", colour="white",
+                  size = 4) +
+        geom_text(aes(x = 139.4, y = 44, label = "Plate Boundary"),
+                  hjust = -0.1, angle = 78, family="Times", colour="white",
+                  size = 4)
+
+jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
+hkdTlines.sldf  <- crop(jpTlines.sldf, bbox2.SPDF)
+plot(hkdTlines.sldf)
+hkdTlines.df  <- fortify(hkdTlines.sldf)
+## regroup
+hkdTlines.df$id2 <- 2
+hkdTlines.df[hkdTlines.df$id == 1,]$id2 <- 1
+hkdTlines.df[hkdTlines.df$id == 3,]$id2 <- 1
+ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
+                                 color = "red",
+                                 #linetype = 2,
+                                 size = 1,
+                                 hkdTlines.df) +
+        scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
+                              labels = c("Tectonic lines","Volcanic front"))
+
+
+ggBar  <- ggTlines +scaleBar(lon = 139, lat = 40, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 650, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
+
+ggFont  <- ggBar +
+        #coord_equal() +
+        theme_bw(base_family = "Times", base_size = 12)
+g  <- guide_legend("Tectonic lines")
+ggGuid  <- ggFont + guides(size = g, linetype=g)
+f02_hkdGeology  <-ggFont
+ge.ggsave(f02_hkdGeology)
 
