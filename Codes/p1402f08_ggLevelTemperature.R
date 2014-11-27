@@ -22,7 +22,7 @@ breaksY = c(0,100,150,200,250,300,350,400,450,515)
 labelsY = as.character(breaksY)
 cols  <- oceColorsJet(255)
 )
-g3  <- g2 +  scale_fill_gradientn(name = parse(text=paste("Temperature ", "\(", "^o ", "*C", "\)", sep="")),
+g3  <- g2 +  scale_fill_gradientn(name = paste0("Temperature (",parse(text=paste("^o ", "*C", sep=""), ")")),
                                     colours = cols,
                                     breaks = breaksY,
                                     labels = labelsY) +
@@ -65,7 +65,7 @@ ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,2),
                         labels = c("Tectonic lines","Volcanic front"))
 
-ggTlines
-# threeD  <-ggVol
-# ge.ggsave(threeD)
+#ggTlines
+threeD  <-ggVol
+ge.ggsave(threeD)
 
