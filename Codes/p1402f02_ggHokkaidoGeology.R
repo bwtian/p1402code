@@ -140,4 +140,3 @@ ggFont  <- ggBar +
 ggFont
 f02geology  <-ggFont
 ge.ggsave(f02geology)
-theme_b
