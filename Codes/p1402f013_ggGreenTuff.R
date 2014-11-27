@@ -183,4 +183,5 @@ ggFont  <- ggBar +
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 f13_hkdGreenTuff  <-ggFont
+# 7*5
 ge.ggsave(f13_hkdGreenTuff)
