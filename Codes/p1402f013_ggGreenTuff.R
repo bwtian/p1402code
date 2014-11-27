@@ -167,7 +167,7 @@ ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
 
 ggTlines
 ggBar  <- ggTlines +scaleBar(lon = 144, lat = 41, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 450, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
-hkddem  <- raster("hkdDEM1000.tif")
+hkddem  <- raster("hkdDEM1000.tif") j
 hkdDEM.spdf  <- rasterToContour(hkddem, levels = seq(500,2000,500))
 hkdDEM.df  <- fortify(hkdDEM.spdf)
 plot(hkdDEM.spdf)
