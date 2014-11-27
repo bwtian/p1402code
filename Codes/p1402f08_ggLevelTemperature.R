@@ -21,13 +21,13 @@ ylab("Northing (km)")
 breaksY = c(0,100,150,200,250,300,350,400,450,515)
 labelsY = as.character(breaksY)
 cols  <- oceColorsJet(255)
-)
-g3  <- g2 +  scale_fill_gradientn(name = paste0(parse(text=paste("Temperature ", "^o ", "*C", sep="")),
+#paste0(parse(text=paste("Temperature ", "^o ", "*C", sep=""))
+g3  <- g2 +  scale_fill_gradientn(name = parse(text =paste0("(Temperature",expression(~(degree*C))),
                                     colours = cols,
                                     breaks = breaksY,
                                     labels = labelsY) +
         theme_bw(base_size = 12, base_family = "Times") + coord_equal()
-#g3
+
 #### 
 jpVolA.spdf  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol110_140812_174525.Rds")
 xmin <- 139
@@ -65,7 +65,8 @@ ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,2),
                         labels = c("Tectonic lines","Volcanic front"))
 
-#ggTlines
-threeD  <-ggVol
+ggTlines
+threeD  <-ggTlines
 ge.ggsave(threeD)
+getwd()
 
