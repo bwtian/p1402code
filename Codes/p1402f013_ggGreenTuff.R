@@ -173,7 +173,7 @@ hkdDEM.df  <- fortify(hkdDEM.spdf)
 plot(hkdDEM.spdf)
 ggplot() + geom_path(aes(long,lat,group=group, alpha=id),hkdDEM.df) +
         scale_alpha_manual(name =  "Contour lines", values = c(0.2,0.5,0.8,1),
-                              labels = c(as.char)
+                              labels = c(as.character(seq(500,2000,500)))
 
 
 ggFont  <- ggBar +
