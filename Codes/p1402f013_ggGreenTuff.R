@@ -184,4 +184,3 @@ ggFont  <- ggBar +
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 f13_hkdGreenTuff  <-ggFont
 ge.ggsave(f13_hkdGreenTuff)
-scale_
