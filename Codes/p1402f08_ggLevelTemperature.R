@@ -28,7 +28,7 @@ g3  <- g2 +  scale_fill_gradientn(name = expression(Temperature~(degree*C)),
                                     labels = labelsY) +
         theme_bw(base_size = 12, base_family = "Times") + coord_equal()
         
-g3
+g3 + 
 threeD  <-g3
 ge.ggsave(threeD)
 
