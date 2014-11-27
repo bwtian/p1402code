@@ -83,11 +83,7 @@ ggSap  <- ggVol + geom_point(data = sap.spdf, aes(x = lon, y = lat), colour = "W
 
 # ggSap
 
-ggBar  <- ggSap +scaleBar(lon = 139, lat = 40, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 650, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 
-ggFont  <- ggBar +
-        #coord_equal() +
-        theme_bw(base_family = "Times", base_size = 12)
 # ggFont
 ##ge.ggsave(hkdStudyArea)
 
@@ -99,7 +95,7 @@ wrs2.SPDF  <- pathrow_num(x = hkdLand, as_polys = TRUE)
 #wrs2.SPDF@data
 wrs2.df  <- fortify(wrs2.SPDF)
 
-ggWRS  <- ggFont + geom_polygon(aes(long,lat,group=group),
+ggWRS  <-ggSap + geom_polygon(aes(long,lat,group=group),
                     color = "grey", alpha = 0.3, fill = NA,
                     linetype = 3,
                     data=wrs2.df) +
@@ -158,7 +154,11 @@ ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2))
   hkdTlines.df) +  
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
                                     labels = c("Tectonic lines","Volcanic front")) 
+ggBar  <- ggTlines  +scaleBar(lon = 139, lat = 40, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 650, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 
-f01_hkdStudyArea  <-ggTlines
-ge.ggsave(f01_hkdStudyArea)
+ggFont  <- ggBar +
+  #coord_equal() +
+  theme_bw(base_family = "Times")
+f01hkd  <-ggTlines
+ge.ggsave(f01hkd)
 
