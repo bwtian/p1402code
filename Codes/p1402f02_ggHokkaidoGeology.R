@@ -133,7 +133,8 @@ ggBar  <- ggTlines +scaleBar(lon = 139, lat = 40, distanceLon = 50, distanceLege
 
 ggFont  <- ggBar +
   #coord_equal() +
-  theme_bw(base_family = "Times", base_size = 12)
+  #theme_bw(base_family = "Times", base_size = 12)
+  theme_bw(base_family = "Times")
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 f02_hkdGeology  <-ggGuid 
