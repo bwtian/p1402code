@@ -160,5 +160,6 @@ ggFont  <- ggBar +
   #coord_equal() +
   theme_bw(base_family = "Times")
 f01hkd  <-ggTlines
-ge.ggsave(f01hkd, width = 7, height = 5)
-ge.ggsave
+# 7*5
+# ge.ggsave(f01hkd, width = 7, height = 5)
+
