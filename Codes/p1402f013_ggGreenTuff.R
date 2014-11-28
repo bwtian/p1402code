@@ -106,7 +106,7 @@ ggTuff  <- ggBelt +
                      data = greenTuff.df,
                      color = "green",
                      alpha  = 0.2) +
-        scale_size_manual(name =  "Green Tuff", values =1, labels = "Green Tuff area" )
+        scale_size_manual(name =  "Green tuff", values =1, labels = "Green tuff area" )
 ggVol  <- ggTuff  +
         geom_point(data = volA@data,
                    aes(as.numeric(lon), as.numeric(lat), color="red"),
@@ -133,8 +133,8 @@ ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
                                  #linetype = 2,
                                  size = 1,
                                  hkdTlines.df) +
-        scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
-                              labels = c("Tectonic lines","Volcanic front"))
+        scale_linetype_manual(name =  "Tectonic line", values = c(1,3),
+                              labels = c("Tectonic line","Volcanic front"))
 
 
 hkddem  <- raster("hkdDEM1000.tif")
