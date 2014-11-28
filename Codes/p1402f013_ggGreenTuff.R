@@ -120,35 +120,6 @@ ggVol  <- ggTuff  +
 ##ge.ggsave(hkdStudyArea)
 
 
-# jpArc.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpPlateBoundary_141124_223221.Rds")
-# #plot(jpArc.sldf)
-# bbox2.SPDF <- ge.xy2bboxSPDF(138,147,40,47,wgs84GRS)
-# hkdArc.sldf  <- crop(jpArc.sldf, bbox2.SPDF)
-# hkdArc.df  <- fortify(hkdArc.sldf )
-# hkdArc.df  <- hkdArc.df[order(hkdArc.df$lat),]
-# rownames(hkdArc.df)  <- seq_along(hkdArc.df$lat)
-# # summary(hkdArc.df)
-# # ggWRS2 + geom_point(aes(long,lat,group=group),
-# #                       color = "red",
-# #                       linetype = 1,
-# #                       hkdArc.df) +
-#
-#
-# ggPlate  <- ggVol  + geom_path(aes(long,lat,group=piece),
-#                                color = "red",
-#                                linetype = 1,
-#                                size = 1,
-#                                hkdArc.df) +
-#         geom_text(aes(x = 144.5, y = 41.4, label = "Kuril Trench"),
-#                   hjust = -0.1, angle = 35, family="Times", colour="white",
-#                   size = 4) +
-#         geom_text(aes(x = 143.5, y = 40, label = "Northern \n Japan \n Trench"),
-#                   hjust = -0.1, angle = 90, family="Times", colour="white",
-#                   size = 4) +
-#         geom_text(aes(x = 139.4, y = 44, label = "Plate Boundary"),
-#                   hjust = -0.1, angle = 78, family="Times", colour="white",
-#                   size = 4)
-
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox2.SPDF)
 #plot(hkdTlines.sldf)
@@ -165,15 +136,18 @@ ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
         scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
                               labels = c("Tectonic lines","Volcanic front"))
 
-ggTlines
-ggBar  <- ggTlines +scaleBar(lon = 144, lat = 41, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 450, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
-hkddem  <- raster("hkdDEM1000.tif") j
+
+hkddem  <- raster("hkdDEM1000.tif")
 hkdDEM.spdf  <- rasterToContour(hkddem, levels = seq(500,2000,500))
 hkdDEM.df  <- fortify(hkdDEM.spdf)
-plot(hkdDEM.spdf)
-ggplot() + geom_path(aes(long,lat,group=group, alpha=id),hkdDEM.df) +
-        scale_alpha_manual(name =  "Contour lines", values = c(0.2,0.5,0.8,1),
-                              labels = c(as.character(seq(500,2000,500)))
+
+ggContour  <- ggTlines +
+        geom_path(aes(long,lat,group=group, alpha=id),hkdDEM.df, color ="brown") +
+        scale_alpha_manual(name =  "Elevation contour (m)", values = c(0.3,0.5,0.7,1),
+                           labels = c(as.character(seq(500,2000,500))))
+
+ggContour
+ggBar  <- ggTlines +scaleBar(lon = 144, lat = 41, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 450, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 
 
 ggFont  <- ggBar +
@@ -182,6 +156,6 @@ ggFont  <- ggBar +
 
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
-f13_hkdGreenTuff  <-ggFont
+hkdGreenTuff  <-ggFont
 # 7*5
-ge.ggsave(f13_hkdGreenTuff)
+#ge.ggsave(hkdGreenTuff)
