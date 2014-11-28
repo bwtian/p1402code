@@ -9,6 +9,6 @@ library(xtable)
 print(xtable(df,
              caption = "Emissivity retreived from land use and land cover data",
              label ="tbl:emi",
-             align = "c|cccc"),
+             align = "ccccc"),
       sanitize.text.function=function(x){x},
       include.rownames=FALSE)
