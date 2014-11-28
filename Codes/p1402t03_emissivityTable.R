@@ -7,7 +7,7 @@ Emissivity <- c(0.99, 0.93, 0.96, 0.95, 0.96,0.97,0.98,0.92,0.91)
 df  <- cbind(Code,LULC,Emissivity,Color)
 library(xtable)
 print(xtable(df,
-             caption = "Emissivity assigned by land use and land cover data (Fig.~\ref{fig:lulc})",
+             caption = "Emissivity assigned by land use and land cover data",
              label ="tbl:emi",
              align = "ccccc"),
       sanitize.text.function=function(x){x},
