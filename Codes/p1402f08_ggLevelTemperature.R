@@ -68,18 +68,22 @@ ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,2),
                         labels = c("Tectonic lines","Volcanic front"))
 
-
-#ggTlines
+ggCirles  <- 
+ggTlines + geom_point(data =maxids, aes(X,Y),size=5, shape=1, color="white")
 
 D14  <-subset(hkdKT,  Z == 1400) 
 
-A  <- D14[D14$Temperatrue > 280,]  
+A  <- D14[D14$Temperatrue > 300,]  
 A$class  <- 1 
 A[A$X > 1400000 & A$X < 1500000,]$class  <- 2
 A[A$X > 1500000,]$class  <- 3
+centroids <- aggregate(cbind(X,Y)~class,A, mean)
+maxT <- aggregate(cbind(Temperatrue)~class,A, max)
+maxids  <- A[A$Temperatrue %in% maxT$Temperatrue,]
 ggplot(A, aes(X, Y, fill = class)) +
   geom_point() + 
-  stat_ellipse(geom = "polygon", alpha = 1/2, aes(fill = class))
+  stat_ellipse(geom = "polygon", alpha = 1/2, aes(fill = class)) +
+ggplot(maxids, aes(X,Y)) +  geom_point(size=50, shape=1, color="gold4")
 
 circleFun <- function(center = c(0,0),diameter = 1, npoints = 100){
   r = diameter / 2
@@ -99,7 +103,7 @@ veganCovEllipse <- function (cov, center = c(0, 0), scale = 1, npoints = 100)
   Circle <- cbind(cos(theta), sin(theta))
   t(center + scale * t(Circle %*% chol(cov)))
 }
-# threeD  <-ggTlines
-# ge.ggsave(threeD)
+hkd3D  <-ggCirles
+ge.ggsave(hkd3D)
 # getwd()
 
