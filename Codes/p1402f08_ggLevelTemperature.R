@@ -68,8 +68,9 @@ ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,2),
                         labels = c("Tectonic lines","Volcanic front"))
 
-ggTlines
-threeD  <-ggTlines
-ge.ggsave(threeD)
-getwd()
+
+
+# threeD  <-ggTlines
+# ge.ggsave(threeD)
+# getwd()
 
