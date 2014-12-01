@@ -69,7 +69,36 @@ ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
                         labels = c("Tectonic lines","Volcanic front"))
 
 
+#ggTlines
 
+D14  <-subset(hkdKT,  Z == 1400) 
+
+A  <- D14[D14$Temperatrue > 280,]  
+A$class  <- 1 
+A[A$X > 1400000 & A$X < 1500000,]$class  <- 2
+A[A$X > 1500000,]$class  <- 3
+ggplot(A, aes(X, Y, fill = class)) +
+  geom_point() + 
+  stat_ellipse(geom = "polygon", alpha = 1/2, aes(fill = class))
+
+circleFun <- function(center = c(0,0),diameter = 1, npoints = 100){
+  r = diameter / 2
+  tt <- seq(0,2*pi,length.out = npoints)
+  xx <- center[1] + r * cos(tt)
+  yy <- center[2] + r * sin(tt)
+  return(data.frame(x = xx, y = yy))
+}
+dat <- circleFun(c(1,-1),2.3,npoints = 100)
+ggplot(dat,aes(x,y)) + geom_path()
+g<-g+annotate("path",
+              x=xc+r*cos(seq(0,2*pi,length.out=100)),
+              y=yc+r*sin(seq(0,2*pi,length.out=100)))
+veganCovEllipse <- function (cov, center = c(0, 0), scale = 1, npoints = 100) 
+{
+  theta <- (0:npoints) * 2 * pi/npoints
+  Circle <- cbind(cos(theta), sin(theta))
+  t(center + scale * t(Circle %*% chol(cov)))
+}
 # threeD  <-ggTlines
 # ge.ggsave(threeD)
 # getwd()
