@@ -140,7 +140,11 @@ ggContour  <- ggTlines +
                            labels = c(as.character(seq(500,2000,500))))
 
 
-ggBar  <- ggContour +scaleBar(lon = 144, lat = 41, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 450, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
+ggBar  <- ggContour +
+  scaleBar(lon = 144, lat = 41, 
+           distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km",
+           arrow.length = 60, arrow.distance = 450, arrow.North.size = 4,
+           legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 
 ggFont  <- ggBar +
         #coord_equal() +
