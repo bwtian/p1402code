@@ -46,7 +46,7 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
                            limits=limitsX,
                            expand = c(0.01,0.01)) +
         theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0)) +
-        theme(axis.title.x = element_text(vjust = -0.5)) +
+        theme(axis.title.x = element_text(vjust = 0.5)) +
         ### Y
         ylab(" Latitude") +
         scale_y_continuous(breaks=breaksY,
@@ -147,5 +147,5 @@ ggFont  <- ggBar +
   #coord_equal() +
   theme_bw(base_family = "Times")
 hkd  <-ggFont
-ge.ggsave(hkd)
+ge.ggsave(hkd, width = 7)
 
