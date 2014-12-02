@@ -46,7 +46,7 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
                            limits=limitsX,
                            expand = c(0.01,0.01)) +
         theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0)) +
-        theme(axis.title.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5)) +
+        theme(axis.title.x = element_text(angle = 0, hjust = 0.5, vjust = 1)) +
         ### Y
         ylab(" Latitude") +
         scale_y_continuous(breaks=breaksY,
@@ -59,10 +59,6 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
         scale_size_manual(values=c(1,1.5,2,3,4)) +
         ### fill
         scale_fill_brewer("Borehole Depth (m)", palette="Blues")
-ggBH
-
-        ### Color
-
 ggVol  <- ggBH  +
         geom_point(data = volQ@data,
                    aes(as.numeric(lon), as.numeric(lat),
@@ -76,19 +72,9 @@ ggVol  <- ggBH  +
         scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary volcanoes","Active volcanoes")) +
         geom_path(data = volQ2@data, aes(as.numeric(lon), as.numeric(lat)),size = 12, alpha = 0.2, colour = "yellow",lineend = "round")
 
-
-#ggVol
-
 ggSap  <- ggVol + geom_point(data = sap.spdf, aes(x = lon, y = lat), colour = "White")  + 
   geom_text(data = sap.spdf, aes(x = lon, y = lat, label = name), hjust = -0.1,family="Times", face="italic", colour="white")
 
-# ggSap
-
-
-# ggFont
-##ge.ggsave(hkdStudyArea)
-
-## ggWRS2 path
 
 library(wrspathrow)
 wrs2.SPDF  <- pathrow_num(x = hkdLand, as_polys = TRUE)
