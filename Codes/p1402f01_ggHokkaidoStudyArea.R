@@ -46,7 +46,7 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
                            limits=limitsX,
                            expand = c(0.01,0.01)) +
         theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0)) +
-        theme(axis.title.x = element_text(angle = 0, hjust = 0.5, vjust = 0.2)) +
+        theme(axis.title.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5)) +
         ### Y
         ylab(" Latitude") +
         scale_y_continuous(breaks=breaksY,
@@ -55,7 +55,7 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
                            expand = c(0.01,0.01)) +
         ###Legend
         ### Size
-        labs(size = "Borehole Depth (m)") +
+        labs(size = "Borehole depth (m)") +
         scale_size_manual(values=c(1,1.5,2,3,4)) +
         ### fill
         scale_fill_brewer("Borehole Depth (m)", palette="Blues")
