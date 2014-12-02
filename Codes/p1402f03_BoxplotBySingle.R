@@ -18,5 +18,6 @@ hkdBox1   <-
         axis.title.x=element_text(vjust = 0),
         aspect.ratio = 1/8) +
   coord_flip() 
+
+ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7)
 ge.ggsave(hkdBox1)
-ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7, height = 1.5)
