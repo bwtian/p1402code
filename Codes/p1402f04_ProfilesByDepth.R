@@ -36,9 +36,9 @@ hkdBH  <-
   ylab(expression(Temperature~(degree*C))) +
   scale_colour_gradientn(name = expression(Temperature~(degree*C)), colours = rev(rainbow(7)),
                          breaks = breaksY, labels = format(breaksY)) +
-    theme(axis.title.x=element_text(vjust = - 0.5)) +
-  theme_bw(base_size = 12, base_family = "Times")
+  theme(axis.title.x=element_text(hjust = 0.6, vjust = -0.5)) +
+  theme_bw(base_family = "Times")
 hkdBH
-# ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7, height = 1.5)
-ge.ggsave(hkdBH)
+ggsave(plot =hkdBH, "hkdBH.pdf", width = 7, height = 4)
+#ge.ggsave(hkdBH)
 #ge.ggsave(f04bhTD)
