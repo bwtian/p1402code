@@ -17,6 +17,7 @@ boxp  <- ggplot(hkdxyz, aes(factor(0),TD)) +
         axis.title.x=element_text(vjust = 0.25),
         aspect.ratio = 1/8) +
   coord_flip() 
-boxp
 hkdBox1  <- boxp
-#ge.ggsave(f03box1)
+ge.ggsave(hkdBox1)
+ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7)
+getwd()
