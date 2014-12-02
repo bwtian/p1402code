@@ -40,14 +40,15 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
         geom_point(data = bh_xy, aes(Lon, Lat,fill = grp, size = grp),
                    shape = 21, alpha = 0.9) +
         ### X
-        xlab(" \n Lontitude") +
+        xlab(" Lontitude") +
         scale_x_continuous(breaks=breaksX,
                            labels=labelsX,
                            limits=limitsX,
                            expand = c(0.01,0.01)) +
         theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0)) +
+        theme(axis.title.x = element_text(angle = 0, hjust = 0.5, vjust = 0.2)) +
         ### Y
-        ylab("Latitude") +
+        ylab(" Latitude") +
         scale_y_continuous(breaks=breaksY,
                            labels=labelsY,
                            limits=limitsY,
@@ -58,7 +59,7 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
         scale_size_manual(values=c(1,1.5,2,3,4)) +
         ### fill
         scale_fill_brewer("Borehole Depth (m)", palette="Blues")
-#ggBH
+ggBH
 
         ### Color
 
@@ -154,9 +155,10 @@ ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2))
   hkdTlines.df) +  
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
                                     labels = c("Tectonic lines","Volcanic front")) 
+ggTlines
 ggBar  <- ggTlines  + 
-  scaleBar(lon = 139, lat = 40, distanceLon = 60, 
-           distanceLegend = 30,distanceLat = 15, 
+  scaleBar(lon = 139, lat = 40, distanceLon = 50, 
+           distanceLegend = 30, distanceLat = 15, 
            dist.unit = "km", arrow.length = 60, 
            arrow.distance = 650, arrow.North.size = 4,
            legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
@@ -164,7 +166,7 @@ ggBar  <- ggTlines  +
 ggFont  <- ggBar +
   #coord_equal() +
   theme_bw(base_family = "Times")
-hkd  <-ggTlines
+hkd  <-ggFont
 hkd
 # 7*5
 ge.ggsave(hkd, width = 7, height = 5)
