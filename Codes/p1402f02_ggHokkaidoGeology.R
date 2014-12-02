@@ -60,16 +60,17 @@ cols <- c("accretionary complex" = "red",
           "pultonic rock" = "pink",
           "sedimentary rock" = "palegreen",    
           "volcanic rock" = "yellow",
-          "water" = "cyan" )
+          "water" = "white" )
 #levels(factor(hkdRocks.df$id))  
 ggRock  <-  ggBase +  
   geom_polygon(aes(long,lat,group=group, fill=id), hkdRocks.df) + 
-  scale_fill_manual(name =  "Rock types", values =cols, labele = c(
+  scale_fill_manual(name =  "Rock types", values =cols, labels = c(
     "Accretionary complex",
     "Metamorphic rock",
     "Pultonic rock",
     "Sedimentary rock",    
-    "Volcanic rock"))
+    "Volcanic rock",
+    ""))
 ggFault  <- ggRock +
   geom_path(aes(long, lat, group=group, size = factor(0)), hkdFault.df,
             color = "black",
@@ -120,7 +121,6 @@ ggPlate  <- ggVol  + geom_path(aes(long,lat,group=piece),
 
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox2.SPDF)
-plot(hkdTlines.sldf)
 hkdTlines.df  <- fortify(hkdTlines.sldf)
 ## regroup
 hkdTlines.df$id2 <- 2
