@@ -52,7 +52,7 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
                            limits=limitsY,
                            expand = c(0.01,0.01)) +
        theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
-             axis.title.x = element_text(vjust = -0.5)) +
+             axis.title.x = element_text(vjust = 0.25)) +
        # labs(size = "Borehole depth (m)") +
         scale_size_manual("Borehole depth (m)",values=c(1,1.5,2,3,4)) +
         scale_fill_brewer("Borehole depth (m)", palette="Blues")
