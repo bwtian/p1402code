@@ -33,7 +33,7 @@ hkdBox2  <- ggplot(hkdS, aes(factor(cutDepth), Temperature)) +
   theme_bw(base_size = 12, base_family = "Times") +
   theme(axis.title.x = element_text(vjust = -0.5))
 
-ggsave(plot =hkdBox2, "hkdBox2.pdf", width = 7, height = 5)
+ggsave(plot =hkdBox2, "hkdBox2.pdf", width = 7, height = 4)
 #ge.ggsave(f05box2)
 
 #
