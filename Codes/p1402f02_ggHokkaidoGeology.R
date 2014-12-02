@@ -142,11 +142,11 @@ ggFont  <- ggBar +
   coord_equal() +
   theme_bw(base_family = "Times", base_size = 12) +
   theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
-       axis.title.x = element_text(vjust = -0.5))
+       axis.title.x = element_text(vjust = 0.25))
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 hkdGeology  <-ggFont
 hkdGeology
 # 7*5
-ggsave(plot = hkdGeology, "hkdGeology.pdf", width =7)
+ggsave(plot = hkdGeology, "hkdGeology.pdf", width =7, height = 6)
 #ge.ggsave(hkdGeology)
