@@ -45,7 +45,7 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
                            limits=limitsX,
                            expand = c(0.01,0.01)) +
         
-        scale_y_continuous(name = " Latitude"
+        scale_y_continuous(name = " Latitude",
                            breaks=breaksY,
                            labels=labelsY,
                            limits=limitsY,
