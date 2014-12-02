@@ -9,7 +9,7 @@ hkdFault.df  <- fortify(hkdFault.sldf)
 hkdGeoPoly.SPDF  <- readRDS("hkdGeoPoly.SPDF_141126_222720.Rds")
 hkdGeoPoly.df  <- fortify(hkdGeoPoly.SPDF)
 hkdRocks.SPDF  <- unionSpatialPolygons(hkdGeoPoly.SPDF, hkdGeoPoly.SPDF@data$Division_E)
-#hkdRocks.SPDF  
+#hkdRocks.SPDF
 #levels(factor(hkdGeoPoly.df$id))
 #plot(hkdRocks.SPDF)
 hkdRocks.df  <- fortify(hkdRocks.SPDF)
@@ -47,28 +47,27 @@ ggBase  <-  ggmap(basemap.r, extent = "panel") +
                      labels=labelsX,
                      limits=limitsX,
                      expand = c(0.01,0.01)) +
-  theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
-        axis.title.x = element_text(vjust = 0.25)) +
+
   ### Y
   ylab("Latitude") +
   scale_y_continuous(breaks=breaksY,
                      labels=labelsY,
                      limits=limitsY,
-                     expand = c(0.01,0.01)) 
+                     expand = c(0.01,0.01))
 cols <- c("accretionary complex" = "red",
           "metamorphic rock" = "purple",
           "pultonic rock" = "pink",
-          "sedimentary rock" = "palegreen",    
-          "volcanic rock" = "yellow" 
+          "sedimentary rock" = "palegreen",
+          "volcanic rock" = "yellow"
           )
-#levels(factor(hkdRocks.df$id))  
-ggRock  <-  ggBase +  
+#levels(factor(hkdRocks.df$id))
+ggRock  <-  ggBase +
   geom_polygon(aes(long,lat,group=group, fill=id), hkdRocks.df[!hkdRocks.df$id =="water",]) +
   scale_fill_manual(name =  "Rock types", values =cols, labels = c(
     "Accretionary complex",
     "Metamorphic rock",
     "Pultonic rock",
-    "Sedimentary rock",    
+    "Sedimentary rock",
     "Volcanic rock"))
 ggFault  <- ggRock +
   geom_path(aes(long, lat, group=group, size = factor(0)), hkdFault.df,
@@ -78,10 +77,10 @@ ggFault  <- ggRock +
 
 ggVol  <- ggFault  +
   geom_point(data = volA@data,
-             aes(as.numeric(lon), as.numeric(lat), color="red"),  
+             aes(as.numeric(lon), as.numeric(lat), color="red"),
              shape = 17, size = 2)  +
-  scale_color_manual(name =  "Volcanoes", 
-                     values = c("red"), labels = c("Active volcanoes")) 
+  scale_color_manual(name =  "Volcanoes",
+                     values = c("red"), labels = c("Active volcanoes"))
 
 
 
@@ -98,9 +97,9 @@ hkdArc.df  <- hkdArc.df[order(hkdArc.df$lat),]
 rownames(hkdArc.df)  <- seq_along(hkdArc.df$lat)
 # summary(hkdArc.df)
 # ggWRS2 + geom_point(aes(long,lat,group=group),
-#                       color = "red", 
+#                       color = "red",
 #                       linetype = 1,
-#                       hkdArc.df) + 
+#                       hkdArc.df) +
 
 
 ggPlate  <- ggVol  + geom_path(aes(long,lat,group=piece),
@@ -129,20 +128,23 @@ ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2))
                                  color = "red",
                                  #linetype = 2,
                                  size = 1,
-                                 hkdTlines.df) +  
+                                 hkdTlines.df) +
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
-                        labels = c("Tectonic lines","Volcanic front")) 
+                        labels = c("Tectonic lines","Volcanic front"))
 
-ggBar  <- ggTlines  + 
-  scaleBar(lon = 139, lat = 40, distanceLon = 100, 
-           distanceLegend = 30, distanceLat = 15, 
-           dist.unit = "km", arrow.length = 60, 
+ggBar  <- ggTlines  +
+  scaleBar(lon = 139, lat = 40, distanceLon = 100,
+           distanceLegend = 30, distanceLat = 15,
+           dist.unit = "km", arrow.length = 60,
            arrow.distance = 680, arrow.North.size = 4,
            legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 ggFont  <- ggBar +
   #coord_equal() +
   #theme_bw(base_family = "Times", base_size = 12)
-  theme_bw(base_family = "Times")
+  theme_bw(base_family = "Times") +
+  theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
+              axis.title.x = element_text(vjust = -5))
+
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 ggFont
@@ -150,4 +152,3 @@ hkdGeology  <-ggFont
 # 7*5
 ge.ggsave(hkdGeology)
 ggsave(plot = hkdGeology, "hkdGeology.pdf", width =7)
-getwd()
