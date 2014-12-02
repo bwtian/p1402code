@@ -48,7 +48,7 @@ ggBase  <-  ggmap(basemap.r, extent = "panel") +
                      limits=limitsX,
                      expand = c(0.01,0.01)) +
   theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
-        axis.title.x = element_text(vjust = -0.5)) +
+        axis.title.x = element_text(vjust = 0.25)) +
   ### Y
   ylab("Latitude") +
   scale_y_continuous(breaks=breaksY,
@@ -148,6 +148,6 @@ ggFont  <- ggBar +
 ggFont
 hkdGeology  <-ggFont
 # 7*5
-#ge.ggsave(f02geology)
+ge.ggsave(hkdGeology)
 ggsave(plot = hkdGeology, "hkdGeology.pdf", width =7)
 getwd()
