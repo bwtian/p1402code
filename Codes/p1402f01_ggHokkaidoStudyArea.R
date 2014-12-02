@@ -147,7 +147,5 @@ ggFont  <- ggBar +
   #coord_equal() +
   theme_bw(base_family = "Times")
 hkd  <-ggFont
-hkd
-# 7*5
-#ge.ggsave(hkd, width = 7, height = 5)
+ge.ggsave(hkd)
 
