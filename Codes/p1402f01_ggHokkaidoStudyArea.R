@@ -138,8 +138,6 @@ geom_text(aes(x = 144.5, y = 41.4, label = "Kuril Trench"),
   geom_text(aes(x = 139.4, y = 44, label = "Plate Boundary"),
             hjust = -0.1, angle = 78, family="Times", colour="white",
             size = 4)
-  
-ggPlate  
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox2.SPDF)
 #plot(hkdTlines.sldf)
@@ -166,7 +164,6 @@ ggFont  <- ggBar +
   #coord_equal() +
   theme_bw(base_family = "Times")
 hkd  <-ggFont
-hkd
 # 7*5
 ge.ggsave(hkd, width = 7, height = 5)
-getwd()
+
