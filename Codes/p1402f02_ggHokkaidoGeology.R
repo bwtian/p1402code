@@ -150,3 +150,4 @@ hkdGeology  <-ggFont
 # 7*5
 #ge.ggsave(f02geology)
 ggsave(plot = hkdGeology, "hkdGeology.pdf", width =7)
+getwd()
