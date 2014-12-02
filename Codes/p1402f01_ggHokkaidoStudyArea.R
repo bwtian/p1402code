@@ -40,7 +40,7 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
         geom_point(data = bh_xy, aes(Lon, Lat,fill = grp, size = grp),
                    shape = 21, alpha = 0.9) +
         ### X
-        xlab("Lontitude") +
+        xlab(" \n Lontitude") +
         scale_x_continuous(breaks=breaksX,
                            labels=labelsX,
                            limits=limitsX,
@@ -131,7 +131,7 @@ ggPlate  <- ggWRS2 + geom_path(aes(long,lat,group=piece),
 geom_text(aes(x = 144.5, y = 41.4, label = "Kuril Trench"),
             hjust = -0.1, angle = 35, family="Times", colour="white",
             size = 4) +
-  geom_text(aes(x = 143.5, y = 40, label = "Northern \n Japan \n Trench"),
+  geom_text(aes(x = 143.5, y = 40, label = "Japan \n Trench"),
             hjust = -0.1, angle = 90, family="Times", colour="white",
             size = 4) +
   geom_text(aes(x = 139.4, y = 44, label = "Plate Boundary"),
@@ -154,12 +154,18 @@ ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2))
   hkdTlines.df) +  
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
                                     labels = c("Tectonic lines","Volcanic front")) 
-ggBar  <- ggTlines  +scaleBar(lon = 139, lat = 40, distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km", arrow.length = 60, arrow.distance = 650, arrow.North.size = 4,legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
+ggBar  <- ggTlines  + 
+  scaleBar(lon = 139, lat = 40, distanceLon = 60, 
+           distanceLegend = 30,distanceLat = 15, 
+           dist.unit = "km", arrow.length = 60, 
+           arrow.distance = 650, arrow.North.size = 4,
+           legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 
 ggFont  <- ggBar +
   #coord_equal() +
   theme_bw(base_family = "Times")
-f01hkd  <-ggTlines
+hkd  <-ggTlines
+hkd
 # 7*5
-# ge.ggsave(f01hkd, width = 7, height = 5)
-
+ge.ggsave(hkd, width = 7, height = 5)
+getwd()
