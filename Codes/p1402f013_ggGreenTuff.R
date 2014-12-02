@@ -113,28 +113,28 @@ ggVol  <- ggTuff  +
                    shape = 17, size = 3)  +
         scale_color_manual(name =  "Volcanoes",
                            values = c("red"), labels = c("Active volcanoes"))
-jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
-hkdTlines.sldf  <- crop(jpTlines.sldf, bbox2.SPDF)
-#plot(hkdTlines.sldf)
-hkdTlines.df  <- fortify(hkdTlines.sldf)
-## regroup
-hkdTlines.df$id2 <- 2
-hkdTlines.df[hkdTlines.df$id == 1,]$id2 <- 1
-hkdTlines.df[hkdTlines.df$id == 3,]$id2 <- 1
-ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
-                                 color = "red",
-                                 #linetype = 2,
-                                 size = 1,
-                                 hkdTlines.df) +
-        scale_linetype_manual(name =  "Tectonic line", values = c(1,3),
-                              labels = c("Tectonic line","Volcanic front"))
+# jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
+# hkdTlines.sldf  <- crop(jpTlines.sldf, bbox2.SPDF)
+# plot(hkdTlines.sldf)
+# hkdTlines.df  <- fortify(hkdTlines.sldf)
+# ## regroup
+# hkdTlines.df$id2 <- 2
+# hkdTlines.df[hkdTlines.df$id == 1,]$id2 <- 1
+# hkdTlines.df[hkdTlines.df$id == 3,]$id2 <- 1
+# ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
+#                                  color = "red",
+#                                  #linetype = 2,
+#                                  size = 1,
+#                                  hkdTlines.df) +
+#         scale_linetype_manual(name =  "Tectonic line", values = c(1,3),
+#                               labels = c("Tectonic line","Volcanic front"))
 
 
 hkddem  <- raster("hkdDEM1000.tif")
 hkdDEM.spdf  <- rasterToContour(hkddem, levels = seq(500,2000,500))
 hkdDEM.df  <- fortify(hkdDEM.spdf)
 
-ggContour  <- ggTlines +
+ggContour  <- ggVol +
         geom_path(aes(long,lat,group=group, alpha=id),hkdDEM.df, color ="brown") +
         scale_alpha_manual(name =  "Elevation contour (m)", values = c(0.2,0.4,0.6,1),
                            labels = c(as.character(seq(500,2000,500))))
