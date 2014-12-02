@@ -27,7 +27,7 @@ hkdBH  <-
   #geom_smooth(color = "blue") +
   stat_smooth(method = "lm", color = "red") +
   annotate("text", x = 1100, y = 3, label = r2label, colour="red",
-           size = 4, parse=TRUE, font = "times") +
+           size = 4, parse=TRUE, font = "Times") +
   geom_hline(yintercept = 15, linetype = 2,color = "green") +
   geom_hline(yintercept = 100, linetype = 3,color = "blue") +
   scale_x_continuous(name ="Depth of well-logging data (m)", breaks = breaksX, labels = labelsX) +
@@ -35,8 +35,9 @@ hkdBH  <-
                      breaks = breaksY, labels = labelsY) +
   scale_colour_gradientn(name = expression(Temperature~(degree*C)), colours = rev(rainbow(7)),
                          breaks = breaksY, labels = format(breaksY)) +
-  theme(axis.title.x=element_text(vjust = -1, hjust =-1 )) +
-  theme_bw(base_size = 12, base_family = "Times")
+    theme_bw(base_size = 12, base_family = "Times") +
+    theme(axis.title.x=element_text(vjust = -0.5, hjust =-1 ))
+
 hkdBH
 ggsave(plot =hkdBH, "hkdBH.pdf", width = 7, height = 5)
 #ge.ggsave(hkdBH)
