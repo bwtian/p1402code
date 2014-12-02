@@ -40,5 +40,5 @@ hkdBH  <-
   theme_bw(base_size = 12, base_family = "Times")
 hkdBH
 # ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7, height = 1.5)
-# ge.ggsave(hkdBox1)
+ge.ggsave(hkdBH)
 #ge.ggsave(f04bhTD)
