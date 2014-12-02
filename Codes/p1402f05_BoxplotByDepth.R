@@ -23,20 +23,18 @@ hkdS  <- hkdSample[complete.cases(hkdSample), ]  #28210 - 28476 = 266
 # stripchart(Hokkaido_xy$Depth, add=TRUE, pch=19, method = "jitter")
 # stripchart(Hokkaido_xy$Tem, add=TRUE, pch=19, method = "jitter")
 
-p  <- ggplot(hkdS, aes(factor(cutDepth), Temperature)) +
+hkdBox2  <- ggplot(hkdS, aes(factor(cutDepth), Temperature)) +
   geom_boxplot(fill = "green",outlier.colour = "red") +
-  stat_summary(fun.y="mean",geom="point",color="blue", shape = 18, size=4) + 
+  stat_summary(fun.y="mean",geom="point",color="blue", shape = 18, size=4) +
   stat_summary(aes(y = Temperature,group = 1), fun.y="mean",geom="line",color="blue") +
   scale_y_continuous(breaks = c(seq(0, 400,by = 50))) +
   ylab(expression(Temperature~(degree*C))) +
-  xlab("Depth (m)") + 
-  theme_bw(base_size = 12, base_family = "Times")
-p
-# 
-f05box2  <- p
+  xlab("Depth (m)") +
+  theme_bw(base_size = 12, base_family = "Times") +
+  theme(axis.title.x = element_text(vjust = -0.5))
 ge.ggsave(f05box2)
-getwd()
-# 
+
+#
 # bhp_df$ColTemp  <- round(bhi_df$Temperature)
 # bhp_df$ColTemp[bhp_df$ColTemp <= 0]  <- 1   # rgl color need all value are postive
 # summary(bhp_df)
