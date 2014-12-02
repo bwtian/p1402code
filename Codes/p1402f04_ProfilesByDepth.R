@@ -41,4 +41,3 @@ hkdBH  <-
 hkdBH
 ggsave(plot =hkdBH, "hkdBH.pdf", width = 7, height = 4)
 #ge.ggsave(hkdBH)
-#ge.ggsave(f04bhTD)
