@@ -32,7 +32,9 @@ hkdBox2  <- ggplot(hkdS, aes(factor(cutDepth), Temperature)) +
   xlab("Depth (m)") +
   theme_bw(base_size = 12, base_family = "Times") +
   theme(axis.title.x = element_text(vjust = -0.5))
-ge.ggsave(f05box2)
+
+ggsave(plot =hkdBox2, "hkdBox2.pdf", width = 7, height = 5)
+#ge.ggsave(f05box2)
 
 #
 # bhp_df$ColTemp  <- round(bhi_df$Temperature)
