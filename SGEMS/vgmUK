@@ -1,0 +1,27 @@
+<parameters>  <algorithm name="kriging" /> 
+  <Grid_Name value="grid3d" region=""  /> 
+  <Property_Name  value="Tlogpred" /> 
+  <Kriging_Type  type="Kriging with Trend (KT)" >
+  <parameters trend="0 0 1 0 0 0 0 0 0 " />
+</Kriging_Type>
+  <do_block_kriging  value="0"  /> 
+  <npoints_x  value="5" /> 
+  <npoints_y  value="5" /> 
+  <npoints_z  value="5" /> 
+  <Hard_Data  grid="hkd15" region="" property="Tlog"  /> 
+  <Min_Conditioning_Data  value="0" /> 
+  <Max_Conditioning_Data  value="12" /> 
+  <Search_Ellipsoid  value="0 0 0
+0 0 0" />
+  <AdvancedSearch  use_advanced_search="0"></AdvancedSearch>
+  <Variogram  nugget="0" structures_count="2"  >
+  <structure_1  contribution="0"  type="Gaussian"   >
+    <ranges max="700"  medium="700"  min="700"   />
+    <angles x="0"  y="0"  z="0"   />
+  </structure_1>
+  <structure_2  contribution="0"  type="Spherical"   >
+    <ranges max="35000"  medium="35000"  min="35000"   />
+    <angles x="0"  y="0"  z="0"   />
+  </structure_2>
+</Variogram>
+</parameters> 
