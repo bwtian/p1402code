@@ -48,7 +48,7 @@ ggBase  <-  ggmap(basemap.r, extent = "panel") +
                      limits=limitsX,
                      expand = c(0.01,0.01)) +
   theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
-        axis.title = element_text(vjust = -0.5)) +
+        axis.title.x = element_text(vjust = -0.5)) +
   ### Y
   ylab("Latitude") +
   scale_y_continuous(breaks=breaksY,
@@ -64,7 +64,13 @@ cols <- c("accretionary complex" = "red",
 #levels(factor(hkdRocks.df$id))  
 ggRock  <-  ggBase +  
   geom_polygon(aes(long,lat,group=group, fill=id), hkdRocks.df) + 
-  scale_fill_manual(name =  "Rock types", values =cols)
+  scale_fill_manual(name =  "Rock types", values =cols, labele = c(
+    "Accretionary complex",
+    "Metamorphic rock",
+    "Pultonic rock",
+    "Sedimentary rock",    
+    "Volcanic rock",
+    "water" = "cyan"))
 ggFault  <- ggRock +
   geom_path(aes(long, lat, group=group, size = factor(0)), hkdFault.df,
             color = "black",
