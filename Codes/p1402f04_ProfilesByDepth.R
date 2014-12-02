@@ -12,7 +12,7 @@ hkdxyz  <-  unique(hkdBH[,c(1:3,13)])
     if (coef(m)[2] >= 0)  {
       eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,l)
     } else {
-      eq <- substitute(italic(y) == a - b %.% italic(x)*","~~italic(r)^2~"="~r2,l)    
+      eq <- substitute(italic(y) == a - b %.% italic(x)*","~~italic(r)^2~"="~r2,l)
     }
     as.character(as.expression(eq))
   }
@@ -21,19 +21,24 @@ labelsX = c("100","500","1000","1500","2000","2200")
 breaksX = as.numeric(labelsX)
 labelsY = c("0","15","50","90","150","200", "250", "300")
 breaksY = as.numeric(labelsY)
-bh  <- ggplot(data = hkd100, aes(x= Depths, y = Temperature)) +
+hkdBH  <-
+  ggplot(data = hkd100, aes(x= Depths, y = Temperature)) +
   geom_point(aes(color = Temperature), shape = ".") +
-  #geom_smooth(color = "blue") + 
+  #geom_smooth(color = "blue") +
   stat_smooth(method = "lm", color = "red") +
-  annotate("text", x = 1100, y = 3, label = r2label, colour="red", 
-           size = 4, parse=TRUE, font = "times") + 
+  annotate("text", x = 1100, y = 3, label = r2label, colour="red",
+           size = 4, parse=TRUE, font = "times") +
   xlab("Depth (m)") +
   geom_hline(yintercept = 15, linetype = 2,color = "green") +
   geom_hline(yintercept = 100, linetype = 3,color = "blue") +
   scale_x_continuous(breaks = breaksX, labels = labelsX) +
   scale_y_continuous(breaks = breaksY, labels = labelsY) +
   ylab(expression(Temperature~(degree*C))) +
-  scale_colour_gradientn(name = expression(Temperature~(degree*C)), colours = rev(rainbow(7)), breaks = breaksY, labels = format(breaksY)) +
+  scale_colour_gradientn(name = expression(Temperature~(degree*C)), colours = rev(rainbow(7)),
+                         breaks = breaksY, labels = format(breaksY)) +
+    theme(axis.title.x=element_text(vjust = - 0.5)) +
   theme_bw(base_size = 12, base_family = "Times")
-f04bhTD  <- bh
+hkdBox1
+# ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7, height = 1.5)
+# ge.ggsave(hkdBox1)
 #ge.ggsave(f04bhTD)
