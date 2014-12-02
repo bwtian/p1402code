@@ -12,7 +12,11 @@ boxp  <- ggplot(hkdxyz, aes(factor(0),TD)) +
   scale_y_continuous(breaks = c(seq(200, 2200,by = 200))) +
   xlab("") + 
   theme_bw(base_size = 12, base_family = "Times") +
-  theme(axis.text.y=element_blank(),axis.ticks.y=element_blank(), aspect.ratio = 1/8) +
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.title.x=element_text(vjust = 0.25),
+        aspect.ratio = 1/8) +
   coord_flip() 
-f03box1  <- boxp
+boxp
+hkdBox1  <- boxp
 #ge.ggsave(f03box1)
