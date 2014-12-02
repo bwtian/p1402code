@@ -69,8 +69,7 @@ ggRock  <-  ggBase +
     "Metamorphic rock",
     "Pultonic rock",
     "Sedimentary rock",    
-    "Volcanic rock",
-    "water" = "cyan"))
+    "Volcanic rock"))
 ggFault  <- ggRock +
   geom_path(aes(long, lat, group=group, size = factor(0)), hkdFault.df,
             color = "black",
@@ -112,7 +111,7 @@ ggPlate  <- ggVol  + geom_path(aes(long,lat,group=piece),
   geom_text(aes(x = 144.5, y = 41.4, label = "Kuril Trench"),
             hjust = -0.1, angle = 35, family="Times", colour="white",
             size = 4) +
-  geom_text(aes(x = 143.5, y = 40, label = "Northern \n Japan \n Trench"),
+  geom_text(aes(x = 143.5, y = 40, label = " Japan \n Trench"),
             hjust = -0.1, angle = 90, family="Times", colour="white",
             size = 4) +
   geom_text(aes(x = 139.4, y = 44, label = "Plate Boundary"),
@@ -145,6 +144,6 @@ ggFont  <- ggBar +
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 ggFont
-f02geology  <-ggFont
+hkdgeology  <-ggFont
 # 7*5
 #ge.ggsave(f02geology)
