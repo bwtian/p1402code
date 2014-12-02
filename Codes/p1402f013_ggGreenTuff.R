@@ -154,6 +154,6 @@ ggFont  <- ggBar +
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 
 hkdGeoBelt  <-ggFont
-# 7*5
+# 7*2
 ge.ggsave(hkdGeoBelt)
-ggsave("hkdGeoBelt.pdf", width = 7)
+ggsave("hkdGeoBelt.pdf", width = 7, height = 1.3)
