@@ -38,7 +38,7 @@ hkdBH  <-
                          breaks = breaksY, labels = format(breaksY)) +
     theme(axis.title.x=element_text(vjust = - 0.5)) +
   theme_bw(base_size = 12, base_family = "Times")
-hkdBox1
+hkdBH
 # ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7, height = 1.5)
 # ge.ggsave(hkdBox1)
 #ge.ggsave(f04bhTD)
