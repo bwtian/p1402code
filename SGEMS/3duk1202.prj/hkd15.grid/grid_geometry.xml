@@ -1,0 +1,10 @@
+<!DOCTYPE gridGeometry>
+<Grid type="Point_set" name="hkd15">
+ <Geometry size="25078"/>
+ <Properties>
+  <GsTLGridProperty filepath="properties/property__Tlog.sgems" type="Continuous" name="Tlog"/>
+  <GsTLGridProperty filepath="properties/property__t.sgems" type="Continuous" name="t"/>
+ </Properties>
+ <Regions/>
+ <PropertyGroups/>
+</Grid>
