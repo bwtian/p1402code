@@ -59,10 +59,11 @@ cols <- c("accretionary complex" = "red",
           "metamorphic rock" = "purple",
           "pultonic rock" = "pink",
           "sedimentary rock" = "palegreen",    
-          "volcanic rock" = "yellow")
+          "volcanic rock" = "yellow" 
+          )
 #levels(factor(hkdRocks.df$id))  
 ggRock  <-  ggBase +  
-  geom_polygon(aes(long,lat,group=group, fill=id), hkdRocks.df) + 
+  geom_polygon(aes(long,lat,group=group, fill=id), hkdRocks.df[!hkdRocks.df$id =="water",]) +
   scale_fill_manual(name =  "Rock types", values =cols, labels = c(
     "Accretionary complex",
     "Metamorphic rock",
@@ -145,7 +146,7 @@ ggFont  <- ggBar +
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 ggFont
-hkdgeology  <-ggFont
+hkdGeology  <-ggFont
 # 7*5
 #ge.ggsave(f02geology)
-
+ggsave(plot = hkdGeology, "hkdGeology.pdf", width =7)
