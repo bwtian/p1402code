@@ -45,8 +45,8 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
                            labels=labelsX,
                            limits=limitsX,
                            expand = c(0.01,0.01)) +
-        theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0)) +
-        theme(axis.title.x = element_text(vjust = 0.5)) +
+        theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
+              axis.title.x = element_text(vjust = 0.5)) +
         ### Y
         ylab(" Latitude") +
         scale_y_continuous(breaks=breaksY,
