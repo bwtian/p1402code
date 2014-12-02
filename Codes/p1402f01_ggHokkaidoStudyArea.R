@@ -139,10 +139,10 @@ geom_text(aes(x = 144.5, y = 41.4, label = "Kuril Trench"),
             hjust = -0.1, angle = 78, family="Times", colour="white",
             size = 4)
   
-  
+ggPlate  
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox2.SPDF)
-plot(hkdTlines.sldf)
+#plot(hkdTlines.sldf)
 hkdTlines.df  <- fortify(hkdTlines.sldf)
 ## regroup
 hkdTlines.df$id2 <- 2
@@ -155,12 +155,11 @@ ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2))
   hkdTlines.df) +  
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
                                     labels = c("Tectonic lines","Volcanic front")) 
-ggTlines
 ggBar  <- ggTlines  + 
-  scaleBar(lon = 139, lat = 40, distanceLon = 50, 
+  scaleBar(lon = 139, lat = 40, distanceLon = 100, 
            distanceLegend = 30, distanceLat = 15, 
            dist.unit = "km", arrow.length = 60, 
-           arrow.distance = 650, arrow.North.size = 4,
+           arrow.distance = 680, arrow.North.size = 4,
            legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 
 ggFont  <- ggBar +
