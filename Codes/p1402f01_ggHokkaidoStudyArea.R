@@ -53,12 +53,9 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
                            labels=labelsY,
                            limits=limitsY,
                            expand = c(0.01,0.01)) +
-        ###Legend
-        ### Size
         labs(size = "Borehole depth (m)") +
         scale_size_manual(values=c(1,1.5,2,3,4)) +
-        ### fill
-        scale_fill_brewer("Borehole Depth (m)", palette="Blues")
+        scale_fill_brewer("Borehole depth (m)", palette="Blues")
 ggVol  <- ggBH  +
         geom_point(data = volQ@data,
                    aes(as.numeric(lon), as.numeric(lat),
@@ -115,7 +112,7 @@ ggPlate  <- ggWRS2 + geom_path(aes(long,lat,group=piece),
                     linetype = 1,
                     size = 1,
                     hkdArc.df) +
-geom_text(aes(x = 144.5, y = 41.4, label = "Kuril Trench"),
+  geom_text(aes(x = 144.5, y = 41.4, label = "Kuril Trench"),
             hjust = -0.1, angle = 35, family="Times", colour="white",
             size = 4) +
   geom_text(aes(x = 143.5, y = 40, label = "Japan \n Trench"),
@@ -150,6 +147,7 @@ ggFont  <- ggBar +
   #coord_equal() +
   theme_bw(base_family = "Times")
 hkd  <-ggFont
+hkd
 # 7*5
-ge.ggsave(hkd, width = 7, height = 5)
+#ge.ggsave(hkd, width = 7, height = 5)
 
