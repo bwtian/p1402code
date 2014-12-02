@@ -15,9 +15,9 @@ hkdBox1   <-
   theme_bw(base_size = 12, base_family = "Times") +
   theme(axis.text.y=element_blank(),
         axis.ticks.y=element_blank(),
-        axis.title.x=element_text(vjust = 0),
+        axis.title.x=element_text(vjust = - 0.5),
         aspect.ratio = 1/8) +
   coord_flip()
 hkdBox1
-ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7, height = 1.75)
+ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7, height = 1.5)
 ge.ggsave(hkdBox1)
