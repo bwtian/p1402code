@@ -59,8 +59,7 @@ cols <- c("accretionary complex" = "red",
           "metamorphic rock" = "purple",
           "pultonic rock" = "pink",
           "sedimentary rock" = "palegreen",    
-          "volcanic rock" = "yellow",
-          "water" = "white" )
+          "volcanic rock" = "yellow")
 #levels(factor(hkdRocks.df$id))  
 ggRock  <-  ggBase +  
   geom_polygon(aes(long,lat,group=group, fill=id), hkdRocks.df) + 
@@ -69,8 +68,7 @@ ggRock  <-  ggBase +
     "Metamorphic rock",
     "Pultonic rock",
     "Sedimentary rock",    
-    "Volcanic rock",
-    ""))
+    "Volcanic rock"))
 ggFault  <- ggRock +
   geom_path(aes(long, lat, group=group, size = factor(0)), hkdFault.df,
             color = "black",
@@ -150,3 +148,4 @@ ggFont
 hkdgeology  <-ggFont
 # 7*5
 #ge.ggsave(f02geology)
+
