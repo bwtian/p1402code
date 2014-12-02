@@ -38,5 +38,5 @@ hkdBH  <-
   theme(axis.title.x=element_text(vjust = -1, hjust =-1 )) +
   theme_bw(base_family = "Times")
 hkdBH
-ggsave(plot =hkdBH, "hkdBH.pdf", width = 7, height = 4)
+ggsave(plot =hkdBH, "hkdBH.pdf", width = 7, height = 5)
 #ge.ggsave(hkdBH)
