@@ -31,9 +31,9 @@ belt.sldf  <-readOGR(Belt, "Belt")
 belt.sldf
 proj4string(belt.sldf)  <- CRS(wgs84GRS)
 belt.SP <- ge.splitPoly(belt.sldf, hkdLand.SPDF )
-plot(belt.SP)
+#plot(belt.SP)
 belt.dfr  <- fortify(belt.SP)
-ggplot(belt.df) + geom_polygon(aes(x = long, y = lat, group=group, fill = group))
+#ggplot(belt.dfr) + geom_polygon(aes(x = long, y = lat, group=group, fill = group))
 belt.df  <- belt.dfr[!(belt.dfr$group == "1.7" |
                        belt.dfr$group == "1.8" |
                        belt.dfr$group == "1.9" |
@@ -141,7 +141,7 @@ ggContour  <- ggVol +
 
 
 ggBar  <- ggContour +
-  scaleBar(lon = 144, lat = 41, 
+  scaleBar(lon = 144, lat = 41,
            distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km",
            arrow.length = 60, arrow.distance = 450, arrow.North.size = 4,
            legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
@@ -154,6 +154,7 @@ ggFont  <- ggBar +
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 
 hkdGeoBelt  <-ggFont
+hkdGeoBelt
 # 7*2
-ge.ggsave(hkdGeoBelt)
-ggsave("hkdGeoBelt.pdf", width = 7, height = 1.3)
+# ge.ggsave(hkdGeoBelt)
+# ggsave("hkdGeoBelt.pdf", width = 7, height = 1.3)
