@@ -93,7 +93,7 @@ ggBase
 cols <- c("Hidaka & Tokoro belt" = "cyan",
           "North Kitakami belt" = "orange",
           "Nemuro belt" = "pink",
-          "Kamuikotan belt" = "palegreen",
+          "Kamuikotan belt" = "red",
           "Sorachi-Yezo belt" = "yellow")
 
 ggBelt  <- ggBase +
@@ -148,7 +148,8 @@ ggBar  <- ggContour +
 
 ggFont  <- ggBar +
         #coord_equal() +
-        theme_bw(base_family = "Times")
+        theme_bw(base_family = "Times", base_size = 12) +
+        theme(axis.title.x=element_text(vjust = 0))
 
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
@@ -157,4 +158,5 @@ hkdGeoBelt  <-ggFont
 hkdGeoBelt
 # 7*2
 # ge.ggsave(hkdGeoBelt)
-# ggsave("hkdGeoBelt.pdf", width = 7, height = 1.3)
+ggsave("hkdGeoBelt.pdf", width = 7, height = 5)
+getwd()
