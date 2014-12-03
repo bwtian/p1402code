@@ -95,13 +95,11 @@ cols <- c("Hidaka & Tokoro belt" = "cyan",
           "Nemuro belt" = "pink",
           "Kamuikotan belt" = "red",
           "Sorachi-Yezo belt" = "yellow")
-write.csv(belt.df, file = "belt.csv")
 ggBelt  <- ggplot() +
         geom_polygon(aes(x = long, y = lat, group=name, fill = name),
         #geom_point(aes(x = long, y = lat, fill = name),
                                data = belt.df) +
         scale_fill_manual(name =  "Geological belt", values =cols)
-ggBelt
 ggTuff  <- ggBelt +
         geom_polygon(aes(x = long, y = lat, group=piece, size = factor(gtuff)),
                      data = greenTuff.df,
@@ -145,7 +143,7 @@ ggBar  <- ggContour +
   scaleBar(lon = 144, lat = 41,
            distanceLon = 50, distanceLegend = 30,distanceLat = 15, dist.unit = "km",
            arrow.length = 60, arrow.distance = 450, arrow.North.size = 4,
-           legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
+           legend.colour = "black", arrow.North.color = "black", arrow.colour = "blue")
 
 ggFont  <- ggBar +
         #coord_equal() +
@@ -156,7 +154,6 @@ ggFont  <- ggBar +
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 
 hkdGeoBelt  <-ggFont
-hkdGeoBelt
 # 7*2
 # ge.ggsave(hkdGeoBelt)
 ggsave("hkdGeoBelt.pdf", width = 7, height = 5)
