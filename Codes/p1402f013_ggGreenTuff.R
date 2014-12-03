@@ -46,7 +46,7 @@ belt.df[belt.df$group == 1.4,]$name  <- "Kamuikotan belt"
 belt.df[belt.df$group == 1.5,]$name  <- "Sorachi-Yezo belt"
 
 
-levels(factor(belt.df$group))
+# levels(factor(belt.df$group))
 
 #ge.sp2shpGeo(hkdLand)
 
@@ -76,7 +76,8 @@ labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
 # breaksY  <- seq(limitsY[1],limitsY[2],1)
 # labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
 ## Layer0: Base map
-ggBase  <-  ggmap(basemap.r, extent = "panel") +
+ggBase  <-  #ggmap(basemap.r, extent = "panel")
+        ggplot()+
         xlab("Lontitude") +
         scale_x_continuous(breaks=breaksX,
                            labels=labelsX,
@@ -89,18 +90,18 @@ ggBase  <-  ggmap(basemap.r, extent = "panel") +
                            labels=labelsY,
                            limits=limitsY,
                            expand = c(0.01,0.01))
-ggBase
 cols <- c("Hidaka & Tokoro belt" = "cyan",
           "North Kitakami belt" = "orange",
           "Nemuro belt" = "pink",
           "Kamuikotan belt" = "red",
           "Sorachi-Yezo belt" = "yellow")
-
-ggBelt  <- ggBase +
-        geom_polygon(aes(x = long, y = lat, group=group, fill = name),
+write.csv(belt.df, file = "belt.csv")
+ggBelt  <- ggplot() +
+        geom_polygon(aes(x = long, y = lat, group=name, fill = name),
+        #geom_point(aes(x = long, y = lat, fill = name),
                                data = belt.df) +
         scale_fill_manual(name =  "Geological belt", values =cols)
-
+ggBelt
 ggTuff  <- ggBelt +
         geom_polygon(aes(x = long, y = lat, group=piece, size = factor(gtuff)),
                      data = greenTuff.df,
