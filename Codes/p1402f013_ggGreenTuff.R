@@ -95,7 +95,7 @@ cols <- c("Hidaka & Tokoro belt" = "cyan",
           "Nemuro belt" = "pink",
           "Kamuikotan belt" = "red",
           "Sorachi-Yezo belt" = "yellow")
-ggBelt  <- ggplot() +
+ggBelt  <- ggBase() +
         geom_polygon(aes(x = long, y = lat, group=name, fill = name),
         #geom_point(aes(x = long, y = lat, fill = name),
                                data = belt.df) +
