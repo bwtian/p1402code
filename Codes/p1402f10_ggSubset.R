@@ -27,7 +27,11 @@ ge.raster2df  <- function(rst){
 }
 lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
 lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-sst.df  <- readRDS("hkdSST1500.spdf_141205_202722.Rds")
+hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+hkdKT$t <- 10^(hkdKT$KT)
+sst  <- hkdKT[hkdKT$Z == 1500,]
+# summary(hkdKT)
+# hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
 
 d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
@@ -55,51 +59,66 @@ ge.subdf  <- function(df,x,y,sub){
                 y  <- df$y
                 out.l[[i]]  <-  df[x >= xmin & x <= xmax & y  >= ymin & y <= ymax,]
         }
-        out.df  <- do.call(rbind, out.l)
-        return(out.df)
+#         out.spdf  <- do.call(rbind, out.l)
+#         out.df  <- as.data.frame(out.spdf)
+        return(out.l)
 
 }
 head(sst.df)
-sst.clip.df <- ge.subdf(sst.df, X,Y, sub)
-head(lst.df)
-lst.clip <- ge.subdf(lst.df, x,y,sub)
+sst.clip.l <- ge.subdf(sst.df, X,Y, sub)
+head(lst.df.l)
+lst.clip.l <- ge.subdf(lst.df, x,y,sub)
 head(lulc.df)
-lulc.clip <- ge.subdf(lulc.df,x,y,sub)
+lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 # names(clipper.l)  <- c("A", "B", "C", "D")
-# str(clipper.l)
-#dfs <- lapply(clipper.l, get)
-clipper.df  <- do.call(rbind, clipper.l)
-clipper.df$id  <- as.factor(substr(row.names(clipper.df),1,1))
-# summary(clipper.df)
 # ggplot(clipper.df,aes(x,y, fill = tCenter)) + geom_raster() +
 # facet_wrap(~ id)
+
+
+summary(lst.clip.l[[1]])
 cols = oceColorsJet(10)
-col.brks  <- seq(-20, 20, 2)
-col.labs  <- as.character(col.brks)
-grobs  <- lapply(clipper.l, function(d) {
-        ggplot(d) +
-        geom_raster(aes(x,y, fill = tCenter)) +
+lst.col.brks  <- seq(-20, 20, 2)
+lst.col.labs  <- as.character(lst.col.brks)
+lst.name  <- expression(~(degree*C))
+lst.grobs  <- lapply(lst.clip.l, function(df) {
+        ggplot(df) +
+        geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
         scale_x_continuous(labels = function(x) x/1000 -1200) +
         scale_y_continuous(labels = function(x) x/1000 -1400) +
         xlab("") +
         ylab("") +
-        #xlab("x (km)") +
-        #ylab("y (km)") +
         scale_fill_gradientn(colours = cols,
                              na.value="white",
-                             breaks = col.brks,
-                             labels = col.labs,
-                             name = expression(~(degree*C))) +
+                             breaks = lst.col.brks,
+                             labels = lst.col.labs,
+                             name = lst.name) +
                 coord_equal() +
                 theme_bw(base_size = 10, base_family = "Times") #+
                 #theme(legend.position="left",legend.justification = "right")
         })
+summary(sst.clip.l[[1]])
+sst.col.brks  <- seq(0, 400, 10)
+sst.col.labs  <- as.character(sst.col.brks)
+sst.name  <- expression(~(degree*C))
 
+sst.grobs  <- lapply(sst.clip.l, function(df) {
+        ggplot(df) +
+                geom_raster(aes(x,y, fill = t)) +
+                scale_x_continuous(labels = function(x) x/1000 -1200) +
+                scale_y_continuous(labels = function(x) x/1000 -1400) +
+                xlab("") +
+                ylab("") +
+                scale_fill_gradientn(colours = cols,
+                                     na.value="white",
+                                     breaks = sst.col.brks,
+                                     labels = sst.col.labs,
+                                     name = sst.name) +
+                coord_equal() +
+                theme_bw(base_size = 10, base_family = "Times") #+
+        #theme(legend.position="left",legend.justification = "right")
+})
 
-# tiff("clipper.tiff", h = 2000, w = 2000, res = 300)
-# png("clipper.png")
-# do.call(grid.arrange, c(grobs, nrow =2))
 
 ### Better
 library(gridExtra)
@@ -108,11 +127,28 @@ grid.newpage()
 #         cbind(ggplotGrob(grobs[[1]]), ggplotGrob(grobs[[2]]), size="last"),
 #         cbind(ggplotGrob(grobs[[3]]), ggplotGrob(grobs[[4]]), size="last"),
 #         size = "last"))
-grid.draw(rbind(ggplotGrob(grobs[[1]]),
-              ggplotGrob(grobs[[2]]),
-              ggplotGrob(grobs[[3]]),
-              ggplotGrob(grobs[[4]]),
-              size = "last"))
+lst.col  <- rbind(ggplotGrob(lst.grobs[[1]]),
+                   ggplotGrob(lst.grobs[[2]]),
+                   ggplotGrob(lst.grobs[[3]]),
+                   ggplotGrob(lst.grobs[[4]]),
+                   size = "last")
+grid.draw(lst.col)
+sst.col  <-rbind(ggplotGrob(sst.grobs[[1]]),
+                ggplotGrob(sst.grobs[[2]]),
+                ggplotGrob(sst.grobs[[3]]),
+                ggplotGrob(sst.grobs[[4]]),
+                size = "last")
+
+grid.draw(sst.col)
+# sst.col$widths  <- lst.col$widths
+# sst.col$heights  <- lst.col$heights
+# sst.col$
+# grid.draw(cbind(lst.col,sst.col))
+grid.arrange(lst.col,sst.col ,ncol = 2)
+# tiff("clipper.tiff", h = 2000, w = 2000, res = 300)
+# png("clipper.png")
+# do.call(grid.arrange, c(grobs, nrow =2))
+
 # Extracxt the legend from p1 !!!but that is just for p1
 # legend = gtable_filter(ggplot_gtable(ggplot_build(grobs[[1]])), "guide-box")
 #
@@ -160,3 +196,41 @@ grid.draw(rbind(ggplotGrob(grobs[[1]]),
 # do.call(grid.arrange, c(gl, list(ncol = 2)))
 #
 
+# Get the widths
+gA <- ggplot_gtable(ggplot_build(p1))
+gB <- ggplot_gtable(ggplot_build(p2))
+
+# The parts that differs in width
+leg1 <- with(gA$grobs[[8]], grobs[[1]]$widths[[4]])
+leg2 <- with(gB$grobs[[8]], grobs[[1]]$widths[[4]])
+
+# Set the widths
+gA$widths <- gB$widths
+
+# Add an empty column of "abs(diff(widths)) mm" width on the right of
+# legend box for gA (the smaller legend box)
+gA$grobs[[8]] <- gtable_add_cols(gA$grobs[[8]], unit(abs(diff(c(leg1, leg2))), "mm"))
+
+# Arrange the two charts
+grid.newpage()
+grid.arrange(gA, gB, nrow = 2)
+
+library(ggplot2)
+library(gtable)
+library(gridExtra)
+
+# Your plots
+p1 <- ggplot(data.frame(x=c("a","b","c"),y=c("happy","sad","ambivalent about life")),aes(x=factor(0),fill=x)) + geom_bar()
+p2 <- ggplot(data.frame(x=c("a","b","c"),y=c("happy","sad","ambivalent about life")),aes(x=factor(0),fill=y)) + geom_bar()
+
+# Get the gtables
+gA <- ggplot_gtable(ggplot_build(p1))
+gB <- ggplot_gtable(ggplot_build(p2))
+
+# Set the widths
+gA$widths <- gB$widths
+
+# Arrange the two charts.
+# The legend boxes are centered
+grid.newpage()
+grid.arrange(gA, gB, nrow = 2)
