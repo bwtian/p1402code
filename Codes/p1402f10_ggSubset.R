@@ -68,26 +68,29 @@ lst.col.brks  <- seq(-20, 20, 2)
 lst.col.labs  <- as.character(lst.col.brks)
 lst.name  <- expression(~(degree*C))
 names(lst.clip.l) <- c("A","B","C","D")
-lst.grobs  <- lapply(lst.clip.l, function(df) {
-        ggplot(df) +
-        geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
-        scale_x_continuous(labels = function(x) x/1000 -1200) +
-        scale_y_continuous(labels = function(x) x/1000 -1400) +
-        xlab("") +
-        ylab("") +
-        scale_fill_gradientn(colours = cols,
-                             na.value="white",
-                             breaks = lst.col.brks,
-                             labels = lst.col.labs,
-                             name = lst.name) +
-                coord_equal() +
-                theme_bw(base_size = 12, base_family = "Times") +
-                theme(plot.margin = unit(c(0,-0.5,0,0), "lines")) +
-                annotate("text", x = -Inf, y = Inf, label =names(df),
-                         hjust=-0.4, vjust=2, col="black", cex=6,
-                         fontface = "bold")
-                }
-        )
+lst.clip.l["A"]
+#lst.grobs  <- lapply(lst.clip.l, function(df) {
+        lst.grobs  <- for (i in names(lst.clip.l)){
+                ggplot(lst.clip.l[i]) +
+                        geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
+                        scale_x_continuous(labels = function(x) x/1000 -1200) +
+                        scale_y_continuous(labels = function(x) x/1000 -1400) +
+                        xlab("") +
+                        ylab("") +
+                        scale_fill_gradientn(colours = cols,
+                                             na.value="white",
+                                             breaks = lst.col.brks,
+                                             labels = lst.col.labs,
+                                             name = lst.name) +
+                        coord_equal() +
+                        theme_bw(base_size = 12, base_family = "Times") +
+                        theme(plot.margin = unit(c(0,-0.5,0,0), "lines")) +
+                        annotate("text", x = -Inf, y = Inf, label =i,
+                                 hjust=-0.4, vjust=2, col="black", cex=6,
+                                 fontface = "bold")
+        }
+
+      ge.crsTransform
 
 names(lst.clip.l[1])
 summary(sst.clip.l[[1]])
