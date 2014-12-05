@@ -109,6 +109,8 @@ ggsst  <- function(df){
                 theme(plot.margin = unit(c(0,0,0,-0.5), "lines"))
 }
 sst.grobs  <- list()
+sst1  <- ggsst(sst.clip.l[[1]])
+sst.clip.l[[1]]
 for (i in 1:4) {
         sst.grobs[[i]]  <-  ggsst(sst.clip.l[[i]]) +
                 annotate("text",label=paste("SST", LETTERS[i]), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
