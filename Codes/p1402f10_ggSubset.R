@@ -25,7 +25,10 @@ ge.raster2df  <- function(rst){
         rst.spdf  <- rasterToPoints(rst, spatial=TRUE)
         rst.df  <- as.data.frame(rst.spdf)
 }
-
+lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
+lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+names(lst.df )  <- c("x", "y", "tCenter")
+sst.df  <- readRDS("hkdSST1500.spdf_141205_202722.Rds")
 
 d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
@@ -39,19 +42,18 @@ dlcc$xmax  <- round(dlcc$xlcc, -3) +rad
 dlcc$ymin  <- round(dlcc$ylcc, -3) -rad
 dlcc$ymax  <- round(dlcc$ylcc, -3) +rad
 dlcc$id  <- 1:nrow(dlcc)
+sub  <- dlcc
 
-
-small  <- function(df, subdf){
-        data  <- mos.df
-        sub  <- dlcc
+ge.subdf  <- function(df, sub){
+        # return a list of
         out  <- list() # a list of dataframe
         for (i in 1:nrow(sub)){
                 xmin  <- sub[i,]$xmin
                 xmax  <- sub[i,]$xmax
                 ymin  <- sub[i,]$ymin
                 ymax  <- sub[i,]$ymax
-                x  <- data$x
-                y  <- data$y
+                x  <- df$x
+                y  <- df$y
                 out[[i]]  <-  data[x >= xmin & x <= xmax & y  >= ymin & y <= ymax,]
         }
         return(out)
