@@ -31,7 +31,7 @@ d  <- as.data.frame(rbind(c(41.92, 140.87),
                           c(43.48, 144.16)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-rad  <- 2500
+rad  <- 3000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad
 dlcc$ymin  <- round(dlcc$ylcc, -3) -rad
