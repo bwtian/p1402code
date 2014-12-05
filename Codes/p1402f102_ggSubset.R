@@ -31,7 +31,7 @@ d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(43.485, 144.159)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-rad  <- 3000
+rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad
 dlcc$ymin  <- round(dlcc$ylcc, -3) -rad
@@ -172,6 +172,8 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # sst.col$heights  <- lst.col$heights
 # lulc.col$heights  <- lst.col$heights
 # grid.draw(cbind(lst.col,sst.col))
+pdf("hkdSub.pdf")
 grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
-
+dev.off()
+getwd()
 #grid.arrange(lst.col,lulc.col,ncol = 2)
