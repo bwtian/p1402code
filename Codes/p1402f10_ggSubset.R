@@ -86,7 +86,7 @@ lst.grobs  <- lapply(seq_along(lst.clip.l), function(i) {
                         coord_equal() +
                         theme_bw(base_size = 12, base_family = "Times") +
                         theme(plot.margin = unit(c(0,-0.5,0,0), "lines")) +
-                        geom_text(data=df, aes(label=paste("LST", as.character(i))),
+                        geom_text(data=df, aes(label=paste("LST"),
                           x=-Inf, y=Inf, hjust=-0.4, vjust=2, col = "red",fontface = "bold")
 #                         annotate("text", x = -Inf, y = Inf, label ="LST",
 #                                  hjust=-0.4, vjust=2, col="black", cex=6,
