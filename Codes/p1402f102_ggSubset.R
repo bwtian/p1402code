@@ -54,40 +54,17 @@ ge.subdf  <- function(df,x,y,sub){
         #         out.df  <- as.data.frame(out.spdf)
         return(out.l)
 }
-# sst.clip.l <- ge.subdf(sst.df, x, y, sub)
-# #head(sst.clip.l[[1]])
-# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-# #head(lst.clip.l[[1]])
-# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
+sst.clip.l <- ge.subdf(sst.df, x, y, sub)
+#head(sst.clip.l[[1]])
+lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+#head(lst.clip.l[[1]])
+lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
-
-
-# summary(lst.clip.l[[1]])
 cols = oceColorsJet(10)
 lst.col.brks  <- seq(-20, 20, 2)
 lst.col.labs  <- as.character(lst.col.brks)
 lst.name  <- expression(~(degree*C))
-# # lst.grobs  <- lapply(lst.clip.l, function(i) {
-#                 ggplot(i) +
-#                         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
-#                         scale_x_continuous(labels = function(x) x/1000 -1200) +
-#                         scale_y_continuous(labels = function(x) x/1000 -1400) +
-#                         xlab("") +
-#                         ylab("") +
-#                         scale_fill_gradientn(colours = cols,
-#                                              na.value="white",
-#                                              breaks = lst.col.brks,
-#                                              labels = lst.col.labs,
-#                                              name = lst.name) +
-#                         coord_equal() +
-#                         theme_bw(base_size = 12, base_family = "Times") +
-#                         theme(plot.margin = unit(c(0,-0.5,0,0), "lines")) +
-#                         geom_text(aes(label=paste("LST", 1:4)),
-#                           x=-Inf, y=Inf, hjust=-0.4, vjust=2, col = "red",fontface = "bold")
-# # #                         annotate("text", x = -Inf, y = Inf, label ="LST",
-# # #                                  hjust=-0.4, vjust=2, col="black", cex=6,
-# # #                                  fontface = "bold")
-#         })
+
 gglst  <- function(df){
         ggplot(df) +
                 geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
@@ -105,9 +82,6 @@ gglst  <- function(df){
                 theme(plot.margin = unit(c(0,-0.5,0,0), "lines"))
 
 }
-# lst1  <- gglst(lst.clip.l[[1]]) +
-#         annotate("text",label=paste("LST A"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
-#                    col = "red",fontface = "bold", cex = 6)
 lst.grobs  <- list()
 for (i in 1:4) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
@@ -119,29 +93,8 @@ sst.col  <-  cols
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
-# sst.grobs  <- lapply(sst.clip.l, function(df) {
-#         ggplot(df) +
-#                 geom_raster(aes(x,y, fill = t)) +
-#                 scale_x_continuous(labels = function(x) x/1000 -1200) +
-#                 scale_y_continuous(labels = function(x) x/1000 -1400) +
-#                 xlab("") +
-#                 ylab("") +
-#                 scale_fill_gradientn(colours = sst.col,
-#                                      na.value="white",
-#                                      breaks = sst.col.brks,
-#                                      labels = sst.col.labs,
-#                                      name = sst.name) +
-#                 coord_equal() +
-#                 theme_bw(base_size = 12, base_family = "Times")  +
-#                 theme(plot.margin = unit(c(0,0,0,-0.5), "lines")) +
-#                 annotate("text", x = -Inf, y = Inf, label = "SST",
-#                          hjust=-0.4, vjust=2, col="black", cex=6,
-#                          fontface = "bold")
-#
-#         #theme(legend.position="left",legend.justification = "right")
-# })
 ggsst  <- function(df){
-        geom_raster(aes(x,y, fill = t)) +
+        geom_raster(aes(x, y, fill = t)) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
                 xlab("") +
@@ -166,26 +119,6 @@ lulc.col.labs  <- c("Water", "Urban", "Paddy", "Crop","Grass", "DeciduousForest"
                     "EvergreenForest", "Bare", "SnowAndIce")
 lulc.cols  <- c("blue", "red", "purple", "yellow", "yellowgreen", "springgreen", "forestgreen", "saddlebrown", "white")
 lulc.name  <- "LULC"
-# lulc.grobs  <- lapply(lulc.clip.l, function(df) {
-#         ggplot(df) +
-#                 geom_raster(aes(x,y, fill = factor(lulc100))) +
-#                 scale_x_continuous(labels = function(x) x/1000 -1200) +
-#                 scale_y_continuous(labels = function(x) x/1000 -1400) +
-#                 xlab("") +
-#                 ylab("") +
-#                 scale_fill_manual(values = lulc.cols,
-#                                      na.value="white",
-#                                      #breaks = lulc.col.brks,
-#                                      labels = lulc.col.labs,
-#                                      name = lulc.name) +
-#                 coord_equal() +
-#                 theme_bw(base_size = 12, base_family = "Times") +
-#                 theme(legend.position="none")  +
-#                 theme(plot.margin = unit(c(0,-0.5,0,-0.5), "lines")) +
-#                 annotate("text", x = -Inf, y = Inf, label = "LULC",
-#                          hjust=-0.4, vjust=2, col="black", cex=6,
-#                          fontface = "bold")
-# })
 gglulc  <- function(df){
         geom_raster(aes(x,y, fill = factor(lulc100))) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
@@ -208,8 +141,7 @@ for (i in 1:4) {
                 annotate("text",label=paste("LULC", LETTERS[i]), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
                          col = "red",fontface = "bold", cex = 6)
 }
-### Better
-library(gridExtra)
+
 grid.newpage()
 # grid.draw(rbind(
 #         cbind(ggplotGrob(grobs[[1]]), ggplotGrob(grobs[[2]]), size="last"),
