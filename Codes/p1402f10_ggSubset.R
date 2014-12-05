@@ -12,13 +12,19 @@
 #
 # }
 source("~/SparkleShare/TIR/demo/tirSettings.R")
-setwd(dir.toaTbKlccCenterMos)
+setwd(dir.hkd)
 #setwd("~/toaTbKlccCenterMos/")
 # mos  <- raster("L8B10CenterMos.tif")
 # mos.spdf  <- rasterToPoints(mos, spatial=TRUE)
 # mos.df  <- as.data.frame(mos.spdf)
 # names(mos.df)  <- c("x", "y", "tCenter")
 # head(mos.df)
+
+ge.raster2df  <- function(rst){
+        rst  <- raster(rst)
+        rst.spdf  <- rasterToPoints(rst, spatial=TRUE)
+        rst.df  <- as.data.frame(rst.spdf)
+}
 
 
 d  <- as.data.frame(rbind(c(41.91, 140.87),
@@ -35,7 +41,7 @@ dlcc$ymax  <- round(dlcc$ylcc, -3) +rad
 dlcc$id  <- 1:nrow(dlcc)
 
 
-small  <- function(){
+small  <- function(df, subdf){
         data  <- mos.df
         sub  <- dlcc
         out  <- list() # a list of dataframe
