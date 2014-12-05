@@ -80,7 +80,7 @@ gglst  <- function(df){
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="right", legend.margin=unit(0,"lines"))  +
-                theme(plot.margin = unit(c(0,-1.5,0,-2), "lines"))
+                theme(plot.margin = unit(c(0,-3,0,-2), "lines"))
 
 }
 lst.grobs  <- list()
@@ -109,7 +109,7 @@ ggsst  <- function(df){
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times")  +
 
-                theme(plot.margin = unit(c(0,0,0,-1.5), "lines"))
+                theme(plot.margin = unit(c(0,-1,0,-1.5), "lines"))
 }
 sst.grobs  <- list()
 for (i in 1:4) {
