@@ -2,10 +2,11 @@ source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 setwd(dataDir)
 # getwd()
 hkdKT  <- readRDS("hkd/hkd_kt3dlcc_140530_114352.Rds")
-head(hkdKT)
+summary(hkdKT)
+hkdKT$t <- exp(hkdKT$KTb10 + 0.5*hkdKT$KTb10_krig_var)
 #df  <- subset(hkdKT, Z %% 200 == 0)
 df  <- subset(hkdKT, Z == 100 | Z == 300 | Z == 500 | Z == 700 | Z == 900 |
-                 Z == 1100 |  Z == 1200 | Z == 1300 | Z == 1400 ) 
+                 Z == 1100 |  Z == 1200 | Z == 1300 | Z == 1400 )
 g1 <- ggplot(df) +
 geom_raster(aes(x = X, y =Y, fill = Temperatrue)) +
 facet_wrap(~Z)
@@ -14,7 +15,7 @@ scale_y_continuous(label = function(x) x/1000) +
 xlab("Easting (km)") +
 ylab("Northing (km)")
 
-
+exp(6)
 # y  <- as.numeric(df$Temperatrue)
 # max(y)
 #breaksY = c(0,100,200,250,300,350,400, max(y))
@@ -31,7 +32,7 @@ g3  <- g2 +  scale_fill_gradientn(name = expression(Temperature~(degree*C)),
         theme(title = bold.text) +
         theme_bw(base_size = 12, base_family = "Times") + coord_equal()
 
-#### 
+####
 jpVolA.spdf  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol110_140812_174525.Rds")
 xmin <- 139
 xmax <- 146
@@ -68,20 +69,20 @@ ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,2),
                         labels = c("Tectonic lines","Volcanic front"))
 
-ggCirles  <- 
+ggCirles  <-
 ggTlines + geom_point(data =maxids, aes(X,Y),size=5, shape=1, color="white")
 
-D14  <-subset(hkdKT,  Z == 1400) 
+D14  <-subset(hkdKT,  Z == 1400)
 
-A  <- D14[D14$Temperatrue > 300,]  
-A$class  <- 1 
+A  <- D14[D14$Temperatrue > 300,]
+A$class  <- 1
 A[A$X > 1400000 & A$X < 1500000,]$class  <- 2
 A[A$X > 1500000,]$class  <- 3
 centroids <- aggregate(cbind(X,Y)~class,A, mean)
 maxT <- aggregate(cbind(Temperatrue)~class,A, max)
 maxids  <- A[A$Temperatrue %in% maxT$Temperatrue,]
 ggplot(A, aes(X, Y, fill = class)) +
-  geom_point() + 
+  geom_point() +
   stat_ellipse(geom = "polygon", alpha = 1/2, aes(fill = class)) +
 ggplot(maxids, aes(X,Y)) +  geom_point(size=50, shape=1, color="gold4")
 
@@ -97,7 +98,7 @@ ggplot(dat,aes(x,y)) + geom_path()
 g<-g+annotate("path",
               x=xc+r*cos(seq(0,2*pi,length.out=100)),
               y=yc+r*sin(seq(0,2*pi,length.out=100)))
-veganCovEllipse <- function (cov, center = c(0, 0), scale = 1, npoints = 100) 
+veganCovEllipse <- function (cov, center = c(0, 0), scale = 1, npoints = 100)
 {
   theta <- (0:npoints) * 2 * pi/npoints
   Circle <- cbind(cos(theta), sin(theta))
