@@ -27,8 +27,8 @@ ge.raster2df  <- function(rst){
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
 d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
-                          c(42.816, 141.9),
-                          c(43.48, 143.8)))
+                          c(42.816, 141.299),
+                          c(43.485, 144.159)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 rad  <- 2500
@@ -54,11 +54,11 @@ ge.subdf  <- function(df,x,y,sub){
 #         out.df  <- as.data.frame(out.spdf)
         return(out.l)
 }
-sst.clip.l <- ge.subdf(sst.df, x, y, sub)
-#head(sst.clip.l[[1]])
-lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-#head(lst.clip.l[[1]])
-lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
+# sst.clip.l <- ge.subdf(sst.df, x, y, sub)
+# #head(sst.clip.l[[1]])
+# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+# #head(lst.clip.l[[1]])
+# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 
 
@@ -158,5 +158,5 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # sst.col$heights  <- lst.col$heights
 # lulc.col$heights  <- lst.col$heights
 # grid.draw(cbind(lst.col,sst.col))
-grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3, clip=TRUE)
+grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
 #grid.arrange(lst.col,lulc.col,ncol = 2)
