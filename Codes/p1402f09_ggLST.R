@@ -23,7 +23,7 @@ mos  <- raster("L8B10CenterMos.tif")
 #mos.df  <- as.data.frame(mos.p)
 mos.spdf  <- rasterToPoints(mos, spatial=TRUE)
 mos.df  <- as.data.frame(mos.spdf)
-names(mos.df)  <- c("x", "y", "tc")
+names(mos.df)  <- c("x", "y", "t")
 #names(mos.df)  <- c("x", "y", "t")
 p12  <- ggplot(mos.df, aes(x,y, fill = t)) + geom_raster()
 #p12
@@ -32,11 +32,11 @@ p12  <- ggplot(mos.df, aes(x,y, fill = t)) + geom_raster()
 # p14  <- ggplot(mos.df, aes(x,y, fill = t)) + geom_jitter()
 # p14
 # gc()
-p2  <- p12 + scale_x_continuous(label = function(x) x/1000) +
-     scale_y_continuous(label = function(x) x/1000) +
+p2  <- p12 +  scale_x_continuous(label = function(x) x/1000 -1200) +
+        scale_y_continuous(label = function(x) x/1000 -1400) +
      xlab("Easting (km)") +
      ylab("Northing (km)")
-#p2
+p2
 #cols  <-  bpy.colors(8)
 cols = oceColorsJet(10)
 brks  <- c(-20, -15,-10,-5, 0, 5, 10, 15, 20)
@@ -61,7 +61,6 @@ library(grid)
 north  <- data.frame(rbind(c(1600000,1400000,0,60000),c(1550000,1400000,100000,0)))
 names(north)  <- c("x", "y", "dx", "dy")
 p4  <- p3 +
-
         geom_segment(data = north[1,], aes(x=x,y=y, xend=x+dx, yend = y+dy),
                      arrow = arrow(angle =25),
                      size = 1,
@@ -81,7 +80,7 @@ p4  <- p3 +
                    #size =
                    ) +
         geom_text(x = north[1,]$x+north[1,]$dx/2, y = north[1,]$y -north[1,]$dy/4,
-                  label = "100 km"
+                  label = "100 km", size = 10
                   )
 sourceDir("~/SparkleShare/geothermaR/R")
 # p4
@@ -119,10 +118,10 @@ d  <- as.data.frame(rbind(c(41.92, 140.87),
                   c(43.47, 144.16)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-dlcc$xmin  <- round(dlcc$xlcc, -3) -2500
-dlcc$xmax  <- round(dlcc$xlcc, -3) +2500
-dlcc$ymin  <- round(dlcc$ylcc, -3) -2500
-dlcc$ymax  <- round(dlcc$ylcc, -3) +2500
+dlcc$xmin  <- round(dlcc$xlcc, -3) -5000
+dlcc$xmax  <- round(dlcc$xlcc, -3) +5000
+dlcc$ymin  <- round(dlcc$ylcc, -3) -5000
+dlcc$ymax  <- round(dlcc$ylcc, -3) +5000
 dlcc$id  <- 1:nrow(dlcc)
 # ggplot() +
 #         geom_rect(data = dlcc,
@@ -135,8 +134,10 @@ p6  <- p4 + geom_rect(data = dlcc,
 # p3)
 p7  <- p6 + theme_bw(base_size = 12, base_family = "Times") + coord_equal()
 #ggsave("p71009.pdf")
+p7
 ge.ggsave(p7)
-
+hkdLST  <- p7
+ggsave()
 # round(dlcc)
 # names(d)  <- c("lat","lon")
 #
