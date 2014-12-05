@@ -14,15 +14,15 @@
 source("~/SparkleShare/TIR/demo/tirSettings.R")
 setwd(dir.toaTbKlccCenterMos)
 #setwd("~/toaTbKlccCenterMos/")
-mos  <- raster("L8B10CenterMos.tif")
-mos.spdf  <- rasterToPoints(mos, spatial=TRUE)
-mos.df  <- as.data.frame(mos.spdf)
-names(mos.df)  <- c("x", "y", "tCenter")
-head(mos.df)
+# mos  <- raster("L8B10CenterMos.tif")
+# mos.spdf  <- rasterToPoints(mos, spatial=TRUE)
+# mos.df  <- as.data.frame(mos.spdf)
+# names(mos.df)  <- c("x", "y", "tCenter")
+# head(mos.df)
 
-d  <- as.data.frame(rbind(c(41.91, 140.87),
-                          c(42.23, 139.94),
-                          c(42.79, 141.31),
+d  <- as.data.frame(rbind(c(41.91, 140.85),
+                          c(42.23, 139.95),
+                          c(42.81, 141.31),
                           c(43.47, 144.16)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
@@ -53,7 +53,7 @@ small  <- function(){
 
 clipper.l  <- small()
 
-names(clipper.l)  <- c("a", "b", "c", "d")
+names(clipper.l)  <- c("A", "B", "C", "D")
 str(clipper.l)
 #dfs <- lapply(clipper.l, get)
 clipper.df  <- do.call(rbind, clipper.l)
@@ -84,18 +84,18 @@ grobs  <- lapply(clipper.l, function(d) {
 
         })
 
-library(gridExtra)
+
 # tiff("clipper.tiff", h = 2000, w = 2000, res = 300)
 # png("clipper.png")
 # do.call(grid.arrange, c(grobs, nrow =2))
 
 ### Better
-
+library(gridExtra)
 grid.newpage()
-grid.draw(rbind(
-        cbind(ggplotGrob(grobs[[1]]), ggplotGrob(grobs[[2]]), size="last"),
-        cbind(ggplotGrob(grobs[[3]]), ggplotGrob(grobs[[4]]), size="last"),
-        size = "last"))
+# grid.draw(rbind(
+#         cbind(ggplotGrob(grobs[[1]]), ggplotGrob(grobs[[2]]), size="last"),
+#         cbind(ggplotGrob(grobs[[3]]), ggplotGrob(grobs[[4]]), size="last"),
+#         size = "last"))
 grid.draw(rbind(ggplotGrob(grobs[[1]]),
               ggplotGrob(grobs[[2]]),
               ggplotGrob(grobs[[3]]),
