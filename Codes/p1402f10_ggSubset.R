@@ -130,7 +130,8 @@ lulc.grobs  <- lapply(lulc.clip.l, function(df) {
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="none")  +
                 theme(plot.margin = unit(c(0,-0.5,0,-0.5), "lines")) +
-                annotate("text", x = Inf, y = -Inf, label = "LULC",
+                annotate("text", x = -Inf, y = Inf,
+                         label = c("LULC A", "LULC B","LULC C","LULC D")
                          hjust=1.1, vjust=-1.1, col="white", cex=6,
                          fontface = "bold", alpha = 0.8)
 })
