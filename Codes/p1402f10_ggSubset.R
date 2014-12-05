@@ -69,6 +69,7 @@ lst.col.labs  <- as.character(lst.col.brks)
 lst.name  <- expression(~(degree*C))
 names(lst.clip.l) <- c("A","B","C","D")
 class(lst.clip.l["A"])
+dimnames(lst.clip.l[[2]])
 lst.grobs  <- lapply(lst.clip.l, function(df) {
         ggplot(df) +
                         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
@@ -84,10 +85,14 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                         coord_equal() +
                         theme_bw(base_size = 12, base_family = "Times") +
                         theme(plot.margin = unit(c(0,-0.5,0,0), "lines")) +
-                        annotate("text", x = -Inf, y = Inf, label ="LST",
-                                 hjust=-0.4, vjust=2, col="black", cex=6,
-                                 fontface = "bold")
+                        geom_text(data=df, aes(label=paste("LST", seq_along(df))),
+                          x=-Inf, y=Inf, hjust=-0.2, vjust=1.2)
+#                         annotate("text", x = -Inf, y = Inf, label ="LST",
+#                                  hjust=-0.4, vjust=2, col="black", cex=6,
+#                                  fontface = "bold")
         })
+
+
 sst.col  <-  cols
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
