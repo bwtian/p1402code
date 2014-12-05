@@ -135,7 +135,7 @@ gglulc  <- function(df){
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="none")  +
-                theme(plot.margin = unit(c(0,-1,0,-2), "lines"))
+                theme(plot.margin = unit(c(0,-2,0,-2), "lines"))
 }
 lulc.grobs  <- list()
 for (i in 1:4) {
