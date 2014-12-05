@@ -83,7 +83,7 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(plot.margin = unit(c(0,0,0,0), "lines")) +
-                annotate("text", label = names(lst.clip.l[df]), x = min(x), y = max(y), size = 8, colour = "red")
+                annotate("text", label = names(lst.clip.l[df]), x = min(df$x), y = max(df$y), size = 8, colour = "red")
                 }
         )
 
