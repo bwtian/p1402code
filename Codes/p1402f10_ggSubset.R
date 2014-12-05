@@ -16,10 +16,14 @@ sst.df  <- hkdXyzt[hkdXyzt$z == 1000,]
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
 
-d  <- as.data.frame(rbind(c(41.91, 140.87),
-                          c(42.23, 139.94),
-                          c(42.816, 141.299),
-                          c(43.485, 144.159)))
+# d  <- as.data.frame(rbind(c(41.91, 140.87),
+#                           c(42.23, 139.94),
+#                           c(42.816, 141.299),
+#                           c(43.485, 144.159)))
+d  <- as.data.frame(rbind(c(42, 140),
+                          c(43, 141),
+                          c(44, 142),
+                          c(45, 143)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 rad  <- 5000
