@@ -85,7 +85,7 @@ sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
 sst.grobs  <- lapply(sst.clip.l, function(df) {
         ggplot(df) +
-                geom_raster(aes(X,Y, fill = t)) +
+                geom_raster(aes(x,y, fill = t)) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
                 xlab("") +
