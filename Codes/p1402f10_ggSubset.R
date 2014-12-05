@@ -99,8 +99,6 @@ sst.grobs  <- lapply(sst.clip.l, function(df) {
                 theme_bw(base_size = 10, base_family = "Times") #+
         #theme(legend.position="left",legend.justification = "right")
 })
-
-sst.grobs
 ### Better
 library(gridExtra)
 grid.newpage()
