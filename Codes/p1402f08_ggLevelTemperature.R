@@ -1,5 +1,5 @@
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
-setwd(dataDir)
+setwd(dir.data)
 # getwd()
 hkdKT  <- readRDS("hkd/hkd_kt3dlcc_140530_114352.Rds")
 hkdKT$t <- 10^(hkdKT$KT)
