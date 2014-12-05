@@ -119,9 +119,29 @@ sst.col  <-  cols
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
-sst.grobs  <- lapply(sst.clip.l, function(df) {
-        ggplot(df) +
-                geom_raster(aes(x,y, fill = t)) +
+# sst.grobs  <- lapply(sst.clip.l, function(df) {
+#         ggplot(df) +
+#                 geom_raster(aes(x,y, fill = t)) +
+#                 scale_x_continuous(labels = function(x) x/1000 -1200) +
+#                 scale_y_continuous(labels = function(x) x/1000 -1400) +
+#                 xlab("") +
+#                 ylab("") +
+#                 scale_fill_gradientn(colours = sst.col,
+#                                      na.value="white",
+#                                      breaks = sst.col.brks,
+#                                      labels = sst.col.labs,
+#                                      name = sst.name) +
+#                 coord_equal() +
+#                 theme_bw(base_size = 12, base_family = "Times")  +
+#                 theme(plot.margin = unit(c(0,0,0,-0.5), "lines")) +
+#                 annotate("text", x = -Inf, y = Inf, label = "SST",
+#                          hjust=-0.4, vjust=2, col="black", cex=6,
+#                          fontface = "bold")
+#
+#         #theme(legend.position="left",legend.justification = "right")
+# })
+ggsst  <- function(df){
+        eom_raster(aes(x,y, fill = t)) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
                 xlab("") +
@@ -137,9 +157,13 @@ sst.grobs  <- lapply(sst.clip.l, function(df) {
                 annotate("text", x = -Inf, y = Inf, label = "SST",
                          hjust=-0.4, vjust=2, col="black", cex=6,
                          fontface = "bold")
-
-        #theme(legend.position="left",legend.justification = "right")
-})
+        }
+sst.grobs  <- list()
+for (i in 1:4) {
+        sst.grobs[[i]]  <-  gglst(sst.clip.l[[i]]) +
+                annotate("text",label=paste("SST", LETTERS[i]), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
+                         col = "red",fontface = "bold", cex = 6)
+}
 lulc.col.brks  <- c(1,2,3,4,5,6,8,10,11)
 lulc.col.labs  <- c("Water", "Urban", "Paddy", "Crop","Grass", "DeciduousForest",
            "EvergreenForest", "Bare", "SnowAndIce")
@@ -165,7 +189,31 @@ lulc.grobs  <- lapply(lulc.clip.l, function(df) {
                          hjust=-0.4, vjust=2, col="black", cex=6,
                          fontface = "bold")
 })
-
+gglulc  <- function(df){
+        geom_raster(aes(x,y, fill = factor(lulc100))) +
+                scale_x_continuous(labels = function(x) x/1000 -1200) +
+                scale_y_continuous(labels = function(x) x/1000 -1400) +
+                xlab("") +
+                ylab("") +
+                scale_fill_manual(values = lulc.cols,
+                                  na.value="white",
+                                  #breaks = lulc.col.brks,
+                                  labels = lulc.col.labs,
+                                  name = lulc.name) +
+                coord_equal() +
+                theme_bw(base_size = 12, base_family = "Times") +
+                theme(legend.position="none")  +
+                theme(plot.margin = unit(c(0,-0.5,0,-0.5), "lines")) +
+                annotate("text", x = -Inf, y = Inf, label = "LULC",
+                         hjust=-0.4, vjust=2, col="black", cex=6,
+                         fontface = "bold")
+}
+lulc.grobs  <- list()
+for (i in 1:4) {
+        lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
+                annotate("text",label=paste("LULC", LETTERS[i]), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
+                         col = "red",fontface = "bold", cex = 6)
+}
 ### Better
 library(gridExtra)
 grid.newpage()
