@@ -154,13 +154,10 @@ ggsst  <- function(df){
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times")  +
                 theme(plot.margin = unit(c(0,0,0,-0.5), "lines")) +
-                annotate("text", x = -Inf, y = Inf, label = "SST",
-                         hjust=-0.4, vjust=2, col="black", cex=6,
-                         fontface = "bold")
         }
 sst.grobs  <- list()
 for (i in 1:4) {
-        sst.grobs[[i]]  <-  gglst(sst.clip.l[[i]]) +
+        sst.grobs[[i]]  <-  ggsst(sst.clip.l[[i]]) +
                 annotate("text",label=paste("SST", LETTERS[i]), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
                          col = "red",fontface = "bold", cex = 6)
 }
@@ -169,26 +166,26 @@ lulc.col.labs  <- c("Water", "Urban", "Paddy", "Crop","Grass", "DeciduousForest"
            "EvergreenForest", "Bare", "SnowAndIce")
 lulc.cols  <- c("blue", "red", "purple", "yellow", "yellowgreen", "springgreen", "forestgreen", "saddlebrown", "white")
 lulc.name  <- "LULC"
-lulc.grobs  <- lapply(lulc.clip.l, function(df) {
-        ggplot(df) +
-                geom_raster(aes(x,y, fill = factor(lulc100))) +
-                scale_x_continuous(labels = function(x) x/1000 -1200) +
-                scale_y_continuous(labels = function(x) x/1000 -1400) +
-                xlab("") +
-                ylab("") +
-                scale_fill_manual(values = lulc.cols,
-                                     na.value="white",
-                                     #breaks = lulc.col.brks,
-                                     labels = lulc.col.labs,
-                                     name = lulc.name) +
-                coord_equal() +
-                theme_bw(base_size = 12, base_family = "Times") +
-                theme(legend.position="none")  +
-                theme(plot.margin = unit(c(0,-0.5,0,-0.5), "lines")) +
-                annotate("text", x = -Inf, y = Inf, label = "LULC",
-                         hjust=-0.4, vjust=2, col="black", cex=6,
-                         fontface = "bold")
-})
+# lulc.grobs  <- lapply(lulc.clip.l, function(df) {
+#         ggplot(df) +
+#                 geom_raster(aes(x,y, fill = factor(lulc100))) +
+#                 scale_x_continuous(labels = function(x) x/1000 -1200) +
+#                 scale_y_continuous(labels = function(x) x/1000 -1400) +
+#                 xlab("") +
+#                 ylab("") +
+#                 scale_fill_manual(values = lulc.cols,
+#                                      na.value="white",
+#                                      #breaks = lulc.col.brks,
+#                                      labels = lulc.col.labs,
+#                                      name = lulc.name) +
+#                 coord_equal() +
+#                 theme_bw(base_size = 12, base_family = "Times") +
+#                 theme(legend.position="none")  +
+#                 theme(plot.margin = unit(c(0,-0.5,0,-0.5), "lines")) +
+#                 annotate("text", x = -Inf, y = Inf, label = "LULC",
+#                          hjust=-0.4, vjust=2, col="black", cex=6,
+#                          fontface = "bold")
+# })
 gglulc  <- function(df){
         geom_raster(aes(x,y, fill = factor(lulc100))) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
@@ -203,10 +200,7 @@ gglulc  <- function(df){
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="none")  +
-                theme(plot.margin = unit(c(0,-0.5,0,-0.5), "lines")) +
-                annotate("text", x = -Inf, y = Inf, label = "LULC",
-                         hjust=-0.4, vjust=2, col="black", cex=6,
-                         fontface = "bold")
+                theme(plot.margin = unit(c(0,-0.5,0,-0.5), "lines"))
 }
 lulc.grobs  <- list()
 for (i in 1:4) {
