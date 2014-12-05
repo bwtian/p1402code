@@ -79,7 +79,7 @@ gglst  <- function(df){
                                      name = lst.name) +
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
-                theme(plot.margin = unit(c(0,-0.5,0,0), "lines"))
+                theme(plot.margin = unit(c(0,-2,0,0), "lines"))
 
 }
 lst.grobs  <- list()
