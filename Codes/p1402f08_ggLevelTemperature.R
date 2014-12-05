@@ -22,12 +22,12 @@ df$ZZ  <- factor(df$ZZ, levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m", 
 g1 <- ggplot(df) +
         geom_raster(aes(x = X, y =Y, fill = t)) +
         facet_wrap(~ZZ, ncol =2)
-g1
+#g1
 g2  <- g1 + scale_x_continuous(label = function(x) x/1000 -1200) +
 scale_y_continuous(label = function(x) x/1000 -1400) +
 xlab("Easting (km)") +
 ylab("Northing (km)")
-g2
+#g2
 # y  <- as.numeric(df$Temperatrue)
 # max(y)
 #breaksY = c(0,100,200,250,300,350,400, max(y))
@@ -47,7 +47,7 @@ g3  <- g2 +  scale_fill_gradientn(name = expression(Temperature~(degree*C)),
         theme_bw(base_size = 12, base_family = "Times") +
         theme(title = bold.text,
               strip.text = strip.text)
-g3
+#g3
 ####
 jpVolA.spdf  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol110_140812_174525.Rds")
 xmin <- 139
@@ -85,11 +85,9 @@ ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,2),
                         labels = c("Tectonic lines","Volcanic front"))
 
-ggCirles  <-
-ggTlines + geom_point(data =maxids, aes(X,Y),size=5, shape=1, color="white")
-
-D14  <-subset(hkdKT,  Z == 1400)
-
+### Circles
+D15  <- hkdKT[hkdKT$Z >= 1500, ]
+unique(hkdKT$Z)
 A  <- D14[D14$Temperatrue > 300,]
 A$class  <- 1
 A[A$X > 1400000 & A$X < 1500000,]$class  <- 2
@@ -97,29 +95,14 @@ A[A$X > 1500000,]$class  <- 3
 centroids <- aggregate(cbind(X,Y)~class,A, mean)
 maxT <- aggregate(cbind(Temperatrue)~class,A, max)
 maxids  <- A[A$Temperatrue %in% maxT$Temperatrue,]
-ggplot(A, aes(X, Y, fill = class)) +
-  geom_point() +
-  stat_ellipse(geom = "polygon", alpha = 1/2, aes(fill = class)) +
-ggplot(maxids, aes(X,Y)) +  geom_point(size=50, shape=1, color="gold4")
+#ggplot(maxids, aes(X,Y)) +  geom_point(size=50, shape=1, color="gold4")
 
-circleFun <- function(center = c(0,0),diameter = 1, npoints = 100){
-  r = diameter / 2
-  tt <- seq(0,2*pi,length.out = npoints)
-  xx <- center[1] + r * cos(tt)
-  yy <- center[2] + r * sin(tt)
-  return(data.frame(x = xx, y = yy))
-}
-dat <- circleFun(c(1,-1),2.3,npoints = 100)
-ggplot(dat,aes(x,y)) + geom_path()
-g<-g+annotate("path",
-              x=xc+r*cos(seq(0,2*pi,length.out=100)),
-              y=yc+r*sin(seq(0,2*pi,length.out=100)))
-veganCovEllipse <- function (cov, center = c(0, 0), scale = 1, npoints = 100)
-{
-  theta <- (0:npoints) * 2 * pi/npoints
-  Circle <- cbind(cos(theta), sin(theta))
-  t(center + scale * t(Circle %*% chol(cov)))
-}
+ggCirles  <-
+ggTlines + geom_point(data =maxids, aes(X,Y),size=5, shape=1, color="white")
+
+
+ggCirles
+
 hkd3D  <-ggCirles
 ge.ggsave(hkd3D)
 # getwd()
