@@ -43,7 +43,7 @@ dlcc$ymax  <- round(dlcc$ylcc, -3) +rad
 dlcc$id  <- 1:nrow(dlcc)
 sub  <- dlcc
 head(sub)
-ge.subdf  <- function(df,x=x,y=y,sub){
+ge.subdf  <- function(df,x,y,sub){
         # return a list of
         out  <- list() # a list of dataframe
         for (i in 1:nrow(sub)){
@@ -63,7 +63,7 @@ sst.clip <- ge.subdf(sst.df, X,Y, sub)
 head(lst.df)
 lst.clip <- ge.subdf(lst.df, x,y,sub)
 head(lulc.df)
-lulc.clip <- ge.subdf(lulc.df,x,y, sub)
+lulc.clip <- ge.subdf(lulc.df,x,y,sub)
 
 names(clipper.l)  <- c("A", "B", "C", "D")
 str(clipper.l)
