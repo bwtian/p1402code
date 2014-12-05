@@ -71,7 +71,6 @@ names(lst.clip.l) <- c("A","B","C","D")
 lst.grobs  <- lapply(lst.clip.l, function(df) {
         ggplot(df) +
         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
-        geom_text(aes(x = min(x), y = max(y),label=names(df))) +
         scale_x_continuous(labels = function(x) x/1000 -1200) +
         scale_y_continuous(labels = function(x) x/1000 -1400) +
         xlab("") +
@@ -83,9 +82,12 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                              name = lst.name) +
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
-                theme(plot.margin = unit(c(0,0,0,0), "lines"))
+                theme(plot.margin = unit(c(0,0,0,0), "lines")) +
+                annotate("text", label = names(df), x = 2, y = 15, size = 8, colour = "red")
                 }
         )
+
+names(lst.clip.l[1])
 summary(sst.clip.l[[1]])
 sst.col  <-  cols
 sst.col.brks  <- seq(0, 400, 5)
