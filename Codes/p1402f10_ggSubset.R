@@ -69,9 +69,7 @@ lst.col.labs  <- as.character(lst.col.brks)
 lst.name  <- expression(~(degree*C))
 names(lst.clip.l) <- c("A","B","C","D")
 class(lst.clip.l["A"])
-#lst.grobs  <- lapply(lst.clip.l, function(df) {
-        lst.grobs  <- for (i in seq_along(lst.clip.l)){
-                ggplot(lst.clip.l$i) +
+lst.grobs  <- lapply(lst.clip.l, function(df) {
                         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
                         scale_x_continuous(labels = function(x) x/1000 -1200) +
                         scale_y_continuous(labels = function(x) x/1000 -1400) +
@@ -88,7 +86,7 @@ class(lst.clip.l["A"])
                         annotate("text", x = -Inf, y = Inf, label ="i",
                                  hjust=-0.4, vjust=2, col="black", cex=6,
                                  fontface = "bold")
-        }
+        })
 sst.col  <-  cols
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
