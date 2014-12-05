@@ -63,8 +63,7 @@ lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 
 # summary(lst.clip.l[[1]])
-#cols = oceColorsJet(10)
-cols = c("red","blue","green")
+cols = oceColorsJet(10)
 lst.col.brks  <- seq(-20, 20, 2)
 lst.col.labs  <- as.character(lst.col.brks)
 lst.name  <- expression(~(degree*C))
@@ -86,7 +85,7 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                 }
         )
 summary(sst.clip.l[[1]])
-sst.col  <- ge.rainbow(10)
+sst.col  <-cols
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
