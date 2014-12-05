@@ -54,13 +54,14 @@ ge.subdf  <- function(df, sub){
                 ymax  <- sub[i,]$ymax
                 x  <- df$x
                 y  <- df$y
-                out[[i]]  <-  data[x >= xmin & x <= xmax & y  >= ymin & y <= ymax,]
+                out[[i]]  <-  df[x >= xmin & x <= xmax & y  >= ymin & y <= ymax,]
         }
         return(out)
 
 }
-
-clipper.l  <- small()
+sst.clip <- ge.subdf(sst.df, sub)
+lst.clip <- ge.subdf(lst.df, sub)
+lulc.clip <- ge.subdf(lulc.df, sub)
 
 names(clipper.l)  <- c("A", "B", "C", "D")
 str(clipper.l)
