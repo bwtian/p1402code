@@ -90,8 +90,6 @@ class(lst.clip.l["A"])
                                  fontface = "bold")
         }
 
-names(lst.clip.l[1])
-summary(sst.clip.l[[1]])
 sst.col  <-  cols
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
