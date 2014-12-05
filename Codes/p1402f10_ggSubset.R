@@ -141,7 +141,7 @@ sst.name  <- expression(~(degree*C))
 #         #theme(legend.position="left",legend.justification = "right")
 # })
 ggsst  <- function(df){
-        eom_raster(aes(x,y, fill = t)) +
+        geom_raster(aes(x,y, fill = t)) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
                 xlab("") +
