@@ -27,8 +27,8 @@ ge.raster2df  <- function(rst){
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
 d  <- as.data.frame(rbind(c(41.92, 140.87),
                           c(42.23, 139.94),
-                          c(42.81, 141.31),
-                          c(43.48, 144.16)))
+                          c(42.81, 141.30),
+                          c(43.48, 144.165)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 rad  <- 3000
