@@ -54,7 +54,6 @@ ge.crsTransform
 str(lulc.df2)
 names(lulc.df2) <- c("x","y","lulc")
 lulc.clip.l <- ge.subdf(lulc.df2,x,y,sub)
-ge.crsTransform
 # names(clipper.l)  <- c("A", "B", "C", "D")
 # ggplot(clipper.df,aes(x,y, fill = tCenter)) + geom_raster() +
 # facet_wrap(~ id)
@@ -104,20 +103,20 @@ sst.grobs  <- lapply(sst.clip.l, function(df) {
 lulc.col.brks  <- c(1,2,3,4,5,6,8,10,11)
 lulc.col.labs  <- c("Water", "Urban", "Paddy", "Crop","Grass", "DeciduousForest",
            "EvergreenForest", "Bare", "SnowAndIce")
-liulc.cols  <- c("blue", "red", "purple", "yellow", "yellowgreen", "springgreen", "forestgreen", "saddlebrown", "white")
-head(lulc.clip.l[[1]])
+lulc.cols  <- c("blue", "red", "purple", "yellow", "yellowgreen", "springgreen", "forestgreen", "saddlebrown", "white")
+lulc.name  <- "LULC"
 lulc.grobs  <- lapply(lulc.clip.l, function(df) {
         ggplot(df) +
-                geom_raster(aes(x,y, fill = t)) +
+                geom_raster(aes(x,y, fill = lulc)) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
                 xlab("") +
                 ylab("") +
-                scale_fill_gradientn(colours = cols,
+                scale_fill_manual(values = lulc.cols,
                                      na.value="white",
-                                     breaks = sst.col.brks,
-                                     labels = sst.col.labs,
-                                     name = sst.name) +
+                                     #breaks = lulc.col.brks,
+                                     labels = lulc.col.labs,
+                                     name = lulc.name) +
                 coord_equal() +
                 theme_bw(base_size = 10, base_family = "Times") #+
         #theme(legend.position="left",legend.justification = "right")
