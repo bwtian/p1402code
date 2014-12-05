@@ -54,11 +54,11 @@ ge.subdf  <- function(df,x,y,sub){
 #         out.df  <- as.data.frame(out.spdf)
         return(out.l)
 }
-# sst.clip.l <- ge.subdf(sst.df, x, y, sub)
-# #head(sst.clip.l[[1]])
-# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-# #head(lst.clip.l[[1]])
-# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
+sst.clip.l <- ge.subdf(sst.df, x, y, sub)
+#head(sst.clip.l[[1]])
+lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+#head(lst.clip.l[[1]])
+lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 
 
