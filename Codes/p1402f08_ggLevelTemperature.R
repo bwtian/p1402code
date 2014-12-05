@@ -3,35 +3,51 @@ setwd(dataDir)
 # getwd()
 hkdKT  <- readRDS("hkd/hkd_kt3dlcc_140530_114352.Rds")
 summary(hkdKT)
-hkdKT$t <- exp(hkdKT$KTb10 + 0.5*hkdKT$KTb10_krig_var)
+hkdKT$t <- 10^(hkdKT$KT)
 #df  <- subset(hkdKT, Z %% 200 == 0)
+facet_labels <- function(variable, value) {
+        labels <- as.character(value)
+        labnew  <- paste("Depth", labels, "m")
+
+        return (labnew)
+}
+
 df  <- subset(hkdKT, Z == 100 | Z == 300 | Z == 500 | Z == 700 | Z == 900 |
-                 Z == 1100 |  Z == 1200 | Z == 1300 | Z == 1400 )
+                 Z == 1100 |  Z == 1300 | Z == 1500 )
+df$ZZ  <- facet_labels("Z", df$Z)
+class(df$ZZ)
+df$ZZ  <- factor(df$ZZ, levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
+                                   "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
+
 g1 <- ggplot(df) +
-geom_raster(aes(x = X, y =Y, fill = Temperatrue)) +
-facet_wrap(~Z)
-g2  <- g1 + scale_x_continuous(label = function(x) x/1000) +
-scale_y_continuous(label = function(x) x/1000) +
+        geom_raster(aes(x = X, y =Y, fill = t)) +
+        facet_wrap(~ZZ, ncol =2)
+g1
+g2  <- g1 + scale_x_continuous(label = function(x) x/1000 -1200) +
+scale_y_continuous(label = function(x) x/1000 -1400) +
 xlab("Easting (km)") +
 ylab("Northing (km)")
-
-exp(6)
+g2
 # y  <- as.numeric(df$Temperatrue)
 # max(y)
 #breaksY = c(0,100,200,250,300,350,400, max(y))
-breaksY = c(0,100,150,200,250,300,350,400,450,515)
+# breaksY = c(0,100,150,200,250,300,350,400,450,515)
+breaksY = c(0,50,100,150,200,250,300,350)
 labelsY = as.character(breaksY)
-cols  <- oceColorsJet(255)
+#cols  <- oceColorsJet(255)
+cols  <- ge.rainbow(255)
 #paste0(parse(text=paste("Temperature ", "^o ", "*C", sep=""))
 bold.text <- element_text(face = "bold", color = "black")
-
+strip.text  <- element_text(face = "bold", color = "black")
 g3  <- g2 +  scale_fill_gradientn(name = expression(Temperature~(degree*C)),
                                     colours = cols,
                                     breaks = breaksY,
                                     labels = labelsY) +
-        theme(title = bold.text) +
-        theme_bw(base_size = 12, base_family = "Times") + coord_equal()
-
+        coord_equal() +
+        theme_bw(base_size = 12, base_family = "Times") +
+        theme(title = bold.text,
+              strip.text = strip.text)
+g3
 ####
 jpVolA.spdf  <- readRDS("~/Dropbox/2data/dataProduct/jpVolcanoes/jpVol110_140812_174525.Rds")
 xmin <- 139
