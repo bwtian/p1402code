@@ -47,9 +47,9 @@ ge.subdf  <- function(df,x,y,sub){
 # head(sst.df)
 sst.clip.l <- ge.subdf(sst.df, X,Y, sub)
 # head(lst.df.l)
-# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-# # head(lulc.df)
-# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
+lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+# head(lulc.df)
+lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 # names(clipper.l)  <- c("A", "B", "C", "D")
 # ggplot(clipper.df,aes(x,y, fill = tCenter)) + geom_raster() +
