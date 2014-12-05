@@ -64,7 +64,7 @@ ge.subdf  <- function(df,x,y,sub){
 
 # summary(lst.clip.l[[1]])
 cols = oceColorsJet(10)
-lst.col.brks  <- seq(-20, 20, 2)
+lst.col.brks  <- seq(-20, 20, 5)
 lst.col.labs  <- as.character(lst.col.brks)
 lst.name  <- expression(~(degree*C))
 lst.grobs  <- lapply(lst.clip.l, function(df) {
@@ -84,7 +84,7 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                 #theme(legend.position="left",legend.justification = "right")
         })
 summary(sst.clip.l[[1]])
-sst.col.brks  <- seq(0, 400, 10)
+sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
 sst.grobs  <- lapply(sst.clip.l, function(df) {
