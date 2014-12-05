@@ -90,8 +90,6 @@ class(lst.clip.l["A"])
                                  fontface = "bold")
         }
 
-      ge.crsTransform
-
 names(lst.clip.l[1])
 summary(sst.clip.l[[1]])
 sst.col  <-  cols
