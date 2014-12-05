@@ -81,9 +81,9 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                              name = lst.name) +
                 coord_equal() +
                 theme_bw(base_size = 10, base_family = "Times") +
-                theme(plot.margin = unit(c(0,0,0,0), "lines")
-                #theme(legend.position="left",legend.justification = "right")
-        })
+                theme(plot.margin = unit(c(0,0,0,0), "lines"))
+                }
+        )
 summary(sst.clip.l[[1]])
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
@@ -102,7 +102,7 @@ sst.grobs  <- lapply(sst.clip.l, function(df) {
                                      name = sst.name) +
                 coord_equal() +
                 theme_bw(base_size = 10, base_family = "Times")  +
-                theme(plot.margin = unit(c(0,0,0,0), "lines")
+                theme(plot.margin = unit(c(0,0,0,0), "lines"))
         #theme(legend.position="left",legend.justification = "right")
 })
 lulc.col.brks  <- c(1,2,3,4,5,6,8,10,11)
@@ -125,7 +125,7 @@ lulc.grobs  <- lapply(lulc.clip.l, function(df) {
                 coord_equal() +
                 theme_bw(base_size = 10, base_family = "Times") +
                 theme(legend.position="none")  +
-                theme(plot.margin = unit(c(0,0,0,0), "lines")
+                theme(plot.margin = unit(c(0,0,0,0), "lines"))
 })
 
 ### Better
