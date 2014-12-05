@@ -79,7 +79,8 @@ gglst  <- function(df){
                                      name = lst.name) +
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
-                theme(plot.margin = unit(c(0,-2,0,0), "lines"))
+                theme(legend.position="left")  +
+                theme(plot.margin = unit(c(0,-1.5,0,0), "lines"))
 
 }
 lst.grobs  <- list()
@@ -107,7 +108,8 @@ ggsst  <- function(df){
                                      name = sst.name) +
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times")  +
-                theme(plot.margin = unit(c(0,0,0,-2), "lines"))
+
+                theme(plot.margin = unit(c(0,0,0,-1.5), "lines"))
 }
 sst.grobs  <- list()
 for (i in 1:4) {
@@ -135,7 +137,7 @@ gglulc  <- function(df){
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="none")  +
-                theme(plot.margin = unit(c(0,-2,0,-2), "lines"))
+                theme(plot.margin = unit(c(0,-1.5,0,-1.5), "lines"))
 }
 lulc.grobs  <- list()
 for (i in 1:4) {
