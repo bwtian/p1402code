@@ -70,7 +70,7 @@ lst.name  <- expression(~(degree*C))
 names(lst.clip.l) <- c("A","B","C","D")
 class(lst.clip.l["A"])
 #lst.grobs  <- lapply(lst.clip.l, function(df) {
-        lst.grobs  <- for (i in lst.clip.l){
+        lst.grobs  <- for (i %in% lst.clip.l){
                 ggplot(i) +
                         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
                         scale_x_continuous(labels = function(x) x/1000 -1200) +
