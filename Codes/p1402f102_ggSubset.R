@@ -90,7 +90,7 @@ for (i in 1:4) {
 }
 #lst.grobs <-  list(lst1, lst2, lst3, lst4)
 sst.col  <-  cols
-sst.col.brks  <- seq(0, 400, 5)
+sst.col.brks  <- seq(0, 400, 10)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
 ggsst  <- function(df){
@@ -172,7 +172,7 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # sst.col$heights  <- lst.col$heights
 # lulc.col$heights  <- lst.col$heights
 # grid.draw(cbind(lst.col,sst.col))
-pdf("hkdSub.pdf")
+pdf("hkdSub.pdf", width = 7)
 grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
 dev.off()
 getwd()
