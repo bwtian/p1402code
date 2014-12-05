@@ -36,20 +36,19 @@ ge.subdf  <- function(df,x,y,sub){
                 xmax  <- sub[i,]$xmax
                 ymin  <- sub[i,]$ymin
                 ymax  <- sub[i,]$ymax
-                x  <- df$x
-                y  <- df$y
+                x  <- df[,which(colnames(df) == as.character(substitute(x)))]
+                y  <- df[,which(colnames(df) == as.character(substitute(y)))]
                 out.l[[i]]  <-  df[x >= xmin & x <= xmax & y  >= ymin & y <= ymax,]
         }
 #         out.spdf  <- do.call(rbind, out.l)
 #         out.df  <- as.data.frame(out.spdf)
         return(out.l)
-
 }
 # head(sst.df)
 head(sst.df)
 sst.clip.l <- ge.subdf(sst.df, X,Y, sub)
 head(sst.clip.l[[1]])
-# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+lst.clip.l <- ge.subdf(lst.df, x,y,sub)
 # # head(lulc.df)
 # lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
