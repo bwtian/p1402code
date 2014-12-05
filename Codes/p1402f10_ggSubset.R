@@ -22,13 +22,13 @@ ge.raster2df  <- function(rst){
 # lulc.df  <- ge.raster2df("lulc100.tif")
 # lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
 # sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
-
+summary(sst.df)
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
-d  <- as.data.frame(rbind(c(41.92, 140.87),
+d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
-                          c(42.81, 141.30),
-                          c(43.48, 144.165)))
+                          c(42.816, 141.299),
+                          c(43.485, 144.159)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 rad  <- 3000
@@ -129,7 +129,10 @@ lulc.grobs  <- lapply(lulc.clip.l, function(df) {
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="none")  +
-                theme(plot.margin = unit(c(0,-0.5,0,-0.5), "lines"))
+                theme(plot.margin = unit(c(0,-0.5,0,-0.5), "lines")) +
+                annotate("text", x = Inf, y = -Inf, label = "LULC,
+                         hjust=1.1, vjust=-1.1, col="white", cex=6,
+                         fontface = "bold", alpha = 0.8)
 })
 
 ### Better
@@ -162,5 +165,6 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # sst.col$heights  <- lst.col$heights
 # lulc.col$heights  <- lst.col$heights
 # grid.draw(cbind(lst.col,sst.col))
-grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
+grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3) +
+
 #grid.arrange(lst.col,lulc.col,ncol = 2)
