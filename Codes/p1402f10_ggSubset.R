@@ -11,7 +11,7 @@ ge.raster2df  <- function(rst){
 # hkdKT$t <- 10^(hkdKT$KT)
 # hkdXyzt  <- hkdKT[,c(1:3,9)]
 # names(hkdXyzt)  <- c("x","y","z","t")
-sst.df  <- hkdXyzt[hkdXyzt$z == 1200,]
+sst.df  <- hkdXyzt[hkdXyzt$z == 1100,]
 
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
