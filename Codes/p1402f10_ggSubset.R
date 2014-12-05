@@ -72,7 +72,7 @@ class(lst.clip.l["A"])
 dimnames(lst.clip.l[[2]])
 length(lst.clip.l)
 count  <- 0
-lst.grobs  <- lapply(lst.clip.l, function(i) {
+lst.grobs  <- lapply(lst.clip.l, function(df) {
                 n  <<- count + 1
                 ggplot(df) +
                         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
