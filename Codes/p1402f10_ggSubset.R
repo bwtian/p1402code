@@ -23,7 +23,7 @@ sst.df  <- hkdXyzt[hkdXyzt$z == 1000,]
 d  <- as.data.frame(rbind(c(42, 140),
                           c(43, 141),
                           c(44, 142),
-                          c(45, 143)))
+                          c(45, 144)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 rad  <- 5000
