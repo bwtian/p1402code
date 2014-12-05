@@ -80,7 +80,7 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                              labels = lst.col.labs,
                              name = lst.name) +
                 coord_equal() +
-                theme_bw(base_size = 10, base_family = "Times") +
+                theme_bw(base_size = 12, base_family = "Times") +
                 theme(plot.margin = unit(c(0,0,0,0), "lines"))
                 }
         )
@@ -102,7 +102,7 @@ sst.grobs  <- lapply(sst.clip.l, function(df) {
                                      labels = sst.col.labs,
                                      name = sst.name) +
                 coord_equal() +
-                theme_bw(base_size = 10, base_family = "Times")  +
+                theme_bw(base_size = 12, base_family = "Times")  +
                 theme(plot.margin = unit(c(0,0,0,0), "lines"))
         #theme(legend.position="left",legend.justification = "right")
 })
@@ -124,7 +124,7 @@ lulc.grobs  <- lapply(lulc.clip.l, function(df) {
                                      labels = lulc.col.labs,
                                      name = lulc.name) +
                 coord_equal() +
-                theme_bw(base_size = 10, base_family = "Times") +
+                theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="none")  +
                 theme(plot.margin = unit(c(0,0,0,0), "lines"))
 })
