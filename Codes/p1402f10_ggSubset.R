@@ -43,7 +43,7 @@ dlcc$ymax  <- round(dlcc$ylcc, -3) +rad
 dlcc$id  <- 1:nrow(dlcc)
 sub  <- dlcc
 head(sub)
-ge.subdf  <- function(df,x,y,sub){
+ge.subdf  <- function(df,x=x,y=y,sub){
         # return a list of
         out  <- list() # a list of dataframe
         for (i in 1:nrow(sub)){
