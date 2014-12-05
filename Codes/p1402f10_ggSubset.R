@@ -178,3 +178,4 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
 
 #grid.arrange(lst.col,lulc.col,ncol = 2)
+
