@@ -23,7 +23,7 @@ d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(43.485, 144.159)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-rad  <- 5000
+rad  <- 2500
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad
 dlcc$ymin  <- round(dlcc$ylcc, -3) -rad
@@ -107,7 +107,7 @@ lulc.cols  <- c("blue", "red", "purple", "yellow", "yellowgreen", "springgreen",
 lulc.name  <- "LULC"
 lulc.grobs  <- lapply(lulc.clip.l, function(df) {
         ggplot(df) +
-                geom_raster(aes(x,y, fill = lulc)) +
+                geom_raster(aes(x,y, fill = factor(lulc))) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
                 xlab("") +
@@ -139,6 +139,12 @@ sst.col  <-rbind(ggplotGrob(sst.grobs[[1]]),
                 ggplotGrob(sst.grobs[[3]]),
                 ggplotGrob(sst.grobs[[4]]),
                 size = "last")
+lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
+                 ggplotGrob(lulc.grobs[[2]]),
+                 ggplotGrob(lulc.grobs[[3]]),
+                 ggplotGrob(lulc.grobs[[4]]),
+                 size = "last")
+
 #
 # grid.draw(sst.col)
 # sst.col$widths  <- lst.col$widths
