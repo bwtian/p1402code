@@ -70,9 +70,7 @@ lst.name  <- expression(~(degree*C))
 names(lst.clip.l) <- c("A","B","C","D")
 class(lst.clip.l["A"])
 dimnames(lst.clip.l[[2]])
-length(lst.clip.l)
-count  <- 0
-lst.grobs  <- lapply(1:length(lst.clip.l), function(i) {
+lst.grobs  <- lapply(seq_along(lst.clip.l), function(i) {
         df  <- lst.clip.l[[i]]
                 ggplot(df) +
                         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
