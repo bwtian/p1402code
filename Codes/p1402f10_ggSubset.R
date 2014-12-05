@@ -25,7 +25,6 @@ ge.raster2df  <- function(rst){
 
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
-
 d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
                           c(42.816, 141.299),
@@ -55,14 +54,11 @@ ge.subdf  <- function(df,x,y,sub){
 #         out.df  <- as.data.frame(out.spdf)
         return(out.l)
 }
-sst.clip.l <- ge.subdf(sst.df, x, y, sub)
-#head(sst.clip.l[[1]])
-lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-#head(lst.clip.l[[1]])
-str(lulc.df2)
-head(lulc.df)
-names(lulc.df2) <- c("x","y","lulc")
-lulc.clip.l <- ge.subdf(lulc.df2,x,y,sub)
+# sst.clip.l <- ge.subdf(sst.df, x, y, sub)
+# #head(sst.clip.l[[1]])
+# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+# #head(lst.clip.l[[1]])
+# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 
 
@@ -114,7 +110,7 @@ lulc.cols  <- c("blue", "red", "purple", "yellow", "yellowgreen", "springgreen",
 lulc.name  <- "LULC"
 lulc.grobs  <- lapply(lulc.clip.l, function(df) {
         ggplot(df) +
-                geom_raster(aes(x,y, fill = factor(lulc))) +
+                geom_raster(aes(x,y, fill = factor(lulc100))) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
                 xlab("") +
