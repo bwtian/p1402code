@@ -71,29 +71,54 @@ names(lst.clip.l) <- c("A","B","C","D")
 class(lst.clip.l["A"])
 labels(lst.clip.l[[2]])
 # lst.grobs  <- lapply(lst.clip.l, function(i) {
-#                 ggplot(i) +
-#                         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
-#                         scale_x_continuous(labels = function(x) x/1000 -1200) +
-#                         scale_y_continuous(labels = function(x) x/1000 -1400) +
-#                         xlab("") +
-#                         ylab("") +
-#                         scale_fill_gradientn(colours = cols,
-#                                              na.value="white",
-#                                              breaks = lst.col.brks,
-#                                              labels = lst.col.labs,
-#                                              name = lst.name) +
-#                         coord_equal() +
-#                         theme_bw(base_size = 12, base_family = "Times") +
-#                         theme(plot.margin = unit(c(0,-0.5,0,0), "lines")) +
-#                         geom_text(aes(label=paste("LST", 1:4)),
-#                           x=-Inf, y=Inf, hjust=-0.4, vjust=2, col = "red",fontface = "bold")
+                ggplot(i) +
+                        geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
+                        scale_x_continuous(labels = function(x) x/1000 -1200) +
+                        scale_y_continuous(labels = function(x) x/1000 -1400) +
+                        xlab("") +
+                        ylab("") +
+                        scale_fill_gradientn(colours = cols,
+                                             na.value="white",
+                                             breaks = lst.col.brks,
+                                             labels = lst.col.labs,
+                                             name = lst.name) +
+                        coord_equal() +
+                        theme_bw(base_size = 12, base_family = "Times") +
+                        theme(plot.margin = unit(c(0,-0.5,0,0), "lines")) +
+                        geom_text(aes(label=paste("LST", 1:4)),
+                          x=-Inf, y=Inf, hjust=-0.4, vjust=2, col = "red",fontface = "bold")
 # #                         annotate("text", x = -Inf, y = Inf, label ="LST",
 # #                                  hjust=-0.4, vjust=2, col="black", cex=6,
 # #                                  fontface = "bold")
 #         })
+gglst  <- function(df){
+        ggplot(df) +
+                geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
+                scale_x_continuous(labels = function(x) x/1000 -1200) +
+                scale_y_continuous(labels = function(x) x/1000 -1400) +
+                xlab("") +
+                ylab("") +
+                scale_fill_gradientn(colours = cols,
+                                     na.value="white",
+                                     breaks = lst.col.brks,
+                                     labels = lst.col.labs,
+                                     name = lst.name) +
+                coord_equal() +
+                theme_bw(base_size = 12, base_family = "Times") +
+                theme(plot.margin = unit(c(0,-0.5,0,0), "lines"))
 
-
-lst.grobs  <-  list(lst1, lst2, lst3, lst4)
+}
+lst1  <- gglst(lst.clip.l[[1]]) +
+        annotate("text",label=paste("LST A"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
+                   col = "red",fontface = "bold", cex = 6)
+lst.grobs  <- list()
+for (i in 1:4) {
+        lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
+                annotate("text",label=paste("LST", letters(i)), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
+                         col = "red",fontface = "bold", cex = 6)
+}
+lst.grobs
+<-  list(lst1, lst2, lst3, lst4)
 sst.col  <-  cols
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
