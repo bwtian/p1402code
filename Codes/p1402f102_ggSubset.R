@@ -54,11 +54,11 @@ ge.subdf  <- function(df,x,y,sub){
         #         out.df  <- as.data.frame(out.spdf)
         return(out.l)
 }
-sst.clip.l <- ge.subdf(sst.df, x, y, sub)
-#head(sst.clip.l[[1]])
-lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-#head(lst.clip.l[[1]])
-lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
+# sst.clip.l <- ge.subdf(sst.df, x, y, sub)
+# #head(sst.clip.l[[1]])
+# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+# #head(lst.clip.l[[1]])
+# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 cols = oceColorsJet(10)
 lst.col.brks  <- seq(-20, 20, 2)
@@ -135,7 +135,7 @@ gglulc  <- function(df){
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="none")  +
-                theme(plot.margin = unit(c(0,-0.5,0,-0.5), "lines"))
+                theme(plot.margin = unit(c(0,-1,0,-0.5), "lines"))
 }
 lulc.grobs  <- list()
 for (i in 1:4) {
@@ -167,11 +167,11 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
                   size = "last")
 
 
-# sst.col$widths  <- lst.col$widths
-# lulc.col$widths  <- lst.col$widths
-# sst.col$heights  <- lst.col$heights
-# lulc.col$heights  <- lst.col$heights
-# grid.draw(cbind(lst.col,sst.col))
+sst.col$widths  <- lst.col$widths
+lulc.col$widths  <- lst.col$widths
+sst.col$heights  <- lst.col$heights
+lulc.col$heights  <- lst.col$heights
+grid.draw(cbind(lst.col,sst.col))
 pdf("hkdSub.pdf", width = 7)
 grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
 dev.off()
