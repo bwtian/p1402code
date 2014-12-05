@@ -7,9 +7,11 @@ ge.raster2df  <- function(rst){
 }
 # lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
 # lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
-# hkdKT$t <- 10^(hkdKT$KT)
-sst.df  <- hkdKT[hkdKT$Z == 1400,]
+hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+hkdKT$t <- 10^(hkdKT$KT)
+hkdXyzt  <- hkdKT[,c(1:3,9)]
+names(hkdXyzt)  <- c("x","y","z","t")
+sst.df  <- hkdXyzt[hkdXyzt$z == 1400,]
 
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
@@ -45,13 +47,10 @@ ge.subdf  <- function(df,x,y,sub){
         return(out.l)
 
 }
-ge.crsTransform
-# head(sst.df)
-head(sst.df)
-sst.clip.l <- ge.subdf(sst.df, X,Y, sub)
+sst.clip.l <- ge.subdf(sst.df, x, y, sub)
 head(sst.clip.l[[1]])
-# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-# # head(lulc.df)
+lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+head(lst.clip.l[[1]])
 # lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 # names(clipper.l)  <- c("A", "B", "C", "D")
