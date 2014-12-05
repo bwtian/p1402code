@@ -20,7 +20,7 @@ setwd(dir.toaTbKlccCenterMos)
 # names(mos.df)  <- c("x", "y", "tCenter")
 # head(mos.df)
 
-d  <- as.data.frame(rbind(c(41.91, 140.85),
+d  <- as.data.frame(rbind(c(41.91, 140.89),
                           c(42.23, 139.95),
                           c(42.81, 141.31),
                           c(43.47, 144.16)))
