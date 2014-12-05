@@ -2,9 +2,29 @@ source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 setwd(dataDir)
 # getwd()
 hkdKT  <- readRDS("hkd/hkd_kt3dlcc_140530_114352.Rds")
-summary(hkdKT)
 hkdKT$t <- 10^(hkdKT$KT)
+# summary(hkdKT)
+# hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
+#
+# ge.df2spLccWgs84  <-
+# function(df, x, y, crs) {
+#         # spatialize a data frame to spdf
+#         d  <- df
+#         d$x  <- d[,which(colnames(d) == as.character(substitute(x)))]
+#         d$y  <- d[,which(colnames(d) == as.character(substitute(y)))]
+#         crs <- "+proj=lcc +lat_1=32.8 +lat_2=43.2 +lat_0=38 +lon_0=137.5 +x_0=1000000 +y_0=1000000 +datum=WGS84 +units=m +no_defs"
+#         coords  <- d[, c("x","y")]
+#         m  <- as.matrix(coords) #sp need numeric matrix
+#         mode(m)  <- "numeric"
+#         sp  <- sp::SpatialPoints(m, proj4string = sp::CRS(crs))
+#         spdf <- sp::SpatialPointsDataFrame(m, data = d, proj4string=sp::CRS(crs))
+#         return(spdf)
+# }
+# hkdSST1500.spdf  <- ge.df2spLccWgs84(hkdSST1500, X,Y)
+# ge.sp2shpPrj(hkdSST1500.spdf)
+# getwd()
 #df  <- subset(hkdKT, Z %% 200 == 0)
+
 facet_labels <- function(variable, value) {
         labels <- as.character(value)
         labnew  <- paste("Depth", labels, "m")
