@@ -83,7 +83,7 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(plot.margin = unit(c(0,-0.5,0,0), "lines")) +
-                annotate("text", x = -Inf, y = Inf, label = "LST",
+                annotate("text", x = -Inf, y = Inf, label =names(df),
                          hjust=-0.4, vjust=2, col="black", cex=6,
                          fontface = "bold")
                 }
