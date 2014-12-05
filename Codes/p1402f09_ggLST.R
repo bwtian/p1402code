@@ -131,17 +131,16 @@ dlcc$id  <- 1:nrow(dlcc)
 p6  <- p3 + geom_rect(data = dlcc,
                aes(NULL, NULL, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = NULL, color = NULL), alpha =0.1, color = "red") +
        #geom_text(data = dlcc,aes(x =xmax, y =ymax), label=c("A","B","C","D"))
-       annotate("text", x = dlcc$xmax+10000, y = dlcc$ymax+10000, label=c("A","B","C","D"), size =1)
+       annotate("text", x = dlcc$xmax+1000, y = dlcc$ymax+1000, label=c("A","B","C","D"), size =4)
 # p6
 # p3 +  coord_cartesian(xlim = c(dlcc[1,]$xmin, dlcc[1,]$xmax),                          ylim = c(dlcc[1,]$ymin, dlcc[1,]$ymax))
 # p3)
-p7  <- p6 + theme_bw(base_size = 12, base_family = "Times") + coord_equal()
-#ggsave("p71009.pdf")
+p7  <- p6 +  coord_equal() +
+        theme_bw(base_size = 12, base_family = "Times") +
 
-#ge.ggsave(p7)
 hkdLST  <- p7
 ggsave(plot=hkdLST, "hkdLST.pdf", width = 7, height = 5.5)
-
+#ge.ggsave(p7)
 # round(dlcc)
 # names(d)  <- c("lat","lon")
 #
