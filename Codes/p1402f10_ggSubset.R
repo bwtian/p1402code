@@ -29,7 +29,7 @@ ge.raster2df  <- function(rst){
 # lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
 # hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
 hkdKT$t <- 10^(hkdKT$KT)
-sst  <- hkdKT[hkdKT$Z == 1400,]
+sst  <- hkdKT[hkdKT$Z == 1300,]
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
 
