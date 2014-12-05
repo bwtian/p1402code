@@ -123,6 +123,7 @@ lulc.col.labs  <- c("Water", "Urban", "Paddy", "Crop","Grass", "DeciduousForest"
 lulc.cols  <- c("blue", "red", "purple", "yellow", "yellowgreen", "springgreen", "forestgreen", "saddlebrown", "white")
 lulc.name  <- "LULC"
 gglulc  <- function(df){
+        ggplot(df)
         geom_raster(aes(x,y, fill = factor(lulc100))) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
