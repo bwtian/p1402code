@@ -106,7 +106,11 @@ sst.grobs  <- lapply(sst.clip.l, function(df) {
                                      name = sst.name) +
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times")  +
-                theme(plot.margin = unit(c(0,0,0,-0.5), "lines"))
+                theme(plot.margin = unit(c(0,0,0,-0.5), "lines")) +
+                annotate("text", x = -Inf, y = Inf, label = "SST",
+                         hjust=-0.4, vjust=2, col="black", cex=6,
+                         fontface = "bold")
+
         #theme(legend.position="left",legend.justification = "right")
 })
 lulc.col.brks  <- c(1,2,3,4,5,6,8,10,11)
@@ -131,7 +135,7 @@ lulc.grobs  <- lapply(lulc.clip.l, function(df) {
                 theme(legend.position="none")  +
                 theme(plot.margin = unit(c(0,-0.5,0,-0.5), "lines")) +
                 annotate("text", x = -Inf, y = Inf, label = "LULC",
-                         hjust=1, vjust=2, col="black", cex=6,
+                         hjust=-0.4, vjust=2, col="black", cex=6,
                          fontface = "bold")
 })
 
