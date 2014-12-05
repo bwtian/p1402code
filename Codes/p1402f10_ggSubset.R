@@ -67,10 +67,11 @@ cols = oceColorsJet(10)
 lst.col.brks  <- seq(-20, 20, 2)
 lst.col.labs  <- as.character(lst.col.brks)
 lst.name  <- expression(~(degree*C))
+names
 lst.grobs  <- lapply(lst.clip.l, function(df) {
         ggplot(df) +
         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
-        annotate(aes(x = min(x), y = max(y)), label = c("A","B","C","D"))+
+        annotate(aes(x = min(x), y = max(y)), label = names(df)+
         scale_x_continuous(labels = function(x) x/1000 -1200) +
         scale_y_continuous(labels = function(x) x/1000 -1400) +
         xlab("") +
