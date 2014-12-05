@@ -1,4 +1,4 @@
-source("~/SparkleShare/TIR/demo/tirSettings.R")
+source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 setwd(dir.hkd)
 ge.raster2df  <- function(rst){
         rst  <- raster(rst)
