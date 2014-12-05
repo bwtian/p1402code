@@ -80,7 +80,8 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                              labels = lst.col.labs,
                              name = lst.name) +
                 coord_equal() +
-                theme_bw(base_size = 10, base_family = "Times") #+
+                theme_bw(base_size = 10, base_family = "Times") +
+                theme(plot.margin = unit(c(0,0,0,0), "lines")
                 #theme(legend.position="left",legend.justification = "right")
         })
 summary(sst.clip.l[[1]])
