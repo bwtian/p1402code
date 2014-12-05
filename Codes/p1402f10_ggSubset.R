@@ -89,7 +89,7 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
 #                         annotate("text", x = -Inf, y = Inf, label ="i",
 #                                  hjust=-0.4, vjust=2, col="black", cex=6,
 #                                  fontface = "bold")
-        }
+        })
 lst.grobs
 sst.col  <-  cols
 sst.col.brks  <- seq(0, 400, 5)
