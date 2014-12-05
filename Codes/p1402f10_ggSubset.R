@@ -9,16 +9,19 @@ ge.raster2df  <- function(rst){
 # lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
 # lulc.df2  <- ge.crsTransform(lulc.df, x, y, xlcc,ylcc,wgs84GRS,lccWgs84)
 # lulc.rst  <- raster("hkdBigLULCver1402Merge.tif")
-# lulc100  <- projectRaster(from =lulc.rst, res = 100, crs = CRS(lccWgs84), method="bilinear",
-#               alignOnly=FALSE, over=FALSE, filename="")
-# str(lulc100)
-# lulc.df  <- as.data.frame(lulc100)
-# lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
-# hkdKT$t <- 10^(hkdKT$KT)
-# hkdXyzt  <- hkdKT[,c(1:3,9)]
-# names(hkdXyzt)  <- c("x","y","z","t")
-# sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
+# levelplot(lulc.rst)
+# lst.rst  <- raster("hkdL8B10CenterMos.tif")
+# lulc.rsp <- projectRaster(lulc.rst, lst.rst,method="ngb")
+# writeRaster(lulc.rsp, "lulc100.tif")
+
+hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+hkdKT$t <- 10^(hkdKT$KT)
+hkdXyzt  <- hkdKT[,c(1:3,9)]
+names(hkdXyzt)  <- c("x","y","z","t")
+
+lulc.df  <- ge.raster2df("lulc100.tif")
+lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
 
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
@@ -52,12 +55,12 @@ ge.subdf  <- function(df,x,y,sub){
 #         out.df  <- as.data.frame(out.spdf)
         return(out.l)
 }
-ge.crsTransform
 sst.clip.l <- ge.subdf(sst.df, x, y, sub)
-head(sst.clip.l[[1]])
+#head(sst.clip.l[[1]])
 lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-head(lst.clip.l[[1]])
+#head(lst.clip.l[[1]])
 str(lulc.df2)
+head(lulc.df)
 names(lulc.df2) <- c("x","y","lulc")
 lulc.clip.l <- ge.subdf(lulc.df2,x,y,sub)
 
