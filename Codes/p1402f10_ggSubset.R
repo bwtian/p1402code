@@ -5,7 +5,8 @@ ge.raster2df  <- function(rst){
         rst.spdf  <- rasterToPoints(rst, spatial=TRUE)
         rst.df  <- as.data.frame(rst.spdf)
 }
-# lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
+lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
+lulc.df2  <- ge.crsTransform(lulc.df, x, y, xlcc,ylcc,wgs84GRS,lccWgs84)
 # lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
 # hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
 # hkdKT$t <- 10^(hkdKT$KT)
@@ -31,7 +32,6 @@ dlcc$id  <- 1:nrow(dlcc)
 sub  <- dlcc
 # head(sub)
 ge.subdf  <- function(df,x,y,sub){
-        # return a list of
         out.l  <- list() # a list of dataframe
         for (i in 1:nrow(sub)){
                 xmin  <- sub[i,]$xmin
@@ -45,14 +45,16 @@ ge.subdf  <- function(df,x,y,sub){
 #         out.spdf  <- do.call(rbind, out.l)
 #         out.df  <- as.data.frame(out.spdf)
         return(out.l)
-
 }
-sst.clip.l <- ge.subdf(sst.df, x, y, sub)
-head(sst.clip.l[[1]])
+ge.crsTransform
+# sst.clip.l <- ge.subdf(sst.df, x, y, sub)
+# head(sst.clip.l[[1]])
 # lst.clip.l <- ge.subdf(lst.df, x,y,sub)
 # head(lst.clip.l[[1]])
-# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
-
+str(lulc.df2)
+names(lulc.df2) <- c("x","y","lulc")
+lulc.clip.l <- ge.subdf(lulc.df2,x,y,sub)
+ge.crsTransform
 # names(clipper.l)  <- c("A", "B", "C", "D")
 # ggplot(clipper.df,aes(x,y, fill = tCenter)) + geom_raster() +
 # facet_wrap(~ id)
@@ -84,6 +86,27 @@ sst.col.brks  <- seq(0, 400, 10)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
 sst.grobs  <- lapply(sst.clip.l, function(df) {
+        ggplot(df) +
+                geom_raster(aes(x,y, fill = t)) +
+                scale_x_continuous(labels = function(x) x/1000 -1200) +
+                scale_y_continuous(labels = function(x) x/1000 -1400) +
+                xlab("") +
+                ylab("") +
+                scale_fill_gradientn(colours = cols,
+                                     na.value="white",
+                                     breaks = sst.col.brks,
+                                     labels = sst.col.labs,
+                                     name = sst.name) +
+                coord_equal() +
+                theme_bw(base_size = 10, base_family = "Times") #+
+        #theme(legend.position="left",legend.justification = "right")
+})
+lulc.col.brks  <- c(1,2,3,4,5,6,8,10,11)
+lulc.col.labs  <- c("Water", "Urban", "Paddy", "Crop","Grass", "DeciduousForest",
+           "EvergreenForest", "Bare", "SnowAndIce")
+liulc.cols  <- c("blue", "red", "purple", "yellow", "yellowgreen", "springgreen", "forestgreen", "saddlebrown", "white")
+head(lulc.clip.l[[1]])
+lulc.grobs  <- lapply(lulc.clip.l, function(df) {
         ggplot(df) +
                 geom_raster(aes(x,y, fill = t)) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
