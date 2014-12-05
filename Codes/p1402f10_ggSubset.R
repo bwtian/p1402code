@@ -20,10 +20,10 @@ setwd(dir.toaTbKlccCenterMos)
 # names(mos.df)  <- c("x", "y", "tCenter")
 # head(mos.df)
 
-d  <- as.data.frame(rbind(c(41.91, 140.89),
-                          c(42.23, 139.95),
+d  <- as.data.frame(rbind(c(41.91, 140.87),
+                          c(42.23, 139.94),
                           c(42.81, 141.30),
-                          c(43.47, 144.13)))
+                          c(43.48, 144.16)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 rad  <- 5000
