@@ -1,35 +1,15 @@
-#' clip a data frame by a xmin, xmax
-# dsubd  <- function(data, sub){
-#         out  <- list() # a list of dataframe
-#         for (i in 1:nrow(sub)){
-#                 xmin  <- sub[i,]$xmin
-#                 xmax  <- sub[i,]$xmax
-#                 ymin  <- sub[i,]$ymin
-#                 ymax  <- sub[i,]$ymax
-#                 out[[i]]  <-  data[x >= xmin & x <= xmax & y  >= ymin & y <= ymax,]
-#         }
-#         return(out)
-#
-# }
 source("~/SparkleShare/TIR/demo/tirSettings.R")
 setwd(dir.hkd)
-#setwd("~/toaTbKlccCenterMos/")
-# mos  <- raster("L8B10CenterMos.tif")
-# mos.spdf  <- rasterToPoints(mos, spatial=TRUE)
-# mos.df  <- as.data.frame(mos.spdf)
-# names(mos.df)  <- c("x", "y", "tCenter")
-# head(mos.df)
-
 ge.raster2df  <- function(rst){
         rst  <- raster(rst)
         rst.spdf  <- rasterToPoints(rst, spatial=TRUE)
         rst.df  <- as.data.frame(rst.spdf)
 }
-# lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
-# lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
+lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
 hkdKT$t <- 10^(hkdKT$KT)
-sst  <- hkdKT[hkdKT$Z == 1200,]
+sst.df  <- hkdKT[hkdKT$Z == 1200,]
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
 
