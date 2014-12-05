@@ -20,6 +20,7 @@ setwd(dir.toaTbKlccCenterMos)
 # names(mos.df)  <- c("x", "y", "tCenter")
 # head(mos.df)
 
+
 d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
                           c(42.816, 141.299),
@@ -79,7 +80,8 @@ grobs  <- lapply(clipper.l, function(d) {
                              labels = col.labs,
                              name = expression(~(degree*C))) +
                 coord_equal() +
-                theme_bw(base_size = 10, base_family = "Times")
+                theme_bw(base_size = 10, base_family = "Times") +
+                theme(legend.postion ="bottom")
         })
 
 
