@@ -156,3 +156,4 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # lulc.col$heights  <- lst.col$heights
 # grid.draw(cbind(lst.col,sst.col))
 grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
+grid.arrange(lst.col,lulc.col,ncol = 2)
