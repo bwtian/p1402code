@@ -137,6 +137,7 @@ p6  <- p3 + geom_rect(data = dlcc,
 # p3)
 p7  <- p6 +  coord_equal() +
         theme_bw(base_size = 12, base_family = "Times") +
+        theme(axis.title.x(vjust=0))
 
 hkdLST  <- p7
 ggsave(plot=hkdLST, "hkdLST.pdf", width = 7, height = 5.5)
