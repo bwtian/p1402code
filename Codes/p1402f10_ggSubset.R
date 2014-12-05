@@ -5,14 +5,20 @@ ge.raster2df  <- function(rst){
         rst.spdf  <- rasterToPoints(rst, spatial=TRUE)
         rst.df  <- as.data.frame(rst.spdf)
 }
-lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
-lulc.df2  <- ge.crsTransform(lulc.df, x, y, xlcc,ylcc,wgs84GRS,lccWgs84)
-lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
-hkdKT$t <- 10^(hkdKT$KT)
-hkdXyzt  <- hkdKT[,c(1:3,9)]
-names(hkdXyzt)  <- c("x","y","z","t")
-sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
+
+# lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
+# lulc.df2  <- ge.crsTransform(lulc.df, x, y, xlcc,ylcc,wgs84GRS,lccWgs84)
+# lulc.rst  <- raster("hkdBigLULCver1402Merge.tif")
+# lulc100  <- projectRaster(from =lulc.rst, res = 100, crs = CRS(lccWgs84), method="bilinear",
+#               alignOnly=FALSE, over=FALSE, filename="")
+# str(lulc100)
+# lulc.df  <- as.data.frame(lulc100)
+# lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+# hkdKT$t <- 10^(hkdKT$KT)
+# hkdXyzt  <- hkdKT[,c(1:3,9)]
+# names(hkdXyzt)  <- c("x","y","z","t")
+# sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
 
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
@@ -144,8 +150,6 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
                  ggplotGrob(lulc.grobs[[4]]),
                  size = "last")
 
-#
-install.packages("ggsubplot")
 # grid.draw(sst.col)
 # sst.col$widths  <- lst.col$widths
 # sst.col$heights  <- lst.col$heights
