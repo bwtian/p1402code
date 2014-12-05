@@ -123,7 +123,7 @@ lulc.grobs  <- lapply(lulc.clip.l, function(df) {
                 coord_equal() +
                 theme_bw(base_size = 10, base_family = "Times") #+
                 theme(legend.position="none",
-                      axis.title=element_blank())
+                      axis.title.x=element_blank())
 })
 
 ### Better
