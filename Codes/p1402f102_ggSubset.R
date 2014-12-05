@@ -94,7 +94,7 @@ sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
 ggsst  <- function(df){
-        ggplot(df)
+        ggplot(df) +
         geom_raster(aes(x, y, fill = t)) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
@@ -110,8 +110,6 @@ ggsst  <- function(df){
                 theme(plot.margin = unit(c(0,0,0,-0.5), "lines"))
 }
 sst.grobs  <- list()
-sst1  <- ggsst(sst.clip.l[[1]])
-sst.clip.l[[1]]
 for (i in 1:4) {
         sst.grobs[[i]]  <-  ggsst(sst.clip.l[[i]]) +
                 annotate("text",label=paste("SST", LETTERS[i]), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
