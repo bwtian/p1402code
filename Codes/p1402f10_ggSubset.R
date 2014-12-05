@@ -5,11 +5,12 @@ ge.raster2df  <- function(rst){
         rst.spdf  <- rasterToPoints(rst, spatial=TRUE)
         rst.df  <- as.data.frame(rst.spdf)
 }
-lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
-lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
-hkdKT$t <- 10^(hkdKT$KT)
+# lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
+# lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+# hkdKT$t <- 10^(hkdKT$KT)
 sst.df  <- hkdKT[hkdKT$Z == 1400,]
+
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
 
@@ -47,9 +48,9 @@ ge.subdf  <- function(df,x,y,sub){
 # head(sst.df)
 sst.clip.l <- ge.subdf(sst.df, X,Y, sub)
 # head(lst.df.l)
-lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-# head(lulc.df)
-lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
+# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+# # head(lulc.df)
+# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 # names(clipper.l)  <- c("A", "B", "C", "D")
 # ggplot(clipper.df,aes(x,y, fill = tCenter)) + geom_raster() +
@@ -77,7 +78,7 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                 theme_bw(base_size = 10, base_family = "Times") #+
                 #theme(legend.position="left",legend.justification = "right")
         })
-#summary(sst.clip.l[[1]])
+summary(sst.clip.l[[1]])
 sst.col.brks  <- seq(0, 400, 10)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
@@ -98,7 +99,7 @@ sst.grobs  <- lapply(sst.clip.l, function(df) {
         #theme(legend.position="left",legend.justification = "right")
 })
 
-
+sst.grobs
 ### Better
 library(gridExtra)
 grid.newpage()
