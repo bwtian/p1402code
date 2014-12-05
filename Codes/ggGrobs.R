@@ -1,3 +1,10 @@
+
+# names(clipper.l)  <- c("A", "B", "C", "D")
+# ggplot(clipper.df,aes(x,y, fill = tCenter)) + geom_raster() +
+# facet_wrap(~ id)
+
+
+
 # tiff("clipper.tiff", h = 2000, w = 2000, res = 300)
 # png("clipper.png")
 # do.call(grid.arrange, c(grobs, nrow =2))
