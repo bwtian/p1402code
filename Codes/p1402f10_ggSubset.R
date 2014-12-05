@@ -72,8 +72,8 @@ class(lst.clip.l["A"])
 dimnames(lst.clip.l[[2]])
 length(lst.clip.l)
 count  <- 0
-lst.grobs  <- lapply(lst.clip.l, function(df) {
-                n  <<- count + 1
+lst.grobs  <- lapply(1:length(lst.clip.l), function(i) {
+        df  <- lst.clip.l[i]
                 ggplot(df) +
                         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
                         scale_x_continuous(labels = function(x) x/1000 -1200) +
@@ -88,7 +88,7 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                         coord_equal() +
                         theme_bw(base_size = 12, base_family = "Times") +
                         theme(plot.margin = unit(c(0,-0.5,0,0), "lines")) +
-                        geom_text(data=df, aes(label=paste("LST", n)),
+                        geom_text(data=df, aes(label=paste("LST", i)),
                           x=-Inf, y=Inf, hjust=-0.4, vjust=2, col = "red",fontface = "bold")
 #                         annotate("text", x = -Inf, y = Inf, label ="LST",
 #                                  hjust=-0.4, vjust=2, col="black", cex=6,
