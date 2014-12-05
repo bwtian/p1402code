@@ -79,10 +79,7 @@ grobs  <- lapply(clipper.l, function(d) {
                              labels = col.labs,
                              name = expression(~(degree*C))) +
                 coord_equal() +
-                theme_bw(base_size = 10, base_family = "Times") +
-                coord_equal() # +
-                #theme(axis.title.y = element_blank())
-
+                theme_bw(base_size = 10, base_family = "Times")
         })
 
 
