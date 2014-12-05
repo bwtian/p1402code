@@ -149,9 +149,10 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
                  ggplotGrob(lulc.grobs[[4]]),
                  size = "last")
 
-# grid.draw(sst.col)
+
 # sst.col$widths  <- lst.col$widths
+# lulc.col$widths  <- lst.col$widths
 # sst.col$heights  <- lst.col$heights
-# sst.col$
+# lulc.col$heights  <- lst.col$heights
 # grid.draw(cbind(lst.col,sst.col))
 grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
