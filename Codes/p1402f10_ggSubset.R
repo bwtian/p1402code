@@ -7,11 +7,11 @@ ge.raster2df  <- function(rst){
 }
 lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
 lulc.df2  <- ge.crsTransform(lulc.df, x, y, xlcc,ylcc,wgs84GRS,lccWgs84)
-# lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
-# hkdKT$t <- 10^(hkdKT$KT)
-# hkdXyzt  <- hkdKT[,c(1:3,9)]
-# names(hkdXyzt)  <- c("x","y","z","t")
+lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+hkdKT$t <- 10^(hkdKT$KT)
+hkdXyzt  <- hkdKT[,c(1:3,9)]
+names(hkdXyzt)  <- c("x","y","z","t")
 sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
 
 # summary(hkdKT)
@@ -47,16 +47,14 @@ ge.subdf  <- function(df,x,y,sub){
         return(out.l)
 }
 ge.crsTransform
-# sst.clip.l <- ge.subdf(sst.df, x, y, sub)
-# head(sst.clip.l[[1]])
-# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-# head(lst.clip.l[[1]])
+sst.clip.l <- ge.subdf(sst.df, x, y, sub)
+head(sst.clip.l[[1]])
+lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+head(lst.clip.l[[1]])
 str(lulc.df2)
 names(lulc.df2) <- c("x","y","lulc")
 lulc.clip.l <- ge.subdf(lulc.df2,x,y,sub)
-# names(clipper.l)  <- c("A", "B", "C", "D")
-# ggplot(clipper.df,aes(x,y, fill = tCenter)) + geom_raster() +
-# facet_wrap(~ id)
+
 
 
 # summary(lst.clip.l[[1]])
@@ -121,6 +119,7 @@ lulc.grobs  <- lapply(lulc.clip.l, function(df) {
                 theme_bw(base_size = 10, base_family = "Times") #+
         #theme(legend.position="left",legend.justification = "right")
 })
+
 ### Better
 library(gridExtra)
 grid.newpage()
@@ -146,6 +145,7 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
                  size = "last")
 
 #
+install.packages("ggsubplot")
 # grid.draw(sst.col)
 # sst.col$widths  <- lst.col$widths
 # sst.col$heights  <- lst.col$heights
