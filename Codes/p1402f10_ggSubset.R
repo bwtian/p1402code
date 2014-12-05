@@ -22,7 +22,7 @@ setwd(dir.toaTbKlccCenterMos)
 
 d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
-                          c(42.816, 141.306),
+                          c(42.816, 141.307),
                           c(43.485, 144.165)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
