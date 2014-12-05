@@ -70,7 +70,7 @@ lst.name  <- expression(~(degree*C))
 lst.grobs  <- lapply(lst.clip.l, function(df) {
         ggplot(df) +
         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
-                geom_text(aes(x = min(x), y = max(y)), label = c("A","B","C","D"))+
+        geom_text(aes(x = min(x), y = max(y)), label = c("A","B","C","D"))+
         scale_x_continuous(labels = function(x) x/1000 -1200) +
         scale_y_continuous(labels = function(x) x/1000 -1400) +
         xlab("") +
