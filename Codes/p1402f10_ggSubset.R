@@ -45,7 +45,7 @@ sub  <- dlcc
 head(sub)
 ge.subdf  <- function(df,x,y,sub){
         # return a list of
-        out  <- list() # a list of dataframe
+        out.l  <- list() # a list of dataframe
         for (i in 1:nrow(sub)){
                 xmin  <- sub[i,]$xmin
                 xmax  <- sub[i,]$xmax
@@ -53,20 +53,21 @@ ge.subdf  <- function(df,x,y,sub){
                 ymax  <- sub[i,]$ymax
                 x  <- df$x
                 y  <- df$y
-                out[[i]]  <-  df[x >= xmin & x <= xmax & y  >= ymin & y <= ymax,]
+                out.l[[i]]  <-  df[x >= xmin & x <= xmax & y  >= ymin & y <= ymax,]
         }
-        return(out)
+        out.df  <- do.call(rbind, out.l)
+        return(out.df)
 
 }
 head(sst.df)
-sst.clip <- ge.subdf(sst.df, X,Y, sub)
+sst.clip.df <- ge.subdf(sst.df, X,Y, sub)
 head(lst.df)
 lst.clip <- ge.subdf(lst.df, x,y,sub)
 head(lulc.df)
 lulc.clip <- ge.subdf(lulc.df,x,y,sub)
 
-names(clipper.l)  <- c("A", "B", "C", "D")
-str(clipper.l)
+# names(clipper.l)  <- c("A", "B", "C", "D")
+# str(clipper.l)
 #dfs <- lapply(clipper.l, get)
 clipper.df  <- do.call(rbind, clipper.l)
 clipper.df$id  <- as.factor(substr(row.names(clipper.df),1,1))
