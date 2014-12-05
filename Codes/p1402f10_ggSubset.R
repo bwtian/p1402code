@@ -121,7 +121,7 @@ lulc.grobs  <- lapply(lulc.clip.l, function(df) {
                                      labels = lulc.col.labs,
                                      name = lulc.name) +
                 coord_equal() +
-                theme_bw(base_size = 10, base_family = "Times") #+
+                theme_bw(base_size = 10, base_family = "Times") +
                 theme(legend.position="none")
 })
 
