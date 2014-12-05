@@ -122,7 +122,8 @@ lulc.grobs  <- lapply(lulc.clip.l, function(df) {
                                      name = lulc.name) +
                 coord_equal() +
                 theme_bw(base_size = 10, base_family = "Times") #+
-        #theme(legend.position="left",legend.justification = "right")
+                theme(legend.position="none",
+                      axis.title=element_blank())
 })
 
 ### Better
@@ -154,4 +155,4 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # sst.col$heights  <- lst.col$heights
 # sst.col$
 # grid.draw(cbind(lst.col,sst.col))
-grid.arrange(lst.col,sst.col ,ncol = 2)
+grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
