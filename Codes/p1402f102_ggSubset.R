@@ -87,7 +87,7 @@ lst.grobs  <- list()
 for (i in 1:4) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
                 annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
-                         col = "red",fontface = "bold", cex = 6)
+                         col = "red",fontface = "bold")
 }
 #lst.grobs <-  list(lst1, lst2, lst3, lst4)
 sst.col  <-  cols
@@ -115,7 +115,7 @@ sst.grobs  <- list()
 for (i in 1:4) {
         sst.grobs[[i]]  <-  ggsst(sst.clip.l[[i]]) +
                 annotate("text",label=paste("SST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
-                         col = "red",fontface = "bold", cex = 6)
+                         col = "red",fontface = "bold")
 }
 lulc.col.brks  <- c(1,2,3,4,5,6,8,10,11)
 lulc.col.labs  <- c("Water", "Urban", "Paddy", "Crop","Grass", "DeciduousForest",
@@ -143,7 +143,7 @@ lulc.grobs  <- list()
 for (i in 1:4) {
         lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
                 annotate("text",label=paste("LULC", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,
-                         col = "red",fontface = "bold", cex = 6)
+                         col = "red",fontface = "bold")
 }
 
 grid.newpage()
