@@ -27,7 +27,6 @@ ge.raster2df  <- function(rst){
 }
 lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
 lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-names(lst.df )  <- c("x", "y", "tCenter")
 sst.df  <- readRDS("hkdSST1500.spdf_141205_202722.Rds")
 
 d  <- as.data.frame(rbind(c(41.91, 140.87),
@@ -43,8 +42,8 @@ dlcc$ymin  <- round(dlcc$ylcc, -3) -rad
 dlcc$ymax  <- round(dlcc$ylcc, -3) +rad
 dlcc$id  <- 1:nrow(dlcc)
 sub  <- dlcc
-
-ge.subdf  <- function(df, sub){
+head(sub)
+ge.subdf  <- function(df,x,y,sub){
         # return a list of
         out  <- list() # a list of dataframe
         for (i in 1:nrow(sub)){
@@ -59,9 +58,12 @@ ge.subdf  <- function(df, sub){
         return(out)
 
 }
-sst.clip <- ge.subdf(sst.df, sub)
-lst.clip <- ge.subdf(lst.df, sub)
-lulc.clip <- ge.subdf(lulc.df, sub)
+head(sst.df)
+sst.clip <- ge.subdf(sst.df, X,Y, sub)
+head(lst.df)
+lst.clip <- ge.subdf(lst.df, x,y,sub)
+head(lulc.df)
+lulc.clip <- ge.subdf(lulc.df,x,y, sub)
 
 names(clipper.l)  <- c("A", "B", "C", "D")
 str(clipper.l)
