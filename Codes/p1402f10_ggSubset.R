@@ -71,7 +71,7 @@ names(lst.clip.l) <- c("A","B","C","D")
 class(lst.clip.l["A"])
 #lst.grobs  <- lapply(lst.clip.l, function(df) {
         lst.grobs  <- for (i in seq_along(lst.clip.l)){
-                ggplot(lst.clip.l$1) +
+                ggplot(lst.clip.l$i) +
                         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
                         scale_x_continuous(labels = function(x) x/1000 -1200) +
                         scale_y_continuous(labels = function(x) x/1000 -1400) +
