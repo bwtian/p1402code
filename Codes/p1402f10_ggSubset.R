@@ -80,7 +80,7 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                 #theme(legend.position="left",legend.justification = "right")
         })
 summary(sst.clip.l[[1]])
-sst.col.brks  <- seq(0, 400, 5)
+sst.col.brks  <- seq(0, 400, 10)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
 sst.grobs  <- lapply(sst.clip.l, function(df) {
