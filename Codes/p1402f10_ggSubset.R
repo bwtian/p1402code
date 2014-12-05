@@ -28,7 +28,7 @@ ge.raster2df  <- function(rst){
 d  <- as.data.frame(rbind(c(41.92, 140.87),
                           c(42.23, 139.94),
                           c(42.81, 141.31),
-                          c(43.47, 144.16)))
+                          c(43.48, 144.16)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 rad  <- 2500
@@ -160,4 +160,4 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # lulc.col$heights  <- lst.col$heights
 # grid.draw(cbind(lst.col,sst.col))
 grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
-#grid.arrange(lst.col,lulc.col,ncol = 2)
+grid.arrange(lst.col,lulc.col,ncol = 2)
