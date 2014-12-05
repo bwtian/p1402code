@@ -107,7 +107,7 @@ ggsst  <- function(df){
                                      name = sst.name) +
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times")  +
-                theme(plot.margin = unit(c(0,0,0,-0.5), "lines"))
+                theme(plot.margin = unit(c(0,0,0,-2), "lines"))
 }
 sst.grobs  <- list()
 for (i in 1:4) {
