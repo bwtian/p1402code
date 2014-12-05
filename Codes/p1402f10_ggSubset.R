@@ -85,7 +85,7 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                 }
         )
 summary(sst.clip.l[[1]])
-sst.col  <-  heat.colors(10)
+sst.col  <-  cols
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
