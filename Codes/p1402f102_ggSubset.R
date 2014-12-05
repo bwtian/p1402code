@@ -167,13 +167,13 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
                   size = "last")
 
 
-sst.col$widths  <- lst.col$widths
-lulc.col$widths  <- lst.col$widths
-sst.col$heights  <- lst.col$heights
-lulc.col$heights  <- lst.col$heights
-grid.draw(cbind(lst.col,sst.col))
-pdf("hkdSub.pdf", width = 7)
+# sst.col$widths  <- lst.col$widths
+# lulc.col$widths  <- lst.col$widths
+# sst.col$heights  <- lst.col$heights
+# lulc.col$heights  <- lst.col$heights
+# grid.draw(cbind(lst.col,sst.col))
+# pdf("hkdSub.pdf", width = 7)
 grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
-dev.off()
-getwd()
+# dev.off()
+# getwd()
 #grid.arrange(lst.col,lulc.col,ncol = 2)
