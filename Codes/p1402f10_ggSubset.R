@@ -63,7 +63,8 @@ lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 
 # summary(lst.clip.l[[1]])
-cols = oceColorsJet(10)
+#cols = oceColorsJet(10)
+cols = c("red","blue","green")
 lst.col.brks  <- seq(-20, 20, 2)
 lst.col.labs  <- as.character(lst.col.brks)
 lst.name  <- expression(~(degree*C))
@@ -160,4 +161,4 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # lulc.col$heights  <- lst.col$heights
 # grid.draw(cbind(lst.col,sst.col))
 grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
-grid.arrange(lst.col,lulc.col,ncol = 2)
+#grid.arrange(lst.col,lulc.col,ncol = 2)
