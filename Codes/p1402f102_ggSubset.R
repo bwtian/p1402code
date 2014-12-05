@@ -79,7 +79,7 @@ gglst  <- function(df){
                                      name = lst.name) +
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
-                theme(legend.position="left", legend.margin=unit(-0.6,"cm"))  +
+                theme(legend.position="left", legend.margin=unit(0,"lines"))  +
                 theme(plot.margin = unit(c(0,-1.5,0,1), "lines"))
 
 }
