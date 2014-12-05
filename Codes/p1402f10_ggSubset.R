@@ -86,7 +86,8 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                 }
         )
 summary(sst.clip.l[[1]])
-sst.col  <- ge.rainbow(10)
+#sst.col  <- ge.rainbow(10)
+sst.cols = c("red","blue","green")
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
@@ -97,7 +98,7 @@ sst.grobs  <- lapply(sst.clip.l, function(df) {
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
                 xlab("") +
                 ylab("") +
-                scale_fill_gradientn(colours = sst.col,
+                scale_fill_gradientn(colours = sst.cols,
                                      na.value="white",
                                      breaks = sst.col.brks,
                                      labels = sst.col.labs,
