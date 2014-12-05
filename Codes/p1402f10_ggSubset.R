@@ -67,10 +67,11 @@ cols = oceColorsJet(10)
 lst.col.brks  <- seq(-20, 20, 2)
 lst.col.labs  <- as.character(lst.col.brks)
 lst.name  <- expression(~(degree*C))
-labels <- c("A","B","C","D")
-TextFrame <- data.frame(x = rep(-Inf,4), y = rep(Inf,4), lab = labels)
-lst.grobs  <- lapply(lst.clip.l, function(df) {
-                ggplot(df) +
+names(lst.clip.l) <- c("A","B","C","D")
+class(lst.clip.l["A"])
+#lst.grobs  <- lapply(lst.clip.l, function(df) {
+        lst.grobs  <- for (i in seq_along(lst.clip.l)){
+                ggplot(lst.clip.l$1) +
                         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
                         scale_x_continuous(labels = function(x) x/1000 -1200) +
                         scale_y_continuous(labels = function(x) x/1000 -1400) +
@@ -84,13 +85,10 @@ lst.grobs  <- lapply(lst.clip.l, function(df) {
                         coord_equal() +
                         theme_bw(base_size = 12, base_family = "Times") +
                         theme(plot.margin = unit(c(0,-0.5,0,0), "lines")) +
-                        geom_text(data = TextFrame, aes(x,y,label = lab),hjust=-0.4, vjust=2, col="black", size=12)
-#                                   fontface = "bold")
-#                         annotate("text", x = -Inf, y = Inf, label ="i",
-#                                  hjust=-0.4, vjust=2, col="black", cex=6,
-#                                  fontface = "bold")
-        })
-lst.grobs
+                        annotate("text", x = -Inf, y = Inf, label ="i",
+                                 hjust=-0.4, vjust=2, col="black", cex=6,
+                                 fontface = "bold")
+        }
 sst.col  <-  cols
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
