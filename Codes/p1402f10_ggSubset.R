@@ -12,17 +12,17 @@
 #
 # }
 source("~/SparkleShare/TIR/demo/tirSettings.R")
-#setwd(dir.toaTbKlccCenterMos)
-setwd("~/toaTbKlccCenterMos/")
+setwd(dir.toaTbKlccCenterMos)
+#setwd("~/toaTbKlccCenterMos/")
 mos  <- raster("L8B10CenterMos.tif")
 mos.spdf  <- rasterToPoints(mos, spatial=TRUE)
 mos.df  <- as.data.frame(mos.spdf)
 names(mos.df)  <- c("x", "y", "tCenter")
 head(mos.df)
 
-d  <- as.data.frame(rbind(c(41.92, 140.87),
-                          c(42.23, 139.92),
-                          c(42.78, 141.31),
+d  <- as.data.frame(rbind(c(41.91, 140.87),
+                          c(42.23, 139.94),
+                          c(42.79, 141.31),
                           c(43.47, 144.16)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
@@ -59,18 +59,20 @@ str(clipper.l)
 clipper.df  <- do.call(rbind, clipper.l)
 clipper.df$id  <- as.factor(substr(row.names(clipper.df),1,1))
 # summary(clipper.df)
-# ggplot(clipper.df,aes(x,y, fill = tCenter)) + geom_point() +
+# ggplot(clipper.df,aes(x,y, fill = tCenter)) + geom_raster() +
 # facet_wrap(~ id)
 cols = oceColorsJet(10)
 col.brks  <- seq(-20, 20, 2)
-col.labs  <- as.character(colbrks)
+col.labs  <- as.character(col.brks)
 grobs  <- lapply(clipper.l, function(d) {
         ggplot(d) +
         geom_raster(aes(x,y, fill = tCenter)) +
-        scale_x_continuous(labels = function(x) x/1000) +
-        scale_y_continuous(labels = function(x) x/1000) +
-        xlab("x (km)") +
-        ylab("y (km)") +
+        scale_x_continuous(labels = function(x) x/1000 -1200) +
+        scale_y_continuous(labels = function(x) x/1000 -1400) +
+        xlab("") +
+        ylab("") +
+        #xlab("x (km)") +
+        #ylab("y (km)") +
         scale_fill_gradientn(colours = cols,
                              na.value="white",
                              breaks = col.brks,
@@ -82,17 +84,23 @@ grobs  <- lapply(clipper.l, function(d) {
 
         })
 
-#library(gridExtra)
+library(gridExtra)
 # tiff("clipper.tiff", h = 2000, w = 2000, res = 300)
 # png("clipper.png")
 # do.call(grid.arrange, c(grobs, nrow =2))
 
 ### Better
+
 grid.newpage()
 grid.draw(rbind(
         cbind(ggplotGrob(grobs[[1]]), ggplotGrob(grobs[[2]]), size="last"),
         cbind(ggplotGrob(grobs[[3]]), ggplotGrob(grobs[[4]]), size="last"),
         size = "last"))
+grid.draw(rbind(ggplotGrob(grobs[[1]]),
+              ggplotGrob(grobs[[2]]),
+              ggplotGrob(grobs[[3]]),
+              ggplotGrob(grobs[[4]]),
+              size = "last"))
 # Extracxt the legend from p1 !!!but that is just for p1
 # legend = gtable_filter(ggplot_gtable(ggplot_build(grobs[[1]])), "guide-box")
 #
