@@ -131,7 +131,7 @@ p3
 p6  <- p3 + geom_rect(data = dlcc,
                aes(NULL, NULL, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = NULL, color = NULL), alpha =0.1, color = "red") +
        geom_text(data = dlcc,aes(x =xmax, y =ymax), label=c("A","B","C","D"))
-       #annotate("text", x = dlcc$xmax+10000, y = dlcc$ymax+10000, label=c("A","B","C","D"))
+       annotate("text", x = dlcc$xmax+10000, y = dlcc$ymax+10000, label=c("A","B","C","D"), size =1)
 # p6
 # p3 +  coord_cartesian(xlim = c(dlcc[1,]$xmin, dlcc[1,]$xmax),                          ylim = c(dlcc[1,]$ymin, dlcc[1,]$ymax))
 # p3)
