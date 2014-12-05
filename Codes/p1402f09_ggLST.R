@@ -36,10 +36,11 @@ p2  <- p12 +  scale_x_continuous(label = function(x) x/1000 -1200) +
         scale_y_continuous(label = function(x) x/1000 -1400) +
      xlab("Easting (km)") +
      ylab("Northing (km)")
-p2
+#p2
 #cols  <-  bpy.colors(8)
 cols = oceColorsJet(10)
-brks  <- c(-20, -15,-10,-5, 0, 5, 10, 15, 20)
+#brks  <- c(-20, -15,-10,-5, 0, 5, 10, 15, 20)
+brks  <- c(-15,-10,-5, 0, 5, 10, 15)
 p3  <- p2 + scale_fill_gradientn(colours = cols,
                                  na.value="white",
                           breaks = brks,
@@ -60,28 +61,28 @@ library(grid)
 #         geom_text(data = north, x = x+dx, y = y+dy/2, label = "N", size = 12 )
 north  <- data.frame(rbind(c(1600000,1400000,0,60000),c(1550000,1400000,100000,0)))
 names(north)  <- c("x", "y", "dx", "dy")
-p4  <- p3 +
-        geom_segment(data = north[1,], aes(x=x,y=y, xend=x+dx, yend = y+dy),
-                     arrow = arrow(angle =25),
-                     size = 1,
-                     color = "black"
-                     ) +
-        geom_segment(data = north[2,], aes(x=x,y=y, xend=x+dx, yend = y+dy),
-                   arrow = arrow(angle =90, ends = "both", length = unit(0.1, "cm")),
-                   size = 1
-                   ) +
-        geom_point(data = north[1,],
-                   mapping = aes(x,y),
-                   size = 3,
-                   shape =21, fill = "white"
-        ) +
-        geom_text(x = north[1,]$x, y = north[1,]$y+north[1,]$dy/2,
-                   label = "N"
-                   #size =
-                   ) +
-        geom_text(x = north[1,]$x+north[1,]$dx/2, y = north[1,]$y -north[1,]$dy/4,
-                  label = "100 km", size = 10
-                  )
+# p4  <- p3 +
+#         geom_segment(data = north[1,], aes(x=x,y=y, xend=x+dx, yend = y+dy),
+#                      arrow = arrow(angle =25),
+#                      size = 1,
+#                      color = "black"
+#                      ) +
+#         geom_segment(data = north[2,], aes(x=x,y=y, xend=x+dx, yend = y+dy),
+#                    arrow = arrow(angle =90, ends = "both", length = unit(0.1, "cm")),
+#                    size = 1
+#                    ) +
+#         geom_point(data = north[1,],
+#                    mapping = aes(x,y),
+#                    size = 3,
+#                    shape =21, fill = "white"
+#         ) +
+#         geom_text(x = north[1,]$x, y = north[1,]$y+north[1,]$dy/2,
+#                    label = "N"
+#                    #size =
+#                    ) +
+#         geom_text(x = north[1,]$x+north[1,]$dx/2, y = north[1,]$y -north[1,]$dy/4,
+#                   label = "100 km", size = 10
+#                   )
 sourceDir("~/SparkleShare/geothermaR/R")
 # p4
 # ge.ggsave(p4)
@@ -127,8 +128,9 @@ dlcc$id  <- 1:nrow(dlcc)
 #         geom_rect(data = dlcc,
 #                   aes(NULL, NULL, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = NULL, color = NULL), alpha =0.1, color = "red")
 
-p6  <- p4 + geom_rect(data = dlcc,
-               aes(NULL, NULL, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = NULL, color = NULL), alpha =0.1, color = "red")
+p6  <- p3 + geom_rect(data = dlcc,
+               aes(NULL, NULL, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = NULL, color = NULL), alpha =0.1, color = "red") +
+        geom_text(aes(xlcc, ylcc), label=c("A","B","C","D"))
 #
 # p3 +  coord_cartesian(xlim = c(dlcc[1,]$xmin, dlcc[1,]$xmax),                          ylim = c(dlcc[1,]$ymin, dlcc[1,]$ymax))
 # p3)
