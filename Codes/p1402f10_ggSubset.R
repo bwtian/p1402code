@@ -70,8 +70,8 @@ lst.name  <- expression(~(degree*C))
 names(lst.clip.l) <- c("A","B","C","D")
 class(lst.clip.l["A"])
 #lst.grobs  <- lapply(lst.clip.l, function(df) {
-        lst.grobs  <- for (i in names(lst.clip.l)){
-                ggplot(as.data.frame(lst.clip.l[i])) +
+        lst.grobs  <- for (i in lst.clip.l){
+                ggplot(i) +
                         geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
                         scale_x_continuous(labels = function(x) x/1000 -1200) +
                         scale_y_continuous(labels = function(x) x/1000 -1400) +
@@ -85,11 +85,11 @@ class(lst.clip.l["A"])
                         coord_equal() +
                         theme_bw(base_size = 12, base_family = "Times") +
                         theme(plot.margin = unit(c(0,-0.5,0,0), "lines")) +
-                        annotate("text", x = -Inf, y = Inf, label =i,
+                        annotate("text", x = -Inf, y = Inf, label ="i",
                                  hjust=-0.4, vjust=2, col="black", cex=6,
                                  fontface = "bold")
         }
-
+lst.grobs
 sst.col  <-  cols
 sst.col.brks  <- seq(0, 400, 5)
 sst.col.labs  <- as.character(sst.col.brks)
