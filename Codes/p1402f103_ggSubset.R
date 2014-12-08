@@ -70,9 +70,9 @@ gglst  <- function(df){
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
                 xlab("") +
                 ylab("") +
-                scale_fill_manual(colours = cols,
+                scale_fill_gradientn(colours = cols,
                                      na.value="white",
-                                     #breaks = lst.col.brks,
+                                     breaks = lst.col.brks,
                                      labels = lst.col.labs,
                                      name = lst.name) +
                 coord_equal() +
@@ -98,9 +98,9 @@ ggsst  <- function(df){
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
                 xlab("") +
                 ylab("") +
-                scale_fill_manual(colours = sst.col,
+                scale_fill_gradientn(colours = sst.col,
                                      na.value="white",
-                                     #breaks = sst.col.brks,
+                                     breaks = sst.col.brks,
                                      labels = sst.col.labs,
                                      name = sst.name) +
                 coord_equal() +
