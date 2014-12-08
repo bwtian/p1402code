@@ -29,7 +29,7 @@ dlcc  <- maxids[-3,]
 dlcc$xlcc  <- dlcc$X
 dlcc$ylcc  <- dlcc$Y
 shift  <- 0
-rad  <- 5000
+rad  <- 30000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad - shift
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad - shift
 dlcc$ymin  <- round(dlcc$ylcc, -3) -rad - shift
