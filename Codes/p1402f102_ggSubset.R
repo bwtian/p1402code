@@ -14,14 +14,14 @@ ge.raster2df  <- function(rst){
 # lulc.rsp <- projectRaster(lulc.rst, lst.rst,method="ngb")
 # writeRaster(lulc.rsp, "lulc100.tif")
 
-# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
-# hkdKT$t <- 10^(hkdKT$KT)
-# hkdXyzt  <- hkdKT[,c(1:3,9)]
-# names(hkdXyzt)  <- c("x","y","z","t")
+hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+hkdKT$t <- 10^(hkdKT$KT)
+hkdXyzt  <- hkdKT[,c(1:3,9)]
+names(hkdXyzt)  <- c("x","y","z","t")
 
-# lulc.df  <- ge.raster2df("lulc100.tif")
-# lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-# sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
+lulc.df  <- ge.raster2df("lulc100.tif")
+lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
 summary(sst.df)
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
@@ -58,11 +58,11 @@ ge.subdf  <- function(df,x,y,sub){
         #         out.df  <- as.data.frame(out.spdf)
         return(out.l)
 }
-# sst.clip.l <- ge.subdf(sst.df, x, y, sub)
-# #head(sst.clip.l[[1]])
-# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-# #head(lst.clip.l[[1]])
-# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
+sst.clip.l <- ge.subdf(sst.df, x, y, sub)
+#head(sst.clip.l[[1]])
+lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+#head(lst.clip.l[[1]])
+lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 cols = oceColorsJet(10)
 lst.col.brks  <- seq(-20, 20, 2)
