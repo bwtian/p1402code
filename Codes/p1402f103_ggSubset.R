@@ -29,7 +29,7 @@ dlcc  <- maxids[-3,]
 dlcc$xlcc  <- dlcc$X
 dlcc$ylcc  <- dlcc$Y
 shift  <- 0
-rad  <- 30000
+rad  <- 15000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad - shift
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad - shift
 dlcc$ymin  <- round(dlcc$ylcc, -3) -rad - shift
@@ -56,7 +56,7 @@ sst.clip.l <- ge.subdf(sst.df, x, y, sub)
 #head(sst.clip.l[[1]])
 lst.clip.l <- ge.subdf(lst.df, x,y,sub)
 #head(lst.clip.l[[1]])
-lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
+# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 cols = oceColorsJet(10)
 lst.col.brks  <- seq(-20, 20, 2)
@@ -88,7 +88,7 @@ for (i in 1:length(lst.clip.l)) {
 }
 #lst.grobs <-  list(lst1, lst2, lst3, lst4)
 sst.col  <-  cols
-sst.col.brks  <- seq(0, 400, 10)
+sst.col.brks  <- seq(0, 400, 20)
 sst.col.labs  <- as.character(sst.col.brks)
 sst.name  <- expression(~(degree*C))
 ggsst  <- function(df){
@@ -170,7 +170,8 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # lulc.col$heights  <- lst.col$heights
 # grid.draw(cbind(lst.col,sst.col))
 # pdf("hkdSub.pdf", width = 7)
-grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
+# grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
+grid.arrange(lst.col, sst.col ,ncol = 2)
 # dev.off()
 # getwd()
 #grid.arrange(lst.col,lulc.col,ncol = 2)
