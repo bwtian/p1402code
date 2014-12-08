@@ -6,22 +6,15 @@ ge.raster2df  <- function(rst){
         rst.df  <- as.data.frame(rst.spdf)
 }
 
-# lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
-# lulc.df2  <- ge.crsTransform(lulc.df, x, y, xlcc,ylcc,wgs84GRS,lccWgs84)
-# lulc.rst  <- raster("hkdBigLULCver1402Merge.tif")
-# levelplot(lulc.rst)
-# lst.rst  <- raster("hkdL8B10CenterMos.tif")
-# lulc.rsp <- projectRaster(lulc.rst, lst.rst,method="ngb")
-# writeRaster(lulc.rsp, "lulc100.tif")
 
-hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
-hkdKT$t <- 10^(hkdKT$KT)
-hkdXyzt  <- hkdKT[,c(1:3,9)]
-names(hkdXyzt)  <- c("x","y","z","t")
-
-lulc.df  <- ge.raster2df("lulc100.tif")
-lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
+# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+# hkdKT$t <- 10^(hkdKT$KT)
+# hkdXyzt  <- hkdKT[,c(1:3,9)]
+# names(hkdXyzt)  <- c("x","y","z","t")
+#
+# lulc.df  <- ge.raster2df("lulc100.tif")
+# lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+# sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
 summary(sst.df)
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
@@ -35,7 +28,7 @@ summary(sst.df)
 dlcc  <- maxids[-4,]
 dlcc$xlcc  <- dlcc$X
 dlcc$ylcc  <- dlcc$Y
-shift  <- 5000
+shift  <- 10000
 rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad + shift
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad + shift
