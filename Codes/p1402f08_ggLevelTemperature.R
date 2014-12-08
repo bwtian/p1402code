@@ -116,15 +116,13 @@ centroids <- aggregate(cbind(X,Y)~class,A, mean)
 maxT <- aggregate(cbind(Temperatrue)~class,A, max)
 maxids  <- A[A$Temperatrue %in% maxT$Temperatrue,]
 #ggplot(maxids, aes(X,Y)) +  geom_point(size=50, shape=1, color="gold4")
-
-ggCirles  <-
-ggTlines + geom_point(data =maxids, aes(X,Y),size=6, shape=1, color="white")
+ggCirles  <- ggTlines + geom_point(data =maxids, aes(X,Y),size=6, shape=1, color="white")
 
 
 ggCirles
 
 hkd3D  <-ggCirles
 # ge.ggsave(hkd3D)
-ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
+#ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
 # getwd()
 
