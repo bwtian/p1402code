@@ -25,21 +25,22 @@ sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
 summary(sst.df)
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
-d  <- as.data.frame(rbind(c(41.91, 140.87),
-                          c(42.23, 139.94),
-                          c(42.816, 141.299),
-                          c(43.485, 144.159)))
-names(d)  <- c("lat", "lon")
-dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
+# d  <- as.data.frame(rbind(c(41.91, 140.87),
+#                           c(42.23, 139.94),
+#                           c(42.816, 141.299),
+#                           c(43.485, 144.159)))
+# names(d)  <- c("lat", "lon")
+# dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 dlcc  <- maxids[-4,]
 dlcc$xlcc  <- dlcc$X
 dlcc$ylcc  <- dlcc$Y
+shift  <- 5000
 rad  <- 5000
-dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
-dlcc$xmax  <- round(dlcc$xlcc, -3) +rad
-dlcc$ymin  <- round(dlcc$ylcc, -3) -rad
-dlcc$ymax  <- round(dlcc$ylcc, -3) +rad
+dlcc$xmin  <- round(dlcc$xlcc, -3) -rad + shift
+dlcc$xmax  <- round(dlcc$xlcc, -3) +rad + shift
+dlcc$ymin  <- round(dlcc$ylcc, -3) -rad + shift
+dlcc$ymax  <- round(dlcc$ylcc, -3) +rad + shift
 dlcc$id  <- 1:nrow(dlcc)
 sub  <- dlcc
 # head(sub)
@@ -155,18 +156,18 @@ grid.newpage()
 lst.col  <- rbind(ggplotGrob(lst.grobs[[1]]),
                   ggplotGrob(lst.grobs[[2]]),
                   ggplotGrob(lst.grobs[[3]]),
-                  ggplotGrob(lst.grobs[[4]]),
+                  #ggplotGrob(lst.grobs[[4]]),
                   size = "last")
 # grid.draw(lst.col)
 sst.col  <-rbind(ggplotGrob(sst.grobs[[1]]),
                  ggplotGrob(sst.grobs[[2]]),
                  ggplotGrob(sst.grobs[[3]]),
-                 ggplotGrob(sst.grobs[[4]]),
+                 #ggplotGrob(sst.grobs[[4]]),
                  size = "last")
 lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
                   ggplotGrob(lulc.grobs[[2]]),
                   ggplotGrob(lulc.grobs[[3]]),
-                  ggplotGrob(lulc.grobs[[4]]),
+                  #ggplotGrob(lulc.grobs[[4]]),
                   size = "last")
 
 
@@ -180,3 +181,4 @@ grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
 # dev.off()
 # getwd()
 #grid.arrange(lst.col,lulc.col,ncol = 2)
+
