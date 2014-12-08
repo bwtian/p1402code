@@ -28,7 +28,7 @@ summary(sst.df)
 dlcc  <- maxids[-3,]
 dlcc$xlcc  <- dlcc$X
 dlcc$ylcc  <- dlcc$Y
-shift  <- 5000
+shift  <- 0
 rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad - shift
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad - shift
