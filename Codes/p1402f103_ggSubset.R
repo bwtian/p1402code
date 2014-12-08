@@ -32,8 +32,8 @@ shift  <- 15000
 rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad + shift
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad + shift
-dlcc$ymin  <- round(dlcc$ylcc, -3) -rad + shift
-dlcc$ymax  <- round(dlcc$ylcc, -3) +rad + shift
+dlcc$ymin  <- round(dlcc$ylcc, -3) -rad - shift
+dlcc$ymax  <- round(dlcc$ylcc, -3) +rad - shift
 dlcc$id  <- 1:nrow(dlcc)
 sub  <- dlcc
 # head(sub)
