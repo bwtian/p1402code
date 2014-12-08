@@ -88,7 +88,7 @@ gglst  <- function(df){
 
 }
 lst.grobs  <- list()
-for (i in 1:4) {
+for (i in 1:length(lst.clip.l)) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
                 annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
 }
@@ -115,7 +115,7 @@ ggsst  <- function(df){
                 theme(plot.margin = unit(c(0.5,-1,0,-1.5), "lines"))
 }
 sst.grobs  <- list()
-for (i in 1:4) {
+for (i in 1:length(sst.clip.l)) {
         sst.grobs[[i]]  <-  ggsst(sst.clip.l[[i]]) +
                 annotate("text",label=paste("SST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
 }
@@ -142,7 +142,7 @@ gglulc  <- function(df){
                 theme(plot.margin = unit(c(0.5,-1.5,0,-1.5), "lines"))
 }
 lulc.grobs  <- list()
-for (i in 1:4) {
+for (i in 1:length(lulc.clip.l)) {
         lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
                 annotate("text",label=paste("LULC", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,             fontface = "bold")
 }
