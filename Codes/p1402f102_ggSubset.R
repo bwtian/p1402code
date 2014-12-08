@@ -33,8 +33,8 @@ names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 dlcc  <- maxids[-4,]
-
-rad  <-5000
+dlcc$xlcc  <- dlcc$X
+dlcc$ylcc  <- dlcc$Y
 rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad
