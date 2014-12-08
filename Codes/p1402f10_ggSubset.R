@@ -25,12 +25,18 @@ ge.raster2df  <- function(rst){
 summary(sst.df)
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
+# d  <- as.data.frame(rbind(c(41.91, 140.87),
+#                           c(42.23, 139.94),
+#                           c(42.816, 141.299),
+#                           c(43.485, 144.159)))
 d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
                           c(42.816, 141.299),
                           c(43.485, 144.159)))
 names(d)  <- c("lat", "lon")
-dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
+# dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
+dlcc  <- maxids
+
 rad  <- 3000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad
