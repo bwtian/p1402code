@@ -25,7 +25,7 @@ summary(sst.df)
 # names(d)  <- c("lat", "lon")
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-dlcc  <- maxids[-4,]
+dlcc  <- maxids[-3,]
 dlcc$xlcc  <- dlcc$X
 dlcc$ylcc  <- dlcc$Y
 shift  <- 6000
