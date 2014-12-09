@@ -40,9 +40,9 @@ dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 points  <- "Onshin/doc.kml"
 points.spdf  <- readOGR(points,  "Onshin")
 points.df  <- as.data.frame(points.spdf)
+points.df$Name
 points.lcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-ge.crsTransform
-points.lcc$point  <-  c("")
+points.lcc$point  <-  c("Epicenter","Usubetsu hot spring", "Marukoma hot spring","Oakan volcano", )
 points.name  <- points.lcc[order(points.lcc$ylcc),]
 dOakan  <- points.lcc[1,]
 bUsubetsu  <- points.lcc[2,]
