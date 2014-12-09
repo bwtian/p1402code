@@ -94,7 +94,7 @@ gglst  <- function(df){
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="right", legend.margin=unit(0,"lines"))  +
-                theme(plot.margin = unit(c(0.5,-3,0,-2), "lines"))
+                theme(plot.margin = unit(c(1,-3,0,-2), "lines"))
 
 }
 
@@ -154,7 +154,7 @@ gglulc  <- function(df){
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="none")  +
-                theme(plot.margin = unit(c(0.5,-1.5,0,-1.5), "lines"))
+                theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines"))
 }
 lulc.grobs  <- list()
 for (i in 1:length(lulc.clip.l)) {
