@@ -1,3 +1,4 @@
+library(R.cache)
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 setwd(dir.hkd)
 ge.raster2df  <- function(rst){
