@@ -32,7 +32,7 @@ d  <- as.data.frame(rbind(c(41.91, 140.87),
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-dlcc  <- maxids[-4,]
+#dlcc  <- maxids[-4,]
 dlcc$xlcc  <- dlcc$X
 dlcc$ylcc  <- dlcc$Y
 rad  <- 5000
