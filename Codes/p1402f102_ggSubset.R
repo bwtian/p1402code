@@ -102,7 +102,7 @@ lst.grobs  <- list()
 for (i in 1:length(lst.clip.l)) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
                 annotate("point", x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
-                         color = "green", cex =2) +
+                         color = "green", cex =6) +
                 annotate("text", label=points.name[i,]$name,
                          x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
                          hjust= 1, vjust=1, fontface = "bold")
