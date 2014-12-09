@@ -195,8 +195,8 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 grid.arrange(lst.col, lulc.col,ncol = 2,
 main = textGrob("LST                                                      LULC",
                 gp=gpar(font=2,fontfamily = "times")),
-left =  textGrob("A\n\n\n\n\n\nB\n\n\n\n\n\n\nC\n\n\n\n\n\n\nD", rot =0, vjust =0,
-gp=gpar(font=2,fontfamily = "times")))
+left =  textGrob("A\n\n\n\n\n\nB\n\n\n\n\n\n\nC\n\n\n\n\n\n\nD",
+                 gp=gpar(font=2,fontfamily = "times")))
 # dev.off()
 # getwd()
 #grid.arrange(lst.col,lulc.col,ncol = 2)
