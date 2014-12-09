@@ -35,9 +35,18 @@ dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 #dlcc  <- maxids[-4,]
 # dlcc$xlcc  <- dlcc$X
 # dlcc$ylcc  <- dlcc$Y
-point  <- ge.df2spwgs84(dlcc, lon ,lat)
-ge.sp2shpGeo(point)
-getwd()
+# point  <- ge.df2spwgs84(dlcc, lon ,lat)
+# ge.sp2shpGeo(point)
+points  <- "Onshin/doc.kml"
+points.spdf  <- readOGR(points,  "Onshin")
+points.df  <- as.data.frame(points.spdf)
+points.lcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
+points.df$Name
+Oakan  <- points.lcc[1,]
+Usubetsu  <- points.lcc[2,]
+Epicenter <- points.lcc[3,]
+Marukoma  <- points.lcc[4,]
+
 rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad
