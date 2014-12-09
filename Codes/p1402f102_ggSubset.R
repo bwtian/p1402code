@@ -74,8 +74,8 @@ gglst  <- function(df){
                 geom_raster(aes(x,y, fill = hkdL8B10CenterMos)) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
-                xlab("") +
-                ylab("") +
+                xlab("Easting (km)") +
+                ylab("Northing (km)") +
                 scale_fill_gradientn(colours = cols,
                                      na.value="white",
                                      breaks = lst.col.brks,
@@ -93,32 +93,32 @@ for (i in 1:length(lst.clip.l)) {
                 annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
 }
 #lst.grobs <-  list(lst1, lst2, lst3, lst4)
-sst.col  <-  cols
-sst.col.brks  <- seq(0, 400, 10)
-sst.col.labs  <- as.character(sst.col.brks)
-sst.name  <- expression(~(degree*C))
-ggsst  <- function(df){
-        ggplot(df) +
-        geom_raster(aes(x, y, fill = t)) +
-                scale_x_continuous(labels = function(x) x/1000 -1200) +
-                scale_y_continuous(labels = function(x) x/1000 -1400) +
-                xlab("") +
-                ylab("") +
-                scale_fill_gradientn(colours = sst.col,
-                                     na.value="white",
-                                     breaks = sst.col.brks,
-                                     labels = sst.col.labs,
-                                     name = sst.name) +
-                coord_equal() +
-                theme_bw(base_size = 12, base_family = "Times")  +
-
-                theme(plot.margin = unit(c(0.5,-1,0,-1.5), "lines"))
-}
-sst.grobs  <- list()
-for (i in 1:length(sst.clip.l)) {
-        sst.grobs[[i]]  <-  ggsst(sst.clip.l[[i]]) +
-                annotate("text",label=paste("SST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
-}
+# sst.col  <-  cols
+# sst.col.brks  <- seq(0, 400, 10)
+# sst.col.labs  <- as.character(sst.col.brks)
+# sst.name  <- expression(~(degree*C))
+# ggsst  <- function(df){
+#         ggplot(df) +
+#         geom_raster(aes(x, y, fill = t)) +
+#                 scale_x_continuous(labels = function(x) x/1000 -1200) +
+#                 scale_y_continuous(labels = function(x) x/1000 -1400) +
+#                 xlab("") +
+#                 ylab("") +
+#                 scale_fill_gradientn(colours = sst.col,
+#                                      na.value="white",
+#                                      breaks = sst.col.brks,
+#                                      labels = sst.col.labs,
+#                                      name = sst.name) +
+#                 coord_equal() +
+#                 theme_bw(base_size = 12, base_family = "Times")  +
+#
+#                 theme(plot.margin = unit(c(0.5,-1,0,-1.5), "lines"))
+# }
+# sst.grobs  <- list()
+# for (i in 1:length(sst.clip.l)) {
+#         sst.grobs[[i]]  <-  ggsst(sst.clip.l[[i]]) +
+#                 annotate("text",label=paste("SST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
+# }
 lulc.col.brks  <- c(1,2,3,4,5,6,8,10,11)
 lulc.col.labs  <- c("Water", "Urban", "Paddy", "Crop","Grass", "DeciduousForest",
                     "EvergreenForest", "Bare", "SnowAndIce")
@@ -129,8 +129,8 @@ gglulc  <- function(df){
         geom_raster(aes(x,y, fill = factor(lulc100))) +
                 scale_x_continuous(labels = function(x) x/1000 -1200) +
                 scale_y_continuous(labels = function(x) x/1000 -1400) +
-                xlab("") +
-                ylab("") +
+                xlab("Easting (km)") +
+                ylab("Northing (km)") +
                 scale_fill_manual(values = lulc.cols,
                                   na.value="white",
                                   #breaks = lulc.col.brks,
