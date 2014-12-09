@@ -158,7 +158,7 @@ gglulc  <- function(df){
 }
 lulc.grobs  <- list()
 for (i in 1:length(lulc.clip.l)) {
-        lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
+        lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]])
                 #annotate("text",label=paste("LULC", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,             fontface = "bold")
 }
 
