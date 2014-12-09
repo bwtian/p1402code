@@ -14,13 +14,13 @@ ge.raster2df  <- function(rst){
 # lulc.rsp <- projectRaster(lulc.rst, lst.rst,method="ngb")
 # writeRaster(lulc.rsp, "lulc100.tif")
 
-hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
-hkdKT$t <- 10^(hkdKT$KT)
-hkdXyzt  <- hkdKT[,c(1:3,9)]
-names(hkdXyzt)  <- c("x","y","z","t")
-
-lulc.df  <- ge.raster2df("lulc100.tif")
-lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+# hkdKT$t <- 10^(hkdKT$KT)
+# hkdXyzt  <- hkdKT[,c(1:3,9)]
+# names(hkdXyzt)  <- c("x","y","z","t")
+#
+# lulc.df  <- ge.raster2df("lulc100.tif")
+# lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
 # sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
 # summary(sst.df)
 # summary(hkdKT)
@@ -33,8 +33,8 @@ names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 #dlcc  <- maxids[-4,]
-dlcc$xlcc  <- dlcc$X
-dlcc$ylcc  <- dlcc$Y
+# dlcc$xlcc  <- dlcc$X
+# dlcc$ylcc  <- dlcc$Y
 rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad
