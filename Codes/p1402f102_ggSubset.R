@@ -108,16 +108,6 @@ for (i in 1:length(lst.clip.l)) {
                          hjust= 1, vjust=1, fontface = "bold")
 #                 annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=points.name$xlcc, y=points.name$ylcc, hjust= -0.4, vjust=2,fontface = "bold")
 }
-
-grid.draw(ggplotGrob(lst.grobs[[4]]))
-
-)
-lst1  <- lst.grobs[[1]]  +
-        annotate("text",label=points.lcc$Name, x=points.lcc$xlcc, y=points.lcc$ylcc, hjust= -0.5, vjust=0.5,fontface = "bold")
-
-lst1
-# lst.grobs <-  list(lst1, lst2, lst3, lst4)
-
 # sst.col  <-  cols
 # sst.col.brks  <- seq(0, 400, 10)
 # sst.col.labs  <- as.character(sst.col.brks)
@@ -202,7 +192,7 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # grid.draw(cbind(lst.col,sst.col))
 # pdf("hkdSub.pdf", width = 7)
 # grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
-grid.arrange(lst.col,lulc.col,ncol = 3)
+grid.arrange(lst.col,lulc.col,ncol = 2)
 # dev.off()
 # getwd()
 #grid.arrange(lst.col,lulc.col,ncol = 2)
