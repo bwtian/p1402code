@@ -87,6 +87,7 @@ gglst  <- function(df){
                 theme(plot.margin = unit(c(0.5,-3,0,-2), "lines"))
 
 }
+
 lst.grobs  <- list()
 for (i in 1:length(lst.clip.l)) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
@@ -176,7 +177,8 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # lulc.col$heights  <- lst.col$heights
 # grid.draw(cbind(lst.col,sst.col))
 # pdf("hkdSub.pdf", width = 7)
-grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
+# grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
+grid.arrange(lst.col,lulc.col,ncol = 3)
 # dev.off()
 # getwd()
 #grid.arrange(lst.col,lulc.col,ncol = 2)
