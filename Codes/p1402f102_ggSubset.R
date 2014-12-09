@@ -42,7 +42,7 @@ points.spdf  <- readOGR(points,  "Onshin")
 points.df  <- as.data.frame(points.spdf)
 points.df$Name
 points.lcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-points.lcc$name  <-  c("Epicenter","Usubetsu hot spring", "Marukoma hot spring","Oakan volcano")
+points.lcc$name  <-  c("Epicenter","Usubetsu \n hot spring", "Marukoma \n hot spring","Oakan \n volcano")
 points.name  <- points.lcc[order(points.lcc$ylcc),]
 
 rad  <- 5000
@@ -172,7 +172,7 @@ lst.col  <- rbind(ggplotGrob(lst.grobs[[1]]),
                   ggplotGrob(lst.grobs[[3]]),
                   ggplotGrob(lst.grobs[[4]]),
                   size = "last")
-# grid.draw(lst.col)
+ grid.draw(lst.col)
 sst.col  <-rbind(ggplotGrob(sst.grobs[[1]]),
                  ggplotGrob(sst.grobs[[2]]),
                  ggplotGrob(sst.grobs[[3]]),
