@@ -102,14 +102,14 @@ lst.grobs  <- list()
 for (i in 1:length(lst.clip.l)) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
                 annotate("point", x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
-                         color = "white") +
+                         color = "green", cex =2) +
                 annotate("text", label=points.name[i,]$name,
                          x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
                          hjust= 1, vjust=1, fontface = "bold")
 #                 annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=points.name$xlcc, y=points.name$ylcc, hjust= -0.4, vjust=2,fontface = "bold")
 }
 
-grid.draw(ggplotGrob(lst.grobs[[1]]))
+grid.draw(ggplotGrob(lst.grobs[[4]]))
 
 )
 lst1  <- lst.grobs[[1]]  +
