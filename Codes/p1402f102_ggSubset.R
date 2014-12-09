@@ -94,19 +94,24 @@ gglst  <- function(df){
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="right", legend.margin=unit(0,"lines"))  +
-                theme(plot.margin = unit(c(0.5,-3,0,-2), "lines")) +
+                theme(plot.margin = unit(c(0.5,-3,0,-2), "lines"))
 
 }
 
 lst.grobs  <- list()
 for (i in 1:length(lst.clip.l)) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
-                annotate("point", x=points.name$xlcc, y=points.name$ylcc)
-#                 annotate("text", label=as.character(points.name$name), x=points.name$xlcc, y=points.name$ylcc, hjust= -0.4, vjust=2,fontface = "bold")
+                annotate("point", x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
+                         color = "white") +
+                annotate("text", label=points.name[i,]$name,
+                         x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
+                         hjust= 1, vjust=1, fontface = "bold")
 #                 annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=points.name$xlcc, y=points.name$ylcc, hjust= -0.4, vjust=2,fontface = "bold")
 }
-points.name$name
+
 grid.draw(ggplotGrob(lst.grobs[[1]]))
+
+)
 lst1  <- lst.grobs[[1]]  +
         annotate("text",label=points.lcc$Name, x=points.lcc$xlcc, y=points.lcc$ylcc, hjust= -0.5, vjust=0.5,fontface = "bold")
 
