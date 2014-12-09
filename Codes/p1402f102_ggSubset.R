@@ -41,7 +41,9 @@ points  <- "Onshin/doc.kml"
 points.spdf  <- readOGR(points,  "Onshin")
 points.df  <- as.data.frame(points.spdf)
 points.lcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-points.df$Name
+ge.crsTransform
+points.lcc$point  <-  c("")
+points.name  <- points.lcc[order(points.lcc$ylcc),]
 dOakan  <- points.lcc[1,]
 bUsubetsu  <- points.lcc[2,]
 aEpicenter <- points.lcc[3,]
@@ -96,7 +98,7 @@ gglst  <- function(df){
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="right", legend.margin=unit(0,"lines"))  +
-                theme(plot.margin = unit(c(0.5,-3,0,-2), "lines"))
+                theme(plot.margin = unit(c(0.5,-3,0,-2), "lines")) +
 
 }
 
@@ -108,7 +110,9 @@ for (i in 1:length(lst.clip.l)) {
 
 grid.draw(ggplotGrob(lst.grobs[[1]]))
 lst1  <- lst.grobs[[1]]  +
-         annotate("text", label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
+        annotate("text",label=points.lcc$Name, x=points.lcc$xlcc, y=points.lcc$ylcc, hjust= -0.5, vjust=0.5,fontface = "bold")
+
+lst1
 # lst.grobs <-  list(lst1, lst2, lst3, lst4)
 
 # sst.col  <-  cols
