@@ -35,6 +35,9 @@ dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 #dlcc  <- maxids[-4,]
 # dlcc$xlcc  <- dlcc$X
 # dlcc$ylcc  <- dlcc$Y
+point  <- ge.df2spwgs84(dlcc, lon ,lat)
+ge.sp2shpGeo(point)
+getwd()
 rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
 dlcc$xmax  <- round(dlcc$xlcc, -3) +rad
@@ -93,7 +96,11 @@ for (i in 1:length(lst.clip.l)) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
                 annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
 }
-lst.grobs <-  list(lst1, lst2, lst3, lst4)
+
+# lst1  <- lst.grobs[[1]]  +
+#         annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
+# lst.grobs <-  list(lst1, lst2, lst3, lst4)
+
 # sst.col  <-  cols
 # sst.col.brks  <- seq(0, 400, 10)
 # sst.col.labs  <- as.character(sst.col.brks)
