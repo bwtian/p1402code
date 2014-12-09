@@ -42,12 +42,8 @@ points.spdf  <- readOGR(points,  "Onshin")
 points.df  <- as.data.frame(points.spdf)
 points.df$Name
 points.lcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-points.lcc$point  <-  c("Epicenter","Usubetsu hot spring", "Marukoma hot spring","Oakan volcano", )
+points.lcc$name  <-  c("Epicenter","Usubetsu hot spring", "Marukoma hot spring","Oakan volcano")
 points.name  <- points.lcc[order(points.lcc$ylcc),]
-dOakan  <- points.lcc[1,]
-bUsubetsu  <- points.lcc[2,]
-aEpicenter <- points.lcc[3,]
-cMarukoma  <- points.lcc[4,]
 
 rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
@@ -72,11 +68,11 @@ ge.subdf  <- function(df,x,y,sub){
         #         out.df  <- as.data.frame(out.spdf)
         return(out.l)
 }
-sst.clip.l <- ge.subdf(sst.df, x, y, sub)
-#head(sst.clip.l[[1]])
-lst.clip.l <- ge.subdf(lst.df, x,y,sub)
-#head(lst.clip.l[[1]])
-lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
+# sst.clip.l <- ge.subdf(sst.df, x, y, sub)
+# #head(sst.clip.l[[1]])
+# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+# #head(lst.clip.l[[1]])
+# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 cols = oceColorsJet(10)
 lst.col.brks  <- seq(-20, 20, 2)
@@ -105,9 +101,11 @@ gglst  <- function(df){
 lst.grobs  <- list()
 for (i in 1:length(lst.clip.l)) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
-                annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust= -0.4, vjust=2,fontface = "bold")
+                annotate("point", x=points.name$xlcc, y=points.name$ylcc)
+#                 annotate("text", label=as.character(points.name$name), x=points.name$xlcc, y=points.name$ylcc, hjust= -0.4, vjust=2,fontface = "bold")
+#                 annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=points.name$xlcc, y=points.name$ylcc, hjust= -0.4, vjust=2,fontface = "bold")
 }
-
+points.name$name
 grid.draw(ggplotGrob(lst.grobs[[1]]))
 lst1  <- lst.grobs[[1]]  +
         annotate("text",label=points.lcc$Name, x=points.lcc$xlcc, y=points.lcc$ylcc, hjust= -0.5, vjust=0.5,fontface = "bold")
