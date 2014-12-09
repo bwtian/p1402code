@@ -103,10 +103,10 @@ gglst  <- function(df){
 lst.grobs  <- list()
 for (i in 1:length(lst.clip.l)) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
-                annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
+                annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust= -0.4, vjust=2,fontface = "bold")
 }
 
-grid.draw(lst.grobs[[1]])
+grid.draw(ggplotGrob(lst.grobs[[1]]))
 # lst1  <- lst.grobs[[1]]  +
 #         annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
 # lst.grobs <-  list(lst1, lst2, lst3, lst4)
