@@ -105,7 +105,7 @@ for (i in 1:length(lst.clip.l)) {
                          color = "white", cex =4) +
                 annotate("text", label=points.name[i,]$name,
                          x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
-                         hjust= 1, vjust=1, fontface = "bold")
+                         hjust= 1, vjust=1)
 #                 annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=points.name$xlcc, y=points.name$ylcc, hjust= -0.4, vjust=2,fontface = "bold")
 }
 # sst.col  <-  cols
