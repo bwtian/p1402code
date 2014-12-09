@@ -193,7 +193,7 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # pdf("hkdSub.pdf", width = 7)
 # grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
 grid.arrange(lst.col, lulc.col,ncol = 2,
-main = textGrob(c("LST","LULC"), x = unit(c(0.24,0.79), "npc"),
+main = textGrob(c("LST","LULC"), x = unit(c(0.24,0.79), "npc", y = unit(0.1, "npc")),
                 gp=gpar(font=2,fontfamily = "times")),
 left =  textGrob(c("A","B","C","D"), y = unit(c(0.88,0.64,0.38,0.13), "npc"),
                  gp=gpar(font=2,fontfamily = "times")))
