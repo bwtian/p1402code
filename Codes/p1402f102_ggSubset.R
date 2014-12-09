@@ -172,7 +172,7 @@ lst.col  <- rbind(ggplotGrob(lst.grobs[[1]]),
                   ggplotGrob(lst.grobs[[3]]),
                   ggplotGrob(lst.grobs[[4]]),
                   size = "last")
- grid.draw(lst.col)
+grid.draw(lst.col)
 # sst.col  <-rbind(ggplotGrob(sst.grobs[[1]]),
 #                  ggplotGrob(sst.grobs[[2]]),
 #                  ggplotGrob(sst.grobs[[3]]),
