@@ -42,10 +42,10 @@ points.spdf  <- readOGR(points,  "Onshin")
 points.df  <- as.data.frame(points.spdf)
 points.lcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 points.df$Name
-Oakan  <- points.lcc[1,]
-Usubetsu  <- points.lcc[2,]
-Epicenter <- points.lcc[3,]
-Marukoma  <- points.lcc[4,]
+dOakan  <- points.lcc[1,]
+bUsubetsu  <- points.lcc[2,]
+aEpicenter <- points.lcc[3,]
+cMarukoma  <- points.lcc[4,]
 
 rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
@@ -107,8 +107,8 @@ for (i in 1:length(lst.clip.l)) {
 }
 
 grid.draw(ggplotGrob(lst.grobs[[1]]))
-# lst1  <- lst.grobs[[1]]  +
-#         annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
+lst1  <- lst.grobs[[1]]  +
+         annotate("text", label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
 # lst.grobs <-  list(lst1, lst2, lst3, lst4)
 
 # sst.col  <-  cols
