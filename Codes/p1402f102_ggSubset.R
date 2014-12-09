@@ -172,7 +172,7 @@ lst.col  <- rbind(ggplotGrob(lst.grobs[[1]]),
                   ggplotGrob(lst.grobs[[3]]),
                   ggplotGrob(lst.grobs[[4]]),
                   size = "last")
-grid.draw(lst.col)
+#grid.draw(lst.col)
 # sst.col  <-rbind(ggplotGrob(sst.grobs[[1]]),
 #                  ggplotGrob(sst.grobs[[2]]),
 #                  ggplotGrob(sst.grobs[[3]]),
@@ -192,7 +192,8 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # grid.draw(cbind(lst.col,sst.col))
 # pdf("hkdSub.pdf", width = 7)
 # grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
-grid.arrange(lst.col, lulc.col,ncol = 2)
+grid.arrange(lst.col, lulc.col,ncol = 2,main = "LST
+                LULC")
 # dev.off()
 # getwd()
 #grid.arrange(lst.col,lulc.col,ncol = 2)
