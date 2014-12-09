@@ -193,9 +193,9 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # pdf("hkdSub.pdf", width = 7)
 # grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
 grid.arrange(lst.col, lulc.col,ncol = 2,
-main = textGrob("LST                                                         LULC",
+main = textGrob("LST                                                              LULC",
                 gp=gpar(font=2,fontfamily = "times")),
-left =  textGrob("A\n\n\n\n\n\n\n\n\nB\n\n\n\n\n\n\n\n\n\nC\n\n\n\n\n\n\n\n\n\nD",
+left =  textGrob("A\n\n\n\n\n\n\n\nB\n\n\n\n\n\n\n\n\nC\n\n\n\n\n\n\n\nD",
                  gp=gpar(font=2,fontfamily = "times")))
 # dev.off()
 # getwd()
