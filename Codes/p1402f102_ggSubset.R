@@ -159,7 +159,7 @@ gglulc  <- function(df){
 lulc.grobs  <- list()
 for (i in 1:length(lulc.clip.l)) {
         lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
-                annotate("text",label=paste("LULC", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,             fontface = "bold")
+                #annotate("text",label=paste("LULC", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,             fontface = "bold")
 }
 
 grid.newpage()
@@ -193,9 +193,9 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # pdf("hkdSub.pdf", width = 7)
 # grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
 grid.arrange(lst.col, lulc.col,ncol = 2,
-main = textGrob("LST                                                              LULC",
+main = textGrob(c("LST","LULC"), x = unit(c(0.24,0.79), "npc"),
                 gp=gpar(font=2,fontfamily = "times")),
-left =  textGrob("A\n\n\n\n\n\n\n\nB\n\n\n\n\n\n\n\n\nC\n\n\n\n\n\n\n\nD",
+left =  textGrob(c("A","B","C","D"), y = unit(c(0.88,0.64,0.38,0.13), "npc"),
                  gp=gpar(font=2,fontfamily = "times")))
 # dev.off()
 # getwd()
