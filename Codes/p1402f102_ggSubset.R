@@ -21,8 +21,8 @@ names(hkdXyzt)  <- c("x","y","z","t")
 
 lulc.df  <- ge.raster2df("lulc100.tif")
 lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
-summary(sst.df)
+# sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
+# summary(sst.df)
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
 d  <- as.data.frame(rbind(c(41.91, 140.87),
@@ -92,7 +92,7 @@ for (i in 1:length(lst.clip.l)) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
                 annotate("text",label=paste("LST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
 }
-#lst.grobs <-  list(lst1, lst2, lst3, lst4)
+lst.grobs <-  list(lst1, lst2, lst3, lst4)
 # sst.col  <-  cols
 # sst.col.brks  <- seq(0, 400, 10)
 # sst.col.labs  <- as.character(sst.col.brks)
