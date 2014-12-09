@@ -113,33 +113,33 @@ for (i in 1:length(sst.clip.l)) {
         sst.grobs[[i]]  <-  ggsst(sst.clip.l[[i]]) +
                 annotate("text",label=paste("SST", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,fontface = "bold")
 }
-lulc.col.brks  <- c(1,2,3,4,5,6,8,10,11)
-lulc.col.labs  <- c("Water", "Urban", "Paddy", "Crop","Grass", "DeciduousForest",
-                    "EvergreenForest", "Bare", "SnowAndIce")
-lulc.cols  <- c("blue", "red", "purple", "yellow", "yellowgreen", "springgreen", "forestgreen", "saddlebrown", "white")
-lulc.name  <- "LULC"
-gglulc  <- function(df){
-        ggplot(df) +
-                geom_raster(aes(x,y, fill = factor(lulc100))) +
-                scale_x_continuous(labels = function(x) x/1000 -1200) +
-                scale_y_continuous(labels = function(x) x/1000 -1400) +
-                xlab("") +
-                ylab("") +
-                scale_fill_manual(values = lulc.cols,
-                                  na.value="white",
-                                  #breaks = lulc.col.brks,
-                                  labels = lulc.col.labs,
-                                  name = lulc.name) +
-                coord_equal() +
-                theme_bw(base_size = 12, base_family = "Times") +
-                theme(legend.position="none")  +
-                theme(plot.margin = unit(c(0.5,-1.5,0,-1.5), "lines"))
-}
-lulc.grobs  <- list()
-for (i in 1:length(lulc.clip.l)) {
-        lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
-                annotate("text",label=paste("LULC", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,             fontface = "bold")
-}
+# lulc.col.brks  <- c(1,2,3,4,5,6,8,10,11)
+# lulc.col.labs  <- c("Water", "Urban", "Paddy", "Crop","Grass", "DeciduousForest",
+#                     "EvergreenForest", "Bare", "SnowAndIce")
+# lulc.cols  <- c("blue", "red", "purple", "yellow", "yellowgreen", "springgreen", "forestgreen", "saddlebrown", "white")
+# lulc.name  <- "LULC"
+# gglulc  <- function(df){
+#         ggplot(df) +
+#                 geom_raster(aes(x,y, fill = factor(lulc100))) +
+#                 scale_x_continuous(labels = function(x) x/1000 -1200) +
+#                 scale_y_continuous(labels = function(x) x/1000 -1400) +
+#                 xlab("") +
+#                 ylab("") +
+#                 scale_fill_manual(values = lulc.cols,
+#                                   na.value="white",
+#                                   #breaks = lulc.col.brks,
+#                                   labels = lulc.col.labs,
+#                                   name = lulc.name) +
+#                 coord_equal() +
+#                 theme_bw(base_size = 12, base_family = "Times") +
+#                 theme(legend.position="none")  +
+#                 theme(plot.margin = unit(c(0.5,-1.5,0,-1.5), "lines"))
+# }
+# lulc.grobs  <- list()
+# for (i in 1:length(lulc.clip.l)) {
+#         lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
+#                 annotate("text",label=paste("LULC", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,             fontface = "bold")
+# }
 
 grid.newpage()
 # grid.draw(rbind(
