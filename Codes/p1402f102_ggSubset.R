@@ -6,7 +6,6 @@ ge.raster2df  <- function(rst){
         rst.spdf  <- rasterToPoints(rst, spatial=TRUE)
         rst.df  <- as.data.frame(rst.spdf)
 }
-
 # lulc.df  <- ge.raster2df("hkdBigLULCver1402Merge.tif")
 # lulc.df2  <- ge.crsTransform(lulc.df, x, y, xlcc,ylcc,wgs84GRS,lccWgs84)
 # lulc.rst  <- raster("hkdBigLULCver1402Merge.tif")
