@@ -14,17 +14,17 @@ ge.raster2df  <- function(rst){
 # lulc.rsp <- projectRaster(lulc.rst, lst.rst,method="ngb")
 # writeRaster(lulc.rsp, "lulc100.tif")
 ### Start herr
-hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
-hkdKT$t <- 10^(hkdKT$KT)
-hkdXyzt  <- hkdKT[,c(1:3,9)]
-names(hkdXyzt)  <- c("x","y","z","t")
-#
-lulc.df  <- ge.raster2df("lulc100.tif")
-lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
-hkdFault.sldf  <- readRDS("hkdFault.sldf_141126_221926.Rds")
-ft.df  <- fortify(hkdFault.sldf)
-ft.lcc  <- ge.crsTransform(ft.df, long, lat, x, y, wgs84GRS,lccWgs84)
+# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+# hkdKT$t <- 10^(hkdKT$KT)
+# hkdXyzt  <- hkdKT[,c(1:3,9)]
+# names(hkdXyzt)  <- c("x","y","z","t")
+# #
+# lulc.df  <- ge.raster2df("lulc100.tif")
+# lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+# sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
+# hkdFault.sldf  <- readRDS("hkdFault.sldf_141126_221926.Rds")
+# ft.df  <- fortify(hkdFault.sldf)
+# ft.lcc  <- ge.crsTransform(ft.df, long, lat, x, y, wgs84GRS,lccWgs84)
 
 # summary(sst.df)
 # summary(hkdKT)
@@ -32,7 +32,7 @@ ft.lcc  <- ge.crsTransform(ft.df, long, lat, x, y, wgs84GRS,lccWgs84)
 d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
                           c(42.816, 141.299),
-                          c(43.485, 144.159)))
+                          c(43.48, 144.159)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
@@ -163,12 +163,12 @@ gglulc  <- function(df){
 lulc.grobs  <- list()
 for (i in 1:length(lulc.clip.l)) {
         lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
-                geom_path(aes(x, y, group=piece), data = ft.clip.l[[i]],
-                          color = "black",
-                          alpha = 0.7)
+                geom_path(aes(x, y, group=id), data = ft.clip.l[[i]],
+                          color = "red",
+                          alpha = 0.9)
                 #annotate("path", )
 }
-ft.clip.l[[1]]
+ft.clip.l[[4]]
 grid.newpage()
 # grid.draw(rbind(
 #         cbind(ggplotGrob(grobs[[1]]), ggplotGrob(grobs[[2]]), size="last"),
