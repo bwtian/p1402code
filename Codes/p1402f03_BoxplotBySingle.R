@@ -9,7 +9,7 @@ hkdBox1   <-
   #geom_boxplot(fill = "green", outlier.size = 0 ) +
   geom_jitter(shape = ".", size  = 1) +
   stat_summary(fun.y="mean",geom="point",color="blue", shape = 4) +
-  ylab("Total lenth (depth of the bottom hole from the orifice, m)") +
+  ylab("Total length (depth of the bottom hole from the orifice, m)") +
   scale_y_continuous(breaks = c(seq(200, 2200,by = 200))) +
   xlab("") +
 
@@ -22,3 +22,4 @@ hkdBox1   <-
 hkdBox1
 ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7, height = 1.5)
 # ge.ggsave(hkdBox1)
+getwd()
