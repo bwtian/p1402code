@@ -134,7 +134,7 @@ ggHeatflow  <-
         ggCirles +
         geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.7,color = "gold", shape = 21) +
         #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
-        scale_size_discrete(name = expression("Heat flow"~(mW/m^2)),
+        scale_size_manual(name = expression("Heat flow"~(mW/m^2)),
                                                            values = sizesH,
                                                            breaks = breaksH,
                                                            labels = labelsH)
