@@ -145,7 +145,7 @@ hkdHeatflow.df2$ZZ  <- factor("Depth 1300 m", levels = c("Depth 100 m", "Depth 3
 ggDensity  <- ggHeatflow +
         stat_density2d(data = hkdHeatflow.df2, aes(x, y, z = Heat.Flow, weight=Heat.Flow, color = ..level..),
                        #geom = 'polygon',
-                       alpha = 0.6, bins = 9) +
+                       alpha = 0.6, bins = 9, colour = "orange") +
          scale_color_gradient(name = expression("Heat flow"~(mW/m^2)),
                             low = "yellow", high = "red",
                             breaks = breaksH,
