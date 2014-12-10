@@ -143,6 +143,6 @@ hkd3D  <-  ggHeatflow
 # library(directlabels)
 # direct.label(hkd3D)
 # ge.ggsave(hkd3D)
-ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
+#ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
 # getwd()
 
