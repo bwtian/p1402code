@@ -129,13 +129,14 @@ labelsH  <- as.character(breaksH)
 colorsH  <- oceColorsJet(6)
 ggHeatflow  <-
         ggCirles +
-        geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.4) +
-        scale_size_continuous(name = expression("Heat flow"~(mW/m^2)),
+        geom_point(data =hkdHeatflow.df, aes(x, y, size = cut), alpha =0.4) +
+        scale_size_manual(name = expression("Heat flow"~(mW/m^2)),
                                                            breaks = breaksH,
                                                            labels = labelsH)
-#ggHeatflow
+ggHeatflow
+hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaksH)
 ggContour  <- ggHeatflow +
-        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, colour = Heat.Flow, weight=Heat.Flow))
+        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow, color = cut))
 #         scale_colour_continuous(name = expression("Heat flow"~(mW/m^2)),
 #                            breaks = breaksH,
 #                            labels = labelsH)
