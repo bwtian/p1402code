@@ -132,8 +132,8 @@ hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaks =breaksH, labels
 levels(hkdHeatflow.df$cut)
 ggHeatflow  <-
         ggCirles +
-        geom_point(data =hkdHeatflow.df, aes(x, y, color = Heat.Flow), alpha =0.4) +
-        scale_color_manual(name = expression("Heat flow"~(mW/m^2)),
+        geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.4) +
+        scale_size_continuous(name = expression("Heat flow"~(mW/m^2)),
                                                            values = colorsH,
                                                            breaks = breaksH,
                                                            labels = labelsH)
