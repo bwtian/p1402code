@@ -3,6 +3,9 @@ setwd(dir.toaTbKlccCenterMos)
 # setwd("/toaTbKlccCenterMos/")
 getwd()
 mos  <- raster("L8B10CenterMos.tif")
+mos.spdf  <- rasterToPoints(mos, spatial=TRUE)
+mos.df  <- as.data.frame(mos.spdf)
+names(mos.df)  <- c("x", "y", "t")
 # cols  <-  bpy.colors(8)
 # cols = oceColorsJet(255)
 # brks  <- c(-20, -15,-10,-5, seq(0,20,4))
@@ -21,9 +24,7 @@ mos  <- raster("L8B10CenterMos.tif")
 # p11
 #mos.p  <- rasterToPoints(mos)
 #mos.df  <- as.data.frame(mos.p)
-mos.spdf  <- rasterToPoints(mos, spatial=TRUE)
-mos.df  <- as.data.frame(mos.spdf)
-names(mos.df)  <- c("x", "y", "t")
+
 #names(mos.df)  <- c("x", "y", "t")
 p12  <- ggplot(mos.df, aes(x,y, fill = t)) + geom_raster()
 #p12
@@ -45,7 +46,7 @@ p3  <- p2 + scale_fill_gradientn(colours = cols,
                                  na.value="white",
                           breaks = brks,
                           #name = expression(paste("Temperature from \nscene average", "^o ", "*C", sep = "\n")))
-                          name = expression(paste("Temperature from \nscene average", degree*C, sep = "\n")))
+                          name = expression(paste("Temperature from \nscene average", degree*C, sep = "")))
                           #name=parse(text=paste("Temperature from \nscene average\n", "^o ", "*C", sep="")))
 ### North Arror and scale bar
 
