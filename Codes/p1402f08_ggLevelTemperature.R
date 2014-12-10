@@ -118,7 +118,7 @@ maxids  <- A[A$Temperatrue %in% maxT$Temperatrue,]
 maxids
 #ggplot(maxids, aes(X,Y)) +  geom_point(size=50, shape=1, color="gold4")
 ggCirles  <- ggTlines + geom_point(data =maxids, aes(X,Y),size=6, shape=1, color="white")
-ggCirles
+
 hkdHeatflow  <- readRDS("hkdHeatflow.lcc_141210_114009.Rds")
 hkdHeatflow.df  <- as.data.frame(hkdHeatflow)
 labelHeatflow  <- expression(Heat flow)
