@@ -7,5 +7,5 @@ hkdBigPoly  <- readRDS("hkdBigLccWgs84_141210_113600.Rds")
 proj4string(hkdBigPoly)  <- CRS(lccWgs84)
 hkdHeatflow  <- crop(heatflow.lcc, hkdBigPoly)
 hkdHeatflow.lcc  <- hkdHeatflow
-ge.sp2shpPrj(hkdHeatflow.lcc)
+#ge.sp2shpPrj(hkdHeatflow.lcc)
 plot(hkdHeatflow)
