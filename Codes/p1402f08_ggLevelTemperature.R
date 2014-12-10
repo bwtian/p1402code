@@ -124,11 +124,11 @@ hkdHeatflow.df  <- as.data.frame(hkdHeatflow)
 labelHeatflow  <- expression(Heat flow)
 summary(hkdHeatflow.df)
 ggHeatflow  <- ggCirles +
-         geom_point(data = hkdHeatflow.df, aes(x, y,fill = Heat.Flow, size = Heat.Flow),
+        geom_point(data = hkdHeatflow.df, aes(x, y,fill = Heat.Flow, size = Heat.Flow),
                         shape = 21, alpha = 0.9) +
         geom_density2d(data = hkdHeatflow.df, aes(x, y))
 
-hkd3D  <-ggHeatflow
+hkd3D  <- ggHeatflow
 # ge.ggsave(hkd3D)
 #ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
 # getwd()
