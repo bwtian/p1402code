@@ -120,7 +120,7 @@ ggCirles  <- ggTlines + geom_point(data =maxids, aes(X,Y),size=6, shape=1, color
 hkdHeatflow.spdf  <- readRDS("hkdHeatflow.lcc_141210_114009.Rds")
 
 hkdHeatflow.df  <- as.data.frame(hkdHeatflow.spdf)
-hkdHeatflow.df$ZZ  <- factor("Depth 1400 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
+hkdHeatflow.df$ZZ  <- factor("Depth 1300 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
 summary(hkdHeatflow.df)
 # hkdHeatflow.d  <- hkdHeatflow.df[order(hkdHeatflow.df$x, hkdHeatflow.df$y),]
@@ -132,7 +132,7 @@ sizesH  <- c(1,2,3,4,5,6)
 hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaks =breaksH, labels = as.character(1:6))
 ggHeatflow  <-
         ggCirles +
-        geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.6,color = "orange", shape = 2) +
+        geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.6,color = "orange", shape = 20) +
         #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
         scale_size_area(name = expression("Heat flow"~(mW/m^2)),
                                                            #values = sizesH,
