@@ -1,3 +1,4 @@
+## Lastedit: 20141210
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 
 ### Make study Boundary
@@ -150,3 +151,4 @@ ggFont  <- ggBar +
 hkd  <-ggFont
 # ge.ggsave(hkd)
 ggsave(plot = hkd, "hkd.pdf", width = 7)
+getwd()
