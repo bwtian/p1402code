@@ -25,9 +25,12 @@ proj4string(hkd1h)
 shp  <- "~/Dropbox/2data/dataRaw/japan_ver71/HokkaidoUnion_lccWgs84.shp"
 str(hkdshp)
 hkdshp  <- readShapePoly(shp)
-proj4string(hkdshp) <- CRS(lccWgs84)
-hkdshpb  <- phd.largestPolys(hkdshp, Polygon = T)
-
+plot(hkdshpproj4string(hkdshp) <- CRS(lccWgs84)
+hkdshpb  <- ge.LargestPolys(hkdshp, Polygon = T)
+str(hkdshpb)
+hkdBigLccWgs84  <- hkdshpb
+ge.sp2shpPrj(hkdBigLccWgs84)
+getwd()
 hkdmaskb  <- mask(hkd1h, hkdshpb)
 saveRDS(hkdmaskb, file = "~/SparkleShare/TIR/hkdmskb_grdi2d1h.Rds")
 hkdmaskb  <- readRDS("~/SparkleShare/TIR/hkdmskb_grdi2d1h.Rds")
