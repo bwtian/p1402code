@@ -167,6 +167,7 @@ ak.df$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "De
 ggContour  <-    ggHeatflow +
   stat_contour(data = ak.df, aes(x, y, z=z, colour = ..level..), breaks=seq(0,300,20)) +
                  scale_color_continuous(name = expression("Heat flow"~(mW/m^2)),
+                                    colours = cols,
                                     breaks=seq(0,300,20),
                                     labels = as.character(seq(0,300,20)))
 ggContour
