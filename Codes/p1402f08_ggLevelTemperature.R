@@ -125,12 +125,15 @@ summary(hkdHeatflow.df)
 # d <- with(hkdHeatflow.df, hkdHeatflow.df[rep(1:nrow(hkdHeatflow.df), Heat.Flow),])
 breaksH  <- seq(0,200,50)
 labelsH  <- as.character(breaksH)
-ggHeatflow  <- ggCirles +
-      geom_point(data = hkdHeatflow.df, aes(x, y, alpha = Heat.Flow), color = "gold", shape = 21) +
-      stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow),color = "gold") +
-      scale_alpha_continuous(name = expression("Heat flow"~(mW/m^2)),
-                           breaks = breaksH,
-                           labels = labelsH)
+ggHeatflow  <-
+        ggCirles +
+        geom_point(data =hkdHeatflow.df, aes(x, y, alpha = Heat.Flow),  subset = .(df$ZZ %in% c("Depth 1500 m")),color = "gold", shape = 21)
+# +
+#       stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow),color = "gold")
+# +
+#       scale_alpha_continuous(name = expression("Heat flow"~(mW/m^2)),
+#                            breaks = breaksH,
+#                            labels = labelsH)
 #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
         #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
 
@@ -139,7 +142,7 @@ ggHeatflow  <- ggCirles +
         #geom_density2d(data = hkdHeatflow.df, aes(x, y),col )
 
 hkd3D  <-  ggHeatflow
-# hkd3D
+hkd3D
 # library(directlabels)
 # direct.label(hkd3D)
 # ge.ggsave(hkd3D)
