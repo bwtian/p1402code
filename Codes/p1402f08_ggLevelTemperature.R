@@ -154,8 +154,8 @@ pts  <- hkdHeatflow.df
 x  <- hkdHeatflow.df$x
 y  <- hkdHeatflow.df$y
 z  <- hkdHeatflow.df$Heat.Flow
-pts.grid <- idw(z~1, ~x+y, )
-pts.grid  <- interp(x,y,z)
+# pts.grid <- idw(z~1, ~x+y, )
+# pts.grid  <- interp(x,y,z)
 library(spatstat)
 window  <- owin(bbox(hkdHeatflow.spdf)[1,], bbox(hkdHeatflow.spdf)[2,])
 X_ppp <- ppp(x,y, window = window, marks = z)
@@ -166,10 +166,10 @@ ak.df$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "De
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
 ggContour  <-    ggHeatflow +
   stat_contour(data = ak.df, aes(x, y, z=z, colour = ..level..), breaks=seq(0,300,20)) +
-                 scale_color_(name = expression("Heat flow"~(mW/m^2)),
+                 scale_color_continuous(name = expression("Heat flow"~(mW/m^2)),
                                     breaks=seq(0,300,20),
                                     labels = as.character(seq(0,300,20)))
-# ggContour
+ggContour
 
 # direct.label(ggContour)
 # contours
