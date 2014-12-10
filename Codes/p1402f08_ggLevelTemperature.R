@@ -82,7 +82,7 @@ volAl.df  <- data.frame(coordinates(volAl))
 ggVol  <- g3  +
   geom_point(data = volAl.df,
              aes(as.numeric(lon), as.numeric(lat), color="red"),
-             color = red, shape = 17, alpha = 0.3)  +
+             shape = 17, alpha = 0.3)  +
   scale_shape_manual(name =  "Volcanoes",
                      values = c("red"), labels = c("Active volcanoes"))
 #ggVol
