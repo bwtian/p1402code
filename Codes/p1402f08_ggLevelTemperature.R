@@ -121,20 +121,22 @@ ggCirles  <- ggTlines + geom_point(data =maxids, aes(X,Y),size=6, shape=1, color
 hkdHeatflow  <- readRDS("hkdHeatflow.lcc_141210_114009.Rds")
 hkdHeatflow.df  <- as.data.frame(hkdHeatflow)
 summary(hkdHeatflow.df)
-hkdHeatflow.d  <- hkdHeatflow.df[order(hkdHeatflow.df$x, hkdHeatflow.df$y),]
-d <- with(hkdHeatflow.df, hkdHeatflow.df[rep(1:nrow(hkdHeatflow.df), Heat.Flow),])
+# hkdHeatflow.d  <- hkdHeatflow.df[order(hkdHeatflow.df$x, hkdHeatflow.df$y),]
+# d <- with(hkdHeatflow.df, hkdHeatflow.df[rep(1:nrow(hkdHeatflow.df), Heat.Flow),])
 
 ggHeatflow  <- ggCirles +
 #         geom_point(data = hkdHeatflow.df, aes(x, y,fill = Heat.Flow, size = Heat.Flow),
 #                         shape = 21, alpha = 0.9) +
-        ggplot(data = d, aes(x, y, z = Heat.Flow))+
-        stat_density2d(aes(alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
+        #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
+        #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
+        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,weight=Heat.Flow))
         #aes(colour=..level..), breaks=c(160, 170, 180)
         #geom_contour(data = hkdHeatflow.df, aes(x, y, z = as.numeric(Heat.Flow)))
         #geom_density2d(data = hkdHeatflow.df, aes(x, y),col )
 
 hkd3D  <- ggHeatflow
 hkd3D
+direct.label(hkd3D)
 # ge.ggsave(hkd3D)
 #ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
 # getwd()
