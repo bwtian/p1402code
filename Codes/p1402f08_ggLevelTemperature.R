@@ -81,10 +81,10 @@ volAl  <- spTransform(volA, CRS(lccWgs84))
 volAl.df  <- data.frame(coordinates(volAl))
 ggVol  <- g3  +
   geom_point(data = volAl.df,
-             aes(as.numeric(lon), as.numeric(lat), color="red"),
-             shape = 17, alpha = 0.3)  +
-  scale_color_manual(name =  "Volcanoes",
-                     values = c("red"), labels = c("Active volcanoes"))
+             aes(as.numeric(lon), as.numeric(lat), shape="red"),
+             color = red, shape = 17, alpha = 0.3)  +
+  scale_shape_manual(name =  "Volcanoes",
+                     values = c(17), labels = c("Active volcanoes"))
 #ggVol
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox.SPDF)
@@ -120,6 +120,8 @@ ggCirles  <- ggTlines + geom_point(data =maxids, aes(X,Y),size=6, shape=1, color
 
 hkdHeatflow  <- readRDS("hkdHeatflow.lcc_141210_114009.Rds")
 hkdHeatflow.df  <- as.data.frame(hkdHeatflow)
+hkdHeatflow.df$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
+                                                        "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
 summary(hkdHeatflow.df)
 # hkdHeatflow.d  <- hkdHeatflow.df[order(hkdHeatflow.df$x, hkdHeatflow.df$y),]
 # d <- with(hkdHeatflow.df, hkdHeatflow.df[rep(1:nrow(hkdHeatflow.df), Heat.Flow),])
@@ -127,10 +129,9 @@ breaksH  <- seq(0,200,50)
 labelsH  <- as.character(breaksH)
 ggHeatflow  <-
         ggCirles +
-        geom_point(data =hkdHeatflow.df, aes(x, y, alpha = Heat.Flow),  subset = .(df$ZZ %in% c("Depth 1500 m")),color = "gold", shape = 21)
-# +
-#       stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow),color = "gold")
-# +
+        geom_point(data =hkdHeatflow.df, aes(x, y, alpha = Heat.Flow),  color = "gold", shape = 21) +
+        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow),color = "gold")
+ggHeatflow
 #       scale_alpha_continuous(name = expression("Heat flow"~(mW/m^2)),
 #                            breaks = breaksH,
 #                            labels = labelsH)
