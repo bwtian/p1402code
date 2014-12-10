@@ -136,7 +136,6 @@ ggHeatflow  <- ggCirles +
 
 hkd3D  <- ggHeatflow
 hkd3D
-direct.label(hkd3D)
 # ge.ggsave(hkd3D)
 #ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
 # getwd()
