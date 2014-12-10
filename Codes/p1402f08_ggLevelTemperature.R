@@ -125,7 +125,7 @@ hkdHeatflow.df$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 30
 summary(hkdHeatflow.df)
 # hkdHeatflow.d  <- hkdHeatflow.df[order(hkdHeatflow.df$x, hkdHeatflow.df$y),]
 # d <- with(hkdHeatflow.df, hkdHeatflow.df[rep(1:nrow(hkdHeatflow.df), Heat.Flow),])
-breaksH  <- seq(0,200,50)
+breaksH  <- seq(0,300,50)
 labelsH  <- as.character(breaksH)
 ggHeatflow  <-
         ggCirles +
@@ -136,7 +136,6 @@ ggHeatflow  <-
                            breaks = breaksH,
                            labels = labelsH)
 ggHeatflow
-library(ggplot2)
 #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
         #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
 
