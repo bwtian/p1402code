@@ -81,8 +81,8 @@ volAl  <- spTransform(volA, CRS(lccWgs84))
 volAl.df  <- data.frame(coordinates(volAl))
 ggVol  <- g3  +
   geom_point(data = volAl.df,
-             aes(as.numeric(lon), as.numeric(lat), alpha = x),
-             shape = 17, color = "red", alpha = 0.5)  +
+             aes(as.numeric(lon), as.numeric(lat), alpha = factor(lat)),
+             shape = 17, color = "red")  +
   scale_alpha_continuous(name =  "Volcanoes",
                      labels = c("Active volcanoes"),
                      guide = "legend")
@@ -148,7 +148,7 @@ ggContour  <- ggHeatflow +
                             breaks = breaksH,
                             labels = labelsH,
                             guide = FALSE)
-ggContour + guides
+ggContour
 #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
         #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
 
