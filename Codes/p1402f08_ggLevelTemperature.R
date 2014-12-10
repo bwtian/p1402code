@@ -84,7 +84,7 @@ ggVol  <- g3  +
              aes(as.numeric(lon), as.numeric(lat), alpha=factor(0)),
              shape = 17, alpha = 0.3)  +
   scale_alpha_manual(name =  "Volcanoes",
-                     values = 0.3, labels = c("Active volcanoes"))
+                     values = c(0.3,0.5), labels = c("Active volcanoes"))
 ggVol
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox.SPDF)
