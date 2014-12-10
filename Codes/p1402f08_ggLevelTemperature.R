@@ -133,14 +133,14 @@ levels(hkdHeatflow.df$cut)
 ggHeatflow  <-
         ggCirles +
         geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.4) +
-        scale_size_continuous(name = expression("Heat flow"~(mW/m^2)),
-                                                           values = colorsH,
+        scale_size_manual(name = expression("Heat flow"~(mW/m^2)),
+                                                           values = sizesH
                                                            breaks = breaksH,
                                                            labels = labelsH)
 ggHeatflow
 
 ggContour  <- ggHeatflow +
-        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow))
+        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow, color = ..levle..), alpha = 0.05, bins = 10,geom = 'polygon')
 #         scale_colour_continuous(name = expression("Heat flow"~(mW/m^2)),
 #                            breaks = breaksH,
 #                            labels = labelsH)
