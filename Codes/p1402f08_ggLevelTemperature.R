@@ -119,8 +119,16 @@ maxids
 #ggplot(maxids, aes(X,Y)) +  geom_point(size=50, shape=1, color="gold4")
 ggCirles  <- ggTlines + geom_point(data =maxids, aes(X,Y),size=6, shape=1, color="white")
 ggCirles
+hkdHeatflow  <- readRDS("hkdHeatflow.lcc_141210_114009.Rds")
+hkdHeatflow.df  <- as.data.frame(hkdHeatflow)
+labelHeatflow  <- expression(Heat flow)
+summary(hkdHeatflow.df)
+ggHeatflow  <- ggCirles +
+         geom_point(data = hkdHeatflow.df, aes(x, y,fill = Heat.Flow, size = Heat.Flow),
+                        shape = 21, alpha = 0.9) +
+        geom_density2d(data = hkdHeatflow.df, aes(x, y))
 
-hkd3D  <-ggCirles
+hkd3D  <-ggHeatflow
 # ge.ggsave(hkd3D)
 #ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
 # getwd()
