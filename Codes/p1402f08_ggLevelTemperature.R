@@ -83,7 +83,7 @@ ggVol  <- g3  +
   geom_point(data = volAl.df,
              aes(as.numeric(lon), as.numeric(lat), color="red"),
              shape = 17, alpha = 0.3)  +
-  scale_shape_manual(name =  "Volcanoes",
+  scale_color_manual(name =  "Volcanoes",
                      values = c("red"), labels = c("Active volcanoes"))
 #ggVol
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
@@ -130,11 +130,10 @@ labelsH  <- as.character(breaksH)
 ggHeatflow  <-
         ggCirles +
         geom_point(data =hkdHeatflow.df, aes(x, y, colour = Heat.Flow),  shape = 21) +
-        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow, colour = Heat.Flow),color = "gold")
-ggHeatflow
-#       scale_alpha_continuous(name = expression("Heat flow"~(mW/m^2)),
-#                            breaks = breaksH,
-#                            labels = labelsH)
+        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow, colour = Heat.Flow)) +
+        scale_C_continuous(name = expression("Heat flow"~(mW/m^2)),
+                           breaks = breaksH,
+                           labels = labelsH)
 #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
         #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
 
