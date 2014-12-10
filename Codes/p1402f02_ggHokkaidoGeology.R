@@ -1,7 +1,7 @@
 ### p1402fig2 Geology setting
 ### Core Geology Data
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
-setwd(dir = "~/Share/iData/Hokkaido/")
+setwd(dir.hkd)
 hkdFault.sldf  <- readRDS("hkdFault.sldf_141126_221926.Rds")
 hkdFault.df  <- fortify(hkdFault.sldf)
 #levels(factor(hkdFault.df$piece))
