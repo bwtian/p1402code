@@ -39,13 +39,13 @@ ggBH  <-  ggmap(basemap.r, extent = "panel") +
         ### Layers
         geom_point(data = bh_xy, aes(Lon, Lat,fill = grp, size = grp),
                    shape = 21, alpha = 0.9) +
-  
-        scale_x_continuous(name = " Lontitude",
+
+        scale_x_continuous(name = " Longitude",
                            breaks=breaksX,
                            labels=labelsX,
                            limits=limitsX,
                            expand = c(0.01,0.01)) +
-        
+
         scale_y_continuous(name = " Latitude",
                            breaks=breaksY,
                            labels=labelsY,
@@ -69,7 +69,7 @@ ggVol  <- ggBH  +
         scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary volcanoes","Active volcanoes")) +
         geom_path(data = volQ2@data, aes(as.numeric(lon), as.numeric(lat)),size = 12, alpha = 0.2, colour = "yellow",lineend = "round")
 
-ggSap  <- ggVol + geom_point(data = sap.spdf, aes(x = lon, y = lat), colour = "White")  + 
+ggSap  <- ggVol + geom_point(data = sap.spdf, aes(x = lon, y = lat), colour = "White")  +
   geom_text(data = sap.spdf, aes(x = lon, y = lat, label = name), hjust = -0.1,family="Times", face="italic", colour="white")
 
 
@@ -102,9 +102,9 @@ hkdArc.df  <- hkdArc.df[order(hkdArc.df$lat),]
 rownames(hkdArc.df)  <- seq_along(hkdArc.df$lat)
 # summary(hkdArc.df)
 # ggWRS2 + geom_point(aes(long,lat,group=group),
-#                       color = "red", 
+#                       color = "red",
 #                       linetype = 1,
-#                       hkdArc.df) + 
+#                       hkdArc.df) +
 
 
 ggPlate  <- ggWRS2 + geom_path(aes(long,lat,group=piece),
@@ -134,13 +134,13 @@ ggTlines  <- ggPlate + geom_line(aes(long,lat,group=group, linetype=factor(id2))
   color = "red",
   #linetype = 2,
   size = 1,
-  hkdTlines.df) +  
+  hkdTlines.df) +
   scale_linetype_manual(name =  "Tectonic lines", values = c(1,3),
-                                    labels = c("Tectonic lines","Volcanic front")) 
-ggBar  <- ggTlines  + 
-  scaleBar(lon = 139, lat = 40, distanceLon = 100, 
-           distanceLegend = 30, distanceLat = 15, 
-           dist.unit = "km", arrow.length = 60, 
+                                    labels = c("Tectonic lines","Volcanic front"))
+ggBar  <- ggTlines  +
+  scaleBar(lon = 139, lat = 40, distanceLon = 100,
+           distanceLegend = 30, distanceLat = 15,
+           dist.unit = "km", arrow.length = 60,
            arrow.distance = 680, arrow.North.size = 4,
            legend.colour = "white", arrow.North.color = "white", arrow.colour = "blue")
 
