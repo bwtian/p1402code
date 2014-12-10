@@ -140,29 +140,39 @@ ggHeatflow  <-
                                                            labels = labelsH)
 # ggHeatflow
 
-ggDensity  <- ggHeatflow +
-        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow, color = ..level..), alpha = 0.05, bins = 9,geom = 'polygon') +
-         scale_color_gradient(name = expression("Heat flow"~(mW/m^2)),
-                            low = "yellow", high = "red",
-                            breaks = breaksH,
-                            labels = labelsH,
-                            guide = FALSE)
+# ggDensity  <- ggHeatflow +
+#         stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow, color = ..level..), alpha = 0.05, bins = 9,geom = 'polygon') +
+#          scale_color_gradient(name = expression("Heat flow"~(mW/m^2)),
+#                             low = "yellow", high = "red",
+#                             breaks = breaksH,
+#                             labels = labelsH,
+#                             guide = FALSE)
 
 library(akima)
-pts.grid <- interp(hkdHeatflow.df$x, hkdHeatflow.df$y, hkdHeatflow.df$Heat.Flow)
+pts  <- hkdHeatflow.df
+
 x  <- hkdHeatflow.df$x
 y  <- hkdHeatflow.df$y
 z  <- hkdHeatflow.df$Heat.Flow
-spl  <- interp(x,y,z)
-spl
-pts.grid
-pts.grid2 <- expand.grid(x, y)
-pts.grid2$z <- as.vector(z)
-pts.grid2
-# (ggplot(as.data.frame(pts), aes(x=coords.x1, y=coords.x2, z=GWLEVEL_TI))
-#  #+ geom_tile(data=na.omit(pts.grid2), aes(x=x, y=y, z=z, fill=z))
-#  ggHeatflow +
-#  stat_contour(data=na.omit(pts.grid2), binwidth=2, colour="red", aes(x=x, y=y, z=z))
+pts.grid <- idw(z~1, ~x+y, )
+pts.grid  <- interp(x,y,z)
+library(spatstat)
+window  <- owin(bbox(hkdHeatflow.spdf)[1,], bbox(hkdHeatflow.spdf)[2,])
+X_ppp <- ppp(x,y, window = window, marks = z)
+X_idw <- idw(X_ppp) #inverse distance weighting
+ak.df  <- na.omit(as.data.frame(X_idw))
+names(ak.df)  <- c("x","y","z")
+ak.df$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
+                                                        "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
+ggContour  <-    ggHeatflow +
+  stat_contour(data = ak.df, aes(x, y, z=z, colour = ..level..), breaks=seq(0,300,20)) +
+                 scale_color_(name = expression("Heat flow"~(mW/m^2)),
+                                    breaks=seq(0,300,20),
+                                    labels = as.character(seq(0,300,20)))
+ggContour
+
+direct.label(ggContour)
+contours
 #  + geom_point()
 # )ggContour
 #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
@@ -176,6 +186,6 @@ hkd3D  <-  ggContour
 # library(directlabels)
 # direct.label(hkd3D)
 # ge.ggsave(hkd3D)
-ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
+#ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
 # getwd()
 
