@@ -164,7 +164,7 @@ lulc.grobs  <- list()
 for (i in 1:length(lulc.clip.l)) {
         lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
                 geom_path(aes(x, y, group=id), data = ft.clip.l[[i]],
-                          color = "red", size =2,
+                          color = "red", size =1,
                           alpha = 0.9)
                 #annotate("path", )
 }
