@@ -29,7 +29,7 @@ ge.raster2df  <- function(rst){
 # summary(sst.df)
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
-d  <- as.data.frame(rbind(c(41.91, 140.877),
+d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
                           c(42.83, 141.30),
                           c(43.47, 144.19)))
