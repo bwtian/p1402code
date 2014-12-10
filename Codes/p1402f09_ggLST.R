@@ -44,7 +44,8 @@ brks  <- c(-15,-10,-5, 0, 5, 10, 15)
 p3  <- p2 + scale_fill_gradientn(colours = cols,
                                  na.value="white",
                           breaks = brks,
-                          name = paste("Temperature from \nscene average", expression(degree*C), sep = "\n"))
+                          #name = expression(paste("Temperature from \nscene average", expression(~degree*C), sep = "\n"))
+                          name=parse(text=paste("Temperature from \nscene average\n", "^o ", "*C", sep=""))
 #p3
 
 #ge.ggsave(p3
