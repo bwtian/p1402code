@@ -131,7 +131,7 @@ ggHeatflow  <-
         ggCirles +
         geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow),  shape = 21) +
         stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow)) +
-        scale_size_continous(name = expression("Heat flow"~(mW/m^2)),
+        scale_size_continuous(name = expression("Heat flow"~(mW/m^2)),
                            #low="orange", high="red",
                            breaks = breaksH,
                            labels = labelsH)
