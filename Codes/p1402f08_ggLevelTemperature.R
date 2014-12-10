@@ -117,8 +117,9 @@ maxids
 #ggplot(maxids, aes(X,Y)) +  geom_point(size=50, shape=1, color="gold4")
 ggCirles  <- ggTlines + geom_point(data =maxids, aes(X,Y),size=6, shape=1, color="white")
 
-hkdHeatflow  <- readRDS("hkdHeatflow.lcc_141210_114009.Rds")
-hkdHeatflow.df  <- as.data.frame(hkdHeatflow)
+hkdHeatflow.spdf  <- readRDS("hkdHeatflow.lcc_141210_114009.Rds")
+
+hkdHeatflow.df  <- as.data.frame(hkdHeatflow.spdf)
 hkdHeatflow.df$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
 summary(hkdHeatflow.df)
@@ -139,13 +140,21 @@ ggHeatflow  <-
                                                            labels = labelsH)
 ggHeatflow
 
-ggContour  <- ggHeatflow +
+ggDensity  <- ggHeatflow +
+        geom_contour(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))
+ggDensity
         stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow, color = ..level..), alpha = 0.05, bins = 9,geom = 'polygon') +
          scale_color_gradient(name = expression("Heat flow"~(mW/m^2)),
                             low = "yellow", high = "red",
                             breaks = breaksH,
                             labels = labelsH,
                             guide = FALSE)
+
+library(akima)
+pts.grid <- interp(hkdHeatflow.df$x, hkdHeatflow.df$x, hkdHeatflow.df$Heat.Flow)
+pts.grid
+pts.grid2 <- expand.grid(hkdHeatflow.df$x, hkdHeatflow.df$y)
+pts.grid2$z <- as.vector(pts.grid$z)
 ggContour
 #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
         #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
@@ -158,6 +167,6 @@ hkd3D  <-  ggContour
 # library(directlabels)
 # direct.label(hkd3D)
 # ge.ggsave(hkd3D)
-#ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
+ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
 # getwd()
 
