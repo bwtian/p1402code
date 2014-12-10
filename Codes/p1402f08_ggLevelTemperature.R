@@ -82,11 +82,9 @@ volAl.df  <- data.frame(coordinates(volAl))
 ggVol  <- g3  +
   geom_point(data = volAl.df,
              aes(as.numeric(lon), as.numeric(lat), alpha =factor(0)),
-             shape = 17, color = "red")  +
-  scale_alpha_continuous(name =  "Volcanoes",
-                     labels = c("Active volcanoes"),
-                     guide = "legend")
-ggVol
+             shape = 17, color = "red", alpha=0.5)  +
+  labs(name =  "Volcanoes",
+                     labels = c("Active volcanoes"))
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox.SPDF)
 hkdTlines.sldfl  <- spTransform(hkdTlines.sldf, CRS(lccWgs84))
