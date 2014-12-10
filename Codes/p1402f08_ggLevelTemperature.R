@@ -130,7 +130,7 @@ labelsH  <- as.character(breaksH)
 ggHeatflow  <-
         ggCirles +
         geom_point(data =hkdHeatflow.df, aes(x, y, colour = Heat.Flow),  shape = 21) +
-        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow, colorr = Heat.Flow),color = "gold")
+        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow, colour = Heat.Flow),color = "gold")
 ggHeatflow
 #       scale_alpha_continuous(name = expression("Heat flow"~(mW/m^2)),
 #                            breaks = breaksH,
