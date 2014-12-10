@@ -121,7 +121,7 @@ ggCirles  <- ggTlines + geom_point(data =maxids, aes(X,Y),size=6, shape=1, color
 
 hkdHeatflow  <- readRDS("hkdHeatflow.lcc_141210_114009.Rds")
 hkdHeatflow.df  <- as.data.frame(hkdHeatflow)
-labelHeatflow  <- expression(Heat flow)
+
 summary(hkdHeatflow.df)
 ggHeatflow  <- ggCirles +
         geom_point(data = hkdHeatflow.df, aes(x, y,fill = Heat.Flow, size = Heat.Flow),
