@@ -13,15 +13,17 @@ ge.raster2df  <- function(rst){
 # lst.rst  <- raster("hkdL8B10CenterMos.tif")
 # lulc.rsp <- projectRaster(lulc.rst, lst.rst,method="ngb")
 # writeRaster(lulc.rsp, "lulc100.tif")
-
-# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
-# hkdKT$t <- 10^(hkdKT$KT)
-# hkdXyzt  <- hkdKT[,c(1:3,9)]
-# names(hkdXyzt)  <- c("x","y","z","t")
+### Start herr
+hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+hkdKT$t <- 10^(hkdKT$KT)
+hkdXyzt  <- hkdKT[,c(1:3,9)]
+names(hkdXyzt)  <- c("x","y","z","t")
 #
-# lulc.df  <- ge.raster2df("lulc100.tif")
-# lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
-# sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
+lulc.df  <- ge.raster2df("lulc100.tif")
+lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
+hkdFault.sldf  <- readRDS("hkdFault.sldf_141126_221926.Rds")
+ft.df  <- fortify(hkdFault.sldf)
 # summary(sst.df)
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
@@ -73,6 +75,7 @@ ge.subdf  <- function(df,x,y,sub){
 # lst.clip.l <- ge.subdf(lst.df, x,y,sub)
 # #head(lst.clip.l[[1]])
 # lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
+
 
 cols = oceColorsJet(10)
 lst.col.brks  <- seq(-20, 20, 2)
