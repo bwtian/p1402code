@@ -42,7 +42,7 @@ breaksY  <- seq(limitsY[1],limitsY[2],1)
 labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
 ## Layer0: Base map
 ggBase  <-  ggmap(basemap.r, extent = "panel") +
-  xlab("Lontitude") +
+  xlab("Longitude") +
   scale_x_continuous(breaks=breaksX,
                      labels=labelsX,
                      limits=limitsX,
