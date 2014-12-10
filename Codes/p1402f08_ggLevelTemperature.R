@@ -166,7 +166,7 @@ ak.df  <- na.omit(as.data.frame(X_idw))
 names(ak.df)  <- c("x","y","z")
 ak.df$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
-ggContour  <-     ggHeatflow  +
+ggContour  <-     ggDensity  +
   stat_contour(data = ak.df, aes(x, y, z=z, colour = ..level..), alpha = 0.9, breaks=seq(0,300,30)) +
                  scale_color_gradientn(name = expression("Heat flow"~(mW/m^2)),
                                     colours = cm.colors(255),
