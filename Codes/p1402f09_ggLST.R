@@ -44,7 +44,7 @@ brks  <- c(-15,-10,-5, 0, 5, 10, 15)
 p3  <- p2 + scale_fill_gradientn(colours = cols,
                                  na.value="white",
                           breaks = brks,
-                          name = expression("Temperature \n from \n scene average \n"~(degree*C)))
+                          name = expression("Temperature \n from \n scene average"\n~(degree*C)))
 #p3
 
 #ge.ggsave(p3
@@ -113,10 +113,10 @@ sourceDir("~/SparkleShare/geothermaR/R")
 # #ge.ggsave(p5)
 
 ### focused on rect
-d  <- as.data.frame(rbind(c(41.92, 140.87),
-                  c(42.23, 139.92),
-                  c(42.78, 141.31),
-                  c(43.47, 144.16)))
+d  <- as.data.frame(rbind(c(41.91, 140.87),
+                          c(42.23, 139.94),
+                          c(42.88, 141.29),
+                          c(43.47, 144.19)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 dlcc$xmin  <- round(dlcc$xlcc, -3) -5000
@@ -169,3 +169,4 @@ ggsave(plot=hkdLST, "hkdLST2.pdf", width = 7, height = 5.5)
 # pdf("ps11.pdf")
 # grid.arrange(ps1, ps2, ps3, ps4, ncol=2)
 # dev.off()
+
