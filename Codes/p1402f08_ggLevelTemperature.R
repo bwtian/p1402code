@@ -131,7 +131,7 @@ sizesH  <- c(1,2,3,4,5,6)
 hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaks =breaksH, labels = as.character(1:6))
 ggHeatflow  <-
         ggCirles +
-        geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.4) +
+        geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.4,color = "gold", shape = 21) +
         #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
         scale_size_area(name = expression("Heat flow"~(mW/m^2)),
                                                            #values = sizesH,
@@ -144,9 +144,10 @@ ggContour  <- ggHeatflow +
          scale_color_gradient(name = expression("Heat flow"~(mW/m^2)),
                             low = "yellow", high = "red",
                             breaks = breaksH,
-                            labels = labelsH)
+                            labels = labelsH,
+                            guides = FALSE)
 ggContour
-?#ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
+#ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
         #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
 
         #aes(colour=..level..), breaks=c(160, 170, 180)
