@@ -138,11 +138,9 @@ ggHeatflow  <-
                                                            #values = sizesH,
                                                            breaks = breaksH,
                                                            labels = labelsH)
-ggHeatflow
+# ggHeatflow
 
 ggDensity  <- ggHeatflow +
-        geom_contour(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))
-ggDensity
         stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow, color = ..level..), alpha = 0.05, bins = 9,geom = 'polygon') +
          scale_color_gradient(name = expression("Heat flow"~(mW/m^2)),
                             low = "yellow", high = "red",
@@ -151,11 +149,22 @@ ggDensity
                             guide = FALSE)
 
 library(akima)
-pts.grid <- interp(hkdHeatflow.df$x, hkdHeatflow.df$x, hkdHeatflow.df$Heat.Flow)
+pts.grid <- interp(hkdHeatflow.df$x, hkdHeatflow.df$y, hkdHeatflow.df$Heat.Flow)
+x  <- hkdHeatflow.df$x
+y  <- hkdHeatflow.df$y
+z  <- hkdHeatflow.df$Heat.Flow
+spl  <- interp(x,y,z)
+spl
 pts.grid
-pts.grid2 <- expand.grid(hkdHeatflow.df$x, hkdHeatflow.df$y)
-pts.grid2$z <- as.vector(pts.grid$z)
-ggContour
+pts.grid2 <- expand.grid(x, y)
+pts.grid2$z <- as.vector(z)
+pts.grid2
+# (ggplot(as.data.frame(pts), aes(x=coords.x1, y=coords.x2, z=GWLEVEL_TI))
+#  #+ geom_tile(data=na.omit(pts.grid2), aes(x=x, y=y, z=z, fill=z))
+#  ggHeatflow +
+#  stat_contour(data=na.omit(pts.grid2), binwidth=2, colour="red", aes(x=x, y=y, z=z))
+#  + geom_point()
+# )ggContour
 #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
         #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
 
