@@ -132,10 +132,10 @@ sizesH  <- c(1,2,3,4,5,6)
 hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaks =breaksH, labels = as.character(1:6))
 ggHeatflow  <-
         ggCirles +
-        geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.4,color = "orange", shape = 21) +
+        geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.7,color = "gold", shape = 21) +
         #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
         scale_size_area(name = expression("Heat flow"~(mW/m^2)),
-                                                           #values = sizesH,
+                                                           values = sizesH,
                                                            breaks = breaksH,
                                                            labels = labelsH)
 # ggHeatflow
