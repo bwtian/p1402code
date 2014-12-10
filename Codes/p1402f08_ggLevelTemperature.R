@@ -123,19 +123,26 @@ hkdHeatflow.df  <- as.data.frame(hkdHeatflow)
 summary(hkdHeatflow.df)
 # hkdHeatflow.d  <- hkdHeatflow.df[order(hkdHeatflow.df$x, hkdHeatflow.df$y),]
 # d <- with(hkdHeatflow.df, hkdHeatflow.df[rep(1:nrow(hkdHeatflow.df), Heat.Flow),])
-
+breaksH  <- seq(0,300,50)
+labelsH  <- as.character(breaksH)
 ggHeatflow  <- ggCirles +
-#         geom_point(data = hkdHeatflow.df, aes(x, y,fill = Heat.Flow, size = Heat.Flow),
-#                         shape = 21, alpha = 0.9) +
-        #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
+      geom_point(data = hkdHeatflow.df, aes(x, y, alpha = Heat.Flow), color = "gold") +
+      stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow),color = "gold") +
+      scale_alpha_continuous(name = expression("Heat flow"~(degree*C)),
+                           breaks = breaksH,
+                           labels = labelsH)
+#ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
         #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
-        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,weight=Heat.Flow),breaks=seq(0,300,50))
+
         #aes(colour=..level..), breaks=c(160, 170, 180)
         #geom_contour(data = hkdHeatflow.df, aes(x, y, z = as.numeric(Heat.Flow)))
         #geom_density2d(data = hkdHeatflow.df, aes(x, y),col )
 
-hkd3D  <- ggHeatflow
+hkd3D  <-
+        ggHeatflow
 hkd3D
+library(directlabels)
+direct.label(hkd3D)
 # ge.ggsave(hkd3D)
 #ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
 # getwd()
