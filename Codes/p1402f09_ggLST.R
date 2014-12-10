@@ -49,7 +49,7 @@ p3  <- p2 + scale_fill_gradientn(colours = cols,
                                  na.value="white",
                           breaks = brks,
                           #name = expression(paste("Temperature from \nscene average", "^o ", "*C", sep = "\n")))
-                          name = expression(paste("Temperature from \nscene average", (degree*C), sep = "")))
+                          name = expression(paste("Temperature from \nscene average",~(degree*C), sep = "")))
                           #name=parse(text=paste("Temperature from \nscene average\n", "^o ", "*C", sep="")))
 ### North Arror and scale bar
 
