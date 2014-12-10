@@ -129,7 +129,7 @@ ggHeatflow  <- ggCirles +
 #                         shape = 21, alpha = 0.9) +
         #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
         #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
-        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,weight=Heat.Flow))
+        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,weight=Heat.Flow),breaks=seq(0,300,50))
         #aes(colour=..level..), breaks=c(160, 170, 180)
         #geom_contour(data = hkdHeatflow.df, aes(x, y, z = as.numeric(Heat.Flow)))
         #geom_density2d(data = hkdHeatflow.df, aes(x, y),col )
