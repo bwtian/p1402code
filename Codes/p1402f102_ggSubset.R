@@ -163,12 +163,12 @@ gglulc  <- function(df){
 lulc.grobs  <- list()
 for (i in 1:length(lulc.clip.l)) {
         lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
-                geom_path(aes(x, y, group=group), data = ft.clip.l[[i]],
+                geom_path(aes(x, y, group=piece), data = ft.clip.l[[i]],
                           color = "black",
                           alpha = 0.7)
                 #annotate("path", )
 }
-
+ft.clip.l[[1]]
 grid.newpage()
 # grid.draw(rbind(
 #         cbind(ggplotGrob(grobs[[1]]), ggplotGrob(grobs[[2]]), size="last"),
