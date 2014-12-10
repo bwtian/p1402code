@@ -1,4 +1,4 @@
-### p1402fig2 Geology setting
+### p1402fig2 Geology setting 141210
 ### Core Geology Data
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 setwd(dir.hkd)
