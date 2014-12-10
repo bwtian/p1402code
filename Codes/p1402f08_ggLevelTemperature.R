@@ -82,9 +82,10 @@ volAl.df  <- data.frame(coordinates(volAl))
 ggVol  <- g3  +
   geom_point(data = volAl.df,
              aes(as.numeric(lon), as.numeric(lat), alpha=0.3),
-             shape = 17, color = "red", alpha = 0.3)  +
-  scale_alpha_manual(name =  "Volcanoes",
-                     values = c(0.3,0.5), labels = c("Active volcanoes"))
+             shape = 17, color = "red", alpha = 0.5)  +
+  scale_alpha_continuous(name =  "Volcanoes",
+                     labels = c("Active volcanoes"))
+ggVol
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox.SPDF)
 hkdTlines.sldfl  <- spTransform(hkdTlines.sldf, CRS(lccWgs84))
@@ -145,7 +146,7 @@ ggContour  <- ggHeatflow +
                             low = "yellow", high = "red",
                             breaks = breaksH,
                             labels = labelsH,
-                            guides = FALSE)
+                            guide = FALSE)
 ggContour
 #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
         #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
@@ -154,7 +155,7 @@ ggContour
         #geom_contour(data = hkdHeatflow.df, aes(x, y, z = as.numeric(Heat.Flow)))
         #geom_density2d(data = hkdHeatflow.df, aes(x, y),col )
 
-hkd3D  <-  ggHeatflow
+hkd3D  <-  ggContour
 # library(directlabels)
 # direct.label(hkd3D)
 # ge.ggsave(hkd3D)
