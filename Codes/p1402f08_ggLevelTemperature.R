@@ -81,7 +81,7 @@ volAl  <- spTransform(volA, CRS(lccWgs84))
 volAl.df  <- data.frame(coordinates(volAl))
 ggVol  <- g3  +
   geom_point(data = volAl.df,
-             aes(as.numeric(lon), as.numeric(lat), alpha=0.3),
+             aes(as.numeric(lon), as.numeric(lat), alpha=x),
              shape = 17, color = "red", alpha = 0.5)  +
   scale_alpha_continuous(name =  "Volcanoes",
                      labels = c("Active volcanoes"))
