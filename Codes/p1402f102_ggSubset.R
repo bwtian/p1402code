@@ -24,6 +24,8 @@ lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
 sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
 hkdFault.sldf  <- readRDS("hkdFault.sldf_141126_221926.Rds")
 ft.df  <- fortify(hkdFault.sldf)
+ft.lcc  <- ge.crsTransform(ft.df, long, lat, x, y, wgs84GRS,lccWgs84)
+
 # summary(sst.df)
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
@@ -75,7 +77,7 @@ sst.clip.l <- ge.subdf(sst.df, x, y, sub)
 lst.clip.l <- ge.subdf(lst.df, x,y,sub)
 #head(lst.clip.l[[1]])
 lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
-ft.clip.l  <- ge.subdf(ft.df,x,y,sub)
+ft.clip.l  <- ge.subdf(ft.lcc,x,y,sub)
 cols = oceColorsJet(10)
 lst.col.brks  <- seq(-20, 20, 2)
 lst.col.labs  <- as.character(lst.col.brks)
@@ -160,8 +162,11 @@ gglulc  <- function(df){
 }
 lulc.grobs  <- list()
 for (i in 1:length(lulc.clip.l)) {
-        lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]])
-                #annotate("text",label=paste("LULC", LETTERS[i],sep=":"), x=-Inf, y=Inf, hjust=-0.4, vjust=2,             fontface = "bold")
+        lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
+                geom_path(aes(x, y, group=group), data = ft.clip.l[[i]],
+                          color = "black",
+                          alpha = 0.7)
+                #annotate("path", )
 }
 
 grid.newpage()
