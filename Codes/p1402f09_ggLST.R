@@ -44,7 +44,7 @@ brks  <- c(-15,-10,-5, 0, 5, 10, 15)
 p3  <- p2 + scale_fill_gradientn(colours = cols,
                                  na.value="white",
                           breaks = brks,
-                          name = expression("Temperature from \nscene average"(degree*C)))
+                          name = paste("Temperature from \nscene average", expression(degree*C), sep = "\n"))
 #p3
 
 #ge.ggsave(p3
@@ -140,7 +140,7 @@ p7  <- p6 +  coord_equal() +
         theme(axis.title.x =element_text(vjust=0))
 
 hkdLST  <- p7
-ggsave(plot=hkdLST, "hkdLST2.pdf", width = 7, height = 5.5)
+ggsave(plot=hkdLST, "hkdLST3.pdf", width = 7, height = 5.5)
 #ge.ggsave(p7)
 # round(dlcc)
 # names(d)  <- c("lat","lon")
