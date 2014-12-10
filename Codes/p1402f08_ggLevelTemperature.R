@@ -169,10 +169,10 @@ ggContour  <-    ggHeatflow +
                  scale_color_(name = expression("Heat flow"~(mW/m^2)),
                                     breaks=seq(0,300,20),
                                     labels = as.character(seq(0,300,20)))
-ggContour
+# ggContour
 
-direct.label(ggContour)
-contours
+# direct.label(ggContour)
+# contours
 #  + geom_point()
 # )ggContour
 #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
