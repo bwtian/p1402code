@@ -137,7 +137,7 @@ ggHeatflow  <-
 ggHeatflow
 
 ggContour  <- ggHeatflow +
-        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow)
+        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow))
 #         scale_colour_continuous(name = expression("Heat flow"~(mW/m^2)),
 #                            breaks = breaksH,
 #                            labels = labelsH)
