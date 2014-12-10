@@ -123,22 +123,12 @@ hkdHeatflow.df  <- as.data.frame(hkdHeatflow)
 summary(hkdHeatflow.df)
 hkdHeatflow.d  <- hkdHeatflow.df[order(hkdHeatflow.df$x, hkdHeatflow.df$y),]
 d <- with(hkdHeatflow.df, hkdHeatflow.df[rep(1:nrow(hkdHeatflow.df), Heat.Flow),])
-ggplot(d, aes(x, y)) +
-        stat_density2d(aes(alpha=..level.., fill=..level.., weight=Heat.Flow), size=2,
-                       bins=10, geom="polygon") +
-        scale_fill_gradient(low = "yellow", high = "red")
-+
-        scale_alpha(range = c(0.00, 0.5), guide = FALSE) +
-        geom_density2d(colour="black", bins=10) +
-        geom_point(data = dataset) +
-        guides(alpha=FALSE) + xlim(c(10, 160)) + ylim(c(120, 280))
-contour(d$x, d$y, d$Heat.Flow)
+
 ggHeatflow  <- ggCirles +
 #         geom_point(data = hkdHeatflow.df, aes(x, y,fill = Heat.Flow, size = Heat.Flow),
 #                         shape = 21, alpha = 0.9) +
-        ggplot(data = d, aes(x, y, z = as.numeric(Heat.Flow)))+
-        geom_point() +
-        stat_contour(aes(colour=..level..))
+        ggplot(data = d, aes(x, y, z = Heat.Flow))+
+        stat_density2d(aes(alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
         #aes(colour=..level..), breaks=c(160, 170, 180)
         #geom_contour(data = hkdHeatflow.df, aes(x, y, z = as.numeric(Heat.Flow)))
         #geom_density2d(data = hkdHeatflow.df, aes(x, y),col )
