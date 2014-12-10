@@ -120,7 +120,7 @@ ggCirles  <- ggTlines + geom_point(data =maxids, aes(X,Y),size=6, shape=1, color
 hkdHeatflow.spdf  <- readRDS("hkdHeatflow.lcc_141210_114009.Rds")
 
 hkdHeatflow.df  <- as.data.frame(hkdHeatflow.spdf)
-hkdHeatflow.df$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
+hkdHeatflow.df$ZZ  <- factor("Depth 1400 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
 summary(hkdHeatflow.df)
 # hkdHeatflow.d  <- hkdHeatflow.df[order(hkdHeatflow.df$x, hkdHeatflow.df$y),]
@@ -130,14 +130,14 @@ labelsH  <- as.character(breaksH)
 colorsH  <- oceColorsJet(6)
 sizesH  <- c(1,2,3,4,5,6)
 hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaks =breaksH, labels = as.character(1:6))
-# ggHeatflow  <-
-#         ggCirles +
-#         geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.6,color = "orange", shape = 21) +
-#         #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
-#         scale_size_area(name = expression("Heat flow"~(mW/m^2)),
-#                                                            #values = sizesH,
-#                                                            breaks = breaksH,
-#                                                            labels = labelsH)
+ggHeatflow  <-
+        ggCirles +
+        geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.6,color = "orange", shape = 2) +
+        #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
+        scale_size_area(name = expression("Heat flow"~(mW/m^2)),
+                                                           #values = sizesH,
+                                                           breaks = breaksH,
+                                                           labels = labelsH)
 # ggHeatflow
 
 # ggDensity  <- ggHeatflow +
@@ -164,13 +164,13 @@ ak.df  <- na.omit(as.data.frame(X_idw))
 names(ak.df)  <- c("x","y","z")
 ak.df$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
-ggContour  <-     ggCirles  +
-  stat_contour(data = ak.df, aes(x, y, z=z, colour = ..level..), alpha = 0.5, breaks=seq(0,300,30)) +
+ggContour  <-     ggHeatflow  +
+  stat_contour(data = ak.df, aes(x, y, z=z, colour = ..level..), alpha = 0.9, breaks=seq(0,300,30)) +
                  scale_color_gradientn(name = expression("Heat flow"~(mW/m^2)),
                                     colours = cm.colors(255),
                                     breaks=seq(0,300,30),
                                     labels = as.character(seq(0,300,30)))
-ggContour
+#ggContour
 
 # direct.label(ggContour)
 # contours
@@ -187,6 +187,6 @@ hkd3D  <-  ggContour
 # library(directlabels)
 # direct.label(hkd3D)
 # ge.ggsave(hkd3D)
-ggsave(plot = hkd3D, "hkd3D.pdf", width =7, height = 9)
+ggsave(plot = hkd3D, "hkd3D2.pdf", width =7, height = 9)
 # getwd()
 
