@@ -135,7 +135,7 @@ hkdDEM.df  <- fortify(hkdDEM.spdf)
 
 ggContour  <- ggVol +
         geom_path(aes(long,lat,group=group, alpha=id),hkdDEM.df, color ="brown") +
-        scale_alpha_manual(name =  "Elevation contour (m)", values = c(0.2,0.4,0.6,1),
+        scale_alpha_manual(name =  "Elevation (m a.s.l))", values = c(0.2,0.4,0.6,1),
                            labels = c(as.character(seq(500,2000,500))))
 
 
