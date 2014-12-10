@@ -129,13 +129,14 @@ breaksH  <- seq(0,200,50)
 labelsH  <- as.character(breaksH)
 ggHeatflow  <-
         ggCirles +
-        geom_point(data =hkdHeatflow.df, aes(x, y, colour = Heat.Flow),  shape = 21) +
-        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow, colour = Heat.Flow)) +
-        scale_colour_gradient(name = expression("Heat flow"~(mW/m^2)),
-                           low="orange", high="red",
+        geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow),  shape = 21) +
+        stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow, weight=Heat.Flow)) +
+        scale_size_manual(name = expression("Heat flow"~(mW/m^2)),
+                           #low="orange", high="red",
                            breaks = breaksH,
                            labels = labelsH)
 ggHeatflow
+library(ggplot2)
 #ggplot(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow))+
         #stat_density2d(data = hkdHeatflow.df, aes(x, y, z = Heat.Flow,alpha=..level.., fill=..level.., weight=Heat.Flow), size=2)
 
