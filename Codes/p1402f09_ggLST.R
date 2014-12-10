@@ -1,11 +1,14 @@
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 setwd(dir.toaTbKlccCenterMos)
 # setwd("/toaTbKlccCenterMos/")
-getwd()
-mos  <- raster("L8B10CenterMos.tif")
-mos.spdf  <- rasterToPoints(mos, spatial=TRUE)
-mos.df  <- as.data.frame(mos.spdf)
-names(mos.df)  <- c("x", "y", "t")
+# getwd()
+# mos  <- raster("L8B10CenterMos.tif")
+# mos.spdf  <- rasterToPoints(mos, spatial=TRUE)
+# mos.df  <- as.data.frame(mos.spdf)
+# names(mos.df)  <- c("x", "y", "t")
+
+
+
 # cols  <-  bpy.colors(8)
 # cols = oceColorsJet(255)
 # brks  <- c(-20, -15,-10,-5, seq(0,20,4))
