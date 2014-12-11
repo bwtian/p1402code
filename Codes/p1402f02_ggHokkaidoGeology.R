@@ -54,7 +54,7 @@ ggBase  <-  ggmap(basemap.r, extent = "panel") +
                      labels=labelsY,
                      limits=limitsY,
                      expand = c(0.01,0.01))
-cols <- c("accretionary complex" = "red",
+cols <- c("accretionary complex" = "blue",
           "metamorphic rock" = "purple",
           "pultonic rock" = "pink",
           "sedimentary rock" = "palegreen",
@@ -146,7 +146,7 @@ ggFont  <- ggBar +
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 hkdGeology  <-ggFont
-hkdGeology
+# hkdGeology
 # 7*5
-ggsave(plot = hkdGeology, "hkdGeology.pdf", width =7, height = 6)
-ge.ggsave(hkdGeology)
+ggsave(plot = hkdGeology, "hkdGeology.pdf", width =7, height = 5.5)
+# ge.ggsave(hkdGeology)
