@@ -151,5 +151,5 @@ ggFont  <- ggBar +
 hkd  <-ggFont
 # ge.ggsave(hkd)
 # ge.ggsave
-# ggsave(plot = hkd, "hkd.pdf", width = 7, height =5.5)
+ggsave(plot = hkd, "hkd.pdf", width = 7, height =5.3)
 # getwd()
