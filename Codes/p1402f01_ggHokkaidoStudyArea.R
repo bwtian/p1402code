@@ -149,6 +149,6 @@ ggFont  <- ggBar +
   #coord_equal() +
   theme_bw(base_family = "Times")
 hkd  <-ggFont
-# ge.ggsave(hkd)
-ggsave(plot = hkd, "hkd.pdf", width = 7)
-getwd()
+ge.ggsave(hkd)
+# ggsave(plot = hkd, "hkd.pdf", width = 7)
+# getwd()
