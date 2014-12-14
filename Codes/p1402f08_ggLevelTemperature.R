@@ -94,13 +94,12 @@ hkdTlines.df  <- fortify(hkdTlines.sldfl)
 hkdTlines.df$id2 <- 2
 hkdTlines.df[hkdTlines.df$id == 1,]$id2 <- 1
 hkdTlines.df[hkdTlines.df$id == 3,]$id2 <- 1
-ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, linetype=factor(id2)),
+ggTlines  <-ggVol + geom_line(aes(long,lat,group=group, alpha=factor(id2)),
                               color = "red",
                               #linetype = 2,
                               size = 1,
-                              alpha = 0.5,
                               hkdTlines.df) +
-  scale_linetype_manual(name =  "Tectonic lines", values = c(1,2),
+  scale_alpha_manual(name =  "Tectonic lines", values = c(0.3,0.7),
                         labels = c("Tectonic lines","Volcanic front"))
 
 ### Circles
@@ -169,8 +168,8 @@ names(ak.df)  <- c("x","y","z")
 ak.df$ZZ  <- factor("Depth 1300 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
 ggContour  <-     ggDensity  +
-  stat_contour(data = ak.df, aes(x, y, z=z, alpha = ..level..), breaks=seq(0,300,30)) +
-                 scale_alpha_continuous(name = expression("Heat flow Contours at 1300 m"~(mW/m^2)),
+  stat_contour(data = ak.df, aes(x, y, z=z, linetype = ..level..), breaks=seq(0,300,30),color = "gold") +
+                 scale_linetype_continuous(name = expression("Heat flow Contours at 1300 m"~(mW/m^2)),
                                     range = c(0.5:1),
                                     breaks=seq(0,300,50),
                                     labels = as.character(seq(0,300,50)))
