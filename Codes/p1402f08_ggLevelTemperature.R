@@ -150,7 +150,9 @@ ggDensity  <- ggHeatflow +
                             low = "yellow", high = "red",
                             breaks = breaksH,
                             labels = labelsH,
-                            guide = FALSE)
+                            guide = FALSE) +
+        annotate("text", x = 140000, y = 150000, labels = "H")
+
 
 library(akima)
 pts  <- hkdHeatflow.df
