@@ -151,7 +151,7 @@ ggDensity  <- ggHeatflow +
                             breaks = breaksH,
                             labels = labelsH,
                             guide = FALSE) +
-        annotate("text", x = 140000, y = 150000, labels = "H")
+        annotate("text", x = 140000, y = 150000, label = "H")
 
 
 library(akima)
