@@ -129,15 +129,17 @@ labelsH  <- as.character(breaksH)
 colorsH  <- oceColorsJet(6)
 sizesH  <- c(1,2,3,4,5,6)
 hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaks =breaksH, labels = as.character(1:6))
+
+
 ggHeatflow  <-
         ggCirles +
-        geom_point(data =hkdHeatflow.df, aes(x, y, colour = Heat.Flow), alpha =0.7, shape = 21) +
+        geom_point(data =hkdHeatflow.df, aes(x, y, colour = Heat.Flow), alpha =0.7, shape = 16) +
         #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
         scale_colour_continuous(name = expression("Heat flow (at depth 1100 m)"~(mW/m^2)),
                                                            low="black", high="white",
                                                            breaks = breaksH,
                                                            labels = labelsH)
-#ggHeatflow
+ggHeatflow
 hkdHeatflow.df2  <- hkdHeatflow.df
 hkdHeatflow.df2$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                          "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
