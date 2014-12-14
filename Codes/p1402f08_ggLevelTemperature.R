@@ -150,8 +150,9 @@ ggDensity  <- ggHeatflow +
                             low = "yellow", high = "red",
                             breaks = breaksH,
                             labels = labelsH,
-                            guide = FALSE) +
-        annotate("text", x = 1400000, y = 1500000, label = "H")
+                            guide = FALSE)
+
+
 
 
 library(akima)
@@ -181,7 +182,12 @@ ggContour  <-     ggDensity  +
 # direct.label(ggContour)
 
 
-hkd3D  <-  ggContour
+
+HL_text <- data.frame(x = c(1300000,1500000, 1550000,1350000), y = c(1550000,165000,1500000,1800000), lab = c("H", "H", "L", "L"),  ZZ = factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m","Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m")))
+ggHL  <- ggContour +
+        geom_text(data = HL_text, aes(x, y, label = lab))
+
+ggHL
 hkd3D
 # library(directlabels)
 # direct.label(hkd3D)
