@@ -145,7 +145,7 @@ ggDensity  <- ggHeatflow +
         stat_density2d(data = hkdHeatflow.df2, aes(x, y, z = Heat.Flow, weight=Heat.Flow, color = ..level..),
                        #geom = 'polygon',
                        alpha = 0.6, bins = 9, colour = "grey") +
-         scale_color_gradient(name = expression("Heat flow"~(mW/m^2)),
+         scale_color_gradient(name = expression("Heat flow (at depth 1500 m)"~(mW/m^2)),
                             low = "yellow", high = "red",
                             breaks = breaksH,
                             labels = labelsH,
@@ -167,9 +167,10 @@ ak.df  <- na.omit(as.data.frame(X_idw))
 names(ak.df)  <- c("x","y","z")
 ak.df$ZZ  <- factor("Depth 1300 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
+ggDensity
 ggContour  <-     ggDensity  +
   stat_contour(data = ak.df, aes(x, y, z=z, linetype = ..level..), breaks=seq(0,300,30),color = "gold") +
-                 scale_linetype_manual(name = expression("Heat flow Contours at 1300 m"~(mW/m^2)),
+                 scale_linetype_manual(name = expression("Heat flow (at depth 1300 m)"~(mW/m^2)),
                                     values = c(1:5),
                                     breaks=seq(0,300,50),
                                     labels = as.character(seq(0,300,50)))
