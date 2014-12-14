@@ -133,7 +133,7 @@ ggHeatflow  <-
         ggCirles +
         geom_point(data =hkdHeatflow.df, aes(x, y, colour = Heat.Flow), alpha =0.7, shape = 21) +
         #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
-        scale_colour_continuous(name = expression("Heat flow"~(mW/m^2)),
+        scale_colour_continuous(name = expression("Heat flow (at depth 1100 m)"~(mW/m^2)),
                                                            low="black", high="white",
                                                            breaks = breaksH,
                                                            labels = labelsH)
