@@ -139,6 +139,7 @@ ggHeatflow  <-
                                                            values = c(1,16,2,17,0,15),
                                                            breaks = breaksH,
                                                            labels = labelsH)
+ggHeatflow
 hkdHeatflow.df2  <- hkdHeatflow.df
 hkdHeatflow.df2$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                          "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
