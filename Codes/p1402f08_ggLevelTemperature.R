@@ -169,7 +169,7 @@ names(ak.df)  <- c("x","y","z")
 ak.df$ZZ  <- factor("Depth 1300 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
 ggContour  <-     ggDensity  +
-  stat_contour(data = ak.df, aes(x, y, z=z, size = ..level..), breaks=seq(0,300,50),color = "gold", alpha = 0.7) +
+  stat_contour(data = ak.df, aes(x, y, z=z, size = ..level..), breaks=seq(0,300,50),color = "grey", alpha = 0.7) +
                  scale_size_continuous(name = expression("Heat flow (at depth 1300 m)"~(mW/m^2)),
                                     range = c(0.5, 1.5),
                                     breaks=seq(0,300,50),
