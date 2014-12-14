@@ -133,7 +133,7 @@ hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaks =breaksH)
 
 ggHeatflow  <-
         ggCirles +
-        geom_point(data =hkdHeatflow.df, aes(x, y, shape = cut), alpha =1, color = "grey") +
+        geom_point(data =hkdHeatflow.df, aes(x, y, shape = cut), alpha =1, color = "orange") +
         #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
         scale_shape_manual(name = expression("Heat flow (at depth 1100 m)"~(mW/m^2)),
                                                            values = c(1,16,2,17,0,15))
@@ -145,7 +145,7 @@ hkdHeatflow.df2$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 3
 ggDensity  <- ggHeatflow +
         stat_density2d(data = hkdHeatflow.df2, aes(x, y, z = Heat.Flow, weight=Heat.Flow, color = ..level..),
                        #geom = 'polygon',
-                       alpha = 0.6, bins = 9, colour = "grey") +
+                       alpha = 0.6, bins = 9, colour = "orange") +
          scale_color_gradient(name = expression("Heat flow (at depth 1500 m)"~(mW/m^2)),
                             low = "yellow", high = "red",
                             breaks = breaksH,
@@ -169,9 +169,9 @@ names(ak.df)  <- c("x","y","z")
 ak.df$ZZ  <- factor("Depth 1300 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
 ggContour  <-     ggDensity  +
-  stat_contour(data = ak.df, aes(x, y, z=z, size = ..level..), breaks=seq(0,300,50),color = "grey", alpha = 0.9) +
+  stat_contour(data = ak.df, aes(x, y, z=z, size = ..level..), breaks=seq(0,300,50),color = "orange", alpha = 0.9) +
                  scale_size_continuous(name = expression("Heat flow (at depth 1300 m)"~(mW/m^2)),
-                                    range = c(0.5, 1.5),
+                                    range = c(0.1, 1),
                                     breaks=seq(0,300,50),
                                     labels = as.character(seq(0,300,50)))
 #ggContour
