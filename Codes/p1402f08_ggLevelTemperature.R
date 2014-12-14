@@ -131,10 +131,10 @@ sizesH  <- c(1,2,3,4,5,6)
 hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaks =breaksH, labels = as.character(1:6))
 ggHeatflow  <-
         ggCirles +
-        geom_point(data =hkdHeatflow.df, aes(x, y, size = Heat.Flow), alpha =0.7,color = "gold", shape = 21) +
+        geom_point(data =hkdHeatflow.df, aes(x, y, colour = Heat.Flow), alpha =0.7,color = "gold", shape = 21) +
         #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
-        scale_size_area(name = expression("Heat flow"~(mW/m^2)),
-                                                           max_size = 4,
+        scale_colour_continuous(name = expression("Heat flow"~(mW/m^2)),
+                                                           low="orange", high="gold"
                                                            breaks = breaksH,
                                                            labels = labelsH)
 # ggHeatflow
@@ -168,9 +168,8 @@ names(ak.df)  <- c("x","y","z")
 ak.df$ZZ  <- factor("Depth 1300 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
 ggContour  <-     ggDensity  +
-  stat_contour(data = ak.df, aes(x, y, z=z, linetype = ..level..), breaks=seq(0,300,30),color = "gold") +
-                 scale_linetype_continuous(name = expression("Heat flow (at depth 1300 m)"~(mW/m^2)),
-                                    values = c(1:5),
+  stat_contour(data = ak.df, aes(x, y, z=z, size = ..level..), breaks=seq(0,300,30),color = "gold") +
+                 scale_size_continuous(name = expression("Heat flow (at depth 1300 m)"~(mW/m^2)),
                                     breaks=seq(0,300,50),
                                     labels = as.character(seq(0,300,50)))
 #ggContour
