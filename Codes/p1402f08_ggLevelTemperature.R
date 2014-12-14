@@ -136,7 +136,7 @@ ggHeatflow  <-
         geom_point(data =hkdHeatflow.df, aes(x, y, shape = Heat.Flow), alpha =0.7) +
         #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
         scale_shape_manual(name = expression("Heat flow (at depth 1100 m)"~(mW/m^2)),
-                                                           valuse = c(1,16,2,17,0,15),
+                                                           values = c(1,16,2,17,0,15),
                                                            breaks = breaksH,
                                                            labels = labelsH)
 hkdHeatflow.df2  <- hkdHeatflow.df
