@@ -183,6 +183,6 @@ hkd3D  <-  ggContour
 # library(directlabels)
 # direct.label(hkd3D)
 # ge.ggsave(hkd3D)
-ggsave(plot = hkd3D, "hkd3D2.pdf", width =7, height = 9)
+ggsave(plot = hkd3D, "hkd3D3.pdf", width =7, height = 9)
 # getwd()
 
