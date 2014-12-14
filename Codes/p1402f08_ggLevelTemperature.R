@@ -129,7 +129,7 @@ labelsH  <- as.character(breaksH)
 colorsH  <- oceColorsJet(6)
 sizesH  <- c(1,2,3,4,5,6)
 #hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaks =breaksH, labels = as.character(1:6))
-hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaks =breaksH, labels = as.character(1:6))
+hkdHeatflow.df$cut  <- cut(x = hkdHeatflow.df$Heat.Flow, breaks =breaksH)
 
 ggHeatflow  <-
         ggCirles +
