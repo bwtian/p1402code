@@ -140,7 +140,7 @@ ggHeatflow  <-
                                                            labels = labelsH)
 # ggHeatflow
 hkdHeatflow.df2  <- hkdHeatflow.df
-hkdHeatflow.df2$ZZ  <- factor("Depth 1300 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
+hkdHeatflow.df2$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
                                                          "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
 ggDensity  <- ggHeatflow +
         stat_density2d(data = hkdHeatflow.df2, aes(x, y, z = Heat.Flow, weight=Heat.Flow, color = ..level..),
