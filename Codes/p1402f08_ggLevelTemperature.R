@@ -186,7 +186,7 @@ ggContour  <-     ggDensity  +
 
 HL_text <- data.frame(x = c(1300000,1510000, 1450000,1350000), y = c(1550000,1640000,1480000,1800000), lab = c("H", "H", "L", "L"),  ZZ = factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m","Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m")))
 ggHL  <- ggContour +
-        geom_text(data = HL_text, aes(x, y, label = lab),alpha = 0.5, color = "black")
+        geom_text(data = HL_text, aes(x, y, label = lab),alpha = 0.8, color = "black")
 
 
 hkd3D  <- ggHL
