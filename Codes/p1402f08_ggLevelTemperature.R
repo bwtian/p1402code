@@ -135,7 +135,7 @@ ggHeatflow  <-
         ggCirles +
         geom_point(data =hkdHeatflow.df, aes(x, y, shape = cut), alpha =0.6, color = "orange") +
         #geom_text(data =hkdHeatflow.df, aes(x, y,label=Heat.Flow), size=3, hjust=-.25, vjust=.75) +
-        scale_shape_manual(name = expression("Heat flow (at depth 1100 m)"~(mW/m^2)),
+        scale_shape_manual(name = expression("Heat flow"~(mW/m^2)),
                                                            values = c(1,16,2,17,0,15))
 #                                                            breaks = breaksH,
 #                                                            labels = labelsH)
@@ -145,8 +145,9 @@ hkdHeatflow.df2$ZZ  <- factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 3
 ggDensity  <- ggHeatflow +
         stat_density2d(data = hkdHeatflow.df2, aes(x, y, z = Heat.Flow, weight=Heat.Flow, color = ..level..),
                        #geom = 'polygon',
-                       alpha = 0.6, bins = 9, colour = "orange") +
-         scale_color_gradient(name = expression("Heat flow (at depth 1500 m)"~(mW/m^2)),
+                       alpha = 0.6, bins = 9, colour = "grey") +
+        #"Heat flow (at depth 1500 m)"~(mW/m^2))
+         scale_color_gradient(name = expression("Heat flow"~(mW/m^2)),
                             low = "yellow", high = "red",
                             breaks = breaksH,
                             labels = labelsH,
@@ -173,7 +174,7 @@ ak.df$ZZ  <- factor("Depth 1300 m", levels = c("Depth 100 m", "Depth 300 m", "De
                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
 ggContour  <-     ggDensity  +
   stat_contour(data = ak.df, aes(x, y, z=z, size = ..level..), breaks=seq(0,300,50),color = "orange", alpha = 0.7) +
-                 scale_size_continuous(name = expression("Heat flow (at depth 1300 m)"~(mW/m^2)),
+                 scale_size_continuous(name = expression("Heat flow"~(mW/m^2)),
                                     range = c(0.1, 1.5),
                                     breaks=seq(0,300,50),
                                     labels = as.character(seq(0,300,50)))
@@ -194,5 +195,5 @@ hkd3D  <- ggHL
 # direct.label(hkd3D)
 # ge.ggsave(hkd3D)
 ggsave(plot = hkd3D, "hkd3D3.pdf", width =7, height = 8)
-# getwd()
+getwd()
 
