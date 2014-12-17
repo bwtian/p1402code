@@ -155,37 +155,37 @@ ggDensity  <- ggHeatflow +
 
 
 
-
-library(akima)
-pts  <- hkdHeatflow.df
-
-x  <- hkdHeatflow.df$x
-y  <- hkdHeatflow.df$y
-z  <- hkdHeatflow.df$Heat.Flow
-# pts.grid <- idw(z~1, ~x+y, )
-# pts.grid  <- interp(x,y,z)
-library(spatstat)
-window  <- owin(bbox(hkdHeatflow.spdf)[1,], bbox(hkdHeatflow.spdf)[2,])
-X_ppp <- ppp(x,y, window = window, marks = z)
-X_idw <- idw(X_ppp) #inverse distance weighting
-ak.df  <- na.omit(as.data.frame(X_idw))
-names(ak.df)  <- c("x","y","z")
-ak.df$ZZ  <- factor("Depth 1300 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
-                                                        "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
-ggContour  <-     ggDensity  +
-  stat_contour(data = ak.df, aes(x, y, z=z, size = ..level..), breaks=seq(0,300,50),color = "orange", alpha = 0.7) +
-                 scale_size_continuous(name = expression("Heat flow"~(mW/m^2)),
-                                    range = c(0.1, 1.5),
-                                    breaks=seq(0,300,50),
-                                    labels = as.character(seq(0,300,50)))
-#ggContour
+#
+# library(akima)
+# pts  <- hkdHeatflow.df
+#
+# x  <- hkdHeatflow.df$x
+# y  <- hkdHeatflow.df$y
+# z  <- hkdHeatflow.df$Heat.Flow
+# # pts.grid <- idw(z~1, ~x+y, )
+# # pts.grid  <- interp(x,y,z)
+# library(spatstat)
+# window  <- owin(bbox(hkdHeatflow.spdf)[1,], bbox(hkdHeatflow.spdf)[2,])
+# X_ppp <- ppp(x,y, window = window, marks = z)
+# X_idw <- idw(X_ppp) #inverse distance weighting
+# ak.df  <- na.omit(as.data.frame(X_idw))
+# names(ak.df)  <- c("x","y","z")
+# ak.df$ZZ  <- factor("Depth 1300 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m",
+#                                                         "Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m"))
+# ggContour  <-     ggDensity  +
+#   stat_contour(data = ak.df, aes(x, y, z=z, size = ..level..), breaks=seq(0,300,50),color = "orange", alpha = 0.7) +
+#                  scale_size_continuous(name = expression("Heat flow"~(mW/m^2)),
+#                                     range = c(0.1, 1.5),
+#                                     breaks=seq(0,300,50),
+#                                     labels = as.character(seq(0,300,50)))
+# #ggContour
 
 # direct.label(ggContour)
 
 
 
-HL_text <- data.frame(x = c(1300000,1510000, 1450000,1350000), y = c(1550000,1640000,1480000,1800000), lab = c("H", "H", "L", "L"),  ZZ = factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m","Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m")))
-ggHL  <- ggContour +
+HL_text <- data.frame(x = c(1300000,1510000, 1450000,1350000), y = c(1550000,1640000,1480000,1800000), lab = c("H", "H", "", ""),  ZZ = factor("Depth 1500 m", levels = c("Depth 100 m", "Depth 300 m", "Depth 500 m",  "Depth 700 m","Depth 900 m","Depth 1100 m", "Depth 1300 m", "Depth 1500 m")))
+ggHL  <- ggDensity +
         geom_text(data = HL_text, aes(x, y, label = lab),alpha = 0.8, color = "black")
 
 
