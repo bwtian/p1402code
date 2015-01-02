@@ -29,7 +29,7 @@ labelsX = as.character(breaksX)
 colorsX =  rev(rainbow(7))
 
 
-hkdBH  <-
+hkdBH2  <-
         ggplot(data = hkd100, aes(y= -Depths, x = Temperature)) +
         geom_point(aes(color = Temperature), shape = ".") +
         geom_smooth() + # gam with formula: y ~ s(x, bs = "cs").
@@ -56,7 +56,7 @@ hkdBH  <-
         theme_bw(base_size = 12, base_family = "Times") +
         theme(axis.title.x=element_text(vjust = -0.5, hjust =0.5))
 
-hkdBH
-ggsave(plot =hkdBH, "hkdBH.pdf", width = 7, height = 5)
-ggsave(plot =hkdBH, "hkdBH.png", width = 7, height = 5)
+hkdBH2
+ggsave(plot =hkdBH, "hkdBH2.pdf", width = 7, height = 5)
+ggsave(plot =hkdBH, "hkdBH2.png", width = 7, height = 5)
 #ge.ggsave(hkdBH)
