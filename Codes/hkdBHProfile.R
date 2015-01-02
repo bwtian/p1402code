@@ -16,25 +16,39 @@ lm_eqn = function(m) {
         }
         as.character(as.expression(eq))
 }
-r2label = lm_eqn(lm( Temperature ~ -Depths, data =  hkd100))
-labelsX = c("100","500","1000","1500","2000","2200")
-breaksX = -as.numeric(labelsX)
-labelsY = c("0","15","50","90","150","200", "250", "300")
-breaksY = as.numeric(labelsY)
+r2label = lm_eqn(lm(Temperature ~ Depths, data =  hkd100))
+
+
+namesY = "Depth (m)"
+breaksY = c(-100, -500, -1000, -1500, -2000, -2200)
+labelsY = as.character(breaksY)
+
+namesX = expression(Temperature~(degree*C))
+breaksX = c(0,15,50,90,150,200, 250, 300)
+labelsX = as.character(breaksX)
+colorsX =  rev(rainbow(7))
+
+
 hkdBH  <-
         ggplot(data = hkd100, aes(y= -Depths, x = Temperature)) +
-        geom_point(aes(color = Temperature), shape = ".") +
+        geom_point(aes(color = Temperature), shape = ".") + geom_smooth() +
         #geom_smooth(color = "blue") +
-        stat_smooth(method = "lm", color = "red") +
-        annotate("text", x = 1100, y = 3, label = r2label, colour="red",
+        stat_smooth(method = "lm", color = "red")
+        #stat_smooth(method="lm", colour = "red",se=FALSE)  # show lm
+        annotate("text", x = 100, y = -2000, label = r2label, colour="red",
                  size = 4, parse=TRUE, font = "Times") +
-        geom_hline(yintercept = 15, linetype = 2,color = "green") +
-        geom_hline(yintercept = 100, linetype = 3,color = "blue") +
-        scale_x_continuous(name ="Depth (m)", breaks = breaksX, labels = labelsX) +
-        scale_y_continuous(name = expression(Temperature~(degree*C)),
-                           breaks = breaksY, labels = labelsY) +
-        scale_colour_gradientn(name = expression(Temperature~(degree*C)), colours = rev(rainbow(7)),
-                               breaks = breaksY, labels = format(breaksY)) +
+        geom_vline(xintercept = 15, linetype = 2,color = "green") +
+        geom_vline(xintercept = 100, linetype = 3,color = "blue") +
+        scale_x_continuous(name = namesX,
+                           breaks = breaksX,
+                           labels = labelsX) +
+        scale_y_continuous(name = namesY,
+                           breaks = breaksY,
+                           labels = labelsY) +
+        scale_colour_gradientn(name = namesY,
+                               colours = colorsY,
+                               breaks = breaksY,
+                               labels = format(breaksY)) +
         theme_bw(base_size = 12, base_family = "Times") +
         theme(axis.title.x=element_text(vjust = -0.5, hjust =0.5))
 
