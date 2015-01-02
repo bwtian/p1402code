@@ -18,7 +18,7 @@ lm_eqn = function(m) {
 }
 r2label = lm_eqn(lm( Depths~Temperature, data =  hkd100))
 labelsX = c("100","500","1000","1500","2000","2200")
-breaksX = as.numeric(labelsX)
+breaksX = -as.numeric(labelsX)
 labelsY = c("0","15","50","90","150","200", "250", "300")
 breaksY = as.numeric(labelsY)
 hkdBH  <-
