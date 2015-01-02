@@ -57,5 +57,5 @@ hkdBH  <-
         theme(axis.title.x=element_text(vjust = -0.5, hjust =0.5))
 
 hkdBH
-# ggsave(plot =hkdBH, "hkdBH.pdf", width = 7, height = 5)
+ggsave(plot =hkdBH, "hkdBH.pdf", width = 7, height = 5)
 #ge.ggsave(hkdBH)
