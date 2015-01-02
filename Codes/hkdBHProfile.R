@@ -41,7 +41,7 @@ hkdBH  <-
         geom_vline(xintercept = 15,  linetype = 2,color = "green") +
         geom_vline(xintercept = 150, linetype = 2,color = "blue") +
         geom_hline(yintercept = -1000, linetype = 2,color = "blue") +
-        geom_hline(yintercept = -1200, linetype = 2,color = "blue") +
+        geom_hline(yintercept = -1250, linetype = 2,color = "blue") +
         geom_vline(xintercept = 100, linetype = 2,color = "red") +
         scale_x_continuous(name = namesX,
                            breaks = breaksX,
