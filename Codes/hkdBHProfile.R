@@ -33,7 +33,7 @@ hkdBH  <-
         ggplot(data = hkd100, aes(y= -Depths, x = Temperature)) +
         geom_point(aes(color = Temperature), shape = ".") + geom_smooth() +
         #geom_smooth(color = "blue") +
-        stat_smooth(method = "lm", color = "red") +
+        stat_smooth(method = "lm", color = "red",se=FALSE) +
         #stat_smooth(method="lm", colour = "red",se=FALSE)  # show lm
         annotate("text", x = 230, y = -2000, label = r2label, colour="red",
                  size = 4, parse=TRUE, font = "Times") +
