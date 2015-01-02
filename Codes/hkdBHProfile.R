@@ -38,7 +38,7 @@ hkdBH  <-
         annotate("text", x = 100, y = -2000, label = r2label, colour="red",
                  size = 4, parse=TRUE, font = "Times") +
         geom_vline(xintercept = 15, linetype = 2,color = "green") +
-        geom_vline(xintercept = 100, linetype = 3,color = "red") +
+        geom_vline(xintercept = 100, linetype = 2,color = "red") +
         scale_x_continuous(name = namesX,
                            breaks = breaksX,
                            labels = labelsX) +
