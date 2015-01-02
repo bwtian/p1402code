@@ -58,4 +58,5 @@ hkdBH  <-
 
 hkdBH
 ggsave(plot =hkdBH, "hkdBH.pdf", width = 7, height = 5)
+ggsave(plot =hkdBH, "hkdBH.png", width = 7, height = 5)
 #ge.ggsave(hkdBH)
