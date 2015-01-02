@@ -20,7 +20,7 @@ r2label = lm_eqn(lm(Temperature ~ Depths, data =  hkd100))
 
 
 namesY = "Depth (m)"
-breaksY = c(-100, -500, -1000, -1500, -2000, -2200)
+breaksY = c(-100, -500, -1000, -1250, -1500, -1750, -2000, -2250)
 labelsY = as.character(breaksY)
 
 namesX = expression(Temperature~(degree*C))
