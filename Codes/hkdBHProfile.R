@@ -45,10 +45,10 @@ hkdBH  <-
         scale_y_continuous(name = namesY,
                            breaks = breaksY,
                            labels = labelsY) +
-        scale_colour_gradientn(name = namesY,
-                               colours = colorsY,
-                               breaks = breaksY,
-                               labels = format(breaksY)) +
+        scale_colour_gradientn(name = namesX,
+                               colours = colorsX,
+                               breaks = breaksX,
+                               labels = format(breaksX)) +
         theme_bw(base_size = 12, base_family = "Times") +
         theme(axis.title.x=element_text(vjust = -0.5, hjust =0.5))
 
