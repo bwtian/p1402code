@@ -37,6 +37,7 @@ hkdBH  <-
         #stat_smooth(method="lm", colour = "red",se=FALSE)  # show lm
         annotate("text", x = 230, y = -2000, label = r2label, colour="red",
                  size = 4, parse=TRUE, font = "Times") +
+        geom_vline(xintercept = 15,  linetype = 3,color = "green") +
         geom_vline(xintercept = 150, linetype = 2,color = "blue") +
         geom_vline(xintercept = 100, linetype = 2,color = "red") +
         scale_x_continuous(name = namesX,
