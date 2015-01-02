@@ -16,7 +16,7 @@ lm_eqn = function(m) {
         }
         as.character(as.expression(eq))
 }
-r2label = lm_eqn(lm(Depths~Temperature, data =  hkd100))
+r2label = lm_eqn(lm(Temperature ~ Depths, data =  hkd100))
 
 
 namesY = "Depth (m)"
@@ -35,7 +35,7 @@ hkdBH  <-
         #geom_smooth(color = "blue") +
         stat_smooth(method = "lm", color = "red") +
         #stat_smooth(method="lm", colour = "red",se=FALSE)  # show lm
-        annotate("text", x = 220, y = -2000, label = r2label, colour="red",
+        annotate("text", x = 230, y = -2000, label = r2label, colour="red",
                  size = 4, parse=TRUE, font = "Times") +
         geom_vline(xintercept = 15, linetype = 2,color = "blue") +
         geom_vline(xintercept = 100, linetype = 2,color = "red") +
