@@ -31,7 +31,8 @@ colorsX =  rev(rainbow(7))
 
 hkdBH  <-
         ggplot(data = hkd100, aes(y= -Depths, x = Temperature)) +
-        geom_point(aes(color = Temperature), shape = ".") + geom_smooth() +
+        geom_point(aes(color = Temperature), shape = ".") +
+        geom_smooth() + # gam with formula: y ~ s(x, bs = "cs").
         #geom_smooth(color = "blue") +
         stat_smooth(method = "lm", color = "red",se=FALSE) +
         #stat_smooth(method="lm", colour = "red",se=FALSE)  # show lm
