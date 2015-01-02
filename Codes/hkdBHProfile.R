@@ -16,7 +16,7 @@ lm_eqn = function(m) {
         }
         as.character(as.expression(eq))
 }
-r2label = lm_eqn(lm( Temperature~-Depths, data =  hkd100))
+r2label = lm_eqn(lm( Temperature ~ -Depths, data =  hkd100))
 labelsX = c("100","500","1000","1500","2000","2200")
 breaksX = -as.numeric(labelsX)
 labelsY = c("0","15","50","90","150","200", "250", "300")
