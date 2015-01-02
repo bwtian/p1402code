@@ -16,7 +16,7 @@ lm_eqn = function(m) {
         }
         as.character(as.expression(eq))
 }
-r2label = lm_eqn(lm(Temperature ~ Depths, data =  hkd100))
+r2label = lm_eqn(lm(Depths~Temperature, data =  hkd100))
 
 
 namesY = "Depth (m)"
