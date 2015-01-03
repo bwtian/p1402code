@@ -20,7 +20,7 @@ hkdBox1   <-
         aspect.ratio = 1/8) +
   coord_flip()
 hkdBox1
-ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7, height = 1.5)
-ggsave(plot =hkdBox1, "hkdBox1.png", width = 7, height = 1.5)
-# ge.ggsave(hkdBox1)
-getwd()
+# ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7, height = 1.5)
+# ggsave(plot =hkdBox1, "hkdBox1.png", width = 7, height = 1.5)
+# # ge.ggsave(hkdBox1)
+# getwd()
