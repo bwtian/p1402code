@@ -22,4 +22,3 @@ hkdBox1   <-
 hkdBox1
 ggsave(plot =hkdBox1, "hkdBox1.pdf", width = 7, height = 1.5)
 # ge.ggsave(hkdBox1)
-getwd()
