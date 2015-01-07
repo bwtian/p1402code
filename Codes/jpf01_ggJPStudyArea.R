@@ -46,13 +46,13 @@ ggPlate  <- ggWRS2 + geom_path(aes(long,lat,group=piece),
                     linetype = 1,
                     size = 1,
                     jpArc.sldf) +
-  geom_text(aes(x = 145, y = 42, label = "Kuril Trench"),
+  geom_text(aes(x = 146, y = 41, label = "Kuril Trench"),
             hjust = -0.1, angle = 38, family="Times", colour="white",
             size = 4) +
-  geom_text(aes(x = 145, y = 35, label = " Japan Trench"),
+  geom_text(aes(x = 144, y = 33, label = " Japan    Trench"),
             hjust = -0.1, angle = 80, family="Times", colour="white",
             size = 4) +
-  geom_text(aes(x = 135, y = 35, label = "Plate Boundary"),
+  geom_text(aes(x = 135, y = 37, label = "Plate Boundary"),
             hjust = -0.1, angle = 78, family="Times", colour="white",
             size = 4)
 ggPlate
