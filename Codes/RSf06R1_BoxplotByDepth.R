@@ -9,7 +9,7 @@ breaks1  <- 0:15 *100 + 50
 breaks  <- c(0,breaks1)
 #labels  <- as.character(c(50, seq(100, 1500, 100),1700,2000))
 labels  <- as.character(c(50, seq(100, 1500, 100)))
-hkdSample$cutDepth  <- factor(cut(hkdSample$Depths, breaks = breaks, labels = labels, right = TRUE), levles = rev(breaks))
+hkdSample$cutDepth  <- factor(cut(hkdSample$Depths, breaks = breaks, labels = labels, right = TRUE), levels = rev(labels))
 # hkdSample$cut100  <- cut(hkdSample$Depths, breaks = 0:22 * 100, labels = as.character(1:22 *100), right = TRUE)
 # table(hkdSample$cutDepth)
 # table(hkdSample$cut100)
