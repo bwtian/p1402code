@@ -35,7 +35,7 @@ hkdBH  <-
   scale_x_continuous(name = expression(Temperature~(degree*C)),
                      breaks = breaksX, labels = labelsX) +
   scale_colour_gradientn(name = expression(Temperature~(degree*C)), colours = rev(rainbow(7)),
-                         breaks = breaksY, labels = format(breaksY)) +
+                         breaks = breaksX, labels = format(breaksX)) +
   theme_bw(base_size = 12, base_family = "Times") +
   theme(axis.title.x=element_text(vjust = -0.5, hjust =0.5))
 
