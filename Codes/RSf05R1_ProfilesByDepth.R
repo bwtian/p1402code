@@ -27,10 +27,10 @@ hkdBH  <-
   geom_point(aes(color = Temperature), shape = ".") +
   #geom_smooth(color = "blue") +
   stat_smooth(method = "lm", color = "red") +
-  annotate("text", x = 100, y = -2000, label = r2label, colour="red",
+  annotate("text", x = 200, y = -2000, label = r2label, colour="red",
            size = 4, parse=TRUE, font = "Times") +
-  geom_hline(yintercept = 15, linetype = 2,color = "green") +
-  geom_hline(yintercept = 100, linetype = 3,color = "blue") +
+  geom_vline(xintercept = 15, linetype = 2,color = "green") +
+  geom_vline(xintercept = 100, linetype = 3,color = "blue") +
   scale_y_continuous(name ="Depth (m)", breaks = breaksY, labels = labelsY) +
   scale_x_continuous(name = expression(Temperature~(degree*C)),
                      breaks = breaksX, labels = labelsX) +
