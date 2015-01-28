@@ -23,7 +23,7 @@ hkdS  <- hkdSample[complete.cases(hkdSample), ]  #28210 - 28476 = 266
 # stripchart(Hokkaido_xy$Depth, add=TRUE, pch=19, method = "jitter")
 # stripchart(Hokkaido_xy$Tem, add=TRUE, pch=19, method = "jitter")
 
-hkdBox2  <- ggplot(hkdS, aes(-factor(cutDepth), Temperature)) +
+hkdBox2  <- ggplot(hkdS, aes(x = factor(cutDepth), y = Temperature)) +
   geom_boxplot(fill = "green",outlier.colour = "red") +
   stat_summary(fun.y="mean",geom="point",color="blue", shape = 18, size=4) +
   stat_summary(aes(y = Temperature,group = 1), fun.y="mean",geom="line",color="blue") +
