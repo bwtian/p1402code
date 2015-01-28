@@ -27,7 +27,7 @@ hkdBH  <-
   geom_point(aes(color = Temperature), shape = ".") +
   #geom_smooth(color = "blue") +
   stat_smooth(method = "lm", color = "red") +
-  annotate("text", x = 300, y = -2000, label = r2label, colour="red",
+  annotate("text", x = 100, y = -2000, label = r2label, colour="red",
            size = 4, parse=TRUE, font = "Times") +
   geom_hline(yintercept = 15, linetype = 2,color = "green") +
   geom_hline(yintercept = 100, linetype = 3,color = "blue") +
