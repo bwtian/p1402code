@@ -17,10 +17,10 @@ hkdxyz  <-  unique(hkdBH[,c(1:3,13)])
     as.character(as.expression(eq))
   }
 r2label = lm_eqn(lm(Temperature ~ Depths, data =  hkd100))
-labelsX = c("100","500","1000","1500","2000","2200")
+labelsY = c("100","500","1000","1500","2000","2200")
+breaksY = -as.numeric(labelsY)
+labelsX = c("0","15","50","90","150","200", "250", "300")
 breaksX = as.numeric(labelsX)
-labelsY = c("0","15","50","90","150","200", "250", "300")
-breaksY = as.numeric(labelsY)
 hkdBH  <-
   #ggplot(data = hkd100, aes(x= Depths, y = Temperature)) +
   ggplot(data = hkd100, aes(y = -Depths, x = Temperature)) +
