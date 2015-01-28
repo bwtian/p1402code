@@ -9,7 +9,7 @@ breaks1  <- 0:15 *100 + 50
 breaks  <- c(0,breaks1)
 #labels  <- as.character(c(50, seq(100, 1500, 100),1700,2000))
 labels  <- as.character(c(50, seq(100, 1500, 100)))
-hkdSample$cutDepth  <- cut(hkdSample$Depths, breaks = breaks, labels = labels, right = TRUE)
+hkdSample$cutDepth  <- factor(cut(hkdSample$Depths, breaks = breaks, labels = labels, right = TRUE), levles = rev(breaks))
 # hkdSample$cut100  <- cut(hkdSample$Depths, breaks = 0:22 * 100, labels = as.character(1:22 *100), right = TRUE)
 # table(hkdSample$cutDepth)
 # table(hkdSample$cut100)
@@ -23,7 +23,7 @@ hkdS  <- hkdSample[complete.cases(hkdSample), ]  #28210 - 28476 = 266
 # stripchart(Hokkaido_xy$Depth, add=TRUE, pch=19, method = "jitter")
 # stripchart(Hokkaido_xy$Tem, add=TRUE, pch=19, method = "jitter")
 
-hkdBox2  <- ggplot(hkdS, aes(x = factor(cutDepth), y = Temperature)) +
+hkdBox2  <- ggplot(hkdS, aes(x = cutDepth, y = Temperature)) +
   geom_boxplot(fill = "green",outlier.colour = "red") +
   stat_summary(fun.y="mean",geom="point",color="blue", shape = 18, size=4) +
   stat_summary(aes(y = Temperature,group = 1), fun.y="mean",geom="line",color="blue") +
