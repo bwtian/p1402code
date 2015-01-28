@@ -10,9 +10,9 @@ hkdxyz  <-  unique(hkdBH[,c(1:3,13)])
               r2 = format(summary(m)$r.squared, digits = 3));
     #eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2, l)
     if (coef(m)[2] >= 0)  {
-      eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,l)
+      eq <- substitute(italic(T) == a + b %.% italic(D)*","~~italic(r)^2~"="~r2,l)
     } else {
-      eq <- substitute(italic(y) == a - b %.% italic(x)*","~~italic(r)^2~"="~r2,l)
+      eq <- substitute(italic(T) == a - b %.% italic(D)*","~~italic(r)^2~"="~r2,l)
     }
     as.character(as.expression(eq))
   }
@@ -27,7 +27,7 @@ hkdBH  <-
   geom_point(aes(color = Temperature), shape = ".") +
   #geom_smooth(color = "blue") +
   stat_smooth(method = "lm", color = "red") +
-  annotate("text", x = 1100, y = 3, label = r2label, colour="red",
+  annotate("text", x = 300, y = -2000, label = r2label, colour="red",
            size = 4, parse=TRUE, font = "Times") +
   geom_hline(yintercept = 15, linetype = 2,color = "green") +
   geom_hline(yintercept = 100, linetype = 3,color = "blue") +
