@@ -31,9 +31,9 @@ hkdBH  <-
            size = 4, parse=TRUE, font = "Times") +
   geom_hline(yintercept = 15, linetype = 2,color = "green") +
   geom_hline(yintercept = 100, linetype = 3,color = "blue") +
-  scale_x_continuous(name ="Depth (m)", breaks = breaksX, labels = labelsX) +
-  scale_y_continuous(name = expression(Temperature~(degree*C)),
-                     breaks = breaksY, labels = labelsY) +
+  scale_y_continuous(name ="Depth (m)", breaks = breaksY, labels = labelsY) +
+  scale_x_continuous(name = expression(Temperature~(degree*C)),
+                     breaks = breaksX, labels = labelsX) +
   scale_colour_gradientn(name = expression(Temperature~(degree*C)), colours = rev(rainbow(7)),
                          breaks = breaksY, labels = format(breaksY)) +
   theme_bw(base_size = 12, base_family = "Times") +
