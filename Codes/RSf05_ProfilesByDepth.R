@@ -22,9 +22,8 @@ breaksX = as.numeric(labelsX)
 labelsY = c("0","15","50","90","150","200", "250", "300")
 breaksY = as.numeric(labelsY)
 hkdBH  <-
-  #ggplot(data = hkd100, aes(x= Depths, y = Temperature)) +
-  ggplot(data = hkd100, aes(y = -Depths, x = Temperature)) +
-  geom_point(aes(color = Temperature), shape = ".") +
+ ggplot(data = hkd100, aes(x= Depths, y = Temperature)) +
+   geom_point(aes(color = Temperature), shape = ".") +
   #geom_smooth(color = "blue") +
   stat_smooth(method = "lm", color = "red") +
   annotate("text", x = 1100, y = 3, label = r2label, colour="red",
