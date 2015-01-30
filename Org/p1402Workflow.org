@@ -28,7 +28,7 @@
                   BT -> EC [label = " Surface Feature"]
                   EC -> LST [label = " LST Retrieve"]
                   LST -> TA [label = " Residuals"]
-                  TA -> none -> GTA
+                  TA ->  GTA
           }
 
           T [label = "Well-logging \n Temperatures", shape = doubleoctagon]
@@ -56,7 +56,7 @@
                   LULC -> GTA:w [label = " Anthropogenic \n Imapacts"] // human
           }
           {rank =same; L8,T}
-          {rank =same; TA,GTA, none}
+          {rank =same; TA,GTA}
 
   }
 
