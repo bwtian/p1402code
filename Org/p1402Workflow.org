@@ -25,7 +25,7 @@
                   DN -> Rad [label = " Linear Model"]
                   Rad -> BT [label = " Planck's Law"]
                   BT -> EC [label = " Surface Feature"]
-                  EC -> LST [label = " Arits et al"]
+                  EC -> LST [label = " Land Surface Temperature Retriveal"]
                   LST -> TA [label = " Residuals"]
                   TA -> GTA
           }
