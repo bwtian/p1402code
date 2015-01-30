@@ -47,7 +47,7 @@ labelSummary  <- paste(
         paste0("Median Depth (m): ", round(median, 1)),
         paste0("3rd Quartile (m): ",round(IQ75, 1)),
         paste0("Maxumum Depth (m): ",round(max, 1)),
-        paste0("Interquartile Range (m): ",round(IQR, 1)),
+        #paste0("Interquartile Range (m): ",round(IQR, 1)),
         paste0("St. Dev.: ", round(sd, 1)),
         paste0("Skewness: ",round(skewness, 1)),
         paste0("Kurtosis: ",round(kurtosis, 1)),
