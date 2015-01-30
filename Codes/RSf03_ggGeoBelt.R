@@ -10,7 +10,9 @@ hkdLand.SPDF  <- readRDS("hkdLand_141127_121355.Rds")
 ### Plot GreenTuff
 GreenTuff  <- "GreenTuff/doc.kml"
 ogrListLayers(GreenTuff)
-greenTuff.sldf  <-readOGR(GreenTuff,  "GreenTuff")
+ogrInfo(GreenTuff)
+
+greenTuff.sldf  <- readOGR(GreenTuff,  "GreenTuff")
 greenTuff.sldf
 proj4string(greenTuff.sldf)  <- CRS(wgs84GRS)
 greenTuff.SP  <- ge.splitPoly(greenTuff.sldf, hkdLand.SPDF )
