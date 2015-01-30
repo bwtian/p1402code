@@ -157,11 +157,31 @@ hkd  <-ggFont
 hkd
 ### inset
 basein  <- readRDS("google_google_hybrid_142.5_43.5_zoom4_150130_1545.Rds")
-p  <- ggmap(basein) + xlim(120,165) + ylim(24,55)
+p  <- ggmap(basein) + xlim(120,165) + ylim(24,55) +
+        geom_rect(aes(xmin = 138, xmax = 147, ymin = 40, ymax = 47),alpha=0, colour="red", linetype=1)
+p
 # p = qplot(1:10, 1:10, log='x')
 # g = ggplotGrob(qplot(1, 1))
 # Error: annotation_custom only works with Cartesian coordinates
 # hkd + annotation_map(grob = p, xmin = 144, xmax =147, ymin = 45, ymax = 47)
+fullMap <-
+        hkd + inset(grob = ggplotGrob(p + theme_nothing()), xmin = 143, xmax = Inf, ymin = 44.6, ymax = Inf) +
 
 
+print(fullMap)
+#
+# #Any old plot
+# a_plot <- ggplot(cars, aes(speed, dist)) + geom_line()
+#
+# #A viewport taking up a fraction of the plot area
+# vp <- viewport(width = 3, height = 3, x = 144, y = 45)
 
+#Just draw the plot twice
+# png("test.png")
+# print(hkd)
+# print(p, vp = vp)
+# dev.off()
+v1<-viewport(width = 1, height = 1, x = 0.5, y = 0.5) #plot area for the main map
+v2<-viewport(width = 0.3, height = 0.3, x = 0.86, y = 0.28) #plot area for the inset map
+print(hkd,vp=v1)
+print(p,vp=v2)
