@@ -1,7 +1,10 @@
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 bhdir  <- "~/Dropbox/2data/dataRaw/boreholes/" #1250
 setwd(bhdir)
-bhok.df  <- as.data.frame(readRDS("bhok.Rds"))
+hkdBH  <- readRDS("~/Dropbox/2data/dataProduct/hkd/hkd_profiles_140806_164333.Rds")
+hkd100  <- subset(hkdBH, (Depths >=100 ))
+hkdxyz  <-  unique(hkdBH[,c(1:3,13)])
+bhok.df  <- hkd100
 raw.df  <- bhok.df
 id  <- raw.df$ID
 x  <- as.numeric(raw.df$Depths)
@@ -53,6 +56,7 @@ labelSummary  <- paste(
 boxp  <- function(){
         ggplot(d,aes(factor(0),data)) +
         geom_boxplot(fill = "green",outlier.colour = "red") +
+        geom_jitter(shape = ".", size  = 1) +
         #geom_boxplot(fill = "green", outlier.size = 0 )
         #geom_jitter(shape = ".", size  = 1) +
         stat_summary(fun.y="mean",geom="point",color="red", shape = 4) +
@@ -62,6 +66,7 @@ boxp  <- function(){
         #geom_hline(yintercept = sdup, linetype = 3,color = "blue") +
         scale_y_continuous(breaks = breaksX, labels = labelsX,
                            limits = limitsX) +
+
         xlab("") + ylab("Boxplot of total depth") +
         theme_bw(base_size = 12, base_family = "Times") +
         theme(axis.text.y=element_blank(),axis.ticks.y=element_blank(),
