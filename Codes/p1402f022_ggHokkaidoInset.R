@@ -158,7 +158,11 @@ hkd
 ### inset
 basein  <- readRDS("google_google_hybrid_142.5_43.5_zoom4_150130_1545.Rds")
 p  <- ggmap(basein) + xlim(120,165) + ylim(24,55) +
-        geom_rect(aes(xmin = 138, xmax = 147, ymin = 40, ymax = 47),alpha=0, colour="red", linetype=1)
+        geom_rect(aes(xmin = 138, xmax = 147, ymin = 40, ymax = 47),alpha=0, colour="red", linetype=1) +
+        geom_point(data = jpVolA.spdf@data,
+                   aes(as.numeric(lon), as.numeric(lat)),
+                       color="red",  shape = 17, size = 2)
+
 p
 # p = qplot(1:10, 1:10, log='x')
 # g = ggplotGrob(qplot(1, 1))
