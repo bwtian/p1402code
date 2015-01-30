@@ -67,7 +67,8 @@ boxp  <- function(){
         scale_y_continuous(breaks = breaksX, labels = labelsX,
                            limits = limitsX) +
 
-        xlab("") + ylab("Boxplot of total depth") +
+        #xlab("") + ylab("Boxplot of total depth") +
+        xlab("") + ylab("") +
         theme_bw(base_size = 12, base_family = "Times") +
         theme(axis.text.y=element_blank(),axis.ticks.y=element_blank(),
               aspect.ratio = 1/8) +
