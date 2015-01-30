@@ -100,7 +100,8 @@ cols <- c("Hidaka & Tokoro belt" = "cyan",
           "Kamuikotan belt" = "red",
           "Sorachi-Yezo belt" = "yellow")
 
-ggBelt  <- ggBase +
+ggBase  <-  #ggmap(basemap.r, extent = "panel")
+        ggplot()+
         geom_polygon(aes(x = long, y = lat, group=group, fill = name),
                                data = belt.df) +
         scale_fill_manual(name =  "Geological belt", values =cols)
