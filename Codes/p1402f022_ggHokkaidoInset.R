@@ -155,4 +155,5 @@ ggFont  <- ggBar +
               axis.title.x = element_text(vjust = 0.25))
 hkd  <-ggFont
 ### inset
-basein
+basein  <- readRDS("google_google_hybrid_142.5_43.5_zoom4_150130_1545.Rds")
+ggmap(basein) + xlim(120,165) + ylim(24,55)
