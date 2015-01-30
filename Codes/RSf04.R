@@ -36,9 +36,9 @@ kurtosis  <- mean((x-mean(x))^4)/(sd(x)^4)
 breaksX = seq(0,2200,200)
 labelsX = as.character(breaksX)
 limitsX = c(0,2200)
-breaksY  <- seq(0,200,25)
+breaksY  <- seq(0,75,15)
 labelsY  <- as.character(breaksY)
-limitsY  <- c(0,200)
+limitsY  <- c(0,75)
 labelSummary  <- paste(
         paste0("Count of boreholes: ", round(count, 1)),
         paste0("Minumum Depth: ",round(min, 1)),
