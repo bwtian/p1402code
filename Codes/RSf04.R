@@ -86,7 +86,7 @@ hist1  <- ggplot(d, aes(TD)) +
                        fill = "green", binwidth = 100, color = "black") +
         geom_density(aes(y = 100*..count..),alpha=.2,fill="red")
 hist2  <- hist1 +  annotate("text", x = Inf, y = Inf,
-                         label = labelSummary, colour=black",
+                         label = labelSummary, colour="black",
                          size = 4,  hjust=1, vjust = 1,font = "Times") +
          xlab("Depth of boreholes (m)") +
          ylab("Frequency") +
