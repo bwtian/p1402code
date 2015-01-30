@@ -154,6 +154,11 @@ ggFont  <- ggBar +
         theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
               axis.title.x = element_text(vjust = 0.25))
 hkd  <-ggFont
+hkd
 ### inset
 basein  <- readRDS("google_google_hybrid_142.5_43.5_zoom4_150130_1545.Rds")
-ggmap(basein) + xlim(120,165) + ylim(24,55)
+p  <- ggmap(basein) + xlim(120,165) + ylim(24,55)
+# p = qplot(1:10, 1:10, log='x')
+# g = ggplotGrob(qplot(1, 1))
+# Error: annotation_custom only works with Cartesian coordinates
+# hkd + annotation_custom(grob = p, xmin = 144, xmax =147, ymin = 45, ymax = 47)
