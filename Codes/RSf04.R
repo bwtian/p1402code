@@ -86,7 +86,7 @@ hist1  <- ggplot(d, aes(TD)) +
                        fill = "green", binwidth = 100, color = "black") +
         geom_density(aes(y = 100*..count..),alpha=.2,fill="red")
 hist2  <- hist1 +  annotate("text", x = Inf, y = Inf,
-                         label = labelSummary, colour="blue",
+                         label = labelSummary, colour=black",
                          size = 4,  hjust=1, vjust = 1,font = "Times") +
          xlab("Depth of boreholes (m)") +
          ylab("Frequency") +
@@ -130,12 +130,12 @@ grid.arrange(p1,p2)
 # grid.draw(rbind(ggplotGrob(p1), ggplotGrob(p2), size="last"))
 # grid.draw(rbind(ggplotGrob(p1), ggplotGrob(p2), size="max"))
 # # no alignment (plots are centered)
- grid.arrange(set_panel_size(p1, h=unit(0.3,"npc"),w=unit(0.8,"npc")),
-             set_panel_size(p2, h=unit(0.8,"npc"),w=unit(0.8,"npc")))
+#  grid.arrange(set_panel_size(p1, h=unit(0.3,"npc"),w=unit(0.8,"npc")),
+#              set_panel_size(p2, h=unit(0.8,"npc"),w=unit(0.8,"npc")))
 #
 # # with alignment
-align_plots(p1, p2, width=unit(0.8,"npc"))
-grid.arrange(p1, p2, ncol =1,)
+# align_plots(p1, p2, width=unit(0.8,"npc"))
+# grid.arrange(p1, p2, ncol =1,)
 # plots <- list(hist2, boxp2)
 # grobs <- list()
 # widths <- list()
