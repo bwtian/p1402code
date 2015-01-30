@@ -1,5 +1,5 @@
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
-setwd("~/D/tian/greenTuff/")
+setwd("~/Dropbox/2data//greenTuff")
 ### Make study Boundary
 
 jp1.SPDF  <- getData('GADM', country='JPN', level=1, path = "~/Dropbox/2data//dataRaw/gadm2")
@@ -77,7 +77,7 @@ labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
 # labelsY=parse(text=paste(breaksY, "^o ", "*N", sep=""))
 ## Layer0: Base map
 ggBase  <-  ggmap(basemap.r, extent = "panel") +
-        xlab("Lontitude") +
+        xlab("Longitude") +
         scale_x_continuous(breaks=breaksX,
                            labels=labelsX,
                            limits=limitsX,
@@ -157,5 +157,6 @@ ggFont  <- ggBar +
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 hkdGreenTuff  <-ggFont
+hkdGreenTuff
 # 7*5
 #ge.ggsave(hkdGreenTuff)
