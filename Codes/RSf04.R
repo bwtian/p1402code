@@ -115,10 +115,10 @@ grid.arrange(p1,p2)
 # )
 # 3.27*300*
 # pdf("test2.pdf", h = 7 , w = 7, pointsize = 3, fonts = "Times")
-grid.draw(rbind(ggplotGrob(p1), ggplotGrob(p2), size="last"))
+# grid.draw(rbind(ggplotGrob(p1), ggplotGrob(p2), size="last"))
 # dev.off()
 # png("test2.png", 640, 640, res = 96)
-grid.draw(rbind(ggplotGrob(p1), ggplotGrob(p2), size="last"))
+# grid.draw(rbind(ggplotGrob(p1), ggplotGrob(p2), size="last"))
 # dev.off()
 # grid.draw(rbind(ggplotGrob(dt_p),ggplotGrob(dh_p),ggplotGrob(dslp_p),ggplotGrob(dws_p),ggplotGrob(dwd_p),ggplotGrob(dhi_p),size="first"))
 #
