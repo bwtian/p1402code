@@ -146,7 +146,7 @@ ggFont  <- ggBar +
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 hkdGeology  <-ggFont
-hkdGeology
+#hkdGeology
 # 7*5
-#ggsave(plot = hkdGeology, "hkdGeology.pdf", width =7, height = 5.5)
+ggsave(plot = hkdGeology, "hkdGeology.pdf", width =7, height = 5)
 # ge.ggsave(hkdGeology)
