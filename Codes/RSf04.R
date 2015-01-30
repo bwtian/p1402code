@@ -87,7 +87,7 @@ hist1  <- ggplot(d, aes(TD)) +
 hist2  <- hist1 +  annotate("text", x = Inf, y = Inf,
                          label = labelSummary, colour="blue",
                          size = 4,  hjust=1, vjust = 1,font = "Times") +
-         xlab("Total depth of each borehole (m)") +
+         xlab("Depth of boreholes (m)") +
          ylab("Frequency") +
          scale_x_continuous(breaks = breaksX, labels = labelsX,
                             limits = limitsX) +
