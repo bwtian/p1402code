@@ -28,7 +28,7 @@ setwd(dataDir)
 phd.saveshp.geo(jp0)
 sp::plot(jp46WRS2_SPDF)
 sp::plot(jp46, add =T, col = "red")
-### Downlaod from 
+### Downlaod from
 
 text(sp::coordinates(jp46WRS2_SPDF), label = paste(jp46WRS2_SPDF@data$PATH, jp46WRS2_SPDF@data$ROW, sep = "\n"))
 jp46WRS2_SPDF@data
@@ -52,7 +52,7 @@ area_fun  <- function(polygons) {
                 sapply(polygons@Polygons, function(Polygon) Polygon@area)
                 }
         areas_Polygon <- lapply(SPDF@polygons, area_fun)
-       
+
         ### Extract Largest Polygon in each Polygons to SPDF3
         id2_mxpoly <- lapply(areas_Polygon, function(x) which.max(x))
         Polygon_l  <- list()
@@ -89,7 +89,7 @@ phd.saveshp.geo(jp46)
 # sp::plot(jp11)
 # jp2  <- raster::getData('GADM', country='JPN', level=2, path = "~/Dropbox/2data//dataRaw/gadm2")
 # sub  <- phd.largestPolys(jp1, Polygon =T)
-# 
+#
 # bh  <- readRDS("~/Dropbox/2data/dataProduct/hkd/hkd_profiles_140806_164333.Rds")
 # bh_xy  <- bh[!duplicated(bh$ID),]
 # bh_xy$grp <- cut(bh_xy$TD, breaks = c(0,500,1000,1500,2000,2200),
@@ -171,15 +171,15 @@ jp  <-  ggmap(jpbase, extent = "panel") +
         #geom_point(data = volA@data, aes(as.numeric(lon), as.numeric(lat))
          #          , color="red", shape = 17) +
         geom_point(data =tokyo, aes(x = lon, y = lat), color = "black") +
-        
+
         geom_text(data =tokyo, aes(x = lon,y = lat,label = name), color = "white",
                   vjust = 1,size =rel(3)) +
         geom_point(data = volQ@data, aes(as.numeric(lon), as.numeric(lat),
                                             color="blue"), shape = 17, alpha = 0.7) +
         geom_point(data = volA@data, aes(as.numeric(lon), as.numeric(lat), color="red"),  shape = 17, size = 3)  +
-        scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary Volcanoes","Active Volcanoes")) 
+        scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary Volcanoes","Active Volcanoes"))
 jp
-       
+
 @
 \section{Map of Japan of Inset}
 <<JapanVol,echo=TRUE>>=
@@ -198,7 +198,7 @@ jp  <-  ggmap(jpbase, extent = "panel") +
 jpinset  <- jp + geom_rect(aes(xmin =139, xmax = 146, ymin = 41.4, ymax = 45.6), alpha=0, colour="red", size = 1, linetype=1) + coord_equal() + theme_bw() + theme(axis.text.x =element_blank(),axis.text.y= element_blank(), axis.ticks=element_blank(),axis.title.x =element_blank(), axis.title.y= element_blank()) +
         theme(plot.background=element_rect(fill=NA, colour=NA))
 #+theme(plot.margin=unit(c(0,0,0,0,0,0,0,0),"mm"))
-jpinset 
+jpinset
 @
 
 \section{Inset Map fo Hokkaido}
