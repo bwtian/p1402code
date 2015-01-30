@@ -28,7 +28,7 @@
                   BT -> EC [label = " Surface Feature"]
                   EC -> LST [label = " LST Retrieve"]
                   LST -> TA [label = " Residuals"]
-                  TA -> GTA
+                  TA -> none -> GTA
           }
 
           T [label = "Well-logging \n Temperatures", shape = doubleoctagon]
@@ -62,7 +62,7 @@
 
 #+END_SRC
 #+CAPTION: Workflow of paper 1402
-#+RESULTS[0181adc8b8780268ccd14be93b616c27c5d457ff]: fig:p1402Workflow
+#+RESULTS[4a49533f267437e9c846c5c5653f84a58fc8875f]: fig:p1402Workflow
 [[file:p1402Workflow.pdf]]
 #+RESULTS[435de1589867b53f14370fb15315fddb66525f4b]: fig:p1402Workflow
 [[file:p1402Workflow.png]]
