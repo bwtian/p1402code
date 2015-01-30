@@ -10,7 +10,7 @@ hkdLand.SPDF  <- readRDS("hkdLand_141127_121355.Rds")
 ### Plot GreenTuff
 GreenTuff  <- "GreenTuff/doc.kml"
 ogrListLayers(GreenTuff)
-ogrInfo(GreenTuff)
+ogrInfo(GreenTuff,  layer = "GreenTuff" )
 
 greenTuff.sldf  <- readOGR(GreenTuff,  "GreenTuff")
 greenTuff.sldf
