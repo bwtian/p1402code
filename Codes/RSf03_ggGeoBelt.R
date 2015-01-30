@@ -4,7 +4,8 @@ setwd("~/Dropbox/2data//data/greenTuff")
 
 jp1.SPDF  <- getData('GADM', country='JPN', level=1, path = "~/Dropbox/2data//dataRaw/gadm2")
 hkdLand.SPDF  <- ge.LargestPolys(jp1.SPDF, Polygon=T)
-plot(hkdLand.SPDF)
+
+
 
 ### Plot GreenTuff
 GreenTuff  <- "GreenTuff/doc.kml"
