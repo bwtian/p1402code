@@ -158,7 +158,7 @@ hkd
 ### inset
 basein  <- readRDS("google_google_hybrid_142.5_43.5_zoom4_150130_1545.Rds")
 p  <- ggmap(basein) + xlim(120,165) + ylim(24,55) +
-        geom_rect(aes(xmin = 138, xmax = 147, ymin = 40, ymax = 47),alpha=0, colour="red", linetype=1) +
+        geom_rect(aes(xmin = 138, xmax = 147, ymin = 40, ymax = 47),alpha=0.05, colour="cyan", fill = "cyan",linetype=1, size = 0.2) +
         geom_text(aes(x = 145, y = 35, label = "Northwest \n Pacific"),
                   hjust = -0.1, angle = 0, family="Times", colour="white",
                   size = 4)
@@ -170,10 +170,10 @@ p
 # g = ggplotGrob(qplot(1, 1))
 # Error: annotation_custom only works with Cartesian coordinates
 # hkd + annotation_map(grob = p, xmin = 144, xmax =147, ymin = 45, ymax = 47)
-fullMap <-
-        hkd + inset(grob = ggplotGrob(p + theme_nothing()), xmin = 143, xmax = Inf, ymin = 44.6, ymax = Inf)
+fullMap <- hkd + inset(grob = ggplotGrob(p + theme_nothing()), xmin = 143, xmax = 147.5, ymin = 44.7, ymax = Inf)
 
-
+ggsave(plot = fullMap, "hkd.pdf", width =7, height = 5)
+getwd()
 print(fullMap)
 #
 # #Any old plot
