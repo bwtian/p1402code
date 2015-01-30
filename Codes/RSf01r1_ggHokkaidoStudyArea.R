@@ -152,7 +152,6 @@ ggFont  <- ggBar +
               axis.title.x = element_text(vjust = 0.25))
 hkd  <-ggFont
 # ge.ggsave(hkd)
-hkd
 # ge.ggsave
-#ggsave(plot = hkd, "hkd.pdf", width = 7, height =5.3)
-# getwd()
+ggsave(plot = hkd, "hkd.pdf", width = 7, height =5)
+#getwd()
