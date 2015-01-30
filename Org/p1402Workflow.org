@@ -35,7 +35,7 @@
           log [label = "Log Transfer"]
           vgm [label = "Variogram Analysis"]
           KED [label = "Kriging with \n External \n Trend", shape = Mdiamond]
-          invlog [label = "Inverse Log Transfer"]
+          invlog [label = "Estimated Subsurface Temperatrue"]
           GTA [label = "Geothermal Anomalies", color = red]
 
           //part2
