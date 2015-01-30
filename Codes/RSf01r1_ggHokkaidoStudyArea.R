@@ -147,7 +147,9 @@ ggBar  <- ggTlines  +
 
 ggFont  <- ggBar +
   #coord_equal() +
-  theme_bw(base_family = "Times")
+  theme_bw(base_family = "Times") +
+        theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
+              axis.title.x = element_text(vjust = 0.25))
 hkd  <-ggFont
 # ge.ggsave(hkd)
 # ge.ggsave
