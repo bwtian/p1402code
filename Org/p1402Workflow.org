@@ -45,7 +45,7 @@
                   EDA -> log [label = " Rescaling"]
                   log -> vgm [label = " Normality"]
                   vgm -> KED [label = " Estimation"]
-                  KED -> invlog [label = " Inversion"]
+                  KED -> invlog [label = " Inversion Transfer"]
                   invlog -> GTA [label = " Threshold"]
           }
           //part3
@@ -61,7 +61,7 @@
 
 #+END_SRC
 #+CAPTION: Workflow of paper 1402
-#+RESULTS[6a97125d217dd555c9f168032cca1bd848175c08]: fig:p1402Workflow
+#+RESULTS[d5cc2bb6befa9ce3f6c70d56ca24ac5c8bc90cce]: fig:p1402Workflow
 [[file:p1402Workflow.pdf]]
 #+RESULTS[435de1589867b53f14370fb15315fddb66525f4b]: fig:p1402Workflow
 [[file:p1402Workflow.png]]
