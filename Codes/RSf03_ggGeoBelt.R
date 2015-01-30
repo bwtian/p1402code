@@ -1,5 +1,5 @@
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
-setwd("~/Dropbox/2data//greenTuff")
+setwd("~/Dropbox/2data//data/greenTuff")
 ### Make study Boundary
 
 jp1.SPDF  <- getData('GADM', country='JPN', level=1, path = "~/Dropbox/2data//dataRaw/gadm2")
