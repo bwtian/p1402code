@@ -161,4 +161,7 @@ p  <- ggmap(basein) + xlim(120,165) + ylim(24,55)
 # p = qplot(1:10, 1:10, log='x')
 # g = ggplotGrob(qplot(1, 1))
 # Error: annotation_custom only works with Cartesian coordinates
-# hkd + annotation_custom(grob = p, xmin = 144, xmax =147, ymin = 45, ymax = 47)
+# hkd + annotation_map(grob = p, xmin = 144, xmax =147, ymin = 45, ymax = 47)
+
+
+
