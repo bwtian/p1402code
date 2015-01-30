@@ -2,7 +2,7 @@
 ## Lastedit: 20141210
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 getwd()
-set("~/Dropbox/2data/data/greenTuff")
+setwd("~/Dropbox/2data/data/greenTuff")
 # ge.getGoogleMap(142.5,43.5,4)
 ### Make study Boundary
 
