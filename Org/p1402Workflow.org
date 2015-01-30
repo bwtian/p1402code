@@ -53,7 +53,7 @@
           subgraph lulc {
                   edge [color = "green"]
                   EC:e -> LULC [label = " Emissivity", dir = back]
-                  LULC -> GTA:w [label = " Anthropogenic \n Imapacts"] // human
+                  LULC -> GTA:w [xlabel = " Anthropogenic \n Imapacts"] // human
           }
           {rank =same; L8,T}
           {rank =same; TA,GTA}
@@ -62,7 +62,7 @@
 
 #+END_SRC
 #+CAPTION: Workflow of paper 1402
-#+RESULTS[e5f4a74558fb007032e502b956af6887533b9e54]: fig:p1402Workflow
+#+RESULTS[a7512d1e9249bd2cf06a3fb450cc865fbc7fd0e3]: fig:p1402Workflow
 [[file:p1402Workflow.pdf]]
 #+RESULTS[435de1589867b53f14370fb15315fddb66525f4b]: fig:p1402Workflow
 [[file:p1402Workflow.png]]
