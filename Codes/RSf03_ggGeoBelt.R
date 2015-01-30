@@ -97,7 +97,7 @@ ggBase
 cols <- c("Hidaka & Tokoro belt" = "cyan",
           "North Kitakami belt" = "orange",
           "Nemuro belt" = "pink",
-          "Kamuikotan belt" = "palegreen",
+          "Kamuikotan belt" = "red",
           "Sorachi-Yezo belt" = "yellow")
 
 ggBelt  <- ggBase +
