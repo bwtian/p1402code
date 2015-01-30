@@ -20,7 +20,7 @@
           TA [label = "Thermal Anomalies"]
           // path
           subgraph TIRS {
-                  edge [color = red, weight=8]
+                  edge [color = red, weight=10]
                   L8 -> DN
                   DN -> Rad [label = " Linear Model"]
                   Rad -> BT [label = " Planck's Law"]
@@ -61,7 +61,7 @@
 
 #+END_SRC
 #+CAPTION: Workflow of paper 1402
-#+RESULTS[3f1f493fd6381858e31adbd4c03c29c3160c119e]: fig:p1402Workflow
+#+RESULTS[95e73f38eafccd5dfd76a5c4e89fb5c972025f17]: fig:p1402Workflow
 [[file:p1402Workflow.pdf]]
 #+RESULTS[435de1589867b53f14370fb15315fddb66525f4b]: fig:p1402Workflow
 [[file:p1402Workflow.png]]
