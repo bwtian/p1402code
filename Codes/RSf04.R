@@ -41,13 +41,13 @@ labelsY  <- as.character(breaksY)
 limitsY  <- c(0,75)
 labelSummary  <- paste(
         paste0("Count of boreholes: ", round(count, 1)),
-        paste0("Minumum Depth: ",round(min, 1)),
-        paste0("Mean Depth: ",round(mean, 1)),
-        paste0("1st Quartile : ",round(IQ25, 1)),
-        paste0("Median Depth: ", round(median, 1)),
-        paste0("3rd Quartile: ",round(IQ75, 1)),
-        paste0("Maxumum Depth: ",round(max, 1)),
-        paste0("Interquartile Range: ",round(IQR, 1)),
+        paste0("Minumum Depth (m): ",round(min, 1)),
+        paste0("Mean Depth (m): ",round(mean, 1)),
+        paste0("1st Quartile (m): ",round(IQ25, 1)),
+        paste0("Median Depth (m): ", round(median, 1)),
+        paste0("3rd Quartile (m): ",round(IQ75, 1)),
+        paste0("Maxumum Depth (m): ",round(max, 1)),
+        paste0("Interquartile Range (m): ",round(IQR, 1)),
         paste0("St. Dev.: ", round(sd, 1)),
         paste0("Skewness: ",round(skewness, 1)),
         paste0("Kurtosis: ",round(kurtosis, 1)),
@@ -104,6 +104,9 @@ p1  <- boxp()
 #         axis.ticks.x = element_blank()
 # )
 p2  <- hist2
+ggsave(plot = p1, "boxTD.pdf", width =7, height = 1.5)
+ggsave(plot = p2, "histTD.pdf", width =7, height = 3.5)
+getwd()
 grid.arrange(p1,p2)
 # png(
 #         "test.png",
