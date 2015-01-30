@@ -61,7 +61,7 @@
 
 #+END_SRC
 #+CAPTION: Workflow of paper 1402
-#+RESULTS[d5cc2bb6befa9ce3f6c70d56ca24ac5c8bc90cce]: fig:p1402Workflow
+#+RESULTS[3f1f493fd6381858e31adbd4c03c29c3160c119e]: fig:p1402Workflow
 [[file:p1402Workflow.pdf]]
 #+RESULTS[435de1589867b53f14370fb15315fddb66525f4b]: fig:p1402Workflow
 [[file:p1402Workflow.png]]
