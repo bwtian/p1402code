@@ -49,8 +49,8 @@ labelSummary  <- paste(
         paste0("Maxumum Depth (m): ",round(max, 1)),
         #paste0("Interquartile Range (m): ",round(IQR, 1)),
         paste0("St. Dev.: ", round(sd, 1)),
-        paste0("Skewness: ",round(skewness, 1)),
-        paste0("Kurtosis: ",round(kurtosis, 1)),
+#         paste0("Skewness: ",round(skewness, 1)),
+#         paste0("Kurtosis: ",round(kurtosis, 1)),
         sep = "\n")
 
 boxp  <- function(){
@@ -130,12 +130,12 @@ grid.arrange(p1,p2)
 # grid.draw(rbind(ggplotGrob(p1), ggplotGrob(p2), size="last"))
 # grid.draw(rbind(ggplotGrob(p1), ggplotGrob(p2), size="max"))
 # # no alignment (plots are centered)
-# grid.arrange(set_panel_size(p1, h=unit(0.3,"npc"),w=unit(0.8,"npc")),
-#              set_panel_size(p2, h=unit(0.8,"npc"),w=unit(0.8,"npc")))
+ grid.arrange(set_panel_size(p1, h=unit(0.3,"npc"),w=unit(0.8,"npc")),
+             set_panel_size(p2, h=unit(0.8,"npc"),w=unit(0.8,"npc")))
 #
 # # with alignment
-# align_plots(p1, p2, width=unit(0.8,"npc"))
-# grid.arrange(p1, p2, ncol =1, heights(1:4))
+align_plots(p1, p2, width=unit(0.8,"npc"))
+grid.arrange(p1, p2, ncol =1,)
 # plots <- list(hist2, boxp2)
 # grobs <- list()
 # widths <- list()
