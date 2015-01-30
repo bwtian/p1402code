@@ -3,8 +3,8 @@ setwd("~/Dropbox/2data//data/greenTuff")
 ### Make study Boundary
 
 jp1.SPDF  <- getData('GADM', country='JPN', level=1, path = "~/Dropbox/2data//dataRaw/gadm2")
-hkdLand.SPDF  <- ge.LargestPolys(jp1.SPDF, Polygon=T)
-
+#hkdLand.SPDF  <- ge.LargestPolys(jp1.SPDF, Polygon=T)
+hkdLand.SPDF  <- readRDS("hkdLand_141127_121355.Rds")
 
 
 ### Plot GreenTuff
