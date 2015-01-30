@@ -53,7 +53,7 @@
           subgraph lulc {
                   edge [color = "green"]
                   EC:e -> LULC [label = " Emissivity", dir = back]
-                  LULC -> GTA:w [headlabel = "Anthropogenic \n Imapacts", labeldistance=6, labelangle=15] // human
+                  LULC -> GTA:w [headlabel = "Anthropogenic \n Impacts", labeldistance=6, labelangle=15] // human
           }
           {rank =same; L8,T}
           {rank =same; TA,GTA}
