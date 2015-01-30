@@ -8,11 +8,12 @@ hkdLand.SPDF  <- readRDS("hkdLand_141127_121355.Rds")
 
 
 ### Plot GreenTuff
-GreenTuff  <- "GreenTuff/doc.kml"
-ogrListLayers(GreenTuff)
-ogrInfo(GreenTuff,  layer = "GreenTuff" )
+# GreenTuff  <- "GreenTuff/doc.kml"
+# ogrListLayers(GreenTuff)
+# ogrInfo(GreenTuff,  layer = "GreenTuff" )
 
-greenTuff.sldf  <- readOGR(GreenTuff,  "GreenTuff")
+# greenTuff.sldf  <- readOGR(GreenTuff,  "GreenTuff")
+greenTuff.sldf  <- readShapeLines("greenTuffL.shp")
 greenTuff.sldf
 proj4string(greenTuff.sldf)  <- CRS(wgs84GRS)
 greenTuff.SP  <- ge.splitPoly(greenTuff.sldf, hkdLand.SPDF )
@@ -124,6 +125,7 @@ ggVol  <- ggTuff  +
 
 
 jpTlines.sldf  <- readRDS("~/Dropbox/2data/dataProduct/jp/jpTlines_141125_221917.Rds")
+bbox2.SPDF <- ge.xy2bboxSPDF(138,147,40,47,wgs84GRS)
 hkdTlines.sldf  <- crop(jpTlines.sldf, bbox2.SPDF)
 #plot(hkdTlines.sldf)
 hkdTlines.df  <- fortify(hkdTlines.sldf)
@@ -160,6 +162,7 @@ ggFont  <- ggBar +
 # g  <- guide_legend("Tectonic lines")
 # ggGuid  <- ggFont + guides(size = g, linetype=g)
 hkdGreenTuff  <-ggFont
-hkdGreenTuff
+
 # 7*5
 #ge.ggsave(hkdGreenTuff)
+ggsave(plot = hkdGreenTuff, "hkdBelt.pdf", width =7, height = 5)
