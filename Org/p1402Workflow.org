@@ -52,7 +52,7 @@
           subgraph lulc {
                   edge [color = "green"]
                   EC:e -> LULC [label = " Emissivity", dir = back]
-                  LULC -> GTA:w [label = " Anthropocentric \n Imapacts"] // human
+                  LULC -> GTA:w [label = " Anthropogenic \n Imapacts"] // human
           }
           {rank =same; L8,T}
           {rank =same; TA,GTA}
