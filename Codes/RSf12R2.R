@@ -65,25 +65,8 @@ ggterrain  <- function(df){
                 theme(legend.position="none")
                 #theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines")
 }
-ggterrain(dlcc[1,])
 
 
-
-                geom_raster(aes(x,y, fill = factor(lulc100))) +
-                scale_x_continuous(labels = function(x) x/1000 -1200) +
-                scale_y_continuous(labels = function(x) x/1000 -1400) +
-                xlab("Easting (km)") +
-                ylab("Northing (km)") +
-                scale_fill_manual(values = lulc.cols,
-                                  na.value="white",
-                                  #breaks = lulc.col.brks,
-                                  labels = lulc.col.labs,
-                                  name = lulc.name) +
-                coord_equal() +
-                theme_bw(base_size = 12, base_family = "Times") +
-                theme(legend.position="none")  +
-                theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines"))
-}
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 #dlcc  <- maxids[-4,]
 # dlcc$xlcc  <- dlcc$X
