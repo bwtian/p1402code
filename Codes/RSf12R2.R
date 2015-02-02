@@ -42,11 +42,23 @@ names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 ### Google map
 
-type = "terrain"
-ggmap(get_map(location = c(lon = 140.87, lat = 41.91),maptype = type, zoom = 13))
-ggmap(get_map(location = c(lon = 139.93, lat = 42.23),maptype = type, zoom = 13))
-ggmap(get_map(location = c(lon = 141.31, lat = 42.79),maptype = type, zoom = 13))
-ggmap(get_map(location = c(lon = 144.158, lat = 43.45),maptype = type, zoom = 13))
+# type = "terrain"
+# nameX=expression(Longitude~(degree*E))
+# nameY=expression(Longitude~(degree*N))
+# a  <- ggmap(get_map(location = c(lon = 140.87, lat = 41.91),maptype = type, zoom = 13), extent = "panel") +
+#         scale_x_continuous(name = nameX) +   scale_y_continuous(name = nameY) +
+#         theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
+#               axis.title.x = element_text(vjust = 0)) + +
+#         annotate("point", x=140.87, y=41.91,
+#                  color = "white", cex =4) +
+#         annotate("text", label=data[i,]$name,
+#                  x=data[i,]$lon, y=data$lat,
+#                  vjust= -0.1, fontfamily = "times")
+#         theme_bw(base_size = 12, base_family = "Times")
+#            a
+# ggmap(get_map(location = c(lon = 139.93, lat = 42.23),maptype = type, zoom = 13), extent = "panel")
+# ggmap(get_map(location = c(lon = 141.31, lat = 42.79),maptype = type, zoom = 13), extent = "panel")
+# ggmap(get_map(location = c(lon = 144.158, lat = 43.45),maptype = type, zoom = 13), extent = "panel")
 
 ggterrain  <- function(df){
         type = "terrain"
@@ -56,18 +68,16 @@ ggterrain  <- function(df){
         #nameY=parse(text=paste("Latitude ", "(","^o ", "*N", sep=""))
         nameY=expression(Longitude~(degree*N))
         limitsX  <- c(df$lon - 0.05, df$lon + 0.05)
-        limitsY  <- c(df$lat - 0.05, df$lon + 0.05)
-        ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "panel") +
-                scale_x_continuous(name = nameX,
-                                   limits=limitsX) +
-                scale_y_continuous(name = nameY,
-                                   limits=limitsY) +
+        limitsY  <- c(df$lat - 0.05, df$lat + 0.05)
+        ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "device") +
+                xlab(nameX) + ylab(nameY) +
                 theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
                       axis.title.x = element_text(vjust = 0)) +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="none")
                 #theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines")
 }
+ggterrain(data[1,])
 terrain.grobs  <- list()
 data  <- points.name
 for (i in 1:length(data)) {
@@ -79,6 +89,11 @@ for (i in 1:length(data)) {
                          vjust= -0.1, fontfamily = "times")
 }
 terrain.grobs
+terrain.col  <- rbind(ggplotGrob(terrain.grobs[[1]]),
+                  ggplotGrob(terrain.grobs[[2]]),
+                  ggplotGrob(terrain.grobs[[3]]),
+                  ggplotGrob(terrain.grobs[[4]]),
+                  size = "last")
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 #dlcc  <- maxids[-4,]
 # dlcc$xlcc  <- dlcc$X
@@ -254,11 +269,12 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # grid.draw(cbind(lst.col,sst.col))
 # pdf("hkdSub.pdf", width = 7)
 # grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
-grid.arrange(lst.col, lulc.col,ncol = 2,
-             main = textGrob(c("LST","LULC"), x = unit(c(0.24,0.79), "npc"), y = unit(c(0.12,0.12), "npc"),
-                             gp=gpar(font=2,fontfamily = "times")),
-             left =  textGrob(c("A","B","C","D"), y = unit(c(0.88,0.64,0.38,0.13), "npc"),
-                              gp=gpar(font=2,fontfamily = "times")))
+grid.arrange(lst.col, lulc.col,terrain.col, ncol = 3)
+# ,
+#              main = textGrob(c("LST","LULC"), x = unit(c(0.24,0.79), "npc"), y = unit(c(0.12,0.12), "npc"),
+#                              gp=gpar(font=2,fontfamily = "times")),
+#              left =  textGrob(c("A","B","C","D"), y = unit(c(0.88,0.64,0.38,0.13), "npc"),
+#                               gp=gpar(font=2,fontfamily = "times")))
 # dev.off()
 # getwd()
 #grid.arrange(lst.col,lulc.col,ncol = 2)
