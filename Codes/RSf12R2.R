@@ -58,9 +58,8 @@ ggterrain  <- function(df){
         limitsX  <- c(df$lon - 0.05, df$lon + 0.05)
         limitsY  <- c(df$lat - 0.05, df$lon + 0.05)
         ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "panel") +
-                scale_x_continuous(name = nameX.
+                scale_x_continuous(name = nameX,
                                    limits=limitsX) +
-
                 scale_y_continuous(name = nameY,
                                    limits=limitsY) +
                 theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
