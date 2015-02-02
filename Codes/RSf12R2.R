@@ -55,18 +55,31 @@ ggterrain  <- function(df){
         nameX=expression(Longitude~(degree*E))
         #nameY=parse(text=paste("Latitude ", "(","^o ", "*N", sep=""))
         nameY=expression(Longitude~(degree*N))
+        limitsX  <- c(df$lon - 0.05, df$lon + 0.05)
+        limitsX  <- c(df$lat - 0.05, df$lon + 0.05)
         ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "panel") +
-                scale_x_continuous(name = nameX) +
+                scale_x_continuous(name = nameX.
+                                   limits=limitsX) +
 
-                scale_y_continuous(name = nameY) +
+                scale_y_continuous(name = nameY,
+                                   limits=limitsY) +
                 theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
                       axis.title.x = element_text(vjust = 0)) +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="none")
                 #theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines")
 }
-
-
+terrain.grobs  <- list()
+data  <- points.name
+for (i in 1:length(data)) {
+        terrain.grobs[[i]]  <-  ggterrain(data[i,]) +
+                annotate("point", x=data[i,]$lon, y=data[i,]$lat,
+                         color = "white", cex =4) +
+                annotate("text", label=data[i,]$name,
+                         x=data[i,]$lon, y=data$lat,
+                         vjust= -0.1, fontfamily = "times")
+}
+terrain.grobs
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 #dlcc  <- maxids[-4,]
 # dlcc$xlcc  <- dlcc$X
@@ -134,7 +147,6 @@ gglst  <- function(df){
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="right", legend.margin=unit(0,"lines"))  +
                 theme(plot.margin = unit(c(1,-3,0,-2), "lines"))
-
 }
 
 lst.grobs  <- list()
