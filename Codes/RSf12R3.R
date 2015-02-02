@@ -72,9 +72,12 @@ points.name  <- points.lcc[order(points.lcc$ylcc),]
 # ggmap(get_map(location = c(lon = 139.93, lat = 42.23),maptype = type, zoom = 13), extent = "panel")
 #ggmap(get_map(location = c(lon = 141.31, lat = 42.82),maptype = type, zoom = 13), extent = "panel")
 # ggmap(get_map(location = c(lon = 144.158, lat = 43.45),maptype = type, zoom = 13), extent = "panel")
-
+fmt <- function(){
+        f <- function(x) as.character(round(x,2))
+        f
+}
 ggterrain  <- function(df){
-        type = "hybrid"
+        type = "terrain"
         zoom = 13
         #nameX=parse(text=paste("Longitude ", "(", "^o ", "*E", sep=""))
         nameX=expression(Longitude~(degree*E))
@@ -83,14 +86,14 @@ ggterrain  <- function(df){
         limitsX  <- c(df$lon - 0.05, df$lon + 0.05)
         limitsY  <- c(df$lat - 0.05, df$lat + 0.05)
         ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "device") +
-                xlab(nameX) + ylab(nameY) +
+                xlab(nameX) + ylab(nameY) +  scale_x_continuous(labels = fmt()) +
                 theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
                       axis.title.x = element_text(vjust = 0)) +
                 theme_bw(base_size = 12, base_family = "Times") +
                 theme(legend.position="none")
                 #theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines")
 }
-ggterrain(data[1,])
+#ggterrain(data[1,])
 terrain.grobs  <- list()
 data  <- points.name
 for (i in 1:length(data)) {
@@ -101,7 +104,7 @@ for (i in 1:length(data)) {
                          x=data[i,]$lon, y=data$lat,
                          vjust= -0.1, fontfamily = "times")
 }
-terrain.grobs
+# terrain.grobs
 terrain.col  <- rbind(ggplotGrob(terrain.grobs[[1]]),
                   ggplotGrob(terrain.grobs[[2]]),
                   ggplotGrob(terrain.grobs[[3]]),
@@ -267,12 +270,12 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # grid.draw(cbind(lst.col,sst.col))
 # pdf("hkdSub.pdf", width = 7)
 # grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
-grid.arrange(lst.col, lulc.col,terrain.col, ncol = 3)
-# ,
-#              main = textGrob(c("LST","LULC"), x = unit(c(0.24,0.79), "npc"), y = unit(c(0.12,0.12), "npc"),
-#                              gp=gpar(font=2,fontfamily = "times")),
-#              left =  textGrob(c("A","B","C","D"), y = unit(c(0.88,0.64,0.38,0.13), "npc"),
-#                               gp=gpar(font=2,fontfamily = "times")))
+grid.arrange(lst.col, lulc.col,terrain.col, ncol = 3,
+              main = textGrob(c("LST","LULC", "Location"), x = unit(c(0.14,0.55, 0.88), "npc"), y = unit(c(0.12,0.12, 0.12), "npc"),
+                             gp=gpar(font=2,fontfamily = "times")),
+             left =  textGrob(c("A","B","C"), y = unit(c(0.84,0.5,0.18), "npc"),
+                              gp=gpar(font=2,fontfamily = "times")))
 # dev.off()
 # getwd()
 #grid.arrange(lst.col,lulc.col,ncol = 2)
+
