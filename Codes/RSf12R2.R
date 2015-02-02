@@ -56,7 +56,7 @@ ggterrain  <- function(df){
         #nameY=parse(text=paste("Latitude ", "(","^o ", "*N", sep=""))
         nameY=expression(Longitude~(degree*N))
         limitsX  <- c(df$lon - 0.05, df$lon + 0.05)
-        limitsX  <- c(df$lat - 0.05, df$lon + 0.05)
+        limitsY  <- c(df$lat - 0.05, df$lon + 0.05)
         ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "panel") +
                 scale_x_continuous(name = nameX.
                                    limits=limitsX) +
