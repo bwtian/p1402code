@@ -52,6 +52,10 @@ ggterrain  <- function(df){
         type = "terrain"
         zoom = 13
         ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom)) +
+        xlab("Easting (km)") +
+        ylab("Northing (km)") +
+        scale_x_continuous(labels = df$xlcc)
+        scale_y_continuous(labels = df$ylcc)
 
 }
 ggterrain(dlcc[1,])
