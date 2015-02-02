@@ -35,7 +35,7 @@ ge.raster2df  <- function(rst){
 d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
                           c(42.88, 141.29),
-                          c(43.455, 144.162)))
+                          c(43.455, 144.158)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
