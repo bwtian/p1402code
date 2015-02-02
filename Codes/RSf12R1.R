@@ -169,7 +169,13 @@ for (i in 1:length(lulc.clip.l)) {
         lulc.grobs[[i]]  <-  gglulc(lulc.clip.l[[i]]) +
                 geom_path(aes(x, y, group=id), data = ft.clip.l[[i]],
                           color = "red", size =1,
-                          alpha = 0.9)
+                          alpha = 0.9) +
+                annotate("point", x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
+                         color = "white", cex =4) +
+                #geom_point(points.name[i,], aes(x =xlcc, y = ylcc), color = "white", cex =4) +
+                annotate("text", label=points.name[i,]$name,
+                         x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
+                         vjust= -0.1, fontfamily = "times")
         #annotate("path", )
 }
 ft.clip.l[[4]]
