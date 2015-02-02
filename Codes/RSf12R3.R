@@ -74,7 +74,7 @@ points.name  <- points.lcc[order(points.lcc$ylcc),]
 # ggmap(get_map(location = c(lon = 144.158, lat = 43.45),maptype = type, zoom = 13), extent = "panel")
 
 ggterrain  <- function(df){
-        type = "hrbrid"
+        type = "hybrid"
         zoom = 13
         #nameX=parse(text=paste("Longitude ", "(", "^o ", "*E", sep=""))
         nameX=expression(Longitude~(degree*E))
