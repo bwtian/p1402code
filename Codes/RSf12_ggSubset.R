@@ -21,17 +21,21 @@ ge.raster2df  <- function(rst){
 # lulc.df  <- ge.raster2df("lulc100.tif")
 # lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
 # sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
-hkdFault.sldf  <- readRDS("hkdFault.sldf_141126_221926.Rds")
-ft.df  <- fortify(hkdFault.sldf)
-ft.lcc  <- ge.crsTransform(ft.df, long, lat, x, y, wgs84GRS,lccWgs84)
+# hkdFault.sldf  <- readRDS("hkdFault.sldf_141126_221926.Rds")
+# ft.df  <- fortify(hkdFault.sldf)
+# ft.lcc  <- ge.crsTransform(ft.df, long, lat, x, y, wgs84GRS,lccWgs84)
 
 # summary(sst.df)
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
+# d  <- as.data.frame(rbind(c(41.91, 140.87),
+#                           c(42.23, 139.94),
+#                           c(42.88, 141.29),
+#                           c(43.47, 144.19)))
 d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.94),
                           c(42.88, 141.29),
-                          c(43.47, 144.19)))
+                          c(43.48, 144.20)))
 names(d)  <- c("lat", "lon")
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 # dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
