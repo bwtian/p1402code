@@ -72,43 +72,6 @@ points.name  <- points.lcc[order(points.lcc$ylcc),]
 # ggmap(get_map(location = c(lon = 139.93, lat = 42.23),maptype = type, zoom = 13), extent = "panel")
 #ggmap(get_map(location = c(lon = 141.31, lat = 42.82),maptype = type, zoom = 13), extent = "panel")
 # ggmap(get_map(location = c(lon = 144.158, lat = 43.45),maptype = type, zoom = 13), extent = "panel")
-fmt <- function(){
-        f <- function(x) as.character(round(x,2))
-        f
-}
-ggterrain  <- function(df){
-        type = "terrain"
-        zoom = 13
-        #nameX=parse(text=paste("Longitude ", "(", "^o ", "*E", sep=""))
-        nameX=expression(Longitude~(degree*E))
-        #nameY=parse(text=paste("Latitude ", "(","^o ", "*N", sep=""))
-        nameY=expression(Longitude~(degree*N))
-        limitsX  <- c(df$lon - 0.05, df$lon + 0.05)
-        limitsY  <- c(df$lat - 0.05, df$lat + 0.05)
-        ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "device") +
-                xlab(nameX) + ylab(nameY) +  scale_x_continuous(labels = fmt()) +
-                theme_bw(base_size = 12, base_family = "Times") +
-                theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines")) +
-                theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
-                                             axis.title.x = element_text(vjust = 0))
-}
-#ggterrain(data[1,])
-terrain.grobs  <- list()
-data  <- points.name
-for (i in 1:length(data)) {
-        terrain.grobs[[i]]  <-  ggterrain(data[i,]) +
-                annotate("point", x=data[i,]$lon, y=data[i,]$lat,
-                         color = "white", cex =4) +
-                annotate("text", label=data[i,]$name,
-                         x=data[i,]$lon, y=data$lat,
-                         vjust= -0.1, fontfamily = "times")
-}
-# terrain.grobs
-terrain.col  <- rbind(ggplotGrob(terrain.grobs[[1]]),
-                  ggplotGrob(terrain.grobs[[2]]),
-                  ggplotGrob(terrain.grobs[[3]]),
-                                   size = "last")
-
 
 rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
@@ -264,6 +227,42 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 
 
 
+fmt <- function(){
+        f <- function(x) as.character(round(x,2))
+        f
+}
+ggterrain  <- function(df){
+        type = "terrain"
+        zoom = 13
+        #nameX=parse(text=paste("Longitude ", "(", "^o ", "*E", sep=""))
+        nameX=expression(Longitude~(degree*E))
+        #nameY=parse(text=paste("Latitude ", "(","^o ", "*N", sep=""))
+        nameY=expression(Longitude~(degree*N))
+        limitsX  <- c(df$lon - 0.05, df$lon + 0.05)
+        limitsY  <- c(df$lat - 0.05, df$lat + 0.05)
+        ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "device") +
+                xlab(nameX) + ylab(nameY) +  scale_x_continuous(labels = fmt()) +
+                theme_bw(base_size = 12, base_family = "Times") +
+                theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines")) +
+                theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
+                                             axis.title.x = element_text(vjust = 0))
+}
+#ggterrain(data[1,])
+terrain.grobs  <- list()
+data  <- points.name
+for (i in 1:length(data)) {
+        terrain.grobs[[i]]  <-  ggterrain(data[i,]) +
+                annotate("point", x=data[i,]$lon, y=data[i,]$lat,
+                         color = "white", cex =4) +
+                annotate("text", label=data[i,]$name,
+                         x=data[i,]$lon, y=data$lat,
+                         vjust= -0.1, fontfamily = "times")
+}
+# terrain.grobs
+terrain.col  <- rbind(ggplotGrob(terrain.grobs[[1]]),
+                  ggplotGrob(terrain.grobs[[2]]),
+                  ggplotGrob(terrain.grobs[[3]]),
+                                   size = "last")
 
 # sst.col$widths  <- lst.col$widths
 # lulc.col$widths  <- lst.col$widths
