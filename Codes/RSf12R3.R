@@ -244,7 +244,7 @@ ggterrain  <- function(df){
         ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "device") +
                 xlab(nameX) + ylab(nameY) +  scale_x_continuous(labels = fmt()) +
                 theme_bw(base_size = 12, base_family = "Times") +
-                theme(plot.margin = unit(c(1,0,0.5,0), "lines")) +
+                theme(plot.margin = unit(c(1,0,0,0), "lines")) +
                 theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
                                              axis.title.x = element_text(vjust = 0))
 }
