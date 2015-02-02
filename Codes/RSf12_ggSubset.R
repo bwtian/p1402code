@@ -1,4 +1,3 @@
-library(R.cache)
 source("~/SparkleShare/Rprofile/R/Rsettings/phdRsettings.R")
 setwd(dir.hkd)
 ge.raster2df  <- function(rst){
@@ -22,9 +21,9 @@ ge.raster2df  <- function(rst){
 # lulc.df  <- ge.raster2df("lulc100.tif")
 # lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
 # sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
-# hkdFault.sldf  <- readRDS("hkdFault.sldf_141126_221926.Rds")
-# ft.df  <- fortify(hkdFault.sldf)
-# ft.lcc  <- ge.crsTransform(ft.df, long, lat, x, y, wgs84GRS,lccWgs84)
+hkdFault.sldf  <- readRDS("hkdFault.sldf_141126_221926.Rds")
+ft.df  <- fortify(hkdFault.sldf)
+ft.lcc  <- ge.crsTransform(ft.df, long, lat, x, y, wgs84GRS,lccWgs84)
 
 # summary(sst.df)
 # summary(hkdKT)
