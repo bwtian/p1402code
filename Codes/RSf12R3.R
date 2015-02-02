@@ -87,11 +87,10 @@ ggterrain  <- function(df){
         limitsY  <- c(df$lat - 0.05, df$lat + 0.05)
         ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "device") +
                 xlab(nameX) + ylab(nameY) +  scale_x_continuous(labels = fmt()) +
-                theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
-                      axis.title.x = element_text(vjust = 0)) +
                 theme_bw(base_size = 12, base_family = "Times") +
-                theme(legend.position="none")
-                #theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines")
+                theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines") +
+                theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
+                                             axis.title.x = element_text(vjust = 0))
 }
 #ggterrain(data[1,])
 terrain.grobs  <- list()
@@ -162,8 +161,10 @@ gglst  <- function(df){
                                      name = lst.name) +
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
-                theme(legend.position="right", legend.margin=unit(0,"lines"))  +
-                theme(plot.margin = unit(c(1,-3,0,-2), "lines"))
+                theme_bw(base_size = 12, base_family = "Times") +
+                theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines") +
+                              theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
+                                    axis.title.x = element_text(vjust = 0))
 }
 
 lst.grobs  <- list()
@@ -271,7 +272,7 @@ lulc.col  <-rbind(ggplotGrob(lulc.grobs[[1]]),
 # pdf("hkdSub.pdf", width = 7)
 # grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
 grid.arrange(lst.col, lulc.col,terrain.col, ncol = 3,
-              main = textGrob(c("LST","LULC", "Location"), x = unit(c(0.14,0.55, 0.88), "npc"), y = unit(c(0.12,0.12, 0.12), "npc"),
+              main = textGrob(c("LST","LULC", "Location"), x = unit(c(0.15,0.52, 0.85), "npc"), y = unit(c(0.12,0.12, 0.12), "npc"),
                              gp=gpar(font=2,fontfamily = "times")),
              left =  textGrob(c("A","B","C"), y = unit(c(0.84,0.5,0.18), "npc"),
                               gp=gpar(font=2,fontfamily = "times")))
