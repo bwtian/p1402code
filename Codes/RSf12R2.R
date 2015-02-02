@@ -56,7 +56,6 @@ ggterrain  <- function(df){
         ylab("Northing (km)") +
         scale_x_continuous(labels = df$xlcc)
         scale_y_continuous(labels = df$ylcc)
-
 }
 ggterrain(dlcc[1,])
 
