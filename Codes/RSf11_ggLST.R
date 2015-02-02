@@ -49,7 +49,7 @@ p3  <- p2 + scale_fill_gradientn(colours = cols,
                                  na.value="white",
                           breaks = brks,
                           #name = expression(paste("Temperature from \nscene average", "^o ", "*C", sep = "\n")))
-                          name = expression(paste("Temperature from \nscene average\n","\n",(degree*C), sep = "")))
+                          name = expression(paste("Temperature",(degree*C), sep = "")))
                           #name=parse(text=paste("Temperature from \nscene average\n", "^o ", "*C", sep="")))
 ### North Arror and scale bar
 
@@ -135,7 +135,7 @@ dlcc$id  <- 1:nrow(dlcc)
 p6  <- p3 + geom_rect(data = dlcc,
                aes(NULL, NULL, xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = NULL, color = NULL), alpha =0.1, color = "red") +
        #geom_text(data = dlcc,aes(x =xmax, y =ymax), label=c("A","B","C","D"))
-       annotate("text", x = dlcc$xmax+1000, y = dlcc$ymax+1000, label=c("A","B","C","D"), size =4)
+       annotate("text", x = dlcc$xmax+1000, y = dlcc$ymax+1000, label=c("A","B","C"), size =4)
 # p6
 # p3 +  coord_cartesian(xlim = c(dlcc[1,]$xmin, dlcc[1,]$xmax),                          ylim = c(dlcc[1,]$ymin, dlcc[1,]$ymax))
 # p3)
@@ -144,8 +144,9 @@ p7  <- p6 +  coord_equal() +
         theme(axis.title.x =element_text(vjust=0))
 
 hkdLST  <- p7
+
 ggsave(plot=hkdLST, "hkdLST3.pdf", width = 7, height = 5.5)
-#ge.ggsave(p7)
+        #ge.ggsave(p7)
 # round(dlcc)
 # names(d)  <- c("lat","lon")
 #
