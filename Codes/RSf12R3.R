@@ -161,10 +161,9 @@ gglst  <- function(df){
                                      name = lst.name) +
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
-                theme_bw(base_size = 12, base_family = "Times") +
                 theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines") +
-                              theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
-                                    axis.title.x = element_text(vjust = 0))
+                theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
+                      axis.title.x = element_text(vjust = 0))
 }
 
 lst.grobs  <- list()
@@ -223,8 +222,10 @@ gglulc  <- function(df){
                                   name = lulc.name) +
                 coord_equal() +
                 theme_bw(base_size = 12, base_family = "Times") +
-                theme(legend.position="none")  +
-                theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines"))
+                theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines") +
+                theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
+                      axis.title.x = element_text(vjust = 0))
+
 }
 lulc.grobs  <- list()
 for (i in 1:length(lulc.clip.l)) {
