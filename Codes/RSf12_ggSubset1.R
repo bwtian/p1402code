@@ -14,13 +14,14 @@ ge.raster2df  <- function(rst){
 # lulc.rsp <- projectRaster(lulc.rst, lst.rst,method="ngb")
 # # writeRaster(lulc.rsp, "lulc100.tif")
 
-# hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
-# hkdKT$t <- 10^(hkdKT$KT)
-# hkdXyzt  <- hkdKT[,c(1:3,9)]
-# names(hkdXyzt)  <- c("x","y","z","t")
+hkdKT  <- readRDS("hkd_kt3dlcc_140530_114352.Rds")
+hkdKT$t <- 10^(hkdKT$KT)
+hkdXyzt  <- hkdKT[,c(1:3,9)]
+names(hkdXyzt)  <- c("x","y","z","t")
 
 lulc.df  <- ge.raster2df("lulc100.tif")
 lst.df  <- ge.raster2df("hkdL8B10CenterMos.tif")
+
 sst.df  <- hkdXyzt[hkdXyzt$z == 1500,]
 summary(sst.df)
 # summary(hkdKT)
@@ -34,7 +35,7 @@ d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.816, 141.299),
                           c(43.485, 144.159)))
 names(d)  <- c("lat", "lon")
-# dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
+dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 dlcc  <- maxids[-4,]
 
 rad  <-5000
@@ -60,11 +61,11 @@ ge.subdf  <- function(df,x,y,sub){
 #         out.df  <- as.data.frame(out.spdf)
         return(out.l)
 }
-# sst.clip.l <- ge.subdf(sst.df, x, y, sub)
+sst.clip.l <- ge.subdf(sst.df, x, y, sub)
 # #head(sst.clip.l[[1]])
-# lst.clip.l <- ge.subdf(lst.df, x,y,sub)
+lst.clip.l <- ge.subdf(lst.df, x,y,sub)
 # #head(lst.clip.l[[1]])
-# lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
+lulc.clip.l <- ge.subdf(lulc.df,x,y,sub)
 
 
 

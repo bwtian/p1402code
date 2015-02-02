@@ -238,7 +238,7 @@ ggterrain  <- function(df){
         #nameX=parse(text=paste("Longitude ", "(", "^o ", "*E", sep=""))
         nameX=expression(Longitude~(degree*E))
         #nameY=parse(text=paste("Latitude ", "(","^o ", "*N", sep=""))
-        nameY=expression(Longitude~(degree*N))
+        nameY=expression(Latitude~(degree*N))
         limitsX  <- c(df$lon - 0.05, df$lon + 0.05)
         limitsY  <- c(df$lat - 0.05, df$lat + 0.05)
         ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "device") +
@@ -273,9 +273,9 @@ terrain.col  <- rbind(ggplotGrob(terrain.grobs[[1]]),
 # pdf("hkdSub.pdf", width = 7)
 # grid.arrange(lst.col,lulc.col, sst.col ,ncol = 3)
 grid.arrange(lst.col, lulc.col,terrain.col, ncol = 3,
-              main = textGrob(c("LST","LULC", "Location"), x = unit(c(0.15,0.52, 0.85), "npc"), y = unit(c(0.12,0.12, 0.12), "npc"),
+              main = textGrob(c("LST","LULC", "Location"), x = unit(c(0.14,0.51, 0.85), "npc"), y = unit(c(0.12,0.12, 0.12), "npc"),
                              gp=gpar(font=2,fontfamily = "times")),
-             left =  textGrob(c("A","B","C"), y = unit(c(0.84,0.5,0.18), "npc"),
+             left =  textGrob(c("A","B","C"), y = unit(c(0.85,0.51,0.18), "npc"),
                               gp=gpar(font=2,fontfamily = "times")))
 # dev.off()
 # getwd()
