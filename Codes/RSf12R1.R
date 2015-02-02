@@ -28,10 +28,10 @@ ge.raster2df  <- function(rst){
 # summary(sst.df)
 # summary(hkdKT)
 # hkdSST1500  <- hkdKT[hkdKT$Z == 1500,]
-d  <- as.data.frame(rbind(c(41.91, 140.87),
-                          c(42.23, 139.94),
-                          c(42.88, 141.29),
-                          c(43.47, 144.19)))
+# d  <- as.data.frame(rbind(c(41.91, 140.87),
+#                           c(42.23, 139.94),
+#                           c(42.88, 141.29),
+#                           c(43.47, 144.19)))
 # d  <- as.data.frame(rbind(c(41.91, 140.87),
 #                           c(42.23, 139.94),
 #                           c(42.88, 141.29),
@@ -108,9 +108,9 @@ gglst  <- function(df){
 lst.grobs  <- list()
 for (i in 1:length(lst.clip.l)) {
         lst.grobs[[i]]  <-  gglst(lst.clip.l[[i]]) +
-#                 annotate("point", x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
-#                          color = "white", cex =4) +
-                geom_point(points.name[i,], aes(x =xlcc, y = ylcc), color = "white", cex =4) +
+                annotate("point", x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
+                         color = "white", cex =4) +
+                #geom_point(points.name[i,], aes(x =xlcc, y = ylcc), color = "white", cex =4) +
                 annotate("text", label=points.name[i,]$name,
                          x=points.name[i,]$xlcc, y=points.name[i,]$ylcc,
                          vjust= -0.1, fontfamily = "times")
