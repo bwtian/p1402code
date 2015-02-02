@@ -34,10 +34,22 @@ ge.raster2df  <- function(rst){
 #                           c(43.47, 144.19)))
 d  <- as.data.frame(rbind(c(41.91, 140.87),
                           c(42.23, 139.93),
-                          #c(42.79, 141.31),
+                          c(42.79, 141.31),
                           c(43.45, 144.158)))
 names(d)  <- c("lat", "lon")
-
+# dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
+#dlcc  <- maxids[-4,]
+# dlcc$xlcc  <- dlcc$X
+# dlcc$ylcc  <- dlcc$Y
+# point  <- ge.df2spwgs84(dlcc, lon ,lat)
+# ge.sp2shpGeo(point)
+points  <- "Onshin/doc.kml"
+points.spdf  <- readOGR(points,  "Onshin")
+points.df  <- as.data.frame(points.spdf)
+points.df$Name
+points.lcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
+points.lcc$name  <-  c("Epicenter","Usubetsu \n hot spring", "Marukoma \n hot spring","Oakan \n volcano")
+points.name  <- points.lcc[order(points.lcc$ylcc),]
 
 dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
 ### Google map
@@ -94,19 +106,7 @@ terrain.col  <- rbind(ggplotGrob(terrain.grobs[[1]]),
                   ggplotGrob(terrain.grobs[[3]]),
                   ggplotGrob(terrain.grobs[[4]]),
                   size = "last")
-# dlcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-#dlcc  <- maxids[-4,]
-# dlcc$xlcc  <- dlcc$X
-# dlcc$ylcc  <- dlcc$Y
-# point  <- ge.df2spwgs84(dlcc, lon ,lat)
-# ge.sp2shpGeo(point)
-points  <- "Onshin/doc.kml"
-points.spdf  <- readOGR(points,  "Onshin")
-points.df  <- as.data.frame(points.spdf)
-points.df$Name
-points.lcc  <- ge.crsTransform(d, lon, lat, xlcc, ylcc, wgs84GRS,lccWgs84)
-points.lcc$name  <-  c("Epicenter","Usubetsu \n hot spring", "Marukoma \n hot spring","Oakan \n volcano")
-points.name  <- points.lcc[order(points.lcc$ylcc),]
+
 
 rad  <- 5000
 dlcc$xmin  <- round(dlcc$xlcc, -3) -rad
