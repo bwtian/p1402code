@@ -180,8 +180,8 @@ for (i in 1:length(lulc.clip.l)) {
                          vjust= -0.1, fontfamily = "times")
         #annotate("path", )
 }
-ft.clip.l[[4]]
-grid.newpage()
+
+# grid.newpage()
 # grid.draw(rbind(
 #         cbind(ggplotGrob(grobs[[1]]), ggplotGrob(grobs[[2]]), size="last"),
 #         cbind(ggplotGrob(grobs[[3]]), ggplotGrob(grobs[[4]]), size="last"),
