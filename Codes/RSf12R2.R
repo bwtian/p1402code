@@ -52,10 +52,19 @@ ggterrain  <- function(df){
         type = "terrain"
         zoom = 13
         ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom)) +
-        xlab("Easting (km)") +
-        ylab("Northing (km)") +
-        scale_x_continuous(labels = df$xlcc)
-        scale_y_continuous(labels = df$ylcc)
+                scale_x_continuous(name = " Longitude",
+                                   breaks=breaksX,
+                                   labels=labelsX,
+                                   limits=limitsX,
+                                   expand = c(0.01,0.01)) +
+
+                scale_y_continuous(name = " Latitude",
+                                   breaks=breaksY,
+                                   labels=labelsY,
+                                   limits=limitsY,
+                                   expand = c(0.01,0.01)) +
+                theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
+                      axis.title.x = element_text(vjust = 0))
 }
 ggterrain(dlcc[1,])
 
