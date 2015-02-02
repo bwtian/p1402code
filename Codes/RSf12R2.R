@@ -70,7 +70,7 @@ points.name  <- points.lcc[order(points.lcc$ylcc),]
 #         theme_bw(base_size = 12, base_family = "Times")
 #            a
 # ggmap(get_map(location = c(lon = 139.93, lat = 42.23),maptype = type, zoom = 13), extent = "panel")
-# ggmap(get_map(location = c(lon = 141.31, lat = 42.79),maptype = type, zoom = 13), extent = "panel")
+ggmap(get_map(location = c(lon = 141.31, lat = 42.82),maptype = type, zoom = 13), extent = "panel")
 # ggmap(get_map(location = c(lon = 144.158, lat = 43.45),maptype = type, zoom = 13), extent = "panel")
 
 # ggterrain  <- function(df){
