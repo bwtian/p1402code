@@ -54,13 +54,16 @@ ggterrain  <- function(df){
         #nameX=parse(text=paste("Longitude ", "(", "^o ", "*E", sep=""))
         nameX=expression(Longitude~(degree*E))
         #nameY=parse(text=paste("Latitude ", "(","^o ", "*N", sep=""))
-        nameX=expression(Longitude~(degree*N))
+        nameY=expression(Longitude~(degree*N))
         ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "panel") +
                 scale_x_continuous(name = nameX) +
 
                 scale_y_continuous(name = nameY) +
                 theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
-                      axis.title.x = element_text(vjust = 0))
+                      axis.title.x = element_text(vjust = 0)) +
+                theme_bw(base_size = 12, base_family = "Times") +
+                theme(legend.position="none")
+                #theme(plot.margin = unit(c(1,-1.5,0,-1.5), "lines")
 }
 ggterrain(dlcc[1,])
 
