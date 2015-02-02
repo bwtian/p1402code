@@ -51,10 +51,11 @@ ggmap(get_map(location = c(lon = 144.158, lat = 43.45),maptype = type, zoom = 13
 ggterrain  <- function(df){
         type = "terrain"
         zoom = 13
-        nameX=parse(text=paste("Longitude", " (","^o ", "*E", ")",sep=""))
-        nameY=parse(text=paste("Latitude", " (", "^o ", "*N", ")",sep=""))
+        nameX=parse(text=paste("Longitude (", "^o ", "*E", sep=""))
+        nameY=parse(text=paste("Latitude (", "^o ", "*N", sep=""))
         ggmap(get_map(location = c(lon = df$lon, lat = df$lat),maptype = type, zoom = zoom), extent = "panel") +
                 scale_x_continuous(name = nameX) +
+
                 scale_y_continuous(name = nameY) +
                 theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
                       axis.title.x = element_text(vjust = 0))
