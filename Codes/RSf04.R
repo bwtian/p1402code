@@ -98,12 +98,13 @@ hist2  <- hist1 +  annotate("text", x = Inf, y = Inf,
          geom_vline(xintercept = IQ25, linetype = 3,color = "blue") +
          geom_vline(xintercept = IQ75, linetype = 3,color = "blue") +
          theme_bw(base_size = 12, base_family = "Times")
-p1  <- boxp()
+
 # + theme(
 #         axis.text.x  = element_blank(),
 #         axis.title.x = element_blank(),
 #         axis.ticks.x = element_blank()
 # )
+p1  <- boxp()
 p2  <- hist2
 ggsave(plot = p1, "boxTD.pdf", width =7, height = 1.5)
 ggsave(plot = p2, "histTD.pdf", width =7, height = 3.5)
