@@ -46,7 +46,7 @@
                   EDA -> log [label = " Rescaling"]
                   log -> vgm [label = " Normality"]
                   vgm -> KED [label = " Estimation"]
-                  KED -> invlog [label = " Inversion Transfer"]
+                  KED -> invlog [label = " Inverse Transfer"]
                   invlog -> GTA [label = " Threshold"]
           }
           //part3
