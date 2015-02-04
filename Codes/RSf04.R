@@ -40,15 +40,15 @@ breaksY  <- seq(0,75,15)
 labelsY  <- as.character(breaksY)
 limitsY  <- c(0,75)
 labelSummary  <- paste(
-        paste0("Count of boreholes: ", round(count, 1)),
-        paste0("Minumum Depth (m): ",round(min, 1)),
-        paste0("Mean Depth (m): ",round(mean, 1)),
-        paste0("1st Quartile (m): ",round(IQ25, 1)),
-        paste0("Median Depth (m): ", round(median, 1)),
-        paste0("3rd Quartile (m): ",round(IQ75, 1)),
-        paste0("Maxumum Depth (m): ",round(max, 1)),
-        #paste0("Interquartile Range (m): ",round(IQR, 1)),
-        paste0("St. Dev.: ", round(sd, 1)),
+        paste0("Number of boreholes: ", round(count, 1)),
+        paste0("Minumum depth (m): ",round(min, 1)),
+        paste0("Mean depth (m): ",round(mean, 1)),
+        paste0("1st quartile (m): ",round(IQ25, 1)),
+        paste0("Median depth (m): ", round(median, 1)),
+        paste0("3rd quartile (m): ",round(IQ75, 1)),
+        paste0("Maxumum depth (m): ",round(max, 1)),
+        #paste0("Interquartile range (m): ",round(IQR, 1)),
+        paste0("St. dev.: ", round(sd, 1)),
 #         paste0("Skewness: ",round(skewness, 1)),
 #         paste0("Kurtosis: ",round(kurtosis, 1)),
         sep = "\n")
