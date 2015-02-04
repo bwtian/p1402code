@@ -11,9 +11,9 @@
           node[shape = box]
           // set Node
           L8 [label = "Landsat-8 \n TIRS", shape = doubleoctagon]
-          DN [label = <Digital Numbers<SUB>sensor</SUB><BR/>16 bit (0 -65,535)>]
-          Rad [label = <Spectral Radiance<SUB>sensor</SUB> <BR/> (W&middot;m<SUP>-2</SUP>sr<SUP>-1</SUP>&mu;m<SUP>-1</SUP>)>]
-          BT [label = <Brightness Temperature<SUB>sensor</SUB><BR/>(Kelvin, 30 m)>]
+          DN [label = <Digital Numbers<SUB>  sensor</SUB><BR/>16 bit (0 -65,535)>]
+          Rad [label = <Spectral Radiance<SUB>  sensor</SUB> <BR/> (W&middot;m<SUP>-2</SUP>sr<SUP>-1</SUP>&mu;m<SUP>-1</SUP>)>]
+          BT [label = <Brightness Temperature<SUB>  sensor</SUB><BR/>(Kelvin, 30 m)>]
           EC [label = "Emissivity \n Correction", shape = Mdiamond]
           LULC [label = "LULC \n(30 m)"]
           LST [label = "Retrieved Land Surface Temperature \n (100 m)"]
@@ -62,7 +62,7 @@
 
 #+END_SRC
 #+CAPTION: Workflow of paper 1402
-#+RESULTS[2af6a4ad14ef959dfa1c46227ad51ebc6dbcfcd5]: fig:p1402Workflow
+#+RESULTS[213f0f66ef24bb105b572b6ed0219b274c62189c]: fig:p1402Workflow
 [[file:p1402Workflow2.pdf]]
 #+RESULTS[435de1589867b53f14370fb15315fddb66525f4b]: fig:p1402Workflow
 [[file:p1402Workflow.png]]
