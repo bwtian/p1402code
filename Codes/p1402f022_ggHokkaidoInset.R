@@ -69,7 +69,7 @@ ggVol  <- ggBH  +
                        color="red"),  shape = 17, size = 2)  +
         geom_point(data = volAA@data,
                    aes(as.numeric(lon), as.numeric(lat),color="white"),
-                   shape = 3, size = 2) +
+                   shape = 17, size = 2) +
         scale_color_manual(name =  "Volcanoes", values = c("orange","red", "green"), labels = c("Quaternary volcanoes","Active volcanoes", "Most active volcanoes")) +
         geom_path(data = volQ2@data, aes(as.numeric(lon), as.numeric(lat)),size = 12, alpha = 0.2, colour = "yellow",lineend = "round")
 
