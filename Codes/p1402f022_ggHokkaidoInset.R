@@ -174,9 +174,9 @@ p
 # hkd + annotation_map(grob = p, xmin = 144, xmax =147, ymin = 45, ymax = 47)
 box= data.frame(lon = c(143,147.5), lat= c(44.7, 47))
 # geom_rect(aes(xmin = 143.5, xmax = 147, ymin = 44.7, ymax = 47.7), colour = "white", size =1) +
-fullmap <- hkd + geom_segment(aes(x=143.4,xend=147, y=44.67,yend=44.67), color = "white", alpha = 0.8) +
+fullmap <- hkd + geom_segment(aes(x=143.4,xend=147, y=44.6,yend=44.6), color = "white", alpha = 0.8) +
         geom_segment(aes(x=143.4,xend=143.4, y=44.65,yend=47), color = "white", alpha = 0.8) +
-inset(grob = ggplotGrob(p + theme_nothing()), xmin = 143, xmax = 147.5, ymin = 44.7, ymax = 47)
+inset(grob = ggplotGrob(p + theme_nothing()), xmin = 143, xmax = 147.5, ymin = 44.6, ymax = 47)
 ggsave(plot = fullmap, "hkd.pdf", width =7, height = 5)
 getwd()
 # print(fullMap)
