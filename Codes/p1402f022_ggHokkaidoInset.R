@@ -68,9 +68,9 @@ ggVol  <- ggBH  +
                    aes(as.numeric(lon), as.numeric(lat),
                        color="red"),  shape = 17, size = 2)  +
         geom_point(data = volAA@data,
-                   aes(as.numeric(lon), as.numeric(lat)), color="white",
+                   aes(as.numeric(lon), as.numeric(lat),color="white",),
                    shape = 3, size = 2) +
-        scale_color_manual(name =  "Volcanoes", values = c("orange","red"), labels = c("Quaternary volcanoes","Active volcanoes")) +
+        scale_color_manual(name =  "Volcanoes", values = c("orange","red", "green"), labels = c("Quaternary volcanoes","Active volcanoes", "Most active volcanoes")) +
         geom_path(data = volQ2@data, aes(as.numeric(lon), as.numeric(lat)),size = 12, alpha = 0.2, colour = "yellow",lineend = "round")
 
 ggSap  <- ggVol + geom_point(data = sap.spdf, aes(x = lon, y = lat), colour = "White")  +
@@ -172,11 +172,13 @@ p
 # g = ggplotGrob(qplot(1, 1))
 # Error: annotation_custom only works with Cartesian coordinates
 # hkd + annotation_map(grob = p, xmin = 144, xmax =147, ymin = 45, ymax = 47)
-fullmap <- hkd + inset(grob = ggplotGrob(p + theme_nothing()), xmin = 143, xmax = 147.5, ymin = 44.7, ymax = Inf) +
-           geom_rect(aes(xmin = 143, xmax = 147.5, ymin = 44.7, ymax = 47.5),colour="white")
-fullmap
-#ggsave(plot = fullMap, "hkd.pdf", width =7, height = 5)
-# getwd()
+box= data.frame(lon = c(143,147.5), lat= c(44.7, 47))
+# geom_rect(aes(xmin = 143.5, xmax = 147, ymin = 44.7, ymax = 47.7), colour = "white", size =1) +
+fullmap <- hkd +geom_segment(aes(x=143.4,xend=147, y=44.67,yend=44.67), color = "white", alpha = 0.8) +
+        geom_segment(aes(x=143.4,xend=143.4, y=44.65,yend=47), color = "white", alpha = 0.8) +
+inset(grob = ggplotGrob(p + theme_nothing()), xmin = 143, xmax = 147.5, ymin = 44.7, ymax = 47)
+ggsave(plot = fullmap, "hkd.pdf", width =7, height = 5)
+getwd()
 # print(fullMap)
 #
 # #Any old plot
