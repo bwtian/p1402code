@@ -154,13 +154,15 @@ ggFont  <- ggBar +
         theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 0),
               axis.title.x = element_text(vjust = 0.25))
 hkd  <-ggFont
-hkd
 ### inset
-basein  <- readRDS("google_google_hybrid_142.5_43.5_zoom4_150130_1545.Rds")
+basein  <- readRDS("google_google_satellite_142.5_43.5_zoom4_150130_1545.Rds")
 p  <- ggmap(basein) + xlim(120,165) + ylim(24,55) +
-        geom_rect(aes(xmin = 138, xmax = 147, ymin = 40, ymax = 47),alpha=0.05, colour="cyan", fill = "cyan",linetype=1, size = 0.2) +
-        geom_text(aes(x = 145, y = 35, label = "Northwest \n Pacific"),
+        geom_rect(aes(xmin = 139, xmax = 147, ymin = 40, ymax = 47),alpha=0.05, colour="cyan", fill = "cyan",linetype=1, size = 0.2) +
+        geom_text(aes(x = 145, y = 35, label = "Pacific \n Ocean"),
                   hjust = -0.1, angle = 0, family="Times", colour="white",
+                  size = 4) +
+        geom_text(aes(x = 136, y = 37, label = "Japan"),
+                  hjust = -0.1, angle = 30, family="Times", colour="white",
                   size = 4)
 #         geom_point(data = jpVolA.spdf@data,
 #                    aes(as.numeric(lon), as.numeric(lat)),
@@ -170,8 +172,9 @@ p
 # g = ggplotGrob(qplot(1, 1))
 # Error: annotation_custom only works with Cartesian coordinates
 # hkd + annotation_map(grob = p, xmin = 144, xmax =147, ymin = 45, ymax = 47)
-fullMap <- hkd + inset(grob = ggplotGrob(p + theme_nothing()), xmin = 143, xmax = 147.5, ymin = 44.7, ymax = Inf)
-
+fullmap <- hkd + inset(grob = ggplotGrob(p + theme_nothing()), xmin = 143, xmax = 147.5, ymin = 44.7, ymax = Inf) +
+           geom_rect(aes(xmin = 143, xmax = 147.5, ymin = 44.7, ymax = 47.5),colour="white")
+fullmap
 #ggsave(plot = fullMap, "hkd.pdf", width =7, height = 5)
 # getwd()
 # print(fullMap)
