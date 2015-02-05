@@ -158,10 +158,10 @@ hkd  <-ggFont
 basein  <- readRDS("google_google_satellite_142.5_43.5_zoom4_150130_1545.Rds")
 p  <- ggmap(basein) + xlim(120,165) + ylim(24,55) +
         geom_rect(aes(xmin = 139, xmax = 147, ymin = 40, ymax = 47),alpha=0.05, colour="cyan", fill = "cyan",linetype=1, size = 0.2) +
-        geom_text(aes(x = 145, y = 35, label = "Pacific \n Ocean"),
+        geom_text(aes(x = 148, y = 35, label = "Pacific \n Ocean"),
                   hjust = -0.1, angle = 0, family="Times", colour="white",
                   size = 4) +
-        geom_text(aes(x = 136, y = 37, label = "Japan"),
+        geom_text(aes(x = 136, y = 35, label = "Japan"),
                   hjust = -0.1, angle = 30, family="Times", colour="white",
                   size = 4)
 #         geom_point(data = jpVolA.spdf@data,
