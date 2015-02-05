@@ -83,8 +83,8 @@ boxp()
 # hist0
 hist1  <- ggplot(d, aes(TD)) +
         geom_histogram(aes(y= ..count..),
-                       fill = "white", binwidth = 100, color = "black") +
-        geom_density(aes(y = 100*..count..),alpha=.1,fill="green")
+                       fill = "green", binwidth = 100, color = "black") +
+        geom_density(aes(y = 100*..count..),alpha=.1,fill="red")
 hist2  <- hist1 +  annotate("text", x = Inf, y = Inf,
                          label = labelSummary, colour="black",
                          size = 4,  hjust=1, vjust = 1,font = "Times") +
