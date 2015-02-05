@@ -97,7 +97,8 @@ hist2  <- hist1 +  annotate("text", x = Inf, y = Inf,
          geom_vline(xintercept = median, linetype = 4,color = "red") +
          geom_vline(xintercept = IQ25, linetype = 3,color = "blue") +
          geom_vline(xintercept = IQ75, linetype = 3,color = "blue") +
-         theme_bw(base_size = 12, base_family = "Times")
+         theme_bw(base_size = 12, base_family = "Times") +
+        theme(axis.title.x=element_text(vjust = -0.5, hjust =0.5))
 
 # + theme(
 #         axis.text.x  = element_blank(),
