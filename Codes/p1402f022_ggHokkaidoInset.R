@@ -172,9 +172,9 @@ p
 # hkd + annotation_map(grob = p, xmin = 144, xmax =147, ymin = 45, ymax = 47)
 fullMap <- hkd + inset(grob = ggplotGrob(p + theme_nothing()), xmin = 143, xmax = 147.5, ymin = 44.7, ymax = Inf)
 
-ggsave(plot = fullMap, "hkd.pdf", width =7, height = 5)
-getwd()
-print(fullMap)
+#ggsave(plot = fullMap, "hkd.pdf", width =7, height = 5)
+# getwd()
+# print(fullMap)
 #
 # #Any old plot
 # a_plot <- ggplot(cars, aes(speed, dist)) + geom_line()
