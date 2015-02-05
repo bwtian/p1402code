@@ -70,7 +70,7 @@ ggVol  <- ggBH  +
         geom_point(data = volAA@data,
                    aes(as.numeric(lon), as.numeric(lat),color="white"),
                    shape = 17, size = 2) +
-        scale_color_manual(name =  "Volcanoes", values = c("orange","red", "green"), labels = c("Quaternary volcanoes","Active volcanoes", "Most active volcanoes")) +
+        scale_color_manual(name =  "Volcanoes", values = c("orange","red", "purple"), labels = c("Quaternary volcanoes","Active volcanoes", "Most active volcanoes")) +
         geom_path(data = volQ2@data, aes(as.numeric(lon), as.numeric(lat)),size = 12, alpha = 0.2, colour = "yellow",lineend = "round")
 
 ggSap  <- ggVol + geom_point(data = sap.spdf, aes(x = lon, y = lat), colour = "White")  +
